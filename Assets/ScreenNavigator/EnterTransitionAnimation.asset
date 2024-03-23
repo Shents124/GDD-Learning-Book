@@ -16,7 +16,7 @@ MonoBehaviour:
   _duration: 0.3
   _easeType: 8
   _beforeAlignment: 4
-  _beforeScale: {x: 0, y: 0, z: 0}
+  _beforeScale: {x: 1, y: 1, z: 1}
   _beforeAlpha: 0
   _afterAlignment: 4
   _afterScale: {x: 1, y: 1, z: 1}
