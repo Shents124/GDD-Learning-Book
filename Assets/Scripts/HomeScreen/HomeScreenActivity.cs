@@ -13,14 +13,13 @@ namespace HomeScreen
 
         public override UniTask Initialize(Memory<object> args)
         {
-            button.AddListener(() =>  OnClickedPlay().Forget());
+            button.AddListener( OnClickedPlay);
             return base.Initialize(args);
         }
 
-        private static async UniTask OnClickedPlay()
+        private static void OnClickedPlay()
         {
-            await UIService.OpenActivityAsync(ActivityType.MenuScreen);
-            await UIService.CloseActivityAsync(ActivityType.HomeScreen, false);
+            UIService.OpenActivityAsync(ActivityType.MenuScreen).Forget();
         }
     }
 }
