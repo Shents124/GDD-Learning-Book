@@ -1,4 +1,5 @@
-﻿using UI;
+﻿using Cysharp.Threading.Tasks;
+using UI;
 using UnityEngine;
 
 public class Initialize : MonoBehaviour
@@ -17,6 +18,6 @@ public class Initialize : MonoBehaviour
 
     private void OnUiInitializeDone()
     {
-        UIService.OpenActivity(ActivityType.HomeScreen, false);
+        UIService.OpenActivityAsync(ActivityType.HomeScreen, false).Forget();
     }
 }

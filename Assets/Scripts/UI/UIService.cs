@@ -6,6 +6,8 @@ namespace UI
 {
     public static class UIService
     {
+        private  static  ActivityType s_currentActivityType = ActivityType.None;
+    
         public static async UniTask OpenActivityAsync(ActivityType activityType, bool playAnimation = true, 
             OnViewLoadedCallback onLoadedCallBack = null,
             params object[] args)
@@ -14,17 +16,24 @@ namespace UI
             var activityContainer = ActivityContainer.Find(UIConstant.ACTIVITY);
 
             await activityContainer.ShowAsync(activityOption, args);
+
+            if (s_currentActivityType != ActivityType.None)
+            {
+                await CloseActivityAsync(s_currentActivityType, false);
+            }
+
+            s_currentActivityType = activityType;
         }
         
-        public static void OpenActivity(ActivityType activityType, bool playAnimation = true, 
-            OnViewLoadedCallback onLoadedCallBack = null,
-            params object[] args)
-        {
-            var activityOption = new ActivityOptions(activityType.ToString(), playAnimation, onLoadedCallBack);
-            var activityContainer = ActivityContainer.Find(UIConstant.ACTIVITY);
-
-            activityContainer.Show(activityOption, args);
-        }
+        // public static void OpenActivity(ActivityType activityType, bool playAnimation = true, 
+        //     OnViewLoadedCallback onLoadedCallBack = null,
+        //     params object[] args)
+        // {
+        //     var activityOption = new ActivityOptions(activityType.ToString(), playAnimation, onLoadedCallBack);
+        //     var activityContainer = ActivityContainer.Find(UIConstant.ACTIVITY);
+        //
+        //     activityContainer.Show(activityOption, args);
+        // }
         
         public static void CloseActivity(ActivityType activityType, bool playAnimation)
         {
