@@ -1,6 +1,7 @@
 ﻿using System;
 using ButtonUI;
 using Cysharp.Threading.Tasks;
+using UI;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
@@ -12,13 +13,14 @@ namespace HomeScreen
 
         public override UniTask Initialize(Memory<object> args)
         {
-            button.AddListener(OnClickedPlay);
+            button.AddListener(() =>  OnClickedPlay().Forget());
             return base.Initialize(args);
         }
 
-        private void OnClickedPlay()
+        private static async UniTask OnClickedPlay()
         {
-            Debug.Log("Play game");
+            await UIService.OpenActivityAsync(ActivityType.MenuScreen);
+            await UIService.CloseActivityAsync(ActivityType.HomeScreen, false);
         }
     }
 }
