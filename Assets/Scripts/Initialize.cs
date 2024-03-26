@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Initialize : MonoBehaviour
 {
+    public ColorSelect currentColor;
+    
     [SerializeField] private UIController uiController;
 
     private void OnEnable()
@@ -18,6 +20,14 @@ public class Initialize : MonoBehaviour
 
     private void OnUiInitializeDone()
     {
-        UIService.OpenActivityAsync(ActivityType.HomeScreen, false).Forget();
+        UIService.OpenActivityAsync(ActivityType.Step7, false).Forget();
     }
+}
+
+public enum ColorSelect
+{
+    Red,
+    Yellow,
+    Green,
+    Blue,
 }

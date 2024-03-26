@@ -24,7 +24,7 @@ namespace UI
 
             s_currentActivityType = activityType;
         }
-        
+
         // public static void OpenActivity(ActivityType activityType, bool playAnimation = true, 
         //     OnViewLoadedCallback onLoadedCallBack = null,
         //     params object[] args)
@@ -34,7 +34,19 @@ namespace UI
         //
         //     activityContainer.Show(activityOption, args);
         // }
-        
+
+        public static async UniTask OpenActivityAsyncNoClose(ActivityType activityType, bool playAnimation = true,
+            OnViewLoadedCallback onLoadedCallBack = null,
+            params object[] args)
+        {
+            var activityOption = new ActivityOptions(activityType.ToString(), playAnimation, onLoadedCallBack);
+            var activityContainer = ActivityContainer.Find(UIConstant.ACTIVITY);
+
+            await activityContainer.ShowAsync(activityOption, args);
+
+            s_currentActivityType = activityType;
+        }
+
         public static void CloseActivity(ActivityType activityType, bool playAnimation)
         {
             var activityContainer = ActivityContainer.Find(UIConstant.ACTIVITY);
