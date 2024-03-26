@@ -52,19 +52,24 @@ namespace ScratchCardAsset
 			}
 
 			Material scratchSurfaceMaterial = null;
-			if (Card.ScratchSurface == null)
-			{
-				scratchSurfaceMaterial = new Material(MaskShader) {mainTexture = ScratchSurfaceSprite.texture};
-				Card.ScratchSurface = scratchSurfaceMaterial;
-			}
+			//if (Card.ScratchSurface == null)
+			//{
+			//	scratchSurfaceMaterial = new Material(MaskShader) {mainTexture = ScratchSurfaceSprite.texture};
+			//	Card.ScratchSurface = scratchSurfaceMaterial;
+			//}
 
-			if (Card.Eraser == null)
-			{
-				eraserMaterial = new Material(BrushShader) {mainTexture = EraseTexture};
-				Card.Eraser = eraserMaterial;
-			}
+			//if (Card.Eraser == null)
+			//{
+			//	eraserMaterial = new Material(BrushShader) {mainTexture = EraseTexture};
+			//	Card.Eraser = eraserMaterial;
+			//}
 
-			Card.BrushScale = EraseTextureScale;
+            scratchSurfaceMaterial = new Material(MaskShader) { mainTexture = ScratchSurfaceSprite.texture };
+            Card.ScratchSurface = scratchSurfaceMaterial;
+            eraserMaterial = new Material(BrushShader) { mainTexture = EraseTexture };
+            Card.Eraser = eraserMaterial;
+
+            Card.BrushScale = EraseTextureScale;
 			Card.Mode = Mode;
 
 			if (Card.Progress == null)

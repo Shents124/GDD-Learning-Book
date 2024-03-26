@@ -11,22 +11,30 @@ namespace Step7
     {
         public int stepToDone = 2;
 
+        public Step8Activity stepFillColor;
+
         private int currentStep = 0;
 
         public void AddStep() => currentStep++;
 
-        public GameObject[] _UIStepColors;
-
         public override UniTask Initialize(Memory<object> args)
         {
-            foreach (var item in _UIStepColors)
-            {
-                item.SetActive(false);
-            }
-
+            EventManager.Connect(Events.FillColorDone, CheckNextStep);
             return base.Initialize(args);
         }
 
-        public bool CheckDoneStep => currentStep >= stepToDone;
+        protected override void OnDisable()
+        {
+            EventManager.Disconnect(Events.FillColorDone, CheckNextStep);
+        }
+
+        public void CheckNextStep()
+        {
+            if(currentStep >= stepToDone)
+            {
+                //TODO: Next step capture
+                Debug.Log("Next step capture");
+            }
+        }
     }
 }

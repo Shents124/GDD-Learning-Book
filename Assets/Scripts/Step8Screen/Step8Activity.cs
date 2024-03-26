@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using ScratchCard;
 using ScratchCardAsset;
 using Step7;
 using UI;
@@ -10,7 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
-public class Step8Activity : Activity
+public class Step8Activity : MonoBehaviour
 {
     public float percentToDone = 0.9f;
     private TypeObject _typeObject;
@@ -25,10 +24,10 @@ public class Step8Activity : Activity
     public EraseProgress EraseProgress;
 
 
-    public override UniTask Initialize(Memory<object> args)
+    private void Start()
     {
         CardManager.MainCamera = Camera.main;
-        return base.Initialize(args);
+        EraseProgress.OnProgress += DoneFillColor;
     }
 
     public void InitData(TypeObject type)
@@ -45,7 +44,6 @@ public class Step8Activity : Activity
         CardManager.ImageCard = imageNotDones[(int)type].gameObject;
         CardManager.ScratchSurfaceSprite = imageNotDones[(int)type].sprite;
         CardManager.InitData();
-        EraseProgress.OnProgress += DoneFillColor;
         _typeObject = type;
 
     }
@@ -54,20 +52,11 @@ public class Step8Activity : Activity
     {
         if(progress >= percentToDone)
         {
-            Debug.Log("Done");
             imageNotDones[(int)_typeObject].gameObject.SetActive(false);
-            var step7 = UnityEngine.Object.FindObjectOfType<Step7Activity>(true);
-            if(step7 != null)
-            {
-                if (step7.CheckDoneStep)
-                {
-                    Debug.Log("Change State");
-                }
-                else
-                {
-                    UIService.OpenActivityAsync(ActivityType.Step7).Forget();
-                }
-            }
+            //TODO: anim fill done color
+            this.gameObject.SetActive(false);
+            //TODO: request event done
+            EventManager.SendSimpleEvent(Events.FillColorDone);
         }
     }
 }

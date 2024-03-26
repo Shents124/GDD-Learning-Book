@@ -27,9 +27,8 @@ namespace Step7Screen
         private async void OnClickedObj()
         {
             step7.AddStep();
-            await UIService.OpenActivityAsyncNoClose(ActivityType.Step8);
-            var step8 = Object.FindObjectOfType<Step8Activity>(true);
-            step8.InitData(objectSelect);
+            step7.stepFillColor.InitData(objectSelect);
+            step7.stepFillColor.gameObject.SetActive(true);
             imageIcon.sprite = spriteDone;
             btnSelect.onClick.RemoveAllListeners();
         }

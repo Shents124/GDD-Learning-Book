@@ -131,7 +131,7 @@ namespace ScratchCardAsset
 
 		public void Init()
 		{
-			GetScratchBounds();
+            GetScratchBounds();
 			InitVariables();
 			InitTriangle();
 		}
