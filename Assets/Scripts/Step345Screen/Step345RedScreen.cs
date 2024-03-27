@@ -24,6 +24,7 @@ namespace Step345Screen
         [SerializeField] private RectTransform characterEndPosition;
         [SerializeField] private RectTransform characterEnd2Position;
         [SerializeField] private RectTransform giftEndPosition;
+        [SerializeField] private RectTransform showCardPosition;
 
         private int _fillCount;
 
@@ -106,10 +107,13 @@ namespace Step345Screen
             });
         }
 
-        private void OnClickedCard(ColorType colorType)
+        private void OnClickedCard(ColorType colorType, Card card)
         {
             if (_colorType != colorType)
                 return;
+            
+            card.transform.SetParent(transform);
+            card.DoShow(showCardPosition.anchoredPosition, 1f);
             
             Debug.Log("Chọn đúng màu rồi");
         }

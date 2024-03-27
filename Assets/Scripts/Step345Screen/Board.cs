@@ -12,7 +12,7 @@ namespace Step345Screen
 
         [SerializeField] private RectTransform endPosition;
         
-        public void Initialize(Action<ColorType> onClick)
+        public void Initialize(Action<ColorType, Card> onClick)
         {
             foreach (var card in cards)
             {
