@@ -18,6 +18,8 @@ namespace ButtonUI
 
         private Action _onClick;
         private Button _button;
+
+        protected Button Button => _button;
         
         private void Awake()
         {

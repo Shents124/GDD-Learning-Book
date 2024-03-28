@@ -14,6 +14,7 @@ namespace Step345Screen
         [SerializeField] private float giftMoveDuration = 0.3f;
         [SerializeField] private float foodMoveDuration = 0.4f;
         [SerializeField] private RectTransform characterTransform;
+        [SerializeField] private GameObject dialog;
         [SerializeField] private Image fillImage;
         [SerializeField] private Step345Gift gift;
         [SerializeField] private Button[] foods;
@@ -102,6 +103,7 @@ namespace Step345Screen
 
         private void ShowBoard()
         {
+            dialog.SetActive(true);
             board.DoMove(() => {
                 board.Initialize(OnClickedCard);
             });

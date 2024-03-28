@@ -29,6 +29,7 @@ namespace Step345Screen
 
         public void DoShow(Vector2 position, float duration)
         {
+            Button.interactable = false;
             var rect = GetComponent<RectTransform>();
             rect.DOAnchorPos(position, duration);
             rect.DOScale(new Vector3(1.2f, 1.2f, 1.2f), duration);
