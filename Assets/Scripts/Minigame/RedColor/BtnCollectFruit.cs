@@ -29,10 +29,13 @@ public class BtnCollectFruit : MonoBehaviour
     {
         if (correctFruit)
         {
+            Vector2 scale = transform.localScale;
+            transform.DOScale(scale * 0.8f, 1f);
             transform.DOJump(managerStep.posCollect[managerStep.CurrentFruit].position, jumpower, 1, 1f).OnComplete(() => {
                 managerStep.IncreaseFruit();
                 this.gameObject.SetActive(false);
                 transform.position = posStart;
+                transform.localScale = scale;
             }).SetEase(Ease.Linear);
         }
         else

@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class StepCollect : BaseStep
 {
     public int numberFruitNeed = 4;
+
+    public DOTweenAnimation bucketCollectDone;
 
     private int _currentStep;
 
@@ -17,6 +20,7 @@ public class StepCollect : BaseStep
 
     public Transform posFall;
 
+    public Transform bucketDonePos;
     public int CurrentFruit
     {
         get => _currentStep;
@@ -25,7 +29,15 @@ public class StepCollect : BaseStep
             _currentStep = value;
             if(numberFruitNeed <= _currentStep)
             {
-                NextStep();
+                Vector3 pos = bucketCollectDone.transform.position;
+                bucketCollectDone.onComplete.RemoveAllListeners();
+                bucketCollectDone.onComplete.AddListener(() => {
+                    NextStep();
+                    bucketCollectDone.transform.position = pos;
+                });
+                bucketCollectDone.transform.DOMove(bucketDonePos.position, 1f).OnComplete(() => {
+                    bucketCollectDone.DOPlay();
+                });
             }
         }
     }
