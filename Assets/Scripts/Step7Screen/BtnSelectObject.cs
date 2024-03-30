@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Cysharp.Threading.Tasks;
-using Step7;
+﻿using Step7;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +22,7 @@ namespace Step7Screen
             btnSelect.onClick.AddListener(OnClickedObj);
         }
 
-        private async void OnClickedObj()
+        private void OnClickedObj()
         {
             step7.AddStep();
             step7.stepFillColor.InitData(objectSelect);
