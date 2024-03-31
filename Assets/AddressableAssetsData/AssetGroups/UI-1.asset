@@ -23,7 +23,17 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d698e5fe953e7954a9c8a0e3be2bc56c
-    m_Address: MinigameRedStep1
+    m_Address: MinigameRed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf6ab265ab7724040beed304a285e875
+    m_Address: BgLambanh
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3545fcf712bf9f40a73b3b0cd050794
+    m_Address: BakeCake
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

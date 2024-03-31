@@ -20,7 +20,7 @@ public class Initialize : MonoBehaviour
 
     private void OnUiInitializeDone()
     {
-        UIService.OpenActivityAsync(ActivityType.Step7, false).Forget();
+        UIService.OpenActivityAsync(ActivityType.MinigameRed, false).Forget();
     }
 }
 

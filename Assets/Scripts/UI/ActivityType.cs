@@ -5,6 +5,8 @@
         None = 0,
         HomeScreen = 1,
         MenuScreen = 2,
+        MinigameRed = 5,
+        BakeCake = 6,
         Step7 = 7,
     }
     public enum TypeObject

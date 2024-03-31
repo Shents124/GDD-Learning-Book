@@ -85,7 +85,20 @@ public static class EventManager
 		}
 	}
 
-	public static void SendSimpleEvent(Events simpleEvent)
+    public static void DisconnectAll(Events simpleEvent)
+    {
+        if (HolderSimple.s_eventMap.ContainsKey((int)simpleEvent))
+        {
+            HolderSimple.s_eventMap.Remove((int)simpleEvent);
+        }
+        else
+        {
+            Debug.LogWarning("Fail to Disconnect handler for event: " + simpleEvent.ToString());
+        }
+    }
+
+
+    public static void SendSimpleEvent(Events simpleEvent)
 	{
 		if (HolderSimple.s_eventMap.ContainsKey((int)simpleEvent))
 		{
@@ -101,4 +114,7 @@ public static class EventManager
 public enum Events
 {
     FillColorDone,
+    PeelAppleDone,
+    CutAppleDone,
+    ArrangeCakeDone,
 }
