@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using UI;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
 public class MinigameRedStep1Activity : Activity
 {
+    public MakeCakeManager MakeCakeManager;
+
     public List<BaseStep> stepInMiniGame;
 
     private int currentStep = 0;
@@ -36,7 +40,8 @@ public class MinigameRedStep1Activity : Activity
     {
         if (currentStep == stepInMiniGame.Count - 1)
         {
-            Debug.Log("Lên step mới");
+            var manager = Instantiate(MakeCakeManager);
+            UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
         }
         else
         {
