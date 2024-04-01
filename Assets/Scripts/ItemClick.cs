@@ -9,6 +9,8 @@ public class ItemClick : MonoBehaviour
     [SerializeField]
     private ButtonClickedEvent m_OnClick = new ButtonClickedEvent();
 
+    public bool isMoveWithMouse = false;
+
     public TypeCallAction type = TypeCallAction.Click;
 
     public float threshold = 100f;
@@ -32,17 +34,18 @@ public class ItemClick : MonoBehaviour
     private void OnMouseDrag()
     {
         lastMousePosition = Input.mousePosition;
-    }
+        if(isMoveWithMouse && type != TypeCallAction.Click)
+        {
+            transform.position = (Vector2) (Camera.main.ScreenToWorldPoint(lastMousePosition));
+        }
 
-    private void OnMouseUp()
-    {
         if (type == TypeCallAction.Click)
             return;
 
-        switch(type)
+        switch (type)
         {
             case TypeCallAction.Up:
-                if(startMousePosition.y - lastMousePosition.y < -threshold)
+                if (startMousePosition.y - lastMousePosition.y < -threshold)
                 {
                     m_OnClick?.Invoke();
                 }
@@ -60,7 +63,7 @@ public class ItemClick : MonoBehaviour
                 }
                 break;
             case TypeCallAction.Right:
-                if (startMousePosition.x - lastMousePosition.x  > threshold)
+                if (startMousePosition.x - lastMousePosition.x > threshold)
                 {
                     m_OnClick?.Invoke();
                 }
