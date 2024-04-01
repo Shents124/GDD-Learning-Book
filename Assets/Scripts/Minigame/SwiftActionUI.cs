@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using static UnityEngine.UI.Button;
 
-public class ItemClick : MonoBehaviour
+public class SwiftActionUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private ButtonClickedEvent m_OnClick = new ButtonClickedEvent();
@@ -17,32 +16,25 @@ public class ItemClick : MonoBehaviour
 
     private Vector2 lastMousePosition;
 
-    private void OnMouseDown()
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        if(type == TypeCallAction.Click)
-        {
-            m_OnClick?.Invoke();
-        }
-        else
-        {
-            startMousePosition = Input.mousePosition;
-        }
+        startMousePosition = Input.mousePosition;
     }
 
-    private void OnMouseDrag()
+    public void OnDrag(PointerEventData eventData)
     {
         lastMousePosition = Input.mousePosition;
     }
 
-    private void OnMouseUp()
+    public void OnEndDrag(PointerEventData eventData)
     {
         if (type == TypeCallAction.Click)
             return;
 
-        switch(type)
+        switch (type)
         {
             case TypeCallAction.Up:
-                if(startMousePosition.y - lastMousePosition.y < -threshold)
+                if (startMousePosition.y - lastMousePosition.y < -threshold)
                 {
                     m_OnClick?.Invoke();
                 }
@@ -60,7 +52,7 @@ public class ItemClick : MonoBehaviour
                 }
                 break;
             case TypeCallAction.Right:
-                if (startMousePosition.x - lastMousePosition.x  > threshold)
+                if (startMousePosition.x - lastMousePosition.x > threshold)
                 {
                     m_OnClick?.Invoke();
                 }
@@ -68,13 +60,4 @@ public class ItemClick : MonoBehaviour
 
         }
     }
-}
-
-public enum TypeCallAction
-{
-    Click,
-    Up,
-    Down,
-    Right,
-    Left
 }
