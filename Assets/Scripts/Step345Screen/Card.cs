@@ -27,12 +27,13 @@ namespace Step345Screen
             _onClick?.Invoke(colorType, this);
         }
 
-        public void DoShow(Vector2 position, float duration)
+        public void DoShow(Vector2 position, float duration, Action onComplete)
         {
             Button.interactable = false;
             var rect = GetComponent<RectTransform>();
             rect.DOAnchorPos(position, duration);
-            rect.DOScale(new Vector3(1.2f, 1.2f, 1.2f), duration);
+            rect.DOScale(new Vector3(1.2f, 1.2f, 1.2f), duration).
+                OnComplete(() => onComplete?.Invoke());
         }
     }
 }

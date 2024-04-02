@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using DefaultNamespace;
 using ZBase.UnityScreenNavigator.Core.Activities;
 using ZBase.UnityScreenNavigator.Core.Views;
 
@@ -57,6 +59,40 @@ namespace UI
         {
             var activityContainer = ActivityContainer.Find(UIConstant.ACTIVITY);
             await activityContainer.HideAsync(activityType.ToString(), playAnimation);
+        }
+
+        public static async UniTask InitializeFadeScreen()
+        {
+            var activityContainer = ActivityContainer.Find(UIConstant.FADE_ACTIVITY);
+            await activityContainer.ShowAsync(ActivityType.FadeScreen.ToString(), false);
+        }
+        
+        public static void PlayFadeIn(Action callback)
+        {
+            var activityContainer = ActivityContainer.Find(UIConstant.FADE_ACTIVITY);
+            bool popupExist = activityContainer.TryGet(ActivityType.FadeScreen.ToString(), out var toast);
+
+            if (popupExist == false)
+                return;
+            
+            if (toast.View is FadeScreenActivity fadeScreenActivity)
+            {
+                fadeScreenActivity.FadeIn(callback);
+            }
+        }
+        
+        public static void PlayFadeOut(Action callback = null)
+        {
+            var activityContainer = ActivityContainer.Find(UIConstant.FADE_ACTIVITY);
+            bool popupExist = activityContainer.TryGet(ActivityType.FadeScreen.ToString(), out var toast);
+
+            if (popupExist == false)
+                return;
+            
+            if (toast.View is FadeScreenActivity fadeScreenActivity)
+            {
+                fadeScreenActivity.FadeOut(callback);
+            }
         }
     }
 }

@@ -10,6 +10,8 @@
         MinigameRed = 5,
         BakeCake = 6,
         Step7 = 7,
+        
+        FadeScreen = 99,
     }
     
     public enum TypeObject

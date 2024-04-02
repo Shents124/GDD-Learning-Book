@@ -31,3 +31,9 @@ MonoBehaviour:
     sortingLayer:
       id: 0
     orderInLayer: 500
+  - name: Fade Activity
+    containerType: 2
+    overrideSorting: 1
+    sortingLayer:
+      id: 0
+    orderInLayer: 1500

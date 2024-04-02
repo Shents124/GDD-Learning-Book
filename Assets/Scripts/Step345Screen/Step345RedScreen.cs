@@ -2,8 +2,11 @@
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Minigame.RedColor;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
 namespace Step345Screen
@@ -115,9 +118,17 @@ namespace Step345Screen
                 return;
             
             card.transform.SetParent(transform);
-            card.DoShow(showCardPosition.anchoredPosition, 1f);
-            
-            Debug.Log("Chọn đúng màu rồi");
+            card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
+                UIService.PlayFadeIn(() => MoveToNextStep().Forget());
+            });
+        }
+
+        private async UniTask MoveToNextStep()
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_STEP_2);
+            UIService.CloseActivityAsync(ActivityType.Step345Screen, false).Forget();
+            UIService.PlayFadeOut();
         }
     }
 }

@@ -35,6 +35,13 @@ namespace Utility
             return asset;
         }
 
+        public static T LoadStep<T>(string path)
+        {
+            var clone = LoadAsset<GameObject>(path);
+            var step = Object.Instantiate(clone);
+            return step.GetComponent<T>();
+        }
+        
         #endregion
 
         #region Helper

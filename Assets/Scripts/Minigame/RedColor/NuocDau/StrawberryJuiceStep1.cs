@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Minigame.RedColor
@@ -17,22 +19,18 @@ namespace Minigame.RedColor
         {
             foreach (var strawberry in strawberries)
             {
-                strawberry.SetData(OnCleanStrawberry);
+                strawberry.SetData(() => OnCleanStrawberry().Forget());
             }
         }
         
-        private void OnCleanStrawberry()
+        private async UniTask OnCleanStrawberry()
         {
             numberStrawberry--;
             if (numberStrawberry <= 0)
             {
+                await UniTask.Delay(TimeSpan.FromSeconds(1f));
                 CompletedStep();
             }
-        }
-
-        private void CompletedStep()
-        {
-            
         }
     }
 }
