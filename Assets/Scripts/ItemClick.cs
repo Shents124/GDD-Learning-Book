@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.UI.Button;
 
 public class ItemClick : MonoBehaviour
@@ -19,6 +17,11 @@ public class ItemClick : MonoBehaviour
 
     private Vector2 lastMousePosition;
 
+    public void AddListener(UnityAction action)
+    {
+        m_OnClick.AddListener(action);
+    }
+    
     private void OnMouseDown()
     {
         if(type == TypeCallAction.Click)
@@ -68,6 +71,11 @@ public class ItemClick : MonoBehaviour
                     m_OnClick?.Invoke();
                 }
                 break;
+            
+            case TypeCallAction.Drag:
+                if (Vector3.Distance(startMousePosition, lastMousePosition) >= threshold)
+                    m_OnClick?.Invoke();
+                break;
 
         }
     }
@@ -79,5 +87,6 @@ public enum TypeCallAction
     Up,
     Down,
     Right,
-    Left
+    Left,
+    Drag
 }

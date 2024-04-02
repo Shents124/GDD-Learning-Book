@@ -12,6 +12,14 @@ public class BaseStep : MonoBehaviour
 
     public BaseStep nextStep;
 
+    private Action _onCompletedStep;
+
+    public void Initialize(Action onCompleted)
+    {
+        _onCompletedStep = onCompleted;
+        gameObject.SetActive(false);
+    }
+    
     public virtual void InActive()
     {
         ResetStep();
@@ -45,6 +53,11 @@ public class BaseStep : MonoBehaviour
         previousStep.InActive();
     }
 
+    protected virtual void CompletedStep()
+    {
+        _onCompletedStep?.Invoke();
+    }
+    
     public void ConnectStep(BaseStep stepNext, BaseStep stepPrevious)
     {
         previousStep = stepPrevious;

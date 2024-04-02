@@ -27,6 +27,7 @@ namespace UI
              SetRectMask2D(UIConstant.SCREEN, WindowContainerType.Screen);
              SetRectMask2D(UIConstant.MODAL, WindowContainerType.Modal);
              SetRectMask2D(UIConstant.ACTIVITY, WindowContainerType.Activity);
+             SetRectMask2D(UIConstant.FADE_ACTIVITY, WindowContainerType.Activity);
              onInitializeDone?.Invoke();
         }
 

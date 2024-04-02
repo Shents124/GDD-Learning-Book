@@ -19,7 +19,7 @@ public class BakeCake : Activity
 
     public GameObject cakeDone;
 
-    private void Start()
+    protected override void Start()
     {
         btnMoLo.onClick.AddListener(OpenMachine);
         btnDongLo.onClick.AddListener(ActiveMachine);

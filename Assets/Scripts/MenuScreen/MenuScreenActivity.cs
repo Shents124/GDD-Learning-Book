@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Constant;
 using Cysharp.Threading.Tasks;
+using UI;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
@@ -22,7 +23,7 @@ namespace MenuScreen
 
         private void OnChoseColor(ColorType colorType)
         {
-            Debug.Log(colorType);
+            UIService.OpenActivityAsync(ActivityType.Step345Screen, args: colorType).Forget();
         }
     }
 }
