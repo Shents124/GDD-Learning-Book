@@ -5,29 +5,36 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Layer 2
-  rotate: true
-  xy: 1246, 82
+  rotate: false
+  xy: 1142, 28
   size: 320, 464
   orig: 320, 464
   offset: 0, 0
   index: -1
 Layer 3
-  rotate: true
-  xy: 1712, 149
+  rotate: false
+  xy: 466, 29
   size: 253, 59
   orig: 253, 112
   offset: 0, 0
   index: -1
-ly duoi
+Layer 5
   rotate: true
-  xy: 752, 14
+  xy: 0, 28
+  size: 60, 464
+  orig: 60, 464
+  offset: 0, 0
+  index: -1
+ly duoi
+  rotate: false
+  xy: 752, 0
   size: 388, 492
   orig: 408, 752
   offset: 8, 259
   index: -1
 ly tren
   rotate: true
-  xy: 0, 0
+  xy: 0, 90
   size: 402, 750
   orig: 408, 752
   offset: 3, 1
