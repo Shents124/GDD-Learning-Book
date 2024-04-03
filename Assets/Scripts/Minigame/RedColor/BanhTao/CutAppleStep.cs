@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 public class CutAppleStep : BaseStep
@@ -10,6 +11,8 @@ public class CutAppleStep : BaseStep
 
     public GameObject knife;
 
+    public Transform knifeStart;
+
     public int numberStep;
 
     private int currentStep;
@@ -18,6 +21,9 @@ public class CutAppleStep : BaseStep
     {
         allStep[0].gameObject.SetActive(true);
         EventManager.Connect(Events.CutAppleDone, CompleteMiniStep);
+        knife.transform.position = knifeStart.position;
+        knife.transform.rotation = knifeStart.rotation;
+        knife.SetActive(true);
     }
 
     private void OnDisable()
@@ -31,14 +37,17 @@ public class CutAppleStep : BaseStep
         currentStep++;
         if (currentStep >= numberStep)
         {
-            knife.SetActive(false);
-            applePeelDone.SetActive(true);
-            foreach (var peel in allStep)
-            {
-                peel.gameObject.SetActive(false);
-                //peel.ResetStep();
-            }
-            NextStep();
+            UIService.PlayFadeIn(() => {
+                knife.SetActive(false);
+                applePeelDone.SetActive(true);
+                foreach (var peel in allStep)
+                {
+                    peel.gameObject.SetActive(false);
+                    //peel.ResetStep();
+                }
+                NextStep();
+                UIService.PlayFadeOut();
+            });
         }
         else
         {

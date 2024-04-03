@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 public class ArrangeCakeStep : BaseStep
@@ -18,7 +19,11 @@ public class ArrangeCakeStep : BaseStep
 
     public void ChangeToBakeStep()
     {
-        NextStep();
+        UIService.PlayFadeIn(()=> 
+        {
+            UIService.PlayFadeOut();
+            NextStep(); 
+        });
     }
 
     public void DoneStep()
