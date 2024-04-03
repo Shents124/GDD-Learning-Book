@@ -7,6 +7,12 @@ public class ItemClick : MonoBehaviour
     [SerializeField]
     private ButtonClickedEvent m_OnClick = new ButtonClickedEvent();
 
+    public ButtonClickedEvent onClick
+    {
+        get { return m_OnClick; }
+        set { m_OnClick = value; }
+    }
+
     public bool isMoveWithMouse = false;
 
     public TypeCallAction type = TypeCallAction.Click;
