@@ -6,6 +6,8 @@ public class ApplePieceManager : MonoBehaviour
 {
     public List<ApplePiece> allPieces;
 
+    public GameObject dia;
+
     public int currentPieceDone
     {
         get => _currentPieceDone; 
@@ -20,6 +22,7 @@ public class ApplePieceManager : MonoBehaviour
     {
         if (_currentPieceDone >= allPieces.Count)
         {
+            dia.SetActive(false);
             await currentCake.DoneStep();
             this.gameObject.SetActive(false);
             EventManager.SendSimpleEvent(Events.ArrangeCakeDone);

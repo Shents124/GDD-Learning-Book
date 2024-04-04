@@ -9,8 +9,6 @@ public class PeelApple : MonoBehaviour
     public float timeAnimFake = 0.5f;
     public GameObject donePeel, fakeApple, lineCut;
 
-    public Transform posFakeMoveDone;
-
     private Vector2 _posStartFake, _rotStartFake;
 
     private void Start()
@@ -25,14 +23,16 @@ public class PeelApple : MonoBehaviour
         fakeApple.SetActive(true);
         donePeel.SetActive(true);
         lineCut.SetActive(false);
-        fakeApple.transform.DOLocalRotate(Vector2.zero, timeAnimFake).SetEase(Ease.Linear);
-        fakeApple.transform.DOMove(posFakeMoveDone.position, timeAnimFake).OnComplete(() =>
-        {
-            fakeApple.GetComponent<SpriteRenderer>().DOFade(0, timeAnimFake).SetEase(Ease.Linear).OnComplete(() => {
-                this.donePeel.SetActive(false);
-            });
-        }).SetEase(Ease.Linear);
-        await UniTask.Delay(TimeSpan.FromSeconds(timeAnimFake * 2));
+        //this.donePeel.SetActive(false);
+
+        //fakeApple.transform.DOLocalRotate(Vector2.zero, timeAnimFake).SetEase(Ease.Linear);
+        //fakeApple.transform.DOMove(posFakeMoveDone.position, timeAnimFake).OnComplete(() =>
+        //{
+        //    fakeApple.GetComponent<SpriteRenderer>().DOFade(0, timeAnimFake).SetEase(Ease.Linear).OnComplete(() => {
+        //        this.donePeel.SetActive(false);
+        //    });
+        //}).SetEase(Ease.Linear);
+        //await UniTask.Delay(TimeSpan.FromSeconds(timeAnimFake * 2));
     }
 
     public void ResetStep()

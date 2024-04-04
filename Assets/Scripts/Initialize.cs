@@ -20,7 +20,7 @@ public class Initialize : MonoBehaviour
 
     private void OnUiInitializeDone()
     {
-        UIService.OpenActivityAsync(ActivityType.HomeScreen, false).Forget();
+        UIService.OpenActivityAsync(ActivityType.MinigameRed, false).Forget();
         UIService.InitializeFadeScreen().Forget();
     }
 }

@@ -30,7 +30,7 @@ public class MakeCakeManager : MonoBehaviour
             allSteps[i].actionNext = NextStep;
 
         }
-        allSteps[0].InActive();
+        //allSteps[0].InActive();
     }
 
     private void NextStep()

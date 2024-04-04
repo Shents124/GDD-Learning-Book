@@ -8,6 +8,12 @@ public class SwiftActionUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [SerializeField]
     private ButtonClickedEvent m_OnClick = new ButtonClickedEvent();
 
+    public ButtonClickedEvent onClick
+    {
+        get { return m_OnClick; }
+        set { m_OnClick = value; }
+    }
+
     public TypeCallAction type = TypeCallAction.Click;
 
     public float threshold = 100f;

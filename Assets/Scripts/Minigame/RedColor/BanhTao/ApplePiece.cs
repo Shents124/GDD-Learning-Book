@@ -31,6 +31,7 @@ public class ApplePiece : MonoBehaviour
     public void SetUsed()
     {
         _isUsed = true;
+        GetComponent<Collider2D>().enabled = true;
     }
 
 
@@ -48,6 +49,8 @@ public class ApplePiece : MonoBehaviour
             transform.position = posStart;
             _isUsed = false;
         }
+
+        GetComponent<Collider2D>().enabled = false;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

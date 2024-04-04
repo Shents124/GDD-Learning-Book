@@ -9,6 +9,9 @@ public class Cake : MonoBehaviour
 {
     public GameObject[] piecesDone;
 
+    public GameObject fakeAppleDone;
+
+
     [SerializeField] private float timeMove = 1f;
 
     public Transform posDone;
@@ -22,6 +25,7 @@ public class Cake : MonoBehaviour
     {
         transform.DOMove(posDone.position, timeMove).SetEase(Ease.Linear);
         transform.DOScale(posDone.localScale, timeMove).SetEase(Ease.Linear);
+        fakeAppleDone.SetActive(true);
         await UniTask.Delay(TimeSpan.FromSeconds(timeMove));
         this.gameObject.SetActive(false);
     }

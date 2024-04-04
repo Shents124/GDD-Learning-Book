@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UI;
 using UnityEngine;
 
 public class StepCollect : BaseStep
@@ -21,6 +22,8 @@ public class StepCollect : BaseStep
     public Transform posFall;
 
     public Transform bucketDonePos;
+
+    public GameObject bucketDoneObj;
     public int CurrentFruit
     {
         get => _currentStep;
@@ -32,10 +35,18 @@ public class StepCollect : BaseStep
                 Vector3 pos = bucketCollectDone.transform.position;
                 bucketCollectDone.onComplete.RemoveAllListeners();
                 bucketCollectDone.onComplete.AddListener(() => {
-                    NextStep();
-                    bucketCollectDone.transform.position = pos;
+                    UIService.PlayFadeIn(()=> 
+                    {
+                        NextStep();
+                        UIService.PlayFadeOut();
+                        bucketCollectDone.transform.position = pos;
+                    });
                 });
-                bucketCollectDone.transform.DOMove(bucketDonePos.position, 1f).OnComplete(() => {
+                bucketCollectDone.transform.parent = bucketDoneObj.transform;
+                bucketDoneObj.SetActive(true);
+                bucketCollectDone.transform.DOScale(bucketDonePos.localScale, 1f);
+                bucketCollectDone.transform.DOMove(bucketDonePos.position, 1f).OnComplete(() => 
+                {
                     bucketCollectDone.DOPlay();
                 });
             }
@@ -72,5 +83,6 @@ public class StepCollect : BaseStep
     {
         posCollect[CurrentFruit].gameObject.SetActive(true);
         CurrentFruit++;
+        //bucketCollectDone.DOPlay();
     }
 }

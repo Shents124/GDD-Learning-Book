@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using UI;
 using UnityEngine;
 
 public class ArrangeCakeStep : BaseStep
 {
     public GameObject cakeClick;
+
+    public GameObject cakeClickBtn;
+
+    public SpriteRenderer cakeDoneEndStep;
 
     private void Start()
     {
@@ -18,7 +24,14 @@ public class ArrangeCakeStep : BaseStep
 
     public void ChangeToBakeStep()
     {
-        NextStep();
+        cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(() => {
+            cakeClickBtn.SetActive(false);
+            UIService.PlayFadeIn(() =>
+            {
+                UIService.PlayFadeOut();
+                NextStep();
+            });
+        });
     }
 
     public void DoneStep()

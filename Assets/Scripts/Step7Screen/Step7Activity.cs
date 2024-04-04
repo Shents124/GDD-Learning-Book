@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using UI;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
@@ -19,6 +20,7 @@ namespace Step7
 
         public override UniTask Initialize(Memory<object> args)
         {
+            UIService.PlayFadeOut();
             EventManager.Connect(Events.FillColorDone, CheckNextStep);
             return base.Initialize(args);
         }

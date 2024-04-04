@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UI;
 using UnityEngine;
 
 public class StepShowBg : BaseStep
@@ -12,8 +13,12 @@ public class StepShowBg : BaseStep
         base.InActive();
         posStart = transform.position;
         GetComponent<RectTransform>().DOAnchorPosX(GetComponent<RectTransform>().rect.x + Screen.width, 1.5f).OnComplete(() => {
-            NextStep();
-            transform.position = posStart;
+            UIService.PlayFadeIn(()=> 
+            { 
+                NextStep();
+                UIService.PlayFadeOut();
+                transform.position = posStart;
+            });
         }).SetDelay(2f);
     }
 }
