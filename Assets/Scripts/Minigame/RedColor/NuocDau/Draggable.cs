@@ -10,7 +10,8 @@ namespace Minigame.RedColor
         [SerializeField] private int sortingOrder = 100;
         
         private SpriteRenderer _spriteRenderer;
-        private Vector3 _startPos;
+        protected Vector3 startPos;
+        protected Vector3 mousePos;
         
         private Action _onTrigger;
         private int _sortingOrder;
@@ -18,7 +19,7 @@ namespace Minigame.RedColor
         
         private void Start()
         {
-            _startPos = transform.position;
+            startPos = transform.position;
             _center = center.position;
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _sortingOrder = _spriteRenderer.sortingOrder;
@@ -29,17 +30,15 @@ namespace Minigame.RedColor
             _onTrigger = action;
         }
         
-        private Vector3 _mousePos;
-        
-        private void OnMouseDown()
+        protected virtual void OnMouseDown()
         {
-            _mousePos = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            mousePos = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
             _spriteRenderer.sortingOrder = sortingOrder;
         }
 
-        private void OnMouseDrag()
+        protected virtual void OnMouseDrag()
         {
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - _mousePos);
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePos);
 
             if (Vector3.Distance(center.position, _center) >= threshold)
             {
@@ -48,9 +47,9 @@ namespace Minigame.RedColor
             }
         }
 
-        private void OnMouseUp()
+        protected virtual void OnMouseUp()
         {
-            transform.position = _startPos;
+            transform.position = startPos;
             _spriteRenderer.sortingOrder = _sortingOrder;
         }
 
