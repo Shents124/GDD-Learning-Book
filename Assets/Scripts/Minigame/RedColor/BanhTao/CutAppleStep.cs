@@ -34,6 +34,7 @@ public class CutAppleStep : BaseStep
     public async void CompleteMiniStep()
     {
         await allStep[currentStep].OnDonePeel();
+        allStep[currentStep].gameObject.SetActive(false);
         currentStep++;
         if (currentStep >= numberStep)
         {
