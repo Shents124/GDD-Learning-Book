@@ -11,7 +11,14 @@ using ZBase.UnityScreenNavigator.Core.Activities;
 
 public class BakeCake : Activity
 {
+    [Header("Done Step")]
+    public Transform doneAll;
+    public Transform cakeShow;
+
     [Header("Step Bake")]
+    public Image cakeNotDone;
+    public Image cakeComplete;
+
     public int timeBake;
 
     private int currentTimeBake;
@@ -58,14 +65,16 @@ public class BakeCake : Activity
         OpenMachine();
     }
 
-    public async void ActiveMachine()
+    public void ActiveMachine()
     {
         btnDongLo.gameObject.SetActive(false);
         btnMoLo.gameObject.SetActive(true);
         disActiveLo.DOFade(0, 1f);
         activeLo.DOFade(1, 1f);
-        //Show time
-        await UniTask.Delay(TimeSpan.FromSeconds(5f));
+        currentTimeBake = timeBake;
+        UpdateNumber();
+        StartBakeCake();
+        AnimBakeCake();
     }
 
     private void AddCake()
@@ -92,6 +101,8 @@ public class BakeCake : Activity
         currentTimeBake--;
         if(currentTimeBake <= 0)
         {
+            UpdateNumber();
+            animCuaLo.AnimationState.SetAnimation(0, animMo, false);
             //Anim banh done
         }
         else
@@ -106,5 +117,31 @@ public class BakeCake : Activity
         int time = currentTimeBake * 5;
         currentNumbers[0].sprite = numbers[time % 10];
         currentNumbers[1].sprite = numbers[time / 10];
+    }
+
+    private void AnimBakeCake()
+    {
+        animCuaLo.transform.DOScale(0.98f, 0.25f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        cakeNotDone.GetComponent<DOTweenAnimation>().DOPlay();
+        cakeNotDone.DOColor(Color.yellow, timeBake / 2).OnComplete(() => {
+            cakeComplete.gameObject.SetActive(true);
+            cakeComplete.DOFade(1, timeBake / 2);
+            cakeComplete.transform.DOScaleY(0.8f, 0.25f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+            cakeNotDone.DOFade(0, timeBake / 2).OnComplete(async () => {
+                cakeNotDone.gameObject.SetActive(false);
+                cakeComplete.transform.DOKill();
+                animCuaLo.transform.DOKill();
+                animCuaLo.AnimationState.SetAnimation(0, animMo, false);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+                doneAll.gameObject.SetActive(true);
+                cakeComplete.transform.parent = doneAll;
+                cakeComplete.transform.DOMove(cakeShow.position, 0.75f);
+                cakeComplete.transform.DOScale(cakeShow.localScale, 0.75f).OnComplete(async () => {
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
+                    //Next Step
+                });
+            });
+            // vfx active
+        });
     }
 }
