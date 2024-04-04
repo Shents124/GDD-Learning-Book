@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Minigame.RedColor;
 using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
 public class BakeCake : Activity
@@ -138,10 +141,17 @@ public class BakeCake : Activity
                 cakeComplete.transform.DOMove(cakeShow.position, 0.75f);
                 cakeComplete.transform.DOScale(cakeShow.localScale, 0.75f).OnComplete(async () => {
                     await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
-                    //Next Step
+                    UIService.PlayFadeIn(NextStep);
                 });
             });
             // vfx active
         });
+    }
+
+    private void NextStep()
+    {
+        var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_STEP_2);
+        UIService.CloseActivityAsync(ActivityType.BakeCake, false).Forget();
+        UIService.PlayFadeOut();
     }
 }
