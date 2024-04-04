@@ -126,8 +126,8 @@ namespace Step345Screen
         private async UniTask MoveToNextStep()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_STEP_2);
-            UIService.CloseActivityAsync(ActivityType.Step345Screen, false).Forget();
+            //var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_STEP_2);
+            UIService.OpenActivityAsync(ActivityType.MinigameRed, false).Forget();
             UIService.PlayFadeOut();
         }
     }

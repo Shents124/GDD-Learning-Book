@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
 
@@ -52,7 +53,10 @@ namespace Minigame.RedColor
         
         private void OnFinishAllStep()
         {
-            
+            UIService.PlayFadeIn(() => {
+                Destroy(this);
+                UIService.OpenActivityAsync(ActivityType.Step7).Forget();
+            });
         }
     }
 }
