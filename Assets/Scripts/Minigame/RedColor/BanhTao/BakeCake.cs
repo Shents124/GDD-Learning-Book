@@ -55,7 +55,7 @@ public class BakeCake : Activity
         activeLo.DOFade(1, 1f);
         //Show time
         await UniTask.Delay(TimeSpan.FromSeconds(5f));
-        UIService.OpenActivityAsync(ActivityType.Step7).Forget();
+        UIService.PlayFadeIn(()=> { UIService.OpenActivityAsync(ActivityType.Step7).Forget(); });
     }
 
     public void AddCake()

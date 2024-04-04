@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using ScratchCardAsset;
 using Step7;
 using UI;
@@ -20,6 +21,8 @@ public class Step8Activity : MonoBehaviour
     public GameObject penNotReady;
     public GameObject penReady;
 
+    public DOTweenAnimation animBoard;
+
     public ScratchCardManager CardManager;
     public EraseProgress EraseProgress;
 
@@ -32,10 +35,6 @@ public class Step8Activity : MonoBehaviour
 
     public void InitData(TypeObject type)
     {
-        //TODO: Animation
-        colorPenController.isPlay = true;
-        penNotReady.SetActive(false);
-        penReady.SetActive(true);
         foreach (var image in imagesFill)
         {
             image.SetActive(false);
@@ -44,8 +43,22 @@ public class Step8Activity : MonoBehaviour
         CardManager.ImageCard = imageNotDones[(int)type].gameObject;
         CardManager.ScratchSurfaceSprite = imageNotDones[(int)type].sprite;
         CardManager.InitData();
+        CardManager.EraseTextureScale = Vector2.one * 2f;
         _typeObject = type;
 
+        penNotReady.SetActive(true);
+        penReady.SetActive(false);
+        Vector2 posStart = penNotReady.transform.position;
+        var rotStart = penNotReady.transform.rotation;
+        penNotReady.transform.DORotate(penReady.transform.rotation.eulerAngles, 1f);
+        penNotReady.transform.DOMove(penReady.transform.position, 1f).OnComplete(() => {
+            animBoard.DORestart();
+            penNotReady.transform.position = posStart;
+            penNotReady.transform.rotation = rotStart;
+            colorPenController.isPlay = true;
+            penNotReady.SetActive(false);
+            penReady.SetActive(true);
+        });
     }
 
     private void DoneFillColor(float progress)
