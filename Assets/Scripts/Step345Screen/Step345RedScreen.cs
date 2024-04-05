@@ -119,16 +119,14 @@ namespace Step345Screen
             
             card.transform.SetParent(transform);
             card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
-                UIService.PlayFadeIn(() => MoveToNextStep().Forget());
+                UIService.PlayFadeIn(MoveToNextStep);
             });
         }
 
-        private async UniTask MoveToNextStep()
+        private void MoveToNextStep()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
             //var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_STEP_2);
             UIService.OpenActivityAsync(ActivityType.MinigameRed, false).Forget();
-            UIService.PlayFadeOut();
         }
     }
 }

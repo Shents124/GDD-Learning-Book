@@ -54,7 +54,7 @@ namespace Minigame.RedColor
         private void OnFinishAllStep()
         {
             UIService.PlayFadeIn(() => {
-                Destroy(this);
+                Destroy(this.gameObject);
                 UIService.OpenActivityAsync(ActivityType.Step7, closeLastActivity: false).Forget();
             });
         }
