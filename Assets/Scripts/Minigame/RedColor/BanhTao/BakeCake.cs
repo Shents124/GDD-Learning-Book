@@ -150,7 +150,7 @@ public class BakeCake : Activity
 
     private void NextStep()
     {
-        var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_STEP_2);
+        var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
         UIService.CloseActivityAsync(ActivityType.BakeCake, false).Forget();
         UIService.PlayFadeOut();
     }

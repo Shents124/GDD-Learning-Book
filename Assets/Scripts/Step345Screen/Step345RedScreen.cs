@@ -2,16 +2,13 @@
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Minigame.RedColor;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
-using ZBase.UnityScreenNavigator.Core.Activities;
 
 namespace Step345Screen
 {
-    public class Step345RedScreen : Activity
+    public class Step345RedScreen : BaseActivity
     {
         [SerializeField] private float characterMoveDuration = 1.75f;
         [SerializeField] private float giftMoveDuration = 0.3f;
