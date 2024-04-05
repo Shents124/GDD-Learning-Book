@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UI;
 using UnityEngine;
@@ -24,7 +26,8 @@ public class ArrangeCakeStep : BaseStep
 
     public void ChangeToBakeStep()
     {
-        cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(() => {
+        cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(async () => {
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
             cakeClickBtn.SetActive(false);
             UIService.PlayFadeIn(() =>
             {
