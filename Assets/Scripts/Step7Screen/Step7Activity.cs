@@ -22,7 +22,9 @@ namespace Step7
 
         public Image screenAnim;
 
-        public GameObject screemShoot;
+        public GameObject screenShoot;
+
+        public GameObject DoneAll;
 
         public override UniTask Initialize(Memory<object> args)
         {
@@ -42,11 +44,13 @@ namespace Step7
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(1f));
                 screenAnim.gameObject.SetActive(true);
-                screenAnim.DOFade(1, 0.25f).OnComplete(() => {
-                    screemShoot.SetActive(true);
+                screenAnim.DOFade(1, 0.25f).OnComplete(async () => {
+                    screenShoot.SetActive(true);
                     screenAnim.DOFade(0, 0.25f).OnComplete(() => {
                         screenAnim.gameObject.SetActive(false);
                     });
+                    await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
+                    DoneAll.SetActive(true);
                 });
             }
         }
