@@ -11,6 +11,8 @@ public class BtnCollectFruit : MonoBehaviour
 
     public float jumpower;
 
+    public float timeJump = 0.5f;
+
     public bool correctFruit;
 
     private Button btnClick;
@@ -30,8 +32,8 @@ public class BtnCollectFruit : MonoBehaviour
         if (correctFruit)
         {
             Vector2 scale = transform.localScale;
-            transform.DOScale(scale * 0.8f, 1f);
-            transform.DOJump(managerStep.posCollect[managerStep.CurrentFruit].position, jumpower, 1, 1f).OnComplete(() => {
+            transform.DOScale(scale * 0.8f, timeJump);
+            transform.DOJump(managerStep.posCollect[managerStep.CurrentFruit].position, jumpower, 1, timeJump).OnComplete(() => {
                 managerStep.IncreaseFruit();
                 this.gameObject.SetActive(false);
                 transform.position = posStart;
@@ -46,7 +48,7 @@ public class BtnCollectFruit : MonoBehaviour
 
     public void OnFall()
     {
-        transform.DOMoveY(managerStep.posFall.position.y, 1f).OnComplete(() => {
+        transform.DOMoveY(managerStep.posFall.position.y, timeJump).OnComplete(() => {
             transform.position = posStart;
             this.gameObject.SetActive(false);
         });

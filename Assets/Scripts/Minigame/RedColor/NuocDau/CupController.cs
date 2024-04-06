@@ -11,6 +11,7 @@ namespace Minigame.RedColor
         [SerializeField] private float moveDuration = 2f;
         [SerializeField] private Transform playAnimTransform;
         [SerializeField] private BoxCollider2D boxCollider2D;
+        [SerializeField] private GameObject hand;
         [SerializeField] private SkeletonAnimation skeletonAnimation;
 
         [SpineAnimation(dataField: "skeletonAnimation")]
@@ -34,6 +35,7 @@ namespace Minigame.RedColor
         protected override void OnMouseDown()
         {
             mousePos = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            hand.SetActive(false);
         }
 
         protected override void OnMouseDrag()
@@ -51,6 +53,7 @@ namespace Minigame.RedColor
         public void SetCanDrag(Action onCupToGlass, Action onFinish)
         {
             boxCollider2D.enabled = true;
+            hand.SetActive(true);
             _canDrag = true;
             _onCupToGlass = onCupToGlass;
             _onFinish = onFinish;

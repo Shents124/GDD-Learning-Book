@@ -33,7 +33,7 @@ public class Step8Activity : MonoBehaviour
         EraseProgress.OnProgress += DoneFillColor;
     }
 
-    public void InitData(TypeObject type)
+    public async void InitData(TypeObject type)
     {
         foreach (var image in imagesFill)
         {
@@ -46,19 +46,26 @@ public class Step8Activity : MonoBehaviour
         CardManager.EraseTextureScale = Vector2.one * 2f;
         _typeObject = type;
 
-        penNotReady.SetActive(true);
-        penReady.SetActive(false);
-        Vector2 posStart = penNotReady.transform.position;
-        var rotStart = penNotReady.transform.rotation;
-        penNotReady.transform.DORotate(penReady.transform.rotation.eulerAngles, 1f);
-        penNotReady.transform.DOMove(penReady.transform.position, 1f).OnComplete(() => {
-            animBoard.DORestart();
-            penNotReady.transform.position = posStart;
-            penNotReady.transform.rotation = rotStart;
-            colorPenController.isPlay = true;
-            penNotReady.SetActive(false);
-            penReady.SetActive(true);
-        });
+        animBoard.DOPlay();
+        CardManager.GetComponentInChildren<ScratchCard>().enabled = false;
+        await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
+        penReady.SetActive(true);
+        colorPenController.isPlay = true;
+        CardManager.GetComponentInChildren<ScratchCard>().enabled = true;
+
+        //penNotReady.SetActive(true);
+        //penReady.SetActive(false);
+        //Vector2 posStart = penNotReady.transform.position;
+        //var rotStart = penNotReady.transform.rotation;
+        //penNotReady.transform.DORotate(penReady.transform.rotation.eulerAngles, 1f);
+        //penNotReady.transform.DOMove(penReady.transform.position, 1f).OnComplete(() => {
+        //    animBoard.DORestart();
+        //    penNotReady.transform.position = posStart;
+        //    penNotReady.transform.rotation = rotStart;
+        //    colorPenController.isPlay = true;
+        //    penNotReady.SetActive(false);
+        //    penReady.SetActive(true);
+        //});
     }
 
     private void DoneFillColor(float progress)

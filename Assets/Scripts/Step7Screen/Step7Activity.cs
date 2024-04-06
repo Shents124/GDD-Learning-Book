@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
 namespace Step7
@@ -18,6 +20,10 @@ namespace Step7
 
         public void AddStep() => currentStep++;
 
+        public Image screenAnim;
+
+        public GameObject screemShoot;
+
         public override UniTask Initialize(Memory<object> args)
         {
             UIService.PlayFadeOut();
@@ -30,12 +36,18 @@ namespace Step7
             EventManager.Disconnect(Events.FillColorDone, CheckNextStep);
         }
 
-        public void CheckNextStep()
+        public async void CheckNextStep()
         {
             if(currentStep >= stepToDone)
             {
-                //TODO: Next step capture
-                Debug.Log("Next step capture");
+                await UniTask.Delay(TimeSpan.FromSeconds(1f));
+                screenAnim.gameObject.SetActive(true);
+                screenAnim.DOFade(1, 0.25f).OnComplete(() => {
+                    screemShoot.SetActive(true);
+                    screenAnim.DOFade(0, 0.25f).OnComplete(() => {
+                        screenAnim.gameObject.SetActive(false);
+                    });
+                });
             }
         }
     }

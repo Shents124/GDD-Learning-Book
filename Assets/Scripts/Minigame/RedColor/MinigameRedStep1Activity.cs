@@ -15,6 +15,7 @@ public class MinigameRedStep1Activity : Activity
 
     protected override void Start()
     {
+        UIService.PlayFadeOut();
         for (int i = 0; i < stepInMiniGame.Count; i++)
         {
             if (i == 0)

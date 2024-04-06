@@ -8,10 +8,10 @@ namespace UI
 {
     public static class UIService
     {
-        private  static  ActivityType s_currentActivityType = ActivityType.None;
+        private static ActivityType s_currentActivityType = ActivityType.None;
     
         public static async UniTask OpenActivityAsync(ActivityType activityType, bool playAnimation = true, 
-            OnViewLoadedCallback onLoadedCallBack = null,
+            OnViewLoadedCallback onLoadedCallBack = null, bool closeLastActivity = true,
             params object[] args)
         {
             var activityOption = new ActivityOptions(activityType.ToString(), playAnimation, onLoadedCallBack);
@@ -21,7 +21,8 @@ namespace UI
 
             if (s_currentActivityType != ActivityType.None)
             {
-                await CloseActivityAsync(s_currentActivityType, false);
+                if (closeLastActivity)
+                    await CloseActivityAsync(s_currentActivityType, false);
             }
 
             s_currentActivityType = activityType;
