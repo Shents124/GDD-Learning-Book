@@ -23,7 +23,22 @@ namespace MenuScreen
 
         private void OnChoseColor(ColorType colorType)
         {
-            UIService.OpenActivityAsync(ActivityType.Step345Screen, args: colorType).Forget();
+            switch (colorType)
+            {
+                case ColorType.Red:
+                    UIService.OpenActivityAsync(ActivityType.Step345RedScreen, args: colorType).Forget();
+                    break;
+                
+                case ColorType.Yellow:
+                    UIService.OpenActivityAsync(ActivityType.Step345YellowScreen, args: colorType).Forget();
+                    break;
+                
+                case ColorType.Green:
+                    break;
+                
+                case ColorType.Blue:
+                    break;
+            }
         }
     }
 }

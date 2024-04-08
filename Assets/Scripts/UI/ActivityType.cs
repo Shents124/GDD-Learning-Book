@@ -5,11 +5,14 @@
         None = 0,
         HomeScreen = 1,
         MenuScreen = 2,
-        Step345Screen = 3,
+        Step345RedScreen = 3,
         MinigameRedStep1 = 4,
         MinigameRed = 5,
         BakeCake = 6,
         Step7 = 7,
+        
+        Step345YellowScreen = 8,
+        MiniGameYellowScreen = 9,
         
         FadeScreen = 99,
     }
