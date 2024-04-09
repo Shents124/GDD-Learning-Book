@@ -1,0 +1,174 @@
+
+4 con ga con.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 3
+  rotate: false
+  xy: 0, 651
+  size: 647, 688
+  orig: 694, 788
+  offset: 0, 100
+  index: -1
+chan p3
+  rotate: false
+  xy: 1381, 274
+  size: 84, 97
+  orig: 107, 98
+  offset: 15, 1
+  index: -1
+chan t3
+  rotate: false
+  xy: 1381, 166
+  size: 83, 106
+  orig: 105, 106
+  offset: 14, 0
+  index: -1
+gacon1/ga-con 1
+  rotate: true
+  xy: 0, 2
+  size: 647, 688
+  orig: 694, 788
+  offset: 0, 100
+  index: -1
+gacon1/tay p 1
+  rotate: true
+  xy: 1536, 1136
+  size: 203, 181
+  orig: 205, 183
+  offset: 1, 1
+  index: -1
+gacon1/tay t 1
+  rotate: false
+  xy: 1339, 1149
+  size: 195, 190
+  orig: 197, 192
+  offset: 1, 1
+  index: -1
+gacon2/ga-con 2
+  rotate: false
+  xy: 733, 2
+  size: 646, 688
+  orig: 694, 788
+  offset: 0, 100
+  index: -1
+gacon2/phai
+  rotate: true
+  xy: 1381, 373
+  size: 126, 92
+  orig: 144, 123
+  offset: 17, 1
+  index: -1
+gacon2/tay p 2
+  rotate: false
+  xy: 1536, 953
+  size: 203, 181
+  orig: 205, 183
+  offset: 1, 1
+  index: -1
+gacon2/tay t 2
+  rotate: false
+  xy: 1339, 957
+  size: 195, 190
+  orig: 197, 192
+  offset: 1, 1
+  index: -1
+gacon4/ga-con 4
+  rotate: true
+  xy: 649, 692
+  size: 647, 688
+  orig: 694, 788
+  offset: 0, 100
+  index: -1
+gacon4/phai
+  rotate: false
+  xy: 1339, 698
+  size: 121, 65
+  orig: 148, 78
+  offset: 26, 12
+  index: -1
+gacon4/tay p 4
+  rotate: false
+  xy: 1719, 1158
+  size: 203, 181
+  orig: 205, 183
+  offset: 1, 1
+  index: -1
+gacon4/tay t 4
+  rotate: false
+  xy: 1339, 765
+  size: 195, 190
+  orig: 197, 192
+  offset: 1, 1
+  index: -1
+gacon4/trai
+  rotate: true
+  xy: 1381, 0
+  size: 164, 72
+  orig: 177, 76
+  offset: 1, 1
+  index: -1
+mat phai
+  rotate: false
+  xy: 1523, 704
+  size: 59, 59
+  orig: 61, 61
+  offset: 1, 1
+  index: -1
+mat trai
+  rotate: false
+  xy: 1455, 105
+  size: 59, 59
+  orig: 61, 61
+  offset: 1, 1
+  index: -1
+matlonglanh
+  rotate: false
+  xy: 1462, 704
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+mo duoi
+  rotate: false
+  xy: 1475, 449
+  size: 82, 50
+  orig: 84, 52
+  offset: 1, 1
+  index: -1
+motren
+  rotate: false
+  xy: 649, 651
+  size: 82, 39
+  orig: 84, 41
+  offset: 1, 1
+  index: -1
+phai
+  rotate: true
+  xy: 690, 563
+  size: 86, 37
+  orig: 88, 39
+  offset: 1, 1
+  index: -1
+tay p 3
+  rotate: false
+  xy: 1536, 770
+  size: 203, 181
+  orig: 205, 183
+  offset: 1, 1
+  index: -1
+tay t 3
+  rotate: true
+  xy: 1381, 501
+  size: 195, 190
+  orig: 197, 192
+  offset: 1, 1
+  index: -1
+trai
+  rotate: true
+  xy: 690, 505
+  size: 56, 37
+  orig: 58, 39
+  offset: 1, 1
+  index: -1

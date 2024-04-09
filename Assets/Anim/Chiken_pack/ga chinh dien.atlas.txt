@@ -1,0 +1,391 @@
+
+ga chinh dien.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Mattruoc
+  rotate: false
+  xy: 2586, 3465
+  size: 252, 190
+  orig: 252, 190
+  offset: 0, 0
+  index: -1
+New folder/than ga_00010
+  rotate: true
+  xy: 0, 3000
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00011
+  rotate: true
+  xy: 630, 2984
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00012
+  rotate: true
+  xy: 1260, 2905
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00013
+  rotate: true
+  xy: 1890, 2877
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00014
+  rotate: false
+  xy: 2520, 2790
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00015
+  rotate: true
+  xy: 3120, 2716
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00016
+  rotate: true
+  xy: 0, 2400
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00017
+  rotate: true
+  xy: 630, 2384
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00018
+  rotate: true
+  xy: 1260, 2305
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00019
+  rotate: true
+  xy: 1890, 2277
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00020
+  rotate: false
+  xy: 2520, 2160
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00021
+  rotate: true
+  xy: 3120, 2116
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00022
+  rotate: true
+  xy: 0, 1800
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00023
+  rotate: true
+  xy: 630, 1784
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00024
+  rotate: true
+  xy: 1260, 1705
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00025
+  rotate: true
+  xy: 1890, 1677
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00026
+  rotate: false
+  xy: 2520, 1530
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00027
+  rotate: true
+  xy: 3120, 1516
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00028
+  rotate: true
+  xy: 0, 1200
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00029
+  rotate: true
+  xy: 630, 1184
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00030
+  rotate: true
+  xy: 1260, 1105
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00031
+  rotate: true
+  xy: 1890, 1077
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00032
+  rotate: true
+  xy: 2520, 916
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00033
+  rotate: true
+  xy: 3150, 916
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00034
+  rotate: true
+  xy: 0, 600
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00035
+  rotate: true
+  xy: 630, 584
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00036
+  rotate: true
+  xy: 1260, 505
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00037
+  rotate: true
+  xy: 1890, 477
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00038
+  rotate: true
+  xy: 2520, 316
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00039
+  rotate: true
+  xy: 3150, 316
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+New folder/than ga_00040
+  rotate: true
+  xy: 0, 0
+  size: 598, 628
+  orig: 598, 628
+  offset: 0, 0
+  index: -1
+bat_matsau
+  rotate: false
+  xy: 2377, 3477
+  size: 207, 178
+  orig: 207, 178
+  offset: 0, 0
+  index: -1
+bat_mattruoc
+  rotate: false
+  xy: 1592, 3513
+  size: 217, 142
+  orig: 217, 142
+  offset: 0, 0
+  index: -1
+bong
+  rotate: false
+  xy: 490, 3600
+  size: 260, 55
+  orig: 260, 55
+  offset: 0, 0
+  index: -1
+canh phai
+  rotate: false
+  xy: 1989, 3504
+  size: 177, 151
+  orig: 177, 151
+  offset: 0, 0
+  index: -1
+canh trai
+  rotate: true
+  xy: 1811, 3505
+  size: 150, 176
+  orig: 150, 176
+  offset: 0, 0
+  index: -1
+chan phai
+  rotate: true
+  xy: 841, 3594
+  size: 61, 78
+  orig: 61, 78
+  offset: 0, 0
+  index: -1
+chan trai
+  rotate: true
+  xy: 921, 3594
+  size: 61, 78
+  orig: 61, 78
+  offset: 0, 0
+  index: -1
+dau
+  rotate: false
+  xy: 2840, 3420
+  size: 282, 235
+  orig: 282, 235
+  offset: 0, 0
+  index: -1
+duoi ga
+  rotate: true
+  xy: 1460, 3530
+  size: 125, 130
+  orig: 125, 130
+  offset: 0, 0
+  index: -1
+mao duoi
+  rotate: true
+  xy: 1255, 3584
+  size: 71, 74
+  orig: 71, 74
+  offset: 0, 0
+  index: -1
+mao ga
+  rotate: false
+  xy: 1331, 3556
+  size: 127, 99
+  orig: 127, 99
+  offset: 0, 0
+  index: -1
+mat phai
+  rotate: true
+  xy: 1165, 3585
+  size: 70, 88
+  orig: 70, 88
+  offset: 0, 0
+  index: -1
+mat trai
+  rotate: true
+  xy: 1001, 3594
+  size: 61, 78
+  orig: 61, 78
+  offset: 0, 0
+  index: -1
+matsau
+  rotate: false
+  xy: 208, 3609
+  size: 159, 46
+  orig: 159, 46
+  offset: 0, 0
+  index: -1
+mo duoi
+  rotate: false
+  xy: 102, 3614
+  size: 49, 41
+  orig: 49, 41
+  offset: 0, 0
+  index: -1
+mo duoi 1
+  rotate: false
+  xy: 1081, 3594
+  size: 82, 61
+  orig: 82, 61
+  offset: 0, 0
+  index: -1
+mo tren
+  rotate: false
+  xy: 153, 3611
+  size: 53, 44
+  orig: 53, 44
+  offset: 0, 0
+  index: -1
+mo tren 1
+  rotate: false
+  xy: 752, 3595
+  size: 87, 60
+  orig: 87, 60
+  offset: 0, 0
+  index: -1
+nuoc
+  rotate: false
+  xy: 2168, 3498
+  size: 207, 157
+  orig: 207, 157
+  offset: 0, 0
+  index: -1
+than ga
+  rotate: false
+  xy: 3124, 3316
+  size: 386, 339
+  orig: 386, 339
+  offset: 0, 0
+  index: -1
+thoc
+  rotate: false
+  xy: 369, 3609
+  size: 119, 46
+  orig: 119, 46
+  offset: 0, 0
+  index: -1
+trong mat phai
+  rotate: true
+  xy: 50, 3618
+  size: 37, 50
+  orig: 37, 50
+  offset: 0, 0
+  index: -1
+trong mat trai
+  rotate: true
+  xy: 0, 3620
+  size: 35, 48
+  orig: 35, 48
+  offset: 0, 0
+  index: -1
