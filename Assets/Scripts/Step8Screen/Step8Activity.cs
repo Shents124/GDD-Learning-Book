@@ -1,14 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using ScratchCardAsset;
-using Step7;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using ZBase.UnityScreenNavigator.Core.Activities;
 
 public class Step8Activity : MonoBehaviour
 {

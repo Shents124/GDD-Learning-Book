@@ -1,16 +1,23 @@
-﻿using UnityEngine;
+﻿using Constant;
+using Minigame.YellowColor;
+using UnityEngine;
 using UnityEngine.U2D;
 
 namespace Utility
 {
-    public class LoadSpriteService
+    public static class LoadSpriteService
     {
         private static Sprite LoadSprite(string name)
         {
             return LoadResourceService.LoadAsset<Sprite>(name);
         }
+
+        public static Sprite LoadYellowFood(YellowFood yellowFood)
+        {
+            return LoadSprite(yellowFood.ToString(), PathConstants.YELLOW_FOOD);
+        }
         
-        public static Sprite LoadSprite(string name, string atlas)
+        private static Sprite LoadSprite(string name, string atlas)
         {
             var spriteAtlas = LoadSpriteAtlas(atlas);
 

@@ -57,6 +57,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6acf94d4acb21a741984db351ecc1009
+    m_Address: yellow_food
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c42ad6bba63563b4a84ae30b7ec8b895
+    m_Address: MiniGameYellow3Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98dc5231fc3671848bf973e0ecfc9802
+    m_Address: MiniGameYellow4Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2f8da982462e67842aabe7df00efca11, type: 2}
   m_SchemaSet:

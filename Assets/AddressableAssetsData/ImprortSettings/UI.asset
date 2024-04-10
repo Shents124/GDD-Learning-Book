@@ -15,7 +15,7 @@ MonoBehaviour:
   rulesEnabled: 1
   allowGroupCreation: 1
   rules:
-  - path: Assets/Addressables/Son/(?<asset>.*)\.prefab
+  - path: Assets/Addressables/Son/(?<asset>.*)\.*
     matchType: 1
     groupName: UI
     groupTemplate: {fileID: 11400000, guid: 0f71267639375e84897c5814b4c3a292, type: 2}
