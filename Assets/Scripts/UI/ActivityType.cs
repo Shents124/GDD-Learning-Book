@@ -13,7 +13,10 @@
         
         Step345YellowScreen = 8,
         MiniGameYellowScreen = 9,
-        
+
+        Step345GreenScreen = 10,
+        MiniGameGreenScreen = 11,
+
         FadeScreen = 99,
     }
     
