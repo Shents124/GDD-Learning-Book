@@ -18,6 +18,11 @@
         MiniGameYellow4Screen = 12,
         MiniGameYellow5Screen = 13,
         
+        Step345BlueScreen = 14,
+        MiniGameBlueScreen = 15,
+        MiniGameBlue1Screen = 16,
+        MiniGameBlue2Screen = 17,
+        
         FadeScreen = 99,
     }
     

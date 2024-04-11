@@ -2,13 +2,14 @@
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Minigame.BlueColor;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Step345Screen
 {
-    public class Step345YellowScreen : BaseActivity
+    public class Step345BlueScreen : BaseActivity
     {
         [SerializeField] private float characterMoveDuration = 1.75f;
         [SerializeField] private float giftMoveDuration = 0.3f;
@@ -17,11 +18,10 @@ namespace Step345Screen
         [SerializeField] private GameObject dialog;
         [SerializeField] private Image fillImage;
         [SerializeField] private Step345Gift gift;
-        [SerializeField] private Button[] foods;
+        [SerializeField] private BlueFood[] foods;
 
         [SerializeField] private Board board;
         
-        [SerializeField] private RectTransform[] foodPositions; 
         [SerializeField] private RectTransform characterEndPosition;
         [SerializeField] private RectTransform characterEnd2Position;
         [SerializeField] private RectTransform giftEndPosition;
@@ -38,7 +38,7 @@ namespace Step345Screen
             
             base.InitializeData(args);
         }
-        
+
         public override void DidEnter(Memory<object> args)
         {
             fillImage.fillAmount = 0;
@@ -64,23 +64,14 @@ namespace Step345Screen
             for (int i = 0, n = foods.Length; i < n; i++)
             {
                 var food = foods[i];
-                var rectTransform = food.GetComponent<RectTransform>();
-                
-                rectTransform.anchoredPosition = giftEndPosition.anchoredPosition;
-                rectTransform.localScale = Vector3.zero;
-                rectTransform.gameObject.SetActive(true);
-                rectTransform.DOJump(foodPositions[i].transform.position, 0.25f, 1, foodMoveDuration);
-                rectTransform.DOScale(Vector3.one, foodMoveDuration);
-                
-                food.onClick.AddListener(() => OnClickedFood(food));
+                food.gameObject.SetActive(true);
+                food.Initialize(characterEndPosition, foodMoveDuration, i, OnClickedFood);
             }
         }
 
-        private void OnClickedFood(Button button)
+        private void OnClickedFood(int index)
         {
-            var rectTransform = button.GetComponent<RectTransform>();
-            rectTransform.DOJump(characterEndPosition.transform.position, 400f, 1, foodMoveDuration);
-            rectTransform.DOScale(Vector3.zero, foodMoveDuration * 2).OnComplete(Fill);
+            StartCoroutine(foods[index].MoveFoods(Fill));
         }
 
         private void Fill()
@@ -115,14 +106,13 @@ namespace Step345Screen
             
             card.transform.SetParent(transform);
             card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
-                MoveToNextStep().Forget();
+                UIService.PlayFadeIn(MoveToNextStep);
             });
         }
 
-        private async UniTask MoveToNextStep()
+        private void MoveToNextStep()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellowScreen);
+            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlue1Screen);
         }
     }
 }

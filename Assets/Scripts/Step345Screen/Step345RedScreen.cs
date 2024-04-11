@@ -31,12 +31,12 @@ namespace Step345Screen
 
         private ColorType _colorType;
         
-        public override UniTask Initialize(Memory<object> args)
+        protected override void InitializeData(Memory<object> args)
         {
             if (args.IsEmpty == false)
                 _colorType = (ColorType)args.ToArray()[0];
             
-            return base.Initialize(args);
+            base.InitializeData(args);
         }
 
         public override void DidEnter(Memory<object> args)

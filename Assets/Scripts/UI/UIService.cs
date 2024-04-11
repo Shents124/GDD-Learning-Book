@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using DefaultNamespace;
+using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
 using ZBase.UnityScreenNavigator.Core.Views;
 
@@ -29,7 +30,7 @@ namespace UI
             s_currentActivityType = activityType;
         }
         
-        public static void OpenActivityWithFadeIn(ActivityType activityType, bool playAnimation = true, 
+        public static void OpenActivityWithFadeIn(ActivityType activityType, bool playAnimation = false, 
             OnViewLoadedCallback onLoadedCallBack = null, bool closeLastActivity = true,
             params object[] args)
         {

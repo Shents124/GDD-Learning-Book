@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
 
@@ -26,12 +25,7 @@ namespace Minigame.YellowColor
         private int _chickenIndex;
         private int _chickenCount;
 
-        public override UniTask Initialize(Memory<object> args)
-        {
-            UIService.PlayFadeOut();
-            return base.Initialize(args);
-        }
-
+        
         public override void DidEnter(Memory<object> args)
         {
             StartCoroutine(SetLineChicken(BabyChickenSelectFood));
