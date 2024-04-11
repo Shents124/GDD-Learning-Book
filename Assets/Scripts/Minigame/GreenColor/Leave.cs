@@ -1,42 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using System;
 
-public class Leave : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Leave : MonoBehaviour
 {
-    public ChooseLeavesManager manager;
-    public Transform posDone;
-    private bool isClick = false;
+    public Transform posAnimStart;
+    public Transform posAnimDone;
 
-    private void Update()
+    [SerializeField] private Transform leaveDone;
+
+    [SerializeField] private Transform leaveFake;
+    public async UniTask ShowDone()
     {
-        if (isClick)
-        {
-            transform.position = Input.mousePosition;
-        }
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        isClick = true;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (Vector3.Distance(transform.position, posDone.position) < 2f)
-        {
-            manager.NextStep();
-        }
-        else
-        {
-            isClick = false;
-        }
+        leaveFake.gameObject.SetActive(false);
+        leaveDone.gameObject.SetActive(true);
+        leaveDone.position = posAnimStart.position;
+        leaveDone.DOMove(posAnimDone.position, 0.75f);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
     }
 }
