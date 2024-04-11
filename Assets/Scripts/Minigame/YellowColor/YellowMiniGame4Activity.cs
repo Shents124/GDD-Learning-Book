@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
@@ -10,9 +11,12 @@ namespace Minigame.YellowColor
     {
         [SerializeField] private Button momChickenBtn;
         [SerializeField] private Button babyChickenBtn;
+        [SerializeField] private GameObject momChickenDone;
+        [SerializeField] private GameObject babyChickenDone;
         [SerializeField] private Step8Activity step8Activity;
 
         private int _currentStep;
+        
         protected override void Start()
         {
             momChickenBtn.onClick.AddListener(OnClickedMomChicken);
@@ -21,42 +25,48 @@ namespace Minigame.YellowColor
 
         public override UniTask Initialize(Memory<object> args)
         {
+            UIService.PlayFadeOut();
             _currentStep = 0;
             return base.Initialize(args);
-        }
-
-        protected override void OnEnable()
-        {
-            EventManager.Connect(Events.FillColorDone, CheckNextStep);
-            base.OnEnable();
-        }
-
-        protected override void OnDisable()
-        {
-            EventManager.Disconnect(Events.FillColorDone, CheckNextStep);
-            base.OnDisable();
         }
         
         private void OnClickedMomChicken()
         {
             _currentStep++;
-            step8Activity.InitData(TypeObject.MomChicken);
+            step8Activity.InitData(TypeObject.MomChicken, CheckNextStep);
             step8Activity.gameObject.SetActive(true);
         }
 
         private void OnClickedBabyChicken()
         {
             _currentStep++;
-            step8Activity.InitData(TypeObject.BabyChicken);
+            step8Activity.InitData(TypeObject.BabyChicken, CheckNextStep);
             step8Activity.gameObject.SetActive(true);
         }
         
-        private void CheckNextStep()
+        private void CheckNextStep(TypeObject typeObject)
         {
+            if (typeObject == TypeObject.MomChicken)
+            {
+                momChickenBtn.gameObject.SetActive(false);
+                momChickenDone.SetActive(true);
+            }
+            else if (typeObject == TypeObject.BabyChicken)
+            {
+                babyChickenBtn.gameObject.SetActive(false);
+                babyChickenDone.SetActive(true);
+            }
+
             if (_currentStep >= 2)
             {
-                
+                StartCoroutine(MoveToNextStep());
             }
+        }
+
+        private IEnumerator MoveToNextStep()
+        {
+            yield return new WaitForSeconds(1f);
+            //UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow5Screen);
         }
     }
 }

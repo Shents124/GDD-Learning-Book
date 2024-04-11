@@ -35,7 +35,7 @@ namespace Minigame.YellowColor
 
         private void OnCollectEggsFinish()
         {
-           UIService.OpenActivityAsync(ActivityType.MiniGameYellow2Screen).Forget();
+            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow2Screen);
         }
     }
 }

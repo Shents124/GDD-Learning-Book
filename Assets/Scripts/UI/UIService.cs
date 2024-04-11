@@ -14,6 +14,7 @@ namespace UI
             OnViewLoadedCallback onLoadedCallBack = null, bool closeLastActivity = true,
             params object[] args)
         {
+            
             var activityOption = new ActivityOptions(activityType.ToString(), playAnimation, onLoadedCallBack);
             var activityContainer = ActivityContainer.Find(UIConstant.ACTIVITY);
 
@@ -26,6 +27,14 @@ namespace UI
             }
 
             s_currentActivityType = activityType;
+        }
+        
+        public static void OpenActivityWithFadeIn(ActivityType activityType, bool playAnimation = true, 
+            OnViewLoadedCallback onLoadedCallBack = null, bool closeLastActivity = true,
+            params object[] args)
+        {
+            PlayFadeIn(() => 
+                OpenActivityAsync(activityType, playAnimation, onLoadedCallBack, closeLastActivity, args).Forget());
         }
 
         // public static void OpenActivity(ActivityType activityType, bool playAnimation = true, 

@@ -26,6 +26,12 @@ namespace Minigame.YellowColor
         private int _chickenIndex;
         private int _chickenCount;
 
+        public override UniTask Initialize(Memory<object> args)
+        {
+            UIService.PlayFadeOut();
+            return base.Initialize(args);
+        }
+
         public override void DidEnter(Memory<object> args)
         {
             StartCoroutine(SetLineChicken(BabyChickenSelectFood));
@@ -87,7 +93,7 @@ namespace Minigame.YellowColor
             _chickenIndex++;
             if (_chickenIndex >= _chickenCount)
             {
-                UIService.OpenActivityAsync(ActivityType.MiniGameYellow3Screen).Forget();
+                UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow3Screen);
             }
             else
             {

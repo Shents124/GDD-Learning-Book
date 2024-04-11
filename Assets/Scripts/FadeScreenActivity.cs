@@ -20,14 +20,18 @@ namespace DefaultNamespace
         
         public void FadeIn(Action callback)
         {
-            SetBlockRaycast(false);
+            canvasGroup.alpha = 0f;
+            SetBlockRaycast(true);
             canvasGroup.DOFade(1, animDuration).OnComplete(() => {
+                SetBlockRaycast(false);
                 callback?.Invoke();
             });
         }
 
         public void FadeOut(Action callback)
         {
+            canvasGroup.alpha = 1f;
+            SetBlockRaycast(true);
             canvasGroup.DOFade(0, animDuration).OnComplete(() => {
                 SetBlockRaycast(false);
                 callback?.Invoke();

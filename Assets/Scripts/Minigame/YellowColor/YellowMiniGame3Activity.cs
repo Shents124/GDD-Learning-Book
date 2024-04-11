@@ -9,7 +9,13 @@ namespace Minigame.YellowColor
     public class YellowMiniGame3Activity : BaseActivity
     {
         [SerializeField] private float duration = 2f;
-        
+
+        public override UniTask Initialize(Memory<object> args)
+        {
+            UIService.PlayFadeOut();
+            return base.Initialize(args);
+        }
+
         public override void DidEnter(Memory<object> args)
         {
             StartCoroutine(NextMiniGame());
@@ -19,7 +25,7 @@ namespace Minigame.YellowColor
         private IEnumerator NextMiniGame()
         {
             yield return new WaitForSeconds(duration);
-            UIService.OpenActivityAsync(ActivityType.MiniGameYellow4Screen).Forget();
+            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow4Screen);
         }
     }
 }

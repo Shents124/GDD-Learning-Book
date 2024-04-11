@@ -16,6 +16,7 @@
         MiniGameYellow2Screen = 10,
         MiniGameYellow3Screen = 11,
         MiniGameYellow4Screen = 12,
+        MiniGameYellow5Screen = 13,
         
         FadeScreen = 99,
     }
