@@ -4,7 +4,7 @@
     {
         #region Sprite atlas packs
 
-        
+        public const string YELLOW_FOOD = "yellow_food";
 
         #endregion
 

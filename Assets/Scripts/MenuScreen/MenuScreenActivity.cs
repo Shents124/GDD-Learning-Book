@@ -30,7 +30,7 @@ namespace MenuScreen
                     break;
                 
                 case ColorType.Yellow:
-                    UIService.OpenActivityAsync(ActivityType.Step345YellowScreen, args: colorType).Forget();
+                    UIService.OpenActivityAsync(ActivityType.MiniGameYellowScreen, args: colorType).Forget();
                     break;
                 
                 case ColorType.Green:

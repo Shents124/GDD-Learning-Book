@@ -13,10 +13,14 @@
         
         Step345YellowScreen = 8,
         MiniGameYellowScreen = 9,
-
-        Step345GreenScreen = 10,
-        MiniGameGreenScreen = 11,
-
+        MiniGameYellow2Screen = 10,
+        MiniGameYellow3Screen = 11,
+        MiniGameYellow4Screen = 12,
+        MiniGameYellow5Screen = 13,
+        
+        Step345GreenScreen = 14,
+        MiniGameGreenScreen = 15,
+        
         FadeScreen = 99,
     }
     
@@ -24,5 +28,8 @@
     {
         AppleRed = 0,
         StrawberryRed = 1,
+        
+        BabyChicken = 0,
+        MomChicken = 1,
     }
 }
