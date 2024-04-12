@@ -1,0 +1,76 @@
+
+chuon chuon.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 126, 0
+  size: 121, 94
+  orig: 121, 94
+  offset: 0, 0
+  index: -1
+canh p
+  rotate: true
+  xy: 126, 96
+  size: 154, 151
+  orig: 165, 162
+  offset: 6, 6
+  index: -1
+canh t
+  rotate: false
+  xy: 74, 60
+  size: 50, 190
+  orig: 60, 199
+  offset: 5, 6
+  index: -1
+dau
+  rotate: false
+  xy: 249, 6
+  size: 117, 88
+  orig: 119, 90
+  offset: 1, 1
+  index: -1
+duoi
+  rotate: true
+  xy: 0, 35
+  size: 215, 72
+  orig: 215, 72
+  offset: 0, 0
+  index: -1
+eye p
+  rotate: true
+  xy: 279, 183
+  size: 67, 66
+  orig: 69, 68
+  offset: 1, 1
+  index: -1
+eye t
+  rotate: true
+  xy: 279, 114
+  size: 67, 66
+  orig: 69, 68
+  offset: 1, 1
+  index: -1
+len p
+  rotate: false
+  xy: 18, 19
+  size: 14, 14
+  orig: 16, 16
+  offset: 1, 1
+  index: -1
+len t
+  rotate: false
+  xy: 18, 19
+  size: 14, 14
+  orig: 16, 16
+  offset: 1, 1
+  index: -1
+mom
+  rotate: true
+  xy: 0, 3
+  size: 30, 16
+  orig: 32, 18
+  offset: 1, 1
+  index: -1

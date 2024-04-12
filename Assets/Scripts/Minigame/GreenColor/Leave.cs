@@ -9,6 +9,7 @@ public class Leave : MonoBehaviour
 {
     public Transform posAnimStart;
     public Transform posAnimDone;
+    public Transform posFrog;
 
     [SerializeField] private Transform leaveDone;
 

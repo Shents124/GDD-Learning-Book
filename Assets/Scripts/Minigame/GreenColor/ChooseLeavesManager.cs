@@ -11,7 +11,7 @@ public class ChooseLeavesManager : MonoBehaviour
     public float jumpPower = 100f;
 
     [SpineAnimation]
-    public string animJump, animSession;
+    public string animJump, animSession, animIdle;
 
     public LeaveChoose currentLeave;
 
@@ -30,10 +30,15 @@ public class ChooseLeavesManager : MonoBehaviour
 
     public Transform[] btnChoose;
 
+    public Transform posDoneStep;
+
     private List<Vector2> posLeaveChooseStart = new();
+
+    private Vector2 posDoneBg;
 
     private void Start()
     {
+        posDoneBg = transform.position;
         foreach (Transform t in btnChoose)
         {
             posLeaveChooseStart.Add(t.position);
@@ -49,17 +54,25 @@ public class ChooseLeavesManager : MonoBehaviour
     private void PlayAnimJum()
     {
         var track = frogAnim.AnimationState.SetAnimation(0, animJump, false);
-        frogAnim.transform.DOJump(leaves[currentStep].posAnimDone.position, jumpPower, 1, 1.34f);
+        frogAnim.transform.DOJump(leaves[currentStep].posFrog.position, jumpPower, 1, 1.34f);
         track.Complete += entry => 
         {
-            frogAnim.AnimationState.SetAnimation(0, animSession, true);
+            frogAnim.AnimationState.SetAnimation(0, animIdle, true);
             currentStep++;
             if (currentStep >= stepNeed)
             {
-                //TODO: Done
+                frogAnim.AnimationState.SetAnimation(0, animJump, false);
+                frogAnim.transform.DOJump(posDoneStep.position, jumpPower, 1, 1.34f).OnComplete(async () => {
+                    frogAnim.AnimationState.SetAnimation(0, animSession, true);
+                    //TODO: Done
+                });
             }
             else
             {
+                if (currentStep == 2)
+                {
+                    transform.DOMove(posDoneBg, 1f);
+                }
                 choseLeaves.SetActive(true);
                 choseLeaves.transform.DOMove(choseLeavesStart.position, 0.5f).OnComplete(() => {
                     currentLeave.StartChoose();
