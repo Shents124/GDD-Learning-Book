@@ -45,6 +45,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656767584}
   m_CullTransparentMesh: 1
+--- !u!1 &1127089885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127089886}
+  - component: {fileID: 1127089887}
+  m_Layer: 5
+  m_Name: PosDone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1127089886
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127089885}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.61538464, y: 0.61538464, z: 0.61538464}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4898606986425168456}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 728, y: 101}
+  m_SizeDelta: {x: 472, y: 336}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1127089887
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127089885}
+  m_CullTransparentMesh: 1
 --- !u!1 &1520910871
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +389,7 @@ GameObject:
   - component: {fileID: 3055194154384233615}
   - component: {fileID: 7810086013826990903}
   m_Layer: 0
-  m_Name: SkeletonGraphic (con ech)
+  m_Name: Frog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,16 +404,16 @@ RectTransform:
   m_GameObject: {fileID: 1192831693394086110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3846154, y: 0.3846154, z: 0.3846154}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4898606986425168456}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -718.4616, y: -54.615395}
-  m_SizeDelta: {x: 961.7899, y: 897.92}
+  m_AnchoredPosition: {x: -718.4616, y: -54.61538}
+  m_SizeDelta: {x: 961.7899, y: 897.9199}
   m_Pivot: {x: 0.44252908, y: 0.0016260046}
 --- !u!222 &3055194154384233615
 CanvasRenderer:
@@ -402,7 +447,7 @@ MonoBehaviour:
   initialSkinName: default
   initialFlipX: 0
   initialFlipY: 0
-  startingAnimation: session
+  startingAnimation: Idle
   startingLoop: 1
   timeScale: 1
   freeze: 0
@@ -579,6 +624,7 @@ RectTransform:
   - {fileID: 1594582258573338721}
   - {fileID: 6274191487105832138}
   - {fileID: 8967969602450398869}
+  - {fileID: 7717458783214412382}
   m_Father: {fileID: 4898606986425168456}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -609,6 +655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posAnimStart: {fileID: 6274191487105832138}
   posAnimDone: {fileID: 8967969602450398869}
+  posFrog: {fileID: 7717458783214412382}
   leaveDone: {fileID: 8203612630498285911}
   leaveFake: {fileID: 1594582258573338721}
 --- !u!1 &2514348742548907971
@@ -873,6 +920,7 @@ RectTransform:
   - {fileID: 7857265977907814136}
   - {fileID: 5566804381317043763}
   - {fileID: 1686318435915803275}
+  - {fileID: 7574477945351095647}
   m_Father: {fileID: 4898606986425168456}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -903,6 +951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posAnimStart: {fileID: 5566804381317043763}
   posAnimDone: {fileID: 1686318435915803275}
+  posFrog: {fileID: 7574477945351095647}
   leaveDone: {fileID: 7850742942771126171}
   leaveFake: {fileID: 7857265977907814136}
 --- !u!1 &3119853784716164100
@@ -1042,6 +1091,51 @@ MonoBehaviour:
   MIN_SCALE: {x: 0.95, y: 0.95, z: 0.95}
   MAX_SCALE: {x: 1.05, y: 1.05, z: 1.05}
   duration: 0.15
+--- !u!1 &3515993949817780142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7717458783214412382}
+  - component: {fileID: 3790163808706457117}
+  m_Layer: 5
+  m_Name: FrogDone (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &7717458783214412382
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515993949817780142}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4875, y: 0.4875, z: 0.4875}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4889979132126548262}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000061035156, y: -101.249985}
+  m_SizeDelta: {x: 961.7899, y: 897.92}
+  m_Pivot: {x: 0.44252908, y: 0.0016260046}
+--- !u!222 &3790163808706457117
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515993949817780142}
+  m_CullTransparentMesh: 1
 --- !u!1 &3537714434360167876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,6 +1558,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5000606866393637166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3982070891169887914}
+  - component: {fileID: 4781746020329531679}
+  m_Layer: 5
+  m_Name: FrogDone (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &3982070891169887914
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5000606866393637166}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4875, y: 0.4875, z: 0.4875}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 571651419201728424}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000061035156, y: -101.249985}
+  m_SizeDelta: {x: 961.7899, y: 897.92}
+  m_Pivot: {x: 0.44252908, y: 0.0016260046}
+--- !u!222 &4781746020329531679
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5000606866393637166}
+  m_CullTransparentMesh: 1
 --- !u!1 &5064189428186315507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,6 +1637,7 @@ RectTransform:
   - {fileID: 6817616071371729777}
   - {fileID: 503446467280795928}
   - {fileID: 8890132292385623170}
+  - {fileID: 3982070891169887914}
   m_Father: {fileID: 4898606986425168456}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1528,6 +1668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posAnimStart: {fileID: 503446467280795928}
   posAnimDone: {fileID: 8890132292385623170}
+  posFrog: {fileID: 3982070891169887914}
   leaveDone: {fileID: 5772209709266115719}
   leaveFake: {fileID: 6817616071371729777}
 --- !u!1 &5165273463177125455
@@ -1606,6 +1747,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6545817439315273745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7574477945351095647}
+  - component: {fileID: 4236226160374357847}
+  m_Layer: 5
+  m_Name: FrogDone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &7574477945351095647
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6545817439315273745}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4875, y: 0.4875, z: 0.4875}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4242139696961318734}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000061035156, y: -101.249985}
+  m_SizeDelta: {x: 961.7899, y: 897.92}
+  m_Pivot: {x: 0.44252908, y: 0.0016260046}
+--- !u!222 &4236226160374357847
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6545817439315273745}
+  m_CullTransparentMesh: 1
 --- !u!1 &6568780910195820065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,6 +1906,7 @@ RectTransform:
   - {fileID: 4242139696961318734}
   - {fileID: 571651419201728424}
   - {fileID: 4889979132126548262}
+  - {fileID: 1127089886}
   - {fileID: 2843755843047257981}
   m_Father: {fileID: 2858341861705689021}
   m_RootOrder: 1
@@ -1920,8 +2107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c23bb0745d9154ba7d16f75d79db09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpPower: 150
   animJump: jump
   animSession: session
+  animIdle: Idle
   currentLeave: {fileID: 1492029062}
   frogAnim: {fileID: 7810086013826990903}
   currentStep: 0
@@ -1937,6 +2126,7 @@ MonoBehaviour:
   - {fileID: 3350149387908669515}
   - {fileID: 538215979980218332}
   - {fileID: 5953703069502534970}
+  posDoneStep: {fileID: 1127089886}
 --- !u!1 &8350047117613682993
 GameObject:
   m_ObjectHideFlags: 0
