@@ -17,18 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: a0d7e08610b7b374b8b61b8da698b7e2
   m_SerializeEntries:
-  - m_GUID: 2e31d6ab48f66a9418faf787f5d9dae3
-    m_Address: MiniGameGreenScreen
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e74d791176574b4f8220a60c215b2d7
     m_Address: Minigame1Green
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e84be7ce30538c64182755381c4becae
-    m_Address: MiniGameGreenScreen
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

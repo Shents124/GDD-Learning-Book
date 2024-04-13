@@ -23,7 +23,6 @@
         MiniGameBlue1Screen = 16,
         MiniGameBlue2Screen = 17,
         Step345GreenScreen = 18,
-        MiniGameGreenScreen = 19,
         
         MiniGameGreen1Screen = 21,
         MiniGameGreen2Screen = 22,
