@@ -9,7 +9,7 @@
         MinigameRedStep1 = 4,
         MinigameRed = 5,
         BakeCake = 6,
-        Step7 = 7,
+        Step7Red = 7,
         
         Step345YellowScreen = 8,
         MiniGameYellowScreen = 9,
@@ -33,5 +33,8 @@
         
         BabyChicken = 0,
         MomChicken = 1,
+
+        PlantGreen = 0,
+        FrogGreen = 1,
     }
 }
