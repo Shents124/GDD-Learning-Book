@@ -1,5 +1,4 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UI;
 using UnityEngine;

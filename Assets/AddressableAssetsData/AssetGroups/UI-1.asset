@@ -15,25 +15,10 @@ MonoBehaviour:
   m_GroupName: UI-1
   m_Data:
     m_SerializedData: []
-  m_GUID: 7ea9eb7b83484df4d8bb00cceac59f6e
+  m_GUID: a0d7e08610b7b374b8b61b8da698b7e2
   m_SerializeEntries:
-  - m_GUID: dbddf95c5104e074b92423b3687a094e
-    m_Address: Step7Red
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d698e5fe953e7954a9c8a0e3be2bc56c
-    m_Address: MinigameRed
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf6ab265ab7724040beed304a285e875
-    m_Address: BgLambanh
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c3545fcf712bf9f40a73b3b0cd050794
-    m_Address: BakeCake
+  - m_GUID: 2e31d6ab48f66a9418faf787f5d9dae3
+    m_Address: MiniGameGreenScreen
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -42,13 +27,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 724c16f528c206146acf60225bd9c4c1
-    m_Address: Minigame2Green
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 619f3b7ae41054245a7aade592fac771
-    m_Address: Step7Green
+  - m_GUID: e84be7ce30538c64182755381c4becae
+    m_Address: MiniGameGreenScreen
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

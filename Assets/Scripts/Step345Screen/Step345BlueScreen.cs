@@ -3,26 +3,25 @@ using System.Collections;
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Minigame.BlueColor;
 using UI;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Step345Screen
 {
-    public class Step345YellowScreen : BaseActivity
+    public class Step345BlueScreen : BaseActivity
     {
-          [SerializeField] private float characterMoveDuration = 1.75f;
+        [SerializeField] private float characterMoveDuration = 1.75f;
         [SerializeField] private float giftMoveDuration = 0.3f;
         [SerializeField] private float foodMoveDuration = 0.4f;
         [SerializeField] private RectTransform characterTransform;
         [SerializeField] private CharacterController characterController;
         [SerializeField] private GameObject dialog;
         [SerializeField] private Step345Gift gift;
-        [SerializeField] private Button[] foods;
+        [SerializeField] private BlueFood[] foods;
 
         [SerializeField] private Board board;
-
-        [SerializeField] private RectTransform[] foodPositions;
+        
         [SerializeField] private RectTransform characterEndPosition;
         [SerializeField] private RectTransform characterEnd2Position;
         [SerializeField] private RectTransform giftEndPosition;
@@ -31,12 +30,12 @@ namespace Step345Screen
         private int _fillCount;
 
         private ColorType _colorType;
-
+        
         protected override void InitializeData(Memory<object> args)
         {
             if (args.IsEmpty == false)
                 _colorType = (ColorType)args.ToArray()[0];
-
+            
             base.InitializeData(args);
         }
 
@@ -57,6 +56,7 @@ namespace Step345Screen
                             gift.Initialize(OnClickOpenGift).Forget();
                         });
                 });
+            
             base.DidEnter(args);
         }
 
@@ -71,23 +71,14 @@ namespace Step345Screen
             for (int i = 0, n = foods.Length; i < n; i++)
             {
                 var food = foods[i];
-                var rectTransform = food.GetComponent<RectTransform>();
-
-                rectTransform.anchoredPosition = giftEndPosition.anchoredPosition;
-                rectTransform.localScale = Vector3.zero;
-                rectTransform.gameObject.SetActive(true);
-                rectTransform.DOJump(foodPositions[i].transform.position, 0.25f, 1, foodMoveDuration);
-                rectTransform.DOScale(Vector3.one, foodMoveDuration);
-
-                food.onClick.AddListener(() => OnClickedFood(food));
+                food.gameObject.SetActive(true);
+                food.Initialize(characterEndPosition, foodMoveDuration, i, OnClickedFood);
             }
         }
 
-        private void OnClickedFood(Button button)
+        private void OnClickedFood(int index)
         {
-            var rectTransform = button.GetComponent<RectTransform>();
-            rectTransform.DOJump(characterEndPosition.transform.position, 400f, 1, foodMoveDuration);
-            rectTransform.DOScale(Vector3.zero, foodMoveDuration * 2).OnComplete(Fill);
+            StartCoroutine(foods[index].MoveFoods(Fill));
         }
 
         private void Fill()
@@ -143,7 +134,7 @@ namespace Step345Screen
         private static IEnumerator MoveToNextStep()
         {
             yield return new WaitForSeconds(1f);
-            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellowScreen);
+            UIService.OpenActivityWithFadeIn(ActivityType.MinigameRed);
         }
     }
 }

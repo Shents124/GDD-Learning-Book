@@ -26,11 +26,11 @@ namespace MenuScreen
             switch (colorType)
             {
                 case ColorType.Red:
-                    UIService.OpenActivityAsync(ActivityType.Step345RedScreen, args: colorType).Forget();
+                    UIService.OpenActivityWithFadeIn(ActivityType.Step345RedScreen, args: colorType);
                     break;
                 
                 case ColorType.Yellow:
-                    UIService.OpenActivityAsync(ActivityType.MiniGameYellowScreen, args: colorType).Forget();
+                    UIService.OpenActivityWithFadeIn(ActivityType.Step345YellowScreen, args: colorType);
                     break;
                 
                 case ColorType.Green:
@@ -38,6 +38,7 @@ namespace MenuScreen
                     break;
                 
                 case ColorType.Blue:
+                    UIService.OpenActivityWithFadeIn(ActivityType.Step345BlueScreen, args: colorType);
                     break;
             }
         }

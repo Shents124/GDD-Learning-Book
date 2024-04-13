@@ -18,10 +18,16 @@
         MiniGameYellow4Screen = 12,
         MiniGameYellow5Screen = 13,
         
-        Step345GreenScreen = 14,
-        MiniGameGreen1Screen = 15,
-        MiniGameGreen2Screen = 16,
-        Step7Green = 17,
+        Step345BlueScreen = 14,
+        MiniGameBlueScreen = 15,
+        MiniGameBlue1Screen = 16,
+        MiniGameBlue2Screen = 17,
+        Step345GreenScreen = 18,
+        MiniGameGreenScreen = 19,
+        
+        MiniGameGreen1Screen = 21,
+        MiniGameGreen2Screen = 22,
+        Step7Green = 23,
         
         FadeScreen = 99,
     }

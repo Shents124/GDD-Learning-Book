@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.U2D;
 using UnityEngine.UI;
 using ZBase.UnityScreenNavigator.Core;
 using ZBase.UnityScreenNavigator.Core.Activities;
@@ -15,12 +14,6 @@ namespace UI
 
         public Action onInitializeDone;
         
-        protected override void OnEnable()
-        {
-            SpriteAtlasManager.atlasRequested += RequestAtlas;
-            base.OnEnable();
-        }
-
         protected override void Start()
         {
             base.Start();
@@ -30,18 +23,7 @@ namespace UI
              SetRectMask2D(UIConstant.FADE_ACTIVITY, WindowContainerType.Activity);
              onInitializeDone?.Invoke();
         }
-
-        protected override void OnDisable()
-        {
-            SpriteAtlasManager.atlasRequested -= RequestAtlas;
-        }
-
-        void RequestAtlas(string tag, Action<SpriteAtlas> callback)
-        {
-            // var sa = Singleton.Of<LoadResourceService>().LoadAsset<SpriteAtlas>($"spriteatlas-{tag}");
-            // callback(sa);
-        }
-
+        
         private void SetRectMask2D(string layerName, WindowContainerType layerType)
         {
             RectMask2D rectMask2D = null;

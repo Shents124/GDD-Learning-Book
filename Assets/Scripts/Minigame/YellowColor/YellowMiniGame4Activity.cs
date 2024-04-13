@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,14 +21,13 @@ namespace Minigame.YellowColor
             momChickenBtn.onClick.AddListener(OnClickedMomChicken);
             babyChickenBtn.onClick.AddListener(OnClickedBabyChicken);
         }
-
-        public override UniTask Initialize(Memory<object> args)
-        {
-            UIService.PlayFadeOut();
-            _currentStep = 0;
-            return base.Initialize(args);
-        }
         
+        protected override void InitializeData(Memory<object> args)
+        {
+            _currentStep = 0;
+            base.InitializeData(args);
+        }
+
         private void OnClickedMomChicken()
         {
             _currentStep++;
