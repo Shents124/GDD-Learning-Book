@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections;
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Minigame.BlueColor;
 using UI;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Step345Screen
 {
@@ -15,8 +15,8 @@ namespace Step345Screen
         [SerializeField] private float giftMoveDuration = 0.3f;
         [SerializeField] private float foodMoveDuration = 0.4f;
         [SerializeField] private RectTransform characterTransform;
+        [SerializeField] private CharacterController characterController;
         [SerializeField] private GameObject dialog;
-        [SerializeField] private Image fillImage;
         [SerializeField] private Step345Gift gift;
         [SerializeField] private BlueFood[] foods;
 
@@ -41,15 +41,22 @@ namespace Step345Screen
 
         public override void DidEnter(Memory<object> args)
         {
-            fillImage.fillAmount = 0;
-            
             var giftTransform = gift.GetComponent<RectTransform>();
-            characterTransform.DOAnchorPos(characterEndPosition.anchoredPosition, characterMoveDuration).OnComplete(() => {
-                giftTransform.DOAnchorPos(giftEndPosition.anchoredPosition, giftMoveDuration).SetEase(Ease.OutQuad).
-                    OnComplete(() => {
-                        gift.Initialize(OnClickOpenGift).Forget();
-                    });
-            });
+            characterController.PlayAnim(0, characterController.runAnimation, true);
+            characterTransform.DOAnchorPos(characterEndPosition.anchoredPosition, characterMoveDuration).OnComplete(
+                () => {
+                    characterController.PlayAnim(0, characterController.idleAnimation, true);
+
+                    giftTransform.DOAnchorPos(giftEndPosition.anchoredPosition, giftMoveDuration).SetEase(Ease.OutQuad)
+                        .OnComplete(() => {
+                            characterController.PlayAnim(0, characterController.exitingAnimation, false, () => {
+                                characterController.PlayAnim(0, characterController.idleAnimation, true);
+                            });
+
+                            gift.Initialize(OnClickOpenGift).Forget();
+                        });
+                });
+            
             base.DidEnter(args);
         }
 
@@ -77,22 +84,33 @@ namespace Step345Screen
         private void Fill()
         {
             _fillCount++;
-            fillImage.fillAmount = _fillCount / 3f;
+            characterController.PlayAnim(0, characterController.idleEatAnimation, false, () => {
+                characterController.PlayAnim(0, characterController.idleAnimation, true);
 
-            if (_fillCount == 3)
-            {
-                OnStep5();
-            }
+                if (_fillCount == 3)
+                {
+                    OnStep5();
+                }
+            });
         }
 
         private void OnStep5()
         {
-            characterTransform.DOAnchorPos(characterEnd2Position.anchoredPosition, characterMoveDuration * 2).
-                OnComplete(ShowBoard);
+            characterController.ChangeSkin(characterController.fullSkin);
+
+            characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
+                characterController.PlayAnim(0, characterController.runAnimation, true);
+                characterTransform.DOAnchorPos(characterEnd2Position.anchoredPosition, characterMoveDuration * 2)
+                    .OnComplete(ShowBoard);
+            });
         }
 
         private void ShowBoard()
         {
+            characterController.PlayAnim(0, characterController.idleTalkAnimation, false, () => {
+                characterController.PlayAnim(0, characterController.idleAnimation, true);
+            });
+
             dialog.SetActive(true);
             board.DoMove(() => {
                 board.Initialize(OnClickedCard);
@@ -103,16 +121,20 @@ namespace Step345Screen
         {
             if (_colorType != colorType)
                 return;
-            
-            card.transform.SetParent(transform);
-            card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
-                UIService.PlayFadeIn(MoveToNextStep);
+
+            characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
+                characterController.PlayAnim(0, characterController.idleAnimation, true);
+                card.transform.SetParent(transform);
+                card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
+                    StartCoroutine(MoveToNextStep());
+                });
             });
         }
 
-        private void MoveToNextStep()
+        private static IEnumerator MoveToNextStep()
         {
-            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlue1Screen);
+            yield return new WaitForSeconds(1f);
+            UIService.OpenActivityWithFadeIn(ActivityType.MinigameRed);
         }
     }
 }

@@ -18,9 +18,9 @@ public class Initialize : MonoBehaviour
         uiController.onInitializeDone -= OnUiInitializeDone;
     }
 
-    private void OnUiInitializeDone()
+    private static void OnUiInitializeDone()
     {
-        UIService.OpenActivityAsync(ActivityType.HomeScreen, false).Forget();
+        UIService.OpenActivityAsync(ActivityType.HomeScreen).Forget();
         UIService.InitializeFadeScreen().Forget();
     }
 }
