@@ -8,17 +8,28 @@ public class ColorPenController : MonoBehaviour
 {
     private Vector3 mousePosition;
 
+    private Vector3 posStart;
+
     [SerializeField] private Rect bounds; // Giới hạn vị trí của bút trong hình chữ nhật
 
-    [NonSerialized] public bool isPlay = false;
+    public bool isPlay = false;
+
+    private void Awake()
+    {
+        posStart = transform.position;   
+    }
+
+    private void OnEnable()
+    {
+        transform.position = posStart;
+    }
+
     private void Update()
     {
-        // Lấy vị trí của chuột trong không gian thế giới 2D
-
-        // Giới hạn vị trí của chuột trong hình chữ nhật
-        //mousePosition.x = Mathf.Clamp(mousePosition.x, bounds.xMin, bounds.xMax);
-        //mousePosition.y = Mathf.Clamp(mousePosition.y, bounds.yMin, bounds.yMax);
-        if(isPlay)
+        if (isPlay)
+        {
             transform.position = Input.mousePosition;
+        }
+
     }
 }

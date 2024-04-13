@@ -1,0 +1,209 @@
+
+con ech.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+b
+  rotate: false
+  xy: 0, 134
+  size: 847, 172
+  orig: 849, 174
+  offset: 1, 1
+  index: -1
+bung body
+  rotate: true
+  xy: 0, 308
+  size: 716, 673
+  orig: 716, 673
+  offset: 0, 0
+  index: -1
+cay tren dau
+  rotate: true
+  xy: 940, 750
+  size: 118, 139
+  orig: 120, 141
+  offset: 1, 1
+  index: -1
+chan p
+  rotate: false
+  xy: 675, 379
+  size: 192, 113
+  orig: 192, 113
+  offset: 0, 0
+  index: -1
+chan t
+  rotate: false
+  xy: 869, 379
+  size: 192, 113
+  orig: 192, 113
+  offset: 0, 0
+  index: -1
+eye p
+  rotate: true
+  xy: 1060, 173
+  size: 204, 185
+  orig: 206, 187
+  offset: 1, 1
+  index: -1
+eye p duoi
+  rotate: true
+  xy: 849, 146
+  size: 231, 209
+  orig: 233, 211
+  offset: 1, 1
+  index: -1
+eye t
+  rotate: true
+  xy: 675, 494
+  size: 252, 239
+  orig: 254, 241
+  offset: 1, 1
+  index: -1
+eye t duoi
+  rotate: true
+  xy: 675, 748
+  size: 276, 263
+  orig: 278, 265
+  offset: 1, 1
+  index: -1
+len p 1
+  rotate: true
+  xy: 386, 0
+  size: 45, 55
+  orig: 47, 57
+  offset: 1, 1
+  index: -1
+len p 2
+  rotate: true
+  xy: 499, 12
+  size: 58, 46
+  orig: 60, 48
+  offset: 1, 1
+  index: -1
+len t 1
+  rotate: false
+  xy: 547, 14
+  size: 46, 56
+  orig: 48, 58
+  offset: 1, 1
+  index: -1
+len t 2
+  rotate: false
+  xy: 326, 0
+  size: 58, 45
+  orig: 60, 47
+  offset: 1, 1
+  index: -1
+ma 8 p
+  rotate: true
+  xy: 1055, 887
+  size: 137, 113
+  orig: 139, 115
+  offset: 1, 1
+  index: -1
+ma 8 t
+  rotate: true
+  xy: 1055, 887
+  size: 137, 113
+  orig: 139, 115
+  offset: 1, 1
+  index: -1
+ma hong
+  rotate: false
+  xy: 668, 44
+  size: 333, 88
+  orig: 335, 90
+  offset: 1, 1
+  index: -1
+mom 1
+  rotate: true
+  xy: 572, 89
+  size: 43, 26
+  orig: 45, 28
+  offset: 1, 1
+  index: -1
+mom 2
+  rotate: false
+  xy: 158, 6
+  size: 86, 64
+  orig: 88, 66
+  offset: 1, 1
+  index: -1
+mom 3
+  rotate: true
+  xy: 940, 870
+  size: 154, 113
+  orig: 156, 115
+  offset: 1, 1
+  index: -1
+mom 4
+  rotate: true
+  xy: 246, 17
+  size: 53, 78
+  orig: 55, 80
+  offset: 1, 1
+  index: -1
+mom 5
+  rotate: false
+  xy: 0, 15
+  size: 156, 55
+  orig: 158, 57
+  offset: 1, 1
+  index: -1
+mom 6
+  rotate: true
+  xy: 443, 5
+  size: 40, 54
+  orig: 42, 56
+  offset: 1, 1
+  index: -1
+mom 7
+  rotate: false
+  xy: 916, 599
+  size: 136, 147
+  orig: 138, 149
+  offset: 1, 1
+  index: -1
+mom 7 luoi
+  rotate: false
+  xy: 0, 72
+  size: 570, 60
+  orig: 570, 60
+  offset: 0, 0
+  index: -1
+mom 8a
+  rotate: false
+  xy: 326, 47
+  size: 133, 23
+  orig: 135, 25
+  offset: 1, 1
+  index: -1
+tay p
+  rotate: true
+  xy: 1003, 20
+  size: 124, 170
+  orig: 124, 170
+  offset: 0, 0
+  index: -1
+tay t
+  rotate: false
+  xy: 1175, 3
+  size: 123, 168
+  orig: 123, 168
+  offset: 0, 0
+  index: -1
+tim
+  rotate: true
+  xy: 595, 6
+  size: 81, 71
+  orig: 83, 73
+  offset: 1, 1
+  index: -1
+tim 2
+  rotate: true
+  xy: 1054, 623
+  size: 125, 109
+  orig: 127, 111
+  offset: 1, 1
+  index: -1
