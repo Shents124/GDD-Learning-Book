@@ -123,7 +123,7 @@ namespace Step345Screen
         private void MoveToNextStep()
         {
             //var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_STEP_2);
-            UIService.OpenActivityAsync(ActivityType.MiniGameGreenScreen, false).Forget();
+            UIService.OpenActivityAsync(ActivityType.MiniGameGreen1Screen, false).Forget();
         }
     }
 }

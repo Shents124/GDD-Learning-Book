@@ -19,7 +19,9 @@
         MiniGameYellow5Screen = 13,
         
         Step345GreenScreen = 14,
-        MiniGameGreenScreen = 15,
+        MiniGameGreen1Screen = 15,
+        MiniGameGreen2Screen = 16,
+        Step7Green = 17,
         
         FadeScreen = 99,
     }
