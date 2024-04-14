@@ -24,8 +24,8 @@
         MiniGameBlue2Screen = 17,
         Step345GreenScreen = 18,
         
-        MiniGameGreen1Screen = 21,
-        MiniGameGreen2Screen = 22,
+        MinigameGreen1Screen = 21,
+        MinigameGreen2Screen = 22,
         Step7Green = 23,
         
         FadeScreen = 99,

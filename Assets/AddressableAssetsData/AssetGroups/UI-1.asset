@@ -15,10 +15,35 @@ MonoBehaviour:
   m_GroupName: UI-1
   m_Data:
     m_SerializedData: []
-  m_GUID: a0d7e08610b7b374b8b61b8da698b7e2
+  m_GUID: 72815ec7d11cbc343acc7b9977dd3d42
   m_SerializeEntries:
+  - m_GUID: c3545fcf712bf9f40a73b3b0cd050794
+    m_Address: BakeCake
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf6ab265ab7724040beed304a285e875
+    m_Address: BgLambanh
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e74d791176574b4f8220a60c215b2d7
     m_Address: Minigame1Green
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 724c16f528c206146acf60225bd9c4c1
+    m_Address: Minigame2Green
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 619f3b7ae41054245a7aade592fac771
+    m_Address: Step7Green
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbddf95c5104e074b92423b3687a094e
+    m_Address: Step7Red
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

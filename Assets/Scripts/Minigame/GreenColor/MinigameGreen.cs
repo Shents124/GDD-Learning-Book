@@ -4,7 +4,7 @@ using UI;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
-public class MinigameGreen : Activity
+public class MinigameGreen : BaseActivity
 {
     protected override void Start()
     {

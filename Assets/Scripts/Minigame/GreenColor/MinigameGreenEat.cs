@@ -8,7 +8,7 @@ using UI;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
-public class MinigameGreenEat : Activity
+public class MinigameGreenEat : BaseActivity
 {
     private int _currentStep;
 

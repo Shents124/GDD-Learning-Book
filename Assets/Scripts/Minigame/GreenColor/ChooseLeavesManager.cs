@@ -67,7 +67,7 @@ public class ChooseLeavesManager : MonoBehaviour
                     frogAnim.AnimationState.SetAnimation(0, animSession, true);
                     await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
                     UIService.PlayFadeIn(() => {
-                        UIService.OpenActivityAsync(ActivityType.MiniGameGreen2Screen, false).Forget();
+                        UIService.OpenActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
                     });
                 });
             }

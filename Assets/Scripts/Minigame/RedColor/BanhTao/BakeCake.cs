@@ -12,7 +12,7 @@ using UnityEngine.UI;
 using Utility;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
-public class BakeCake : Activity
+public class BakeCake : BaseActivity
 {
     [Header("Done Step")]
     public Transform doneAll;
@@ -153,5 +153,10 @@ public class BakeCake : Activity
         var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
         UIService.CloseActivityAsync(ActivityType.BakeCake, false).Forget();
         UIService.PlayFadeOut();
+    }
+
+    protected override void OnClickedNextBtn()
+    {
+        NextStep();
     }
 }

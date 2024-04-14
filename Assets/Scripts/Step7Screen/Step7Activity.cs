@@ -10,7 +10,7 @@ using ZBase.UnityScreenNavigator.Core.Activities;
 
 namespace Step7
 {
-    public class Step7Activity : Activity
+    public class Step7Activity : BaseActivity
     {
         public int stepToDone = 2;
 
