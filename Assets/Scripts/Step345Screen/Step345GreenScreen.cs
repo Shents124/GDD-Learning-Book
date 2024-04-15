@@ -143,7 +143,7 @@ namespace Step345Screen
         private static IEnumerator MoveToNextStep()
         {
             yield return new WaitForSeconds(1f);
-            UIService.OpenActivityWithFadeIn(ActivityType.MinigameRed);
+            UIService.OpenActivityWithFadeIn(ActivityType.MinigameGreen1Screen);
         }
     }
 }

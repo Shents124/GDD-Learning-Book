@@ -11,6 +11,7 @@ public class AnimalFlyRandom : MonoBehaviour
     public bool isCurrentAnimal;
 
     public RectTransform areaRect;
+    public RectTransform excludedRect;
 
     public float speedFly;
 
@@ -36,22 +37,29 @@ public class AnimalFlyRandom : MonoBehaviour
         actionClick?.Invoke();
     }
 
-    private Vector2 GetRandomPositionInUI(RectTransform areaRect)
+    private Vector2 GetRandomPositionInUI(RectTransform areaRect, RectTransform excludedRect)
     {
         Vector2 min = areaRect.rect.min;
         Vector2 max = areaRect.rect.max;
+        Vector2 randomPosition;
 
-        float randomX = UnityEngine.Random.Range(min.x, max.x);
-        float randomY = UnityEngine.Random.Range(min.y, max.y);
+        do
+        {
+            float randomX = UnityEngine.Random.Range(min.x, max.x);
+            float randomY = UnityEngine.Random.Range(min.y, max.y);
+            randomPosition = new Vector2(randomX, randomY);
 
-        return new Vector2(randomX, randomY);
+        } while (excludedRect.rect.Contains(randomPosition));
+
+
+        return randomPosition;
     }
 
     private void MoveRandom()
     {
         if (!isFly)
             return;
-        Vector2 randomPosition = GetRandomPositionInUI(areaRect);
+        Vector2 randomPosition = GetRandomPositionInUI(areaRect, excludedRect);
         if(randomPosition.x - transform.localPosition.x > 0)
         {
             transform.localScale = new Vector2(-Math.Abs(transform.localScale.x), transform.localScale.y);

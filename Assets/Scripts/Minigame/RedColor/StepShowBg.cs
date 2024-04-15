@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Spine.Unity;
 using UI;
 using UnityEngine;
 
 public class StepShowBg : BaseStep
 {
+    [SpineAnimation]
+    public string animTalk;
 
+    [SerializeField] private SkeletonGraphic animPlayer;
     [SerializeField] private RectTransform m_RectTransform;
 
     private Vector2 posStart;
@@ -35,12 +39,15 @@ public class StepShowBg : BaseStep
         SetUpPage();
         posStart = transform.position;
         m_RectTransform.DOAnchorPosX(m_RectTransform.rect.width, 1.5f).OnComplete(() => {
-            UIService.PlayFadeIn(()=> 
-            { 
-                NextStep();
-                UIService.PlayFadeOut();
-                transform.position = posStart;
-            });
-        }).SetDelay(2f);
+            var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
+            track.Complete += entry => {
+                UIService.PlayFadeIn(() =>
+                {
+                    NextStep();
+                    UIService.PlayFadeOut();
+                    transform.position = posStart;
+                });
+            };
+        }).SetDelay(1f);
     }
 }

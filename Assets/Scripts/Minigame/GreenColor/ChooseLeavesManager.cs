@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Spine.Unity;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,7 +65,10 @@ public class ChooseLeavesManager : MonoBehaviour
                 frogAnim.AnimationState.SetAnimation(0, animJump, false);
                 frogAnim.transform.DOJump(posDoneStep.position, jumpPower, 1, 1.34f).OnComplete(async () => {
                     frogAnim.AnimationState.SetAnimation(0, animSession, true);
-                    //TODO: Done
+                    await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
+                    UIService.PlayFadeIn(() => {
+                        UIService.OpenActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
+                    });
                 });
             }
             else

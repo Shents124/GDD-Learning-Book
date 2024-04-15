@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MakeCakeManager : MonoBehaviour
 {
     public List<BaseStep> allSteps;
 
+    public Button btnNext, btnBack;
+
     private int currentStep = 0;
 
     private void Start()
     {
+        btnBack.onClick.AddListener(OnClickedBackBtn);
+        btnNext.onClick.AddListener(OnClickedNextBtn);
         for (int i = 0; i < allSteps.Count; i++)
         {
             if (i == 0)
@@ -37,12 +42,33 @@ public class MakeCakeManager : MonoBehaviour
     {
         if (currentStep == allSteps.Count - 1)
         {
-            UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
-            Destroy(this.gameObject);
+            UIService.PlayFadeIn(() => {
+
+                UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
+                Destroy(this.gameObject);
+            });
+
         }
         else
         {
             currentStep++;
         }
+    }
+
+
+    private async void OnClickedBackBtn()
+    {
+        await UIService.OpenActivityAsync(ActivityType.MenuScreen);
+        UIService.PlayFadeOut();
+        Destroy(this.gameObject);
+    }
+
+    private void OnClickedNextBtn()
+    {
+        UIService.PlayFadeIn(() => {
+            NextStep();
+            UIService.PlayFadeOut();
+        });
+
     }
 }

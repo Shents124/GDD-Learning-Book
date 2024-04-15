@@ -2,11 +2,14 @@
 using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Minigame.RedColor
 {
     public class StrawberryJuiceStepManager : MonoBehaviour
     {
+        public Button btnNext, btnBack;
+
         [SerializeField] private List<BaseStep> steps;
 
         private int _currentStep;
@@ -14,6 +17,8 @@ namespace Minigame.RedColor
         
         private void Start()
         {
+            btnBack.onClick.AddListener(OnClickedBackBtn);
+            btnNext.onClick.AddListener(OnClickedNextBtn);
             foreach (var step in steps)
             {
                 _stepCount++;
@@ -55,8 +60,24 @@ namespace Minigame.RedColor
         {
             UIService.PlayFadeIn(() => {
                 Destroy(this.gameObject);
-                UIService.OpenActivityAsync(ActivityType.Step7, closeLastActivity: false).Forget();
+                UIService.OpenActivityAsync(ActivityType.Step7Red, closeLastActivity: false).Forget();
             });
+        }
+
+        private async void OnClickedBackBtn()
+        {
+            await UIService.OpenActivityAsync(ActivityType.MenuScreen);
+            UIService.PlayFadeOut();
+            Destroy(this.gameObject);
+        }
+
+        private void OnClickedNextBtn()
+        {
+            UIService.PlayFadeIn(() => {
+                UIService.PlayFadeOut();
+                ChangeStep();
+            });
+
         }
     }
 }
