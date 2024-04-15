@@ -85,6 +85,7 @@ namespace Step345Screen
 
         private void OnClickedFood(Button button)
         {
+            button.interactable = false;
             var rectTransform = button.GetComponent<RectTransform>();
             rectTransform.DOJump(characterEndPosition.transform.position, 400f, 1, foodMoveDuration);
             rectTransform.DOScale(Vector3.zero, foodMoveDuration * 2).OnComplete(Fill);

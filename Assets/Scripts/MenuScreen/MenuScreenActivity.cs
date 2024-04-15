@@ -38,7 +38,7 @@ namespace MenuScreen
                     break;
                 
                 case ColorType.Blue:
-                    UIService.OpenActivityWithFadeIn(ActivityType.Step345BlueScreen, args: colorType);
+                    UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlueScreen, args: colorType);
                     break;
             }
         }
