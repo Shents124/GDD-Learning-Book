@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Coffee.UIExtensions;
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -16,6 +17,7 @@ public class BakeCake : BaseActivity
 {
     [Header("Done Step")]
     public Transform doneAll;
+    public UIParticle vfxDone;
     public Transform cakeShow;
 
     [Header("Step Bake")]
@@ -140,7 +142,9 @@ public class BakeCake : BaseActivity
                 cakeComplete.transform.parent = doneAll;
                 cakeComplete.transform.DOMove(cakeShow.position, 0.75f);
                 cakeComplete.transform.DOScale(cakeShow.localScale, 0.75f).OnComplete(async () => {
-                    await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
+                    vfxDone.gameObject.SetActive(true);
+                    cakeComplete.transform.SetAsFirstSibling();
+                    await UniTask.Delay(TimeSpan.FromSeconds(1f));
                     UIService.PlayFadeIn(NextStep);
                 });
             });
