@@ -28,7 +28,6 @@ namespace Step7
 
         public override UniTask Initialize(Memory<object> args)
         {
-            UIService.PlayFadeOut();
             EventManager.Connect(Events.FillColorDone, CheckNextStep);
             return base.Initialize(args);
         }
@@ -51,6 +50,8 @@ namespace Step7
                     });
                     await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
                     DoneAll.SetActive(true);
+                    await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
+                    UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
                 });
             }
         }

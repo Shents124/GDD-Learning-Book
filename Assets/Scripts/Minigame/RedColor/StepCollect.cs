@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Coffee.UIExtensions;
 using DG.Tweening;
 using UI;
 using UnityEngine;
@@ -24,6 +25,8 @@ public class StepCollect : BaseStep
     public Transform bucketDonePos;
 
     public GameObject bucketDoneObj;
+
+    public UIParticle vfx;
     public int CurrentFruit
     {
         get => _currentStep;
@@ -43,10 +46,13 @@ public class StepCollect : BaseStep
                     });
                 });
                 bucketCollectDone.transform.parent = bucketDoneObj.transform;
+                bucketCollectDone.transform.SetAsLastSibling();
                 bucketDoneObj.SetActive(true);
                 bucketCollectDone.transform.DOScale(bucketDonePos.localScale, 1f);
                 bucketCollectDone.transform.DOMove(bucketDonePos.position, 1f).OnComplete(() => 
                 {
+                    vfx.gameObject.SetActive(true);
+                    vfx.Play();
                     bucketCollectDone.DOPlay();
                 });
             }

@@ -47,6 +47,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d698e5fe953e7954a9c8a0e3be2bc56c
+    m_Address: MinigameRed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2f8da982462e67842aabe7df00efca11, type: 2}
   m_SchemaSet:
