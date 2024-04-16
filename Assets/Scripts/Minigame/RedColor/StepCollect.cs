@@ -49,10 +49,11 @@ public class StepCollect : BaseStep
                 bucketCollectDone.transform.SetAsLastSibling();
                 bucketDoneObj.SetActive(true);
                 bucketCollectDone.transform.DOScale(bucketDonePos.localScale, 1f);
+                vfx.transform.localScale = Vector3.zero;
+                vfx.transform.DOScale(1, 1f);
                 bucketCollectDone.transform.DOMove(bucketDonePos.position, 1f).OnComplete(() => 
                 {
                     vfx.gameObject.SetActive(true);
-                    vfx.Play();
                     bucketCollectDone.DOPlay();
                 });
             }
