@@ -1,15 +1,38 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
+using Minigame.BlueColor;
 
 public static class EventManager
 {
-	private static class Holder<T> where T : class // Exclude structs because of iOS JIT issues
+
+    public static Action<BlueClothesType> onBeginDragBlueClothes;
+
+    public static void CallBeginDragBlueClothes(BlueClothesType blueClothesType)
+    {
+        onBeginDragBlueClothes?.Invoke(blueClothesType);
+    }
+    
+    public static Action onEndDragBlueClothes;
+
+    public static void CallEndDragBlueClothes()
+    {
+        onEndDragBlueClothes?.Invoke();
+    }
+
+
+    public static Action onDropSuccess;
+
+    public static void CallDropSuccess()
+    {
+        onDropSuccess?.Invoke();
+    }
+    
+    private static class Holder<T> where T : class // Exclude structs because of iOS JIT issues
 	{
 		public static Dictionary<Type, Action<T>> s_eventMap = new Dictionary<Type, Action<T>>();
 	}
-
+    
 	private static class HolderSimple
 	{
 		public static Dictionary<int, Action> s_eventMap = new Dictionary<int, Action>();
@@ -117,4 +140,6 @@ public enum Events
     PeelAppleDone,
     CutAppleDone,
     ArrangeCakeDone,
+    OnBeginDragClothes,
+    OnEndGradClothes,
 }

@@ -22,7 +22,9 @@
         MiniGameBlueScreen = 15,
         MiniGameBlue1Screen = 16,
         MiniGameBlue2Screen = 17,
-        Step345GreenScreen = 18,
+        MiniGameBlue3Screen = 18,
+        
+        Step345GreenScreen = 19,
         
         MinigameGreen1Screen = 21,
         MinigameGreen2Screen = 22,
@@ -41,5 +43,8 @@
 
         PlantGreen = 0,
         FrogGreen = 1,
+        
+        Pando = 0,
+        Ball = 1,
     }
 }

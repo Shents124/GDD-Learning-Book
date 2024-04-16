@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PeelApple : MonoBehaviour
 {
@@ -18,7 +14,7 @@ public class PeelApple : MonoBehaviour
     }
 
 
-    public async UniTask OnDonePeel()
+    public void OnDonePeel()
     {
         fakeApple.SetActive(true);
         donePeel.SetActive(true);
