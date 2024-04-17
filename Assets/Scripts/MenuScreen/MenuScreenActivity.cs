@@ -14,6 +14,8 @@ namespace MenuScreen
 
         public override UniTask Initialize(Memory<object> args)
         {
+            UIService.PlayFadeOut();
+            
             foreach (var item in menuItems)
             {
                 item.Initialize(OnChoseColor);
@@ -34,7 +36,7 @@ namespace MenuScreen
                     break;
                 
                 case ColorType.Green:
-                    UIService.OpenActivityAsync(ActivityType.Step345GreenScreen, args: colorType).Forget();
+                    UIService.OpenActivityWithFadeIn(ActivityType.Step345GreenScreen, args: colorType);
                     break;
                 
                 case ColorType.Blue:

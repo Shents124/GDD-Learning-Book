@@ -37,6 +37,7 @@ namespace Minigame.BlueColor
 
         public IEnumerator MoveFoods(Action onFinish)
         {
+            button.interactable = false;
             var delay = new WaitForSeconds(delayTime);
             foreach (var food in foods)
             {

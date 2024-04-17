@@ -9,10 +9,12 @@ namespace Minigame.RedColor
     {
         [SerializeField] private int numberStrawberry = 7;
         [SerializeField] private List<Strawberry> strawberries;
+        [SerializeField] private GameObject _effect;
 
         private void Start()
         {
             SetData();
+            _effect.SetActive(false);
         }
 
         private void SetData()
@@ -28,6 +30,7 @@ namespace Minigame.RedColor
             numberStrawberry--;
             if (numberStrawberry <= 0)
             {
+                _effect.SetActive(true);
                 await UniTask.Delay(TimeSpan.FromSeconds(1f));
                 CompletedStep();
             }

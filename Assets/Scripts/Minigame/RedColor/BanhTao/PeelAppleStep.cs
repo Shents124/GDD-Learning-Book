@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using UI;
 using UnityEngine;
 
 public class PeelAppleStep : BaseStep
@@ -18,18 +16,18 @@ public class PeelAppleStep : BaseStep
     private void Start()
     {
         allStep[0].gameObject.SetActive(true);
-        EventManager.Connect(Events.PeelAppleDone, CompleteMiniStep);
+        EventManager.Connect(Events.PeelAppleDone,()=> CompleteMiniStep().Forget());
     }
 
     private void OnDisable()
     {
-        EventManager.Disconnect(Events.PeelAppleDone, CompleteMiniStep);
+        EventManager.Disconnect(Events.PeelAppleDone, ()=> CompleteMiniStep().Forget());
     }
 
-    public async void CompleteMiniStep()
+    public async UniTask CompleteMiniStep()
     {
         knife.DisActiveKnife();
-        await allStep[currentStep].OnDonePeel();
+        allStep[currentStep].OnDonePeel();
         allStep[currentStep].gameObject.SetActive(false);
         currentStep++;
         if(currentStep >= numberStep)

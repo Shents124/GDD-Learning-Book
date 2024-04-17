@@ -6,6 +6,11 @@
 
         public const string YELLOW_FOOD = "yellow_food";
 
+        public const string BLUE_DOTTED_CLOTHES = "blue_dotted_clothes";
+        public const string BLUE_FRONT_CLOTHES = "blue_front_clothes";
+        public const string BLUE_BEHIND_CLOTHES = "blue_behind_clothes";
+        
+
         #endregion
 
         #region Steep 345

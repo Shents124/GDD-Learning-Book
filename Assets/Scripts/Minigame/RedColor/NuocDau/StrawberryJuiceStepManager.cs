@@ -58,10 +58,14 @@ namespace Minigame.RedColor
         
         private void OnFinishAllStep()
         {
-            UIService.PlayFadeIn(() => {
-                Destroy(this.gameObject);
-                UIService.OpenActivityAsync(ActivityType.Step7Red, closeLastActivity: false).Forget();
+            AdsManager.Instance.ShowInterstitial(() => {
+                
+                UIService.PlayFadeIn(() => {
+                    Destroy(this.gameObject);
+                    UIService.OpenActivityAsync(ActivityType.Step7Red, closeLastActivity: false).Forget();
+                });
             });
+            
         }
 
         private async void OnClickedBackBtn()

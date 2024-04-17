@@ -21,7 +21,8 @@ namespace Step345Screen
         [SerializeField] private Button[] foods;
 
         [SerializeField] private Board board;
-
+        [SerializeField] private GameObject dark;
+        
         [SerializeField] private RectTransform[] foodPositions;
         [SerializeField] private RectTransform characterEndPosition;
         [SerializeField] private RectTransform characterEnd2Position;
@@ -85,6 +86,7 @@ namespace Step345Screen
 
         private void OnClickedFood(Button button)
         {
+            button.interactable = false;
             var rectTransform = button.GetComponent<RectTransform>();
             rectTransform.DOJump(characterEndPosition.transform.position, 400f, 1, foodMoveDuration);
             rectTransform.DOScale(Vector3.zero, foodMoveDuration * 2).OnComplete(Fill);
@@ -130,9 +132,10 @@ namespace Step345Screen
         {
             if (_colorType != colorType)
                 return;
-
+            
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
+                dark.SetActive(true);
                 card.transform.SetParent(transform);
                 card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
                     StartCoroutine(MoveToNextStep());
