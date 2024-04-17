@@ -31,14 +31,21 @@ namespace UI
         }
         
         public static void OpenActivityWithFadeIn(ActivityType activityType, bool playAnimation = false, 
-            OnViewLoadedCallback onLoadedCallBack = null, bool closeLastActivity = true,
+            OnViewLoadedCallback onLoadedCallBack = null, bool closeLastActivity = true, bool playAd = true,
             params object[] args)
         {
-            AdsManager.Instance.ShowInterstitial(() => {
+            if (playAd)
+            {
+                AdsManager.Instance.ShowInterstitial(() => {
+                    PlayFadeIn(() => 
+                        OpenActivityAsync(activityType, playAnimation, onLoadedCallBack, closeLastActivity, args).Forget());
+                });
+            }
+            else
+            {
                 PlayFadeIn(() => 
                     OpenActivityAsync(activityType, playAnimation, onLoadedCallBack, closeLastActivity, args).Forget());
-            });
-            
+            }
         }
         
         public static async UniTask OpenActivityAsyncNoClose(ActivityType activityType, bool playAnimation = true,

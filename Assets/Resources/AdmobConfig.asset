@@ -20,7 +20,7 @@ MonoBehaviour:
   useBannerAd: 1
   bannerID_android: ca-app-pub-3940256099942544/6300978111
   bannerID_iOS: 
-  BannerSize: 0
+  BannerSize: 3
   autoShowBanner: 1
   showBannerOnBottom: 0
   useInterstitialAd: 1

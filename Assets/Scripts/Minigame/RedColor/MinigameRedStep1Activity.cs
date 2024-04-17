@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
-using ZBase.UnityScreenNavigator.Core.Activities;
 
-public class MinigameRedStep1Activity : Activity
+public class MinigameRedStep1Activity : BaseActivity
 {
     public MakeCakeManager MakeCakeManager;
 
@@ -15,7 +13,6 @@ public class MinigameRedStep1Activity : Activity
 
     protected override void Start()
     {
-        UIService.PlayFadeOut();
         for (int i = 0; i < stepInMiniGame.Count; i++)
         {
             if (i == 0)
@@ -37,6 +34,11 @@ public class MinigameRedStep1Activity : Activity
         stepInMiniGame[0].InActive();
     }
 
+    protected override void OnClickedNextBtn()
+    {
+        
+    }
+    
     void NextStep()
     {
         if (currentStep == stepInMiniGame.Count - 1)

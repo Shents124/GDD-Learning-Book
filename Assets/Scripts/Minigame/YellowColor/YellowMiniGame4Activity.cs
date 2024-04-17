@@ -28,6 +28,11 @@ namespace Minigame.YellowColor
             base.InitializeData(args);
         }
 
+        protected override void OnClickedNextBtn()
+        {
+            UIService.OpenActivityWithFadeIn(nextActivity, playAd: false);
+        }
+
         private void OnClickedMomChicken()
         {
             _currentStep++;

@@ -344,9 +344,10 @@ RectTransform:
   - {fileID: 3865622419590508503}
   - {fileID: 845868075219818184}
   - {fileID: 4921183184670853662}
-  - {fileID: 2772001162192366689}
   - {fileID: 1918734048455332121}
+  - {fileID: 2695692945995910392}
   - {fileID: 5307617805371160925}
+  - {fileID: 2772001162192366689}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -395,7 +396,7 @@ MonoBehaviour:
   backBtn: {fileID: 1762230928734192952}
   nextBtn: {fileID: 4166645925751408106}
   nextActivity: 21
-  characterMoveDuration: 1.75
+  characterMoveDuration: 1
   giftMoveDuration: 0.3
   foodMoveDuration: 0.4
   characterTransform: {fileID: 5403815503642070609}
@@ -407,6 +408,7 @@ MonoBehaviour:
   - {fileID: 2296100746257369676}
   - {fileID: 2433404924374446931}
   board: {fileID: 3884597148825375447}
+  dark: {fileID: 2935539226065951777}
   foodPositions:
   - {fileID: 201004816551048228}
   - {fileID: 2420194877726427561}
@@ -695,6 +697,81 @@ RectTransform:
   m_AnchoredPosition: {x: 611, y: -135}
   m_SizeDelta: {x: 416, y: 416}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2935539226065951777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2695692945995910392}
+  - component: {fileID: 8388716051093159349}
+  - component: {fileID: 8552804325470589722}
+  m_Layer: 5
+  m_Name: Dark
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2695692945995910392
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935539226065951777}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4971105745098611728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8388716051093159349
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935539226065951777}
+  m_CullTransparentMesh: 1
+--- !u!114 &8552804325470589722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935539226065951777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2999290084668235392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,6 +2415,10 @@ PrefabInstance:
       propertyPath: exitingAnimation
       value: Yay_yay
       objectReference: {fileID: 0}
+    - target: {fileID: 6359820129204273424, guid: e576fec1fe9eda4429a3c8d73a24036c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6f3b2bb645bf69740967899a132f0843, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2386,6 +2467,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4971105745098611728}
     m_Modifications:
+    - target: {fileID: 64649584047510287, guid: 15ced84e5c596f54ca6fe463549a5d14, type: 3}
+      propertyPath: m_text
+      value: Which of the following lotus leafs green?
+      objectReference: {fileID: 0}
+    - target: {fileID: 64649584047510287, guid: 15ced84e5c596f54ca6fe463549a5d14, type: 3}
+      propertyPath: m_fontSize
+      value: 55.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 64649584047510287, guid: 15ced84e5c596f54ca6fe463549a5d14, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2814188033054270775, guid: 15ced84e5c596f54ca6fe463549a5d14, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -262,7 +262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1673069459969897745
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1830,7 +1830,7 @@ MonoBehaviour:
       _animationObject: {fileID: 0}
   backBtn: {fileID: 8134166635177022592}
   nextBtn: {fileID: 5855814902599046226}
-  nextActivity: 18
+  nextActivity: 2
   momChickenBtn: {fileID: 6397009916905244117}
   babyChickenBtn: {fileID: 4360831903617649931}
   momChickenDone: {fileID: 3832393684034454177}

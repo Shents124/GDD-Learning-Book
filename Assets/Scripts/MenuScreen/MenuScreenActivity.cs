@@ -14,6 +14,8 @@ namespace MenuScreen
 
         public override UniTask Initialize(Memory<object> args)
         {
+            UIService.PlayFadeOut();
+            
             foreach (var item in menuItems)
             {
                 item.Initialize(OnChoseColor);
