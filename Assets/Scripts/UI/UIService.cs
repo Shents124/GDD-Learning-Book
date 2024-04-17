@@ -34,20 +34,13 @@ namespace UI
             OnViewLoadedCallback onLoadedCallBack = null, bool closeLastActivity = true,
             params object[] args)
         {
-            PlayFadeIn(() => 
-                OpenActivityAsync(activityType, playAnimation, onLoadedCallBack, closeLastActivity, args).Forget());
+            AdsManager.Instance.ShowInterstitial(() => {
+                PlayFadeIn(() => 
+                    OpenActivityAsync(activityType, playAnimation, onLoadedCallBack, closeLastActivity, args).Forget());
+            });
+            
         }
-
-        // public static void OpenActivity(ActivityType activityType, bool playAnimation = true, 
-        //     OnViewLoadedCallback onLoadedCallBack = null,
-        //     params object[] args)
-        // {
-        //     var activityOption = new ActivityOptions(activityType.ToString(), playAnimation, onLoadedCallBack);
-        //     var activityContainer = ActivityContainer.Find(UIConstant.ACTIVITY);
-        //
-        //     activityContainer.Show(activityOption, args);
-        // }
-
+        
         public static async UniTask OpenActivityAsyncNoClose(ActivityType activityType, bool playAnimation = true,
             OnViewLoadedCallback onLoadedCallBack = null,
             params object[] args)
