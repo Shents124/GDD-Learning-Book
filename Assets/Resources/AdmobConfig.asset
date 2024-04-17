@@ -15,7 +15,7 @@ MonoBehaviour:
   EnableLog: 0
   UseTestID: 0
   RequestOnLoadFailed: 1
-  appID_android: ca-app-pub-3940256099942544/9257395921
+  appID_android: ca-app-pub-3940256099942544~3347511713
   appID_iOS: 
   useBannerAd: 1
   bannerID_android: ca-app-pub-3940256099942544/6300978111

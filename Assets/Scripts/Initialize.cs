@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
 
@@ -7,6 +8,11 @@ public class Initialize : MonoBehaviour
     public ColorSelect currentColor;
     
     [SerializeField] private UIController uiController;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
 
     private void OnEnable()
     {
