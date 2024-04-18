@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using Constant;
 using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace Minigame.RedColor
 {
@@ -59,10 +61,10 @@ namespace Minigame.RedColor
         private void OnFinishAllStep()
         {
             AdsManager.Instance.ShowInterstitial(() => {
-                
                 UIService.PlayFadeIn(() => {
                     Destroy(this.gameObject);
-                    UIService.OpenActivityAsync(ActivityType.Step7Red, closeLastActivity: false).Forget();
+                    var step = LoadResourceService.LoadStep<MakeCakeManager>(PathConstants.MAKE_CAKE);
+                    //UIService.OpenActivityAsync(ActivityType.Step7Red, closeLastActivity: false).Forget();
                 });
             });
             

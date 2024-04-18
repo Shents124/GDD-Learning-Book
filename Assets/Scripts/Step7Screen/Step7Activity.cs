@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,15 @@ namespace Step7
 {
     public class Step7Activity : BaseActivity
     {
+        [SpineAnimation]
+        public string animTalk, animIdle;
+
+        public SkeletonGraphic animPlayer;
+
+        public Transform posFall;
+
+        public GameObject bgPlayer;
+
         public int stepToDone = 2;
 
         public Step8Activity stepFillColor;
@@ -28,8 +38,20 @@ namespace Step7
 
         public override UniTask Initialize(Memory<object> args)
         {
+            ShowTalk();
             EventManager.Connect(Events.FillColorDone, CheckNextStep);
             return base.Initialize(args);
+        }
+        private async void ShowTalk()
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
+            track.Complete += Entry => {
+                animPlayer.AnimationState.SetAnimation(0, animIdle, true);
+                animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 2f).OnComplete(() => {
+                    bgPlayer.SetActive(false);
+                });
+            };
         }
 
         protected override void OnDisable()

@@ -20,6 +20,8 @@ public class StepCollect : BaseStep
 
     public List<Transform> posCollect;
 
+    public List<AnimalFood> animals;
+
     public Transform posFall;
 
     public Transform bucketDonePos;
@@ -56,6 +58,17 @@ public class StepCollect : BaseStep
                     vfx.gameObject.SetActive(true);
                     bucketCollectDone.DOPlay();
                 });
+            }
+            else
+            {
+                if(_currentStep == 1)
+                {
+                    animals[0].OnFall();
+                }
+                if(_currentStep == 2)
+                {
+                    animals[1].OnFall();
+                }
             }
         }
     }

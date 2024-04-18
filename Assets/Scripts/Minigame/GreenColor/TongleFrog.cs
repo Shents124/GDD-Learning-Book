@@ -32,6 +32,7 @@ public class TongleFrog : MonoBehaviour
         float distance = Vector2.Distance(animal.transform.position, transform.position);
         m_RectTransform.sizeDelta = new Vector2(570f * distance / distanceConst, m_RectTransform.sizeDelta.y);
         image.DOFillAmount(1, 0.75f).OnComplete(() => {
+            image.fillAmount = 1;
             animal.transform.parent = transform;
             animal.GetComponent<RectTransform>().DOAnchorPosX(0, 0.75f).OnComplete(() => {
                 animal.gameObject.SetActive(false);

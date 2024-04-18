@@ -11,12 +11,18 @@ using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
-using ZBase.UnityScreenNavigator.Core.Activities;
 
 public class BakeCake : BaseActivity
 {
+
+    [SpineAnimation(dataField: "animPlayer")]
+    public string animWin, animIdle;
+
+    public SkeletonGraphic animPlayer;
+
     [Header("Done Step")]
     public Transform doneAll;
+    public CanvasGroup doneAllWithWater;
     public UIParticle vfxDone;
     public Transform cakeShow;
 
@@ -84,6 +90,8 @@ public class BakeCake : BaseActivity
 
     private void AddCake()
     {
+        btnAddCake.transform.DOKill();
+        btnAddCake.transform.rotation = Quaternion.identity;
         btnAddCake.transform.DOScale(cakeDone.transform.localScale, 1f).SetEase(Ease.Linear);
         btnAddCake.transform.DOMove(cakeDone.transform.position, 1f).SetEase(Ease.Linear).OnComplete(() => {
             btnAddCake.gameObject.SetActive(false);
@@ -97,6 +105,11 @@ public class BakeCake : BaseActivity
         btnMoLo.gameObject.SetActive(false);
         btnAddCake.gameObject.SetActive(true);
         btnAddCake.transform.localPosition = Vector3.zero;
+        btnAddCake.transform.DOScale(1f, 1f).SetEase(Ease.Linear);
+        btnAddCake.transform.DOLocalRotate(new Vector3(btnAddCake.transform.localRotation.x, btnAddCake.transform.localRotation.y, -20f), 0.5f).SetEase(Ease.Linear);
+        btnAddCake.transform.DOLocalRotate(new Vector3(btnAddCake.transform.localRotation.x, btnAddCake.transform.localRotation.y, 20f), 0.25f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo)
+        .SetDelay(0.5f);
+
         btnAddCake.transform.DOScale(1f, 1f).SetEase(Ease.Linear);
     }
 
@@ -145,22 +158,33 @@ public class BakeCake : BaseActivity
                     vfxDone.gameObject.SetActive(true);
                     cakeComplete.transform.SetAsFirstSibling();
                     await UniTask.Delay(TimeSpan.FromSeconds(1f));
-                    UIService.PlayFadeIn(NextStep);
+                    NextStep();
                 });
             });
             // vfx active
         });
     }
 
-    private void NextStep()
+    private async void NextStep()
     {
-        var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
-        UIService.CloseActivityAsync(ActivityType.BakeCake, false).Forget();
-        UIService.PlayFadeOut();
+        doneAllWithWater.gameObject.SetActive(true);
+        doneAllWithWater.DOFade(1, 1f);
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        var track = animPlayer.AnimationState.SetAnimation(0, animWin, false);
+        track.Complete += async Entry => {
+            animPlayer.AnimationState.SetAnimation(0, animWin, true);
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            UIService.PlayFadeIn(() => {
+                UIService.OpenActivityAsync(ActivityType.Step7Red).Forget();
+            });
+        };
+        //var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
+        //UIService.CloseActivityAsync(ActivityType.BakeCake, false).Forget();
+        //UIService.PlayFadeOut();
     }
 
     protected override void OnClickedNextBtn()
     {
-        NextStep();
+        base.OnClickedNextBtn();
     }
 }

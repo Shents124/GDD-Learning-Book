@@ -70,6 +70,11 @@ public class MinigameGreenEat : BaseActivity
                     isEating = false;
                 });
             }
+            else
+            {
+                frogAnim.AnimationState.SetAnimation(0, animIdle, true);
+                isEating = false;
+            }
         };
     }
 }
