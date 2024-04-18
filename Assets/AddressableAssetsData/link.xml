@@ -1,6 +1,7 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="AnimalFlyRandom" preserve="all" />
+    <type fullname="AnimalFood" preserve="all" />
     <type fullname="ApplePiece" preserve="all" />
     <type fullname="ApplePieceManager" preserve="all" />
     <type fullname="ArrangeCakeStep" preserve="all" />

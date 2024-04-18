@@ -31,6 +31,7 @@ SpriteAtlas:
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
       m_Overridden: 1
+      m_IgnorePlatformSupport: 0
       m_AndroidETC2FallbackOverride: 0
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     - serializedVersion: 3
@@ -43,6 +44,7 @@ SpriteAtlas:
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
       m_Overridden: 1
+      m_IgnorePlatformSupport: 0
       m_AndroidETC2FallbackOverride: 0
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
@@ -64,6 +66,12 @@ SpriteAtlas:
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 585195e32e987c548966856fc9dad698: 21300000
+    - baac2114b86ccb24c8c7436342a84ce2: 21300000
+    - 0c0d2fa5d2c8b6c409908d6904bf9338: 21300000
+    - 4726c8dbf2021e34599414fcf7ed5e0a: 21300000
+    - b8cf98ddb66d297448112e5af7886441: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 585195e32e987c548966856fc9dad698, type: 3}
@@ -73,10 +81,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b8cf98ddb66d297448112e5af7886441, type: 3}
   m_PackedSpriteNamesToIndex:
   - Giun
-  - ngo
+  - Ngo
   - RauCai
-  - carot
-  - xuplo
+  - Carot
+  - XupLo
   m_RenderDataMap: {}
   m_Tag: yellow_food
   m_IsVariant: 0
