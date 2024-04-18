@@ -21,7 +21,7 @@ namespace Step345Screen
         [SerializeField] private BlueFood[] foods;
 
         [SerializeField] private Board board;
-        [SerializeField] private GameObject dark;
+        [SerializeField] private GameObject dark, vfx;
         
         [SerializeField] private RectTransform characterEndPosition;
         [SerializeField] private RectTransform characterEnd2Position;
@@ -30,13 +30,10 @@ namespace Step345Screen
 
         private int _fillCount;
 
-        private ColorType _colorType;
-        
+        [SerializeField] private ColorType _colorType;
+
         protected override void InitializeData(Memory<object> args)
         {
-            if (args.IsEmpty == false)
-                _colorType = (ColorType)args.ToArray()[0];
-            
             base.InitializeData(args);
         }
 
@@ -129,6 +126,7 @@ namespace Step345Screen
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
                 card.transform.SetParent(transform);
                 card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
+                    vfx.SetActive(true);
                     StartCoroutine(MoveToNextStep());
                 });
             });

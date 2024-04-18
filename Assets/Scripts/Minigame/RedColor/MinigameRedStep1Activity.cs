@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using Constant;
 using Cysharp.Threading.Tasks;
+using Minigame.RedColor;
 using UI;
 using UnityEngine;
+using Utility;
 
 public class MinigameRedStep1Activity : BaseActivity
 {
@@ -36,19 +39,25 @@ public class MinigameRedStep1Activity : BaseActivity
 
     protected override void OnClickedNextBtn()
     {
-        
+        UIService.PlayFadeIn(() => {
+            NextStep();
+            UIService.PlayFadeOut();
+        });
     }
     
     void NextStep()
     {
         if (currentStep == stepInMiniGame.Count - 1)
         {
-            var manager = Instantiate(MakeCakeManager);
+            //var manager = Instantiate(MakeCakeManager);
+            var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
             UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
         }
         else
         {
+            stepInMiniGame[currentStep].gameObject.SetActive(false);
             currentStep++;
+            stepInMiniGame[currentStep].gameObject.SetActive(true);
         }
     }
 

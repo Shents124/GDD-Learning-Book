@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class AnimalFood : MonoBehaviour
 {
+    public float speedFly = 200f;
     public List<Transform> posFoods;
     public Transform posFall;
     private int _idFoodMove;
@@ -38,7 +39,9 @@ public class AnimalFood : MonoBehaviour
             transform.localScale = new Vector2(Math.Abs(transform.localScale.x), transform.localScale.y);
         }
 
-        transform.DOMove(posFoods[_idFoodMove].position, 2f).OnComplete(() => {
+        float time = Vector2.Distance(transform.position, posFoods[_idFoodMove].position) / speedFly;
+
+        transform.DOMove(posFoods[_idFoodMove].position, time).OnComplete(() => {
             MoveToFood();
         });
     }
@@ -47,7 +50,7 @@ public class AnimalFood : MonoBehaviour
     {
         isFall = true;
         transform.DOKill();
-        transform.DOMove(posFall.position, 1.5f).OnComplete(() => {
+        transform.DOMoveY(posFall.position.y, 1.5f).OnComplete(() => {
             gameObject.SetActive(false);
         });
     }

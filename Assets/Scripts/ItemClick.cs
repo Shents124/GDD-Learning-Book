@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.UI.Button;
 
@@ -15,13 +16,23 @@ public class ItemClick : MonoBehaviour
 
     public bool isMoveWithMouse = false;
 
+    private bool isMoveBackStart = false;
+
     public TypeCallAction type = TypeCallAction.Click;
 
     public float threshold = 100f;
 
+    private Vector2 startPos;
+
     private Vector2 startMousePosition;
 
     private Vector2 lastMousePosition;
+
+
+    private void Start()
+    {
+        startPos = transform.position;
+    }
 
     public void AddListener(UnityAction action)
     {
@@ -37,6 +48,14 @@ public class ItemClick : MonoBehaviour
         else
         {
             startMousePosition = Input.mousePosition;
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        if(isMoveBackStart)
+        {
+            transform.position = startPos;
         }
     }
 
@@ -57,24 +76,44 @@ public class ItemClick : MonoBehaviour
                 if (startMousePosition.y - lastMousePosition.y < -threshold)
                 {
                     m_OnClick?.Invoke();
+                    isMoveBackStart = false;
+                }
+                else
+                {
+                    isMoveBackStart = true;
                 }
                 break;
             case TypeCallAction.Down:
                 if (startMousePosition.y - lastMousePosition.y > threshold)
                 {
                     m_OnClick?.Invoke();
+                    isMoveBackStart = false;
+                }
+                else
+                {
+                    isMoveBackStart = true;
                 }
                 break;
             case TypeCallAction.Left:
                 if (startMousePosition.x - lastMousePosition.x < -threshold)
                 {
                     m_OnClick?.Invoke();
+                    isMoveBackStart = false;
+                }
+                else
+                {
+                    isMoveBackStart = true;
                 }
                 break;
             case TypeCallAction.Right:
                 if (startMousePosition.x - lastMousePosition.x > threshold)
                 {
                     m_OnClick?.Invoke();
+                    isMoveBackStart = false;
+                }
+                else
+                {
+                    isMoveBackStart = true;
                 }
                 break;
             

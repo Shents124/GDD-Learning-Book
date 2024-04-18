@@ -15,6 +15,7 @@ public class MakeCakeManager : MonoBehaviour
 
     private void Start()
     {
+        UIService.PlayFadeOut();
         btnBack.onClick.AddListener(OnClickedBackBtn);
         btnNext.onClick.AddListener(OnClickedNextBtn);
         for (int i = 0; i < allSteps.Count; i++)
@@ -66,7 +67,8 @@ public class MakeCakeManager : MonoBehaviour
     private void OnClickedNextBtn()
     {
         UIService.PlayFadeIn(() => {
-            NextStep();
+            UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
+            Destroy(this.gameObject);
             UIService.PlayFadeOut();
         });
 

@@ -23,17 +23,16 @@ public class ArrangeCakeStep : BaseStep
     {
         EventManager.Disconnect(Events.ArrangeCakeDone, DoneStep);
     }
-
+    public override async void NextStep()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        cakeClickBtn.SetActive(false);
+        base.NextStep();
+    }
     public void ChangeToBakeStep()
     {
-        cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(async () => {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            cakeClickBtn.SetActive(false);
-            UIService.PlayFadeIn(() =>
-            {
-                UIService.PlayFadeOut();
-                NextStep();
-            });
+        cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(() => {
+            NextStep();
         });
     }
 

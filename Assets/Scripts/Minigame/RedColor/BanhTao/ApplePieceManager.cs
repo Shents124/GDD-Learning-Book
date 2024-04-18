@@ -8,6 +8,8 @@ public class ApplePieceManager : MonoBehaviour
 
     public GameObject dia;
 
+    public GameObject hand;
+
     public int currentPieceDone
     {
         get => _currentPieceDone; 
@@ -43,6 +45,11 @@ public class ApplePieceManager : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (hand.activeSelf)
+        {
+            hand.SetActive(false);
+        }
+
         if(currentPieceDone < allPieces.Count)
         {
             allPieces[currentPieceDone].SetUsed();
