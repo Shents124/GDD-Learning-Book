@@ -94,26 +94,34 @@ namespace Step345Screen
             characterController.PlayAnim(0, characterController.idleEatAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
 
-                if (_fillCount == 3)
+                switch (_fillCount)
                 {
-                    OnStep5();
+                    case 1:
+                        characterController.DoMask(250f, null);
+                        break;
+                    case 2:
+                        characterController.DoMask(400f, null);
+                        break;
+                    case 3:
+                        characterController.DoMask(600f, OnStep5);
+                        break;
                 }
             });
         }
 
         private void OnStep5()
         {
-            characterController.ChangeSkin(characterController.fullSkin);
-
+            characterController.DisableMask();
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.runAnimation, true);
                 characterTransform.DOAnchorPos(characterEnd2Position.anchoredPosition, characterMoveDuration * 2)
                     .OnComplete(ShowBoard);
             });
         }
-
+        
         private void ShowBoard()
         {
+            characterController.FlipX();
             characterController.PlayAnim(0, characterController.idleTalkAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
             });
