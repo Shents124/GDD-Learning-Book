@@ -32,11 +32,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 18abad6cd0466bb448d8ac8e5eaa5da2
-    m_Address: MinigameRedStep2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: deae569b49d5af945938bb4a8dc69f8b
     m_Address: FadeScreen
     m_ReadOnly: 0
@@ -114,6 +109,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc525f427e932f840ad08bf91558b358
     m_Address: MiniGameBlue3Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 509e69987a1313d42a4efdf57be518b8
+    m_Address: MinigameRedStep2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

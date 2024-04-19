@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +6,8 @@ using UnityEngine.UI;
 public class BtnCollectFruit : MonoBehaviour
 {
     [NonSerialized] public StepCollect managerStep;
+
+    public bool canDrag = true;
 
     public float jumpower;
 
@@ -17,6 +17,8 @@ public class BtnCollectFruit : MonoBehaviour
 
     private Button btnClick;
 
+    public DragObject dragObject;
+
     private Vector2 posStart;
 
     [SerializeField] private DOTweenAnimation animShake;
@@ -24,8 +26,17 @@ public class BtnCollectFruit : MonoBehaviour
     private void Start()
     {
         posStart = transform.position;
-        btnClick = GetComponent<Button>();
-        btnClick.onClick.AddListener(CheckDoneObj);
+
+        if (canDrag)
+        {
+            dragObject = GetComponent<DragObject>();
+            dragObject.Initialize(CheckDoneObj);
+        }
+        else
+        {
+            btnClick = GetComponent<Button>();
+            btnClick.onClick.AddListener(CheckDoneObj);
+        }
     }
     private void CheckDoneObj()
     {
@@ -46,6 +57,21 @@ public class BtnCollectFruit : MonoBehaviour
         }
     }
 
+    public void OnDrop()
+    {
+        CorrectFruit();
+    }
+
+    private void CorrectFruit()
+    {
+        Vector3 scale = transform.localScale;
+        managerStep.IncreaseFruit();
+        this.gameObject.SetActive(false);
+        transform.position = posStart;
+        transform.localScale = scale * 0.8f;
+        dragObject.DisableOverrideSorting();
+    }
+    
     public void OnFall()
     {
         transform.DOMoveY(managerStep.posFall.position.y, timeJump).OnComplete(() => {

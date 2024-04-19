@@ -1,15 +1,16 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Coffee.UIExtensions;
 using DG.Tweening;
 using UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class StepCollect : BaseStep
 {
     public int numberFruitNeed = 4;
 
+    public DropObject bucketCollectDropObject;
     public DOTweenAnimation bucketCollectDone;
 
     private int _currentStep;
@@ -97,6 +98,14 @@ public class StepCollect : BaseStep
         {
             fruitDone.gameObject.SetActive(false);
         }
+        
+        bucketCollectDropObject.Initialize(OnDrop);
+    }
+
+    private void OnDrop(PointerEventData eventData)
+    {
+        var fruit = eventData.pointerDrag.GetComponent<BtnCollectFruit>();
+        fruit.OnDrop();
     }
 
     public void IncreaseFruit()

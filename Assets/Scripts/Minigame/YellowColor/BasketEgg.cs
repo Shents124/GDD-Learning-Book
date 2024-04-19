@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Minigame.YellowColor
 {
@@ -16,6 +17,8 @@ namespace Minigame.YellowColor
 
         [SerializeField] private RectTransform showPosition;
         [SerializeField] private GameObject backDrop;
+
+        [SerializeField] private DropObject _dropObject;
         
         private int _currentEgg;
         private Action _onFinish;
@@ -25,6 +28,7 @@ namespace Minigame.YellowColor
         private void Start()
         {
             _rectTransform = GetComponent<RectTransform>();
+            _dropObject = GetComponent<DropObject>();
             backDrop.SetActive(false);
         }
 
@@ -36,6 +40,20 @@ namespace Minigame.YellowColor
             for (int i = 0, n = eggs.Count; i < n; i++)
             {
                 eggs[i].Initialize(eggPositions[i], eggMoveDuration, OnGetEgg);
+            }
+            
+            _dropObject.Initialize(OnDrop);
+        }
+
+        private void OnDrop(PointerEventData eventData)
+        {
+            if (eventData.pointerDrag != null)
+            {
+                var egg = eventData.pointerDrag.GetComponent<YellowEgg>();
+                if (egg == null)
+                    return;
+                
+                egg.Move();
             }
         }
 
