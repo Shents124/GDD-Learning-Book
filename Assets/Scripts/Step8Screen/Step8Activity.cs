@@ -136,8 +136,8 @@ public class Step8Activity : MonoBehaviour
 
     private IEnumerator ShowImage()
     {
-        yield return new WaitForSeconds(1f);
         _isDone = true;
+        yield return new WaitForSeconds(1f);
         var index = (int)_typeObject;
         imageNotDones[index].gameObject.SetActive(false);
         imageDone[index].gameObject.SetActive(true);
