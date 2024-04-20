@@ -8,7 +8,11 @@ namespace Minigame.BlueColor
     public class Toy : MonoBehaviour
     {
         [SerializeField] private GameObject shadow;
-        
+
+        public bool canDrag = true;
+
+        public DragObject dragObject;
+
         public int Index { get; private set; }
         
         private Button _button;
@@ -20,7 +24,20 @@ namespace Minigame.BlueColor
         {
             _button = GetComponent<Button>();
             _rectTransform = GetComponent<RectTransform>();
-            _button.onClick.AddListener(OnClicked);
+            if (canDrag)
+            {
+                dragObject = GetComponent<DragObject>();
+                dragObject.Initialize(OnClicked);
+            }
+            else
+            {
+                _button.onClick.AddListener(OnClicked);
+            }
+        }
+
+        public void OnDrop()
+        {
+            OnClicked();
         }
 
         public void Initialize(int index, Action<Toy> onClick)

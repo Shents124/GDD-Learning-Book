@@ -12,6 +12,8 @@ namespace ButtonUI
         [SerializeField] private Vector3 MIN_SCALE = new(0.95f, 0.95f, 0.95f);
         [SerializeField] private Vector3 MAX_SCALE = new(1.05f,1.05f,1.05f);
         [SerializeField] private float duration = 0.15f;
+
+        private float startScale = 1f;
             
         private Tween _tweenDown;
         private Tween _tweenUp;
@@ -25,6 +27,7 @@ namespace ButtonUI
         {
             _button = GetComponent<Button>();
             _button.onClick.AddListener(OnClick);
+            startScale = transform.localScale.x;
         }
 
         private void OnDisable()
@@ -63,7 +66,7 @@ namespace ButtonUI
             _tweenUp = transform.DOScale(MAX_SCALE, duration / 2).OnComplete(() => {
                 if (transform == null)
                     return;
-                transform.localScale = Vector3.one;
+                transform.localScale = Vector3.one * startScale;
             });
         }
         

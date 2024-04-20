@@ -38,6 +38,7 @@ public class StepCollect : BaseStep
             _currentStep = value;
             if(numberFruitNeed <= _currentStep)
             {
+                bucketCollectDone.transform.DOShakeScale(0.2f, 0.1f, 1, 0);
                 Vector3 pos = bucketCollectDone.transform.position;
                 bucketCollectDone.onComplete.RemoveAllListeners();
                 bucketCollectDone.onComplete.AddListener(() => {
