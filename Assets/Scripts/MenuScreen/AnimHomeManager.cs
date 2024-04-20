@@ -45,8 +45,18 @@ public class AnimHomeManager : MonoBehaviour
         var track = playerAnim.AnimationState.SetAnimation(0, animRandom[idAnim], false);
         track.Complete += async Entry => {
             playerAnim.AnimationState.SetAnimation(0, animIdle, true);
-            await UniTask.Delay(System.TimeSpan.FromSeconds(timeIdle));
-            PlayRandomAnim();
+            StartCoroutine(DelayChangeAnim());
         };
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+    public IEnumerator DelayChangeAnim()
+    {
+        yield return new WaitForSeconds(timeIdle);
+        PlayRandomAnim();
     }
 }

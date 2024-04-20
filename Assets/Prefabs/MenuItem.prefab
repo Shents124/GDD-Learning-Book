@@ -351,6 +351,7 @@ MonoBehaviour:
   MIN_SCALE: {x: 1.45, y: 1.45, z: 1.45}
   MAX_SCALE: {x: 1.55, y: 1.55, z: 1.55}
   duration: 0.15
+  startScale: 1.5
 --- !u!114 &5443241848489152925
 MonoBehaviour:
   m_ObjectHideFlags: 0
