@@ -77,9 +77,14 @@ namespace Minigame.YellowColor
         {
             var currentChicken = babyChickens[_chickenIndex];
             if (item.YellowFood != currentChicken.yellowFood)
-                return;
-            
-            currentChicken.OnEat(item, HideTable, CheckFinish);
+            {
+                item.OnFall();
+            }
+            else
+            {
+                currentChicken.OnEat(item, HideTable, CheckFinish);
+
+            }
         }
 
         private void CheckFinish()
