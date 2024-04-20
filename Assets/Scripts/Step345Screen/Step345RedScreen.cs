@@ -95,15 +95,18 @@ namespace Step345Screen
             _fillCount++;
             characterController.PlayAnim(0, characterController.idleEatAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
-                _isFilled = false;
                 switch (_fillCount)
                 {
                     case 1:
                         player.GetComponent<SkeletonGraphic>().DOFade(1, 0f);
-                        characterController.DoMask(250f, null);
+                        characterController.DoMask(250f, () => {
+                            _isFilled = false;
+                        });
                         break;
                     case 2:
-                        characterController.DoMask(400f, null);
+                        characterController.DoMask(400f, () => {
+                            _isFilled = false;
+                        });
                         break;
                     case 3:
                         characterController.DoMask(600f, OnStep5);
