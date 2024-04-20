@@ -59,7 +59,14 @@ public class BtnCollectFruit : MonoBehaviour
 
     public void OnDrop()
     {
-        CorrectFruit();
+        if (correctFruit)
+        {
+            CorrectFruit();
+        }
+        else
+        {
+            animShake.DOPlay();
+        }
     }
 
     private void CorrectFruit()

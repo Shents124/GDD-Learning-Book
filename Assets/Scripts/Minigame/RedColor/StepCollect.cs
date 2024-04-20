@@ -62,7 +62,8 @@ public class StepCollect : BaseStep
             }
             else
             {
-                if(_currentStep == 1)
+                bucketCollectDone.transform.DOShakeScale(0.2f, 0.1f, 1, 0);
+                if (_currentStep == 1)
                 {
                     animals[0].OnFall();
                 }

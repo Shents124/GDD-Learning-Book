@@ -42,6 +42,9 @@ public class Step8Activity : MonoBehaviour
         {
             image.SetActive(false);
         }
+        content.localScale = Vector3.zero;
+        content.DOScale(Vector3.one, 0.5f);
+
         imagesFill[(int)type].SetActive(true);
         CardManager.ImageCard = imageNotDones[(int)type].gameObject;
         CardManager.ScratchSurfaceSprite = imageNotDones[(int)type].sprite;
@@ -93,7 +96,7 @@ public class Step8Activity : MonoBehaviour
         _typeObject = type;
         
         
-        content.localScale = Vector3.zero;
+       content.localScale = Vector3.zero;
         
        content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
             penNotReady.SetActive(true);
