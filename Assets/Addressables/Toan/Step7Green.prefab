@@ -1218,6 +1218,7 @@ GameObject:
   - component: {fileID: 8231480589399617880}
   - component: {fileID: 9217463782343496767}
   - component: {fileID: 3745216921550275540}
+  - component: {fileID: 6085520927684553808}
   m_Layer: 5
   m_Name: FrogNotDone
   m_TagString: Untagged
@@ -1345,6 +1346,22 @@ MonoBehaviour:
   imageIcon: {fileID: 8231480589399617880}
   step7: {fileID: 4073003087935585201}
   btnSelect: {fileID: 9217463782343496767}
+--- !u!114 &6085520927684553808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778557670346541599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1777102b299f42bb9fde86c52bc0d9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MIN_SCALE: {x: 0.95, y: 0.95, z: 0.95}
+  MAX_SCALE: {x: 1.05, y: 1.05, z: 1.05}
+  duration: 0.15
+  startScale: 1
 --- !u!1 &3792204558587018005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,6 +2510,7 @@ GameObject:
   - component: {fileID: 6706129396314150243}
   - component: {fileID: 3561751614638946335}
   - component: {fileID: 4124905952752337170}
+  - component: {fileID: 152008419640704831}
   m_Layer: 5
   m_Name: PlantNotDone
   m_TagString: Untagged
@@ -2632,6 +2650,22 @@ MonoBehaviour:
   imageIcon: {fileID: 6706129396314150243}
   step7: {fileID: 4073003087935585201}
   btnSelect: {fileID: 3561751614638946335}
+--- !u!114 &152008419640704831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7236313522417255840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1777102b299f42bb9fde86c52bc0d9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MIN_SCALE: {x: 0.95, y: 0.95, z: 0.95}
+  MAX_SCALE: {x: 1.05, y: 1.05, z: 1.05}
+  duration: 0.15
+  startScale: 1
 --- !u!1 &7411889649177914563
 GameObject:
   m_ObjectHideFlags: 0

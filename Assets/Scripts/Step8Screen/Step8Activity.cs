@@ -42,8 +42,6 @@ public class Step8Activity : MonoBehaviour
         {
             image.SetActive(false);
         }
-        content.localScale = Vector3.zero;
-        content.DOScale(Vector3.one, 0.5f);
 
         imagesFill[(int)type].SetActive(true);
         CardManager.ImageCard = imageNotDones[(int)type].gameObject;
@@ -51,8 +49,8 @@ public class Step8Activity : MonoBehaviour
         CardManager.InitData();
         CardManager.EraseTextureScale = Vector2.one * 2f;
         _typeObject = type;
-
-        animBoard.DOPlay();
+        content.localScale = Vector3.zero;
+        content.DOScale(Vector3.one, 0.5f).OnComplete(animBoard.DORestart);
         CardManager.GetComponentInChildren<ScratchCard>().enabled = false;
         await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
         penReady.SetActive(true);

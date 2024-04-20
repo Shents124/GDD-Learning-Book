@@ -1,4 +1,5 @@
-﻿using Step7;
+﻿using Cysharp.Threading.Tasks;
+using Step7;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,13 +23,14 @@ namespace Step7Screen
             btnSelect.onClick.AddListener(OnClickedObj);
         }
 
-        private void OnClickedObj()
+        private async void OnClickedObj()
         {
             step7.AddStep();
             step7.stepFillColor.InitData(objectSelect);
             step7.stepFillColor.gameObject.SetActive(true);
-            imageIcon.sprite = spriteDone;
             btnSelect.onClick.RemoveAllListeners();
+            await UniTask.Delay(System.TimeSpan.FromSeconds(1f));
+            imageIcon.sprite = spriteDone;
         }
     }
 }
