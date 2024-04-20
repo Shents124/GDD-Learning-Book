@@ -3,6 +3,7 @@ using System.Collections;
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ namespace Step345Screen
 {
     public class Step345YellowScreen : BaseActivity
     {
-          [SerializeField] private float characterMoveDuration = 1.75f;
+        [SerializeField] private float characterMoveDuration = 1.75f;
         [SerializeField] private float giftMoveDuration = 0.3f;
         [SerializeField] private float foodMoveDuration = 0.4f;
         [SerializeField] private RectTransform characterTransform;
@@ -21,7 +22,7 @@ namespace Step345Screen
         [SerializeField] private Button[] foods;
 
         [SerializeField] private Board board;
-        [SerializeField] private GameObject dark, vfx;
+        [SerializeField] private GameObject dark, vfx, player;
         
         [SerializeField] private RectTransform[] foodPositions;
         [SerializeField] private RectTransform characterEndPosition;
@@ -32,6 +33,7 @@ namespace Step345Screen
         private int _fillCount;
 
         [SerializeField] private ColorType _colorType;
+        private bool _isFilled = false;
 
         protected override void InitializeData(Memory<object> args)
         {
@@ -83,6 +85,9 @@ namespace Step345Screen
 
         private void OnClickedFood(Button button)
         {
+            if (_isFilled)
+                return;
+            _isFilled = true;
             var rectTransform = button.GetComponent<RectTransform>();
             rectTransform.DOJump(characterEndPosition.transform.position, 400f, 1, foodMoveDuration);
             rectTransform.DOScale(Vector3.zero, foodMoveDuration * 2).OnComplete(Fill);
@@ -93,10 +98,11 @@ namespace Step345Screen
             _fillCount++;
             characterController.PlayAnim(0, characterController.idleEatAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
-
+                _isFilled = false;
                 switch (_fillCount)
                 {
                     case 1:
+                        player.GetComponent<SkeletonGraphic>().DOFade(1, 0f);
                         characterController.DoMask(250f, null);
                         break;
                     case 2:

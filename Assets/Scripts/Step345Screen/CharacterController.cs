@@ -57,7 +57,7 @@ namespace Step345Screen
             StartCoroutine(DoMaskCoroutine(value, onFinish));
         }
 
-        private IEnumerator DoMaskCoroutine(float value, Action onFinish, float duration = 0.2f)
+        private IEnumerator DoMaskCoroutine(float value, Action onFinish, float duration = 0.5f)
         {
             var currentValue = rectMask2D.padding.z;
             var deltaValue = (value - currentValue) / duration;
