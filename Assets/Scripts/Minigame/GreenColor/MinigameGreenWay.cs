@@ -23,18 +23,35 @@ public class MinigameGreenWay : MonoBehaviour
 
     public Rock[] rocks;
 
-    public LineController lineController;
+    public MoveFollowLine playerController;
 
     private bool isDrawing = false, isDone = false;
 
-    public void OnMoveToRock()
+    private void Start()
+    {
+        playerController.StartDraw();
+        EventManager.Connect(Events.ErrorWay, OnErrorWay);
+    }
+
+    public void OnErrorWay()
     {
         if (!isDrawing)
             return;
-        lineController.Init();
+        playerController.StopDraw();
+        ShowErrorWay();
     }
 
-    public void OnMoveDone()
+    private void ShowErrorWay()
+    {
+
+    }
+
+    private void ShowCorrectWay()
+    {
+
+    }
+
+    private void OnMoveDone()
     {
 
     }

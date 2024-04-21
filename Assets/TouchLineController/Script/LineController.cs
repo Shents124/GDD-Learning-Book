@@ -40,27 +40,32 @@ public class LineController : MonoBehaviour
 		pointsList.RemoveRange(0, pointsList.Count);
 		SetColor(selectColor);
 	}
+    public void RemoveLine()
+    {
+        Init();
+    }
+
+    public void StartDraw()
+    {
+        isDrawing = true;
+        Init();
+    }
+
+    public void StopDraw()
+    {
+        isDrawing = false;
+    }
 
     void Update () 
 	{
-		if(Input.GetMouseButtonDown(0))
-		{
-			isDrawing = true;
-			Init();
-		}
-		else if(Input.GetMouseButtonUp(0))
-		{
-			isDrawing = false;
-		}
-		// Track points on mouse pressed
-		if(isDrawing)
+        if (isDrawing)
 		{
 			inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			inputPos.z=0;
+			inputPos.z = 0;
 			if (!pointsList.Contains (inputPos)) 
 			{
 				int previousIndex = pointsList.Count;
-				pointsList.Add (inputPos);
+				pointsList.Add(inputPos);
 				line.positionCount = pointsList.Count;
 				line.SetPosition (previousIndex, (Vector3)pointsList [previousIndex]);
 				if(!ignoreIntercept && doesLineIntersectsItself ())
