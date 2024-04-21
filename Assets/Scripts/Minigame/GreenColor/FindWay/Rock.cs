@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
-    public Action moveToRock;
-
     private void OnMouseEnter()
     {
-        moveToRock?.Invoke();
+        EventManager.SendSimpleEvent(Events.ErrorWay);
     }
 }

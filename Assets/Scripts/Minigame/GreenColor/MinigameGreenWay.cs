@@ -1,9 +1,19 @@
+using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
+using DG.Tweening;
 using Spine.Unity;
+using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MinigameGreenWay : MonoBehaviour
 {
+    public Button btnNext, btnBack;
+
+    public float jumpPower = 100f;
+
     public Transform xIcon;
 
     [SpineAnimation]
@@ -11,31 +21,108 @@ public class MinigameGreenWay : MonoBehaviour
 
     public SkeletonAnimation animFrog;
 
+    public Transform playerPos;
+
     public int numberTurn;
 
-    private int _currentTurn;
+    private int _currentTurn = 0;
 
     public Land[] lands;
 
     public Transform[] landTransRandom;
 
-    public Transform[] rockTransRandom;
-
-    public Rock[] rocks;
-
     public MoveFollowLine playerController;
 
-    private bool isDrawing = false, isDone = false;
+    private bool isDone = false;
+
+    private Vector3 posPlayerStart;
+
+    private Vector3 posAnimStart;
+
+    [SerializeField] private Transform posJumDone;
 
     private void Start()
     {
-        playerController.StartDraw();
+        btnBack.onClick.AddListener(OnClickedBackBtn);
+        btnNext.onClick.AddListener(OnClickedNextBtn);
+        posPlayerStart = playerPos.position;
+        posAnimStart = animFrog.transform.localPosition;
+        StartGame();
         EventManager.Connect(Events.ErrorWay, OnErrorWay);
+        EventManager.Connect(Events.CurrentWay, OnMoveDone);
+        EventManager.Connect(Events.MoveWayDone, CompleteTurn);
+    }
+    private async void OnClickedBackBtn()
+    {
+        await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
+        UIService.PlayFadeOut();
+        Destroy(this.gameObject);
+    }
+
+    private void OnClickedNextBtn()
+    {
+        UIService.PlayFadeIn(() => {
+            UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
+            Destroy(this.gameObject);
+            UIService.PlayFadeOut();
+        });
+
+    }
+    private void StartGame()
+    {
+        isDone = false;
+        playerController.StartDraw();
+        animFrog.transform.localPosition = posAnimStart;
+        playerPos.position = posPlayerStart;
+        RandomPosLand();
+    }
+
+    public void CompleteTurn()
+    {
+        _currentTurn++;
+        animFrog.AnimationState.SetAnimation(0, animJump, false);
+        animFrog.transform.DOMove(posJumDone.position, 1.34f).OnComplete(async () => {
+            animFrog.AnimationState.SetAnimation(0, animWin, true);
+            await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
+            if(_currentTurn >= numberTurn)
+            {
+                UIService.PlayFadeIn(() => {
+                    UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green, false).Forget();
+                    Destroy(this.gameObject);
+                });
+            }
+            else
+            {
+                UIService.PlayFadeIn(() => {
+                    playerController.StopDraw();
+                    StartGame();
+                    animFrog.AnimationState.SetAnimation(0, animIdle, true);
+                    UIService.PlayFadeOut();
+                });
+            }
+        });
+    }
+
+    private void RandomPosLand()
+    {
+        List<int> listRan = new List<int>();
+        int i = 0;
+        while(listRan.Count < landTransRandom.Length)
+        {
+            int ran = Random.Range(0, landTransRandom.Length);
+            while (listRan.Contains(ran))
+            {
+                ran = Random.Range(0, landTransRandom.Length);
+            }
+            lands[i].transform.position = landTransRandom[ran].position;
+            listRan.Add(ran);
+            i++;
+        }
     }
 
     public void OnErrorWay()
     {
-        if (!isDrawing)
+        if (!playerController.isDrawing || isDone)
             return;
         playerController.StopDraw();
         ShowErrorWay();
@@ -43,16 +130,23 @@ public class MinigameGreenWay : MonoBehaviour
 
     private void ShowErrorWay()
     {
-
-    }
-
-    private void ShowCorrectWay()
-    {
-
+        xIcon.gameObject.SetActive(true);
+        xIcon.position = playerController.wayControl.getPoints().Last();
+        xIcon.localScale = Vector3.zero;
+        xIcon.DOScale(1, 0.75f).OnComplete(() => {
+            xIcon.DOScale(0, 0.75f).OnComplete(() => {
+                playerController.StartDraw();
+                xIcon.gameObject.SetActive(false);
+                playerController.wayControl.Init();
+            });
+        });
     }
 
     private void OnMoveDone()
     {
-
+        if (!playerController.isDrawing || isDone)
+            return;
+        isDone = true;
+        playerController.StartMove();
     }
 }

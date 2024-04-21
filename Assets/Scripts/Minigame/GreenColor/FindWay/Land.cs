@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class Land : MonoBehaviour
 {
-    public Action<bool> actionDone;
-
     [SerializeField] private bool isCurrentLand;
 
     private void OnMouseEnter()
     {
-        actionDone?.Invoke(isCurrentLand);
+        if (!isCurrentLand)
+        {
+            EventManager.SendSimpleEvent(Events.ErrorWay);
+        }
+        else
+        {
+            EventManager.SendSimpleEvent(Events.CurrentWay);
+        }
     }
 }

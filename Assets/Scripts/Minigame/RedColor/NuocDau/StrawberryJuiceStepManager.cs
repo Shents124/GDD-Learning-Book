@@ -72,7 +72,7 @@ namespace Minigame.RedColor
 
         private async void OnClickedBackBtn()
         {
-            await UIService.OpenActivityAsync(ActivityType.MenuScreen);
+            await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
             UIService.PlayFadeOut();
             Destroy(this.gameObject);
         }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class LineController : MonoBehaviour 
 {
-	public Material lineMaterial;
 	public Color selectColor;
 	public Color endColor;
 	public bool ignoreIntercept=false;
@@ -22,7 +21,7 @@ public class LineController : MonoBehaviour
 
 	void Awake()
 	{
-		line = GetComponent<LineRenderer> ();
+		line = GetComponent<LineRenderer>();
 		line.useWorldSpace = true;
 		isDrawing = false;
 		Init();
@@ -40,9 +39,17 @@ public class LineController : MonoBehaviour
 		pointsList.RemoveRange(0, pointsList.Count);
 		SetColor(selectColor);
 	}
-    public void RemoveLine()
+    public void DeleteFirstPoint()
     {
-        Init();
+        if (pointsList.Count == 0)
+            return;
+        Vector3[] positions = new Vector3[line.positionCount - 1];
+        for (int i = 1; i < line.positionCount; i++)
+        {
+            positions[i - 1] = line.GetPosition(i);
+        }
+        line.positionCount = positions.Length;
+        line.SetPositions(positions);
     }
 
     public void StartDraw()
@@ -61,19 +68,19 @@ public class LineController : MonoBehaviour
         if (isDrawing)
 		{
 			inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			inputPos.z = 0;
-			if (!pointsList.Contains (inputPos)) 
+			inputPos.z = -1;
+			if (!pointsList.Contains(inputPos)) 
 			{
 				int previousIndex = pointsList.Count;
 				pointsList.Add(inputPos);
 				line.positionCount = pointsList.Count;
-				line.SetPosition (previousIndex, (Vector3)pointsList [previousIndex]);
-				if(!ignoreIntercept && doesLineIntersectsItself ())
+				line.SetPosition(previousIndex, (Vector3)pointsList [previousIndex]);
+				if(!ignoreIntercept && doesLineIntersectsItself())
 				{
 					isDrawing = false;
-					SetColor (endColor);
-				}
-			}
+                    EventManager.SendSimpleEvent(Events.ErrorWay);
+                }
+            }
 		}
 	}
 
