@@ -59,7 +59,7 @@ public class MakeCakeManager : MonoBehaviour
 
     private async void OnClickedBackBtn()
     {
-        await UIService.OpenActivityAsync(ActivityType.MenuScreen);
+        await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
         Destroy(this.gameObject);
     }
