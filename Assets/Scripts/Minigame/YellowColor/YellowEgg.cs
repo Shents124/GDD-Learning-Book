@@ -1,16 +1,16 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Minigame.YellowColor
 {
     public class YellowEgg : MonoBehaviour
     {
-        [SerializeField] private Button button;
+        [SerializeField] private GameObject trungObj;
         [SerializeField] private GameObject shadow;
         [SerializeField] private BabyChicken babyChicken;
-        
+
+        private DragObject _dragObject;
         private RectTransform _rectTransform;
         private RectTransform _parent;
         private float _moveDuration;
@@ -19,22 +19,23 @@ namespace Minigame.YellowColor
         private void Start()
         {
             _rectTransform = GetComponent<RectTransform>();
-            button.interactable = false;
-            button.onClick.AddListener(OnClick);
             babyChicken.gameObject.SetActive(false);
+            _dragObject = GetComponent<DragObject>();
+            _dragObject.enabled = false;
         }
 
         public void Initialize(RectTransform parent, float moveDuration, Action callback)
         {
             _parent = parent;
             _moveDuration = moveDuration;
-            button.interactable = true;
+            _dragObject.Initialize(OnClick, _rectTransform);
+            _dragObject.enabled = true;
             _callback = callback;
         }
         
         private void SetOnClick(bool value)
         {
-            button.interactable = value;
+            _dragObject.enabled = value;
         }
         
         public void DoMove(RectTransform endPosition, float duration, Action callback = null)
@@ -45,6 +46,16 @@ namespace Minigame.YellowColor
                 shadow.SetActive(true);
                 SetOnClick(true);
             });
+        }
+
+        public void Move()
+        {
+            shadow.SetActive(false);
+            _rectTransform.SetParent(_parent);
+            _rectTransform.anchoredPosition = Vector2.one;
+            SetOnClick(false);
+            _dragObject.DisableOverrideSorting();
+            _callback?.Invoke();
         }
         
         private void OnClick()
@@ -58,8 +69,8 @@ namespace Minigame.YellowColor
 
         public void BirthChicken()
         {
-            button.gameObject.SetActive(false);
-            shadow.gameObject.SetActive(false);
+            trungObj.SetActive(false);
+            shadow.SetActive(false);
             babyChicken.gameObject.SetActive(true);
             babyChicken.PlayAnimRun();
         }

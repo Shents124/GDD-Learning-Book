@@ -42,14 +42,15 @@ public class Step8Activity : MonoBehaviour
         {
             image.SetActive(false);
         }
+
         imagesFill[(int)type].SetActive(true);
         CardManager.ImageCard = imageNotDones[(int)type].gameObject;
         CardManager.ScratchSurfaceSprite = imageNotDones[(int)type].sprite;
         CardManager.InitData();
         CardManager.EraseTextureScale = Vector2.one * 2f;
         _typeObject = type;
-
-        animBoard.DOPlay();
+        content.localScale = Vector3.zero;
+        content.DOScale(Vector3.one, 0.5f).OnComplete(animBoard.DORestart);
         CardManager.GetComponentInChildren<ScratchCard>().enabled = false;
         await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
         penReady.SetActive(true);
@@ -93,7 +94,7 @@ public class Step8Activity : MonoBehaviour
         _typeObject = type;
         
         
-        content.localScale = Vector3.zero;
+       content.localScale = Vector3.zero;
         
        content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
             penNotReady.SetActive(true);
@@ -136,8 +137,8 @@ public class Step8Activity : MonoBehaviour
 
     private IEnumerator ShowImage()
     {
-        yield return new WaitForSeconds(1f);
         _isDone = true;
+        yield return new WaitForSeconds(1f);
         var index = (int)_typeObject;
         imageNotDones[index].gameObject.SetActive(false);
         imageDone[index].gameObject.SetActive(true);

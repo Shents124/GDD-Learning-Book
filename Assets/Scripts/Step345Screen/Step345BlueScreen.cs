@@ -4,6 +4,7 @@ using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Minigame.BlueColor;
+using Spine.Unity;
 using UI;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace Step345Screen
         [SerializeField] private BlueFood[] foods;
 
         [SerializeField] private Board board;
-        [SerializeField] private GameObject dark, vfx;
+        [SerializeField] private GameObject dark, vfx, player;
         
         [SerializeField] private RectTransform characterEndPosition;
         [SerializeField] private RectTransform characterEnd2Position;
@@ -29,6 +30,7 @@ namespace Step345Screen
         [SerializeField] private RectTransform showCardPosition;
 
         private int _fillCount;
+        private bool _isFilled = false;
 
         [SerializeField] private ColorType _colorType;
 
@@ -76,6 +78,9 @@ namespace Step345Screen
 
         private void OnClickedFood(int index)
         {
+            if (_isFilled)
+                return;
+            _isFilled = true;
             StartCoroutine(foods[index].MoveFoods(Fill));
         }
 
@@ -84,18 +89,25 @@ namespace Step345Screen
             _fillCount++;
             characterController.PlayAnim(0, characterController.idleEatAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
-
-                if (_fillCount == 3)
+                switch (_fillCount)
                 {
-                    OnStep5();
+                    case 1:
+                        player.GetComponent<SkeletonGraphic>().DOFade(1, 0f);
+                        characterController.DoMask(250f, () => { _isFilled = false; });
+                        break;
+                    case 2:
+                        characterController.DoMask(400f, () => { _isFilled = false; });
+                        break;
+                    case 3:
+                        characterController.DoMask(600f, OnStep5);
+                        break;
                 }
             });
         }
 
         private void OnStep5()
         {
-            characterController.ChangeSkin(characterController.fullSkin);
-
+            characterController.DisableMask();
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.runAnimation, true);
                 characterTransform.DOAnchorPos(characterEnd2Position.anchoredPosition, characterMoveDuration * 2)
@@ -105,6 +117,7 @@ namespace Step345Screen
 
         private void ShowBoard()
         {
+            characterController.FlipX();
             characterController.PlayAnim(0, characterController.idleTalkAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
             });

@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Minigame.YellowColor;
 using UI;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Minigame.BlueColor
 {
     public class BlueMiniGameActivity : BaseActivity
     {
         [SerializeField] private float toyContainerShowDuration = 1f;
-        [SerializeField] private float toyMoveDuration = 1f;
+        [SerializeField] private float toyMoveSpeed = 150f;
         [SerializeField] private float toyScale = 0.8f;
         
         [SerializeField] private ToyContainer blueToyContainer;
@@ -18,13 +22,22 @@ namespace Minigame.BlueColor
         [SerializeField] private List<Toy> blueToys;
         [SerializeField] private List<Toy> redToys;
 
+        public DropObject blueDropObject;
+
         private int _blueToyCount;
         private int _redToyCount;
         
         public override void DidEnter(Memory<object> args)
         {
+            blueDropObject.Initialize(OnDrop);
             blueToyContainer.DoShow(toyContainerShowDuration, InitializeToy);
             base.DidEnter(args);
+        }
+
+        private void OnDrop(PointerEventData eventData)
+        {
+            var toy = eventData.pointerDrag.GetComponent<Toy>();
+            toy.OnDrop();
         }
 
         private void InitializeToy()
@@ -37,7 +50,7 @@ namespace Minigame.BlueColor
             
             foreach (var redToy in redToys)
             {
-                redToy.Initialize(_redToyCount, null);
+                redToy.Initialize(_redToyCount, OnClickRedToy);
                 _redToyCount++;
             }
         }
@@ -46,7 +59,14 @@ namespace Minigame.BlueColor
         {
             var index = blueToy.Index;
             var parent = blueToyContainer.GetToyParent(index);
-            blueToy.DoMove(parent, new Vector3(toyScale, toyScale, toyScale), toyMoveDuration, OnMoveToyFinish);
+            blueToy.GetComponent<Canvas>().overrideSorting = false;
+            float toyMoveDuration = Vector2.Distance(parent.transform.position, blueToy.transform.position) / toyMoveSpeed;
+            blueToy.DoMove(parent, new Vector3(toyScale, toyScale, toyScale), 0.5f, OnMoveToyFinish);
+        }
+
+        private void OnClickRedToy(Toy redToy)
+        {
+
         }
 
         private void OnMoveToyFinish()
@@ -72,11 +92,11 @@ namespace Minigame.BlueColor
             {
                 var index = redToy.Index;
                 var parent = redToyContainer.GetToyParent(index);
-
-                redToy.DoMove(parent, new Vector3(toyScale, toyScale, toyScale), toyMoveDuration, null);
+                redToy.GetComponent<Canvas>().overrideSorting = false;
+                redToy.DoMove(parent, new Vector3(toyScale, toyScale, toyScale), 1, null);
             }
 
-            yield return new WaitForSeconds(toyMoveDuration);
+            yield return new WaitForSeconds(1);
             redToyContainer.Shake(() => {
                 UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlue1Screen);
             });

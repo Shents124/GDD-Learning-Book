@@ -9,10 +9,10 @@ namespace Minigame.YellowColor
     public class YellowMiniGame2Activity : BaseActivity
     {
         private readonly List<List<YellowFood>> _tableItemSet = new() {
-            new List<YellowFood> { YellowFood.Carot, YellowFood.Giun, YellowFood.Ngo },
-            new List<YellowFood> { YellowFood.Giun, YellowFood.Ngo, YellowFood.RauCai },
-            new List<YellowFood> { YellowFood.Ngo, YellowFood.RauCai, YellowFood.XupLo },
-            new List<YellowFood> { YellowFood.RauCai, YellowFood.XupLo, YellowFood.Carot },
+            new List<YellowFood> { YellowFood.carot, YellowFood.Giun, YellowFood.ngo },
+            new List<YellowFood> { YellowFood.Giun, YellowFood.ngo, YellowFood.RauCai },
+            new List<YellowFood> { YellowFood.ngo, YellowFood.RauCai, YellowFood.xuplo },
+            new List<YellowFood> { YellowFood.RauCai, YellowFood.xuplo, YellowFood.carot },
         };
 
         [SerializeField] private float chickenMoveDuration = 1f;
@@ -77,9 +77,14 @@ namespace Minigame.YellowColor
         {
             var currentChicken = babyChickens[_chickenIndex];
             if (item.YellowFood != currentChicken.yellowFood)
-                return;
-            
-            currentChicken.OnEat(item, HideTable, CheckFinish);
+            {
+                item.OnFall();
+            }
+            else
+            {
+                currentChicken.OnEat(item, HideTable, CheckFinish);
+
+            }
         }
 
         private void CheckFinish()

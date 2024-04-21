@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Minigame.YellowColor
 {
@@ -12,12 +14,22 @@ namespace Minigame.YellowColor
         [SerializeField] private RectTransform hidePosition;
         [SerializeField] private RectTransform showPosition;
         [SerializeField] private List<TableFoodItem> items;
-        
+
+        public DropObject tableDropObject;
+
         private Action<TableFoodItem> _onSelect;
 
         private void Start()
         {
             container.anchoredPosition = hidePosition.anchoredPosition;
+            tableDropObject.Initialize(OnDrop);
+
+        }
+
+        private void OnDrop(PointerEventData eventData)
+        {
+            var food = eventData.pointerDrag.GetComponent<TableFoodItem>();
+            food.OnDrop();
         }
 
         public void Show(List<YellowFood> sets, Action<TableFoodItem> onSelect)
