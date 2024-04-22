@@ -2,10 +2,10 @@
 {
     public enum YellowFood
     {
-        carot,
-        ngo,
+        Carot,
+        Ngo,
         RauCai,
         Giun,
-        xuplo
+        XupLo
     }
 }
