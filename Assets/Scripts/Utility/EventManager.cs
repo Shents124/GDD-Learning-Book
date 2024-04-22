@@ -142,4 +142,7 @@ public enum Events
     ArrangeCakeDone,
     OnBeginDragClothes,
     OnEndGradClothes,
+    ErrorWay,
+    CurrentWay,
+    MoveWayDone
 }

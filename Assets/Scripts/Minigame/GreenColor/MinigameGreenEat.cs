@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Spine.Unity;
 using UI;
 using UnityEngine;
+using Utility;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
 public class MinigameGreenEat : BaseActivity
@@ -41,6 +43,17 @@ public class MinigameGreenEat : BaseActivity
         }
     }
 
+    protected override void OnClickedNextBtn()
+    {
+        UIService.PlayFadeIn(() => {
+            AdsManager.Instance.ShowInterstitial(() => {
+                var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
+                UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
+                UIService.PlayFadeOut();
+            });
+        });
+    }
+
     public void OnClickAnimal(bool isCurrentAnimal)
     {
         isEating = true;
@@ -57,7 +70,11 @@ public class MinigameGreenEat : BaseActivity
                         frogAnim.AnimationState.SetAnimation(0, animSession, true);
                         await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
                         UIService.PlayFadeIn(() => {
-                            UIService.OpenActivityAsync(ActivityType.Step7Green, false).Forget();
+                            AdsManager.Instance.ShowInterstitial(() => {
+                                var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
+                                UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
+                                UIService.PlayFadeOut();
+                            });
                         });
                         return;
                     }

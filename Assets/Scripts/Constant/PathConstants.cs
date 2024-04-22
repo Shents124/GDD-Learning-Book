@@ -20,6 +20,7 @@
 
         public const string MINI_GAME_RED_STEP_2 = "MinigameRedStep2";
         public const string MAKE_CAKE = "BgLambanh";
+        public const string MINI_GAME_GREEN_STEP_3 = "MinigameGreen3Screen";
 
         #endregion
 

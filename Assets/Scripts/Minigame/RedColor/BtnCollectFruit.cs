@@ -1,10 +1,17 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BtnCollectFruit : MonoBehaviour
 {
+    private SkeletonGraphic animFruit;
+    [SerializeField] [SpineAnimation]
+    public string animIdle, animLaugh;
+
     [NonSerialized] public StepCollect managerStep;
 
     public bool canDrag = true;
@@ -25,12 +32,16 @@ public class BtnCollectFruit : MonoBehaviour
 
     private void Start()
     {
+        animFruit = GetComponentInChildren<SkeletonGraphic>();
         posStart = transform.position;
-
         if (canDrag)
         {
             dragObject = GetComponent<DragObject>();
-            dragObject.Initialize(CheckDoneObj);
+            dragObject.Initialize(CheckDoneObj, () => {
+                animFruit.AnimationState.SetAnimation(0, animLaugh, true);
+            }, () => {
+                animFruit.AnimationState.SetAnimation(0, animIdle, true);
+            });
         }
         else
         {
@@ -38,8 +49,14 @@ public class BtnCollectFruit : MonoBehaviour
             btnClick.onClick.AddListener(CheckDoneObj);
         }
     }
+
     private void CheckDoneObj()
     {
+        if (animFruit)
+        {
+            animFruit.AnimationState.SetAnimation(0, animLaugh, true);
+        }
+
         if (correctFruit)
         {
             Vector2 scale = transform.localScale;

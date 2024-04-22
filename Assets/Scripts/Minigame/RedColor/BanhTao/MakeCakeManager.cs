@@ -44,11 +44,11 @@ public class MakeCakeManager : MonoBehaviour
         if (currentStep == allSteps.Count - 1)
         {
             UIService.PlayFadeIn(() => {
-
-                UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
-                Destroy(this.gameObject);
+                AdsManager.Instance.ShowInterstitial(() => {
+                    UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
+                    Destroy(this.gameObject);
+                });
             });
-
         }
         else
         {
@@ -59,7 +59,7 @@ public class MakeCakeManager : MonoBehaviour
 
     private async void OnClickedBackBtn()
     {
-        await UIService.OpenActivityAsync(ActivityType.MenuScreen);
+        await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
         Destroy(this.gameObject);
     }
@@ -67,9 +67,13 @@ public class MakeCakeManager : MonoBehaviour
     private void OnClickedNextBtn()
     {
         UIService.PlayFadeIn(() => {
-            UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
-            Destroy(this.gameObject);
-            UIService.PlayFadeOut();
+            AdsManager.Instance.ShowInterstitial(() => 
+            {
+                UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
+                Destroy(this.gameObject);
+                UIService.PlayFadeOut();
+            });
+
         });
 
     }

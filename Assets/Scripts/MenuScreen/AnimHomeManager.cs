@@ -43,7 +43,7 @@ public class AnimHomeManager : MonoBehaviour
     {
         int idAnim = Random.Range(0, animRandom.Length);
         var track = playerAnim.AnimationState.SetAnimation(0, animRandom[idAnim], false);
-        track.Complete += async Entry => {
+        track.Complete += Entry => {
             playerAnim.AnimationState.SetAnimation(0, animIdle, true);
             StartCoroutine(DelayChangeAnim());
         };
