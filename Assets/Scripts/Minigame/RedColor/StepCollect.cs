@@ -44,9 +44,11 @@ public class StepCollect : BaseStep
                 bucketCollectDone.onComplete.AddListener(() => {
                     UIService.PlayFadeIn(()=> 
                     {
-                        NextStep();
-                        UIService.PlayFadeOut();
-                        bucketCollectDone.transform.position = pos;
+                        AdsManager.Instance.ShowInterstitial(() => {
+                            NextStep();
+                            UIService.PlayFadeOut();
+                            bucketCollectDone.transform.position = pos;
+                        });
                     });
                 });
                 bucketCollectDone.transform.parent = bucketDoneObj.transform;

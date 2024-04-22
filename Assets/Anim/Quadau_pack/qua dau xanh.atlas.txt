@@ -1,0 +1,76 @@
+
+qua dau xanh.png
+size: 1000,316
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dau do/cuong
+  rotate: true
+  xy: 670, 39
+  size: 275, 166
+  orig: 277, 168
+  offset: 1, 1
+  index: -1
+dau do/qua bbdau 2/cuong
+  rotate: true
+  xy: 838, 10
+  size: 226, 105
+  orig: 228, 107
+  offset: 1, 1
+  index: -1
+dau do/qua bbdau 2/qua dau
+  rotate: true
+  xy: 337, 8
+  size: 306, 331
+  orig: 308, 333
+  offset: 1, 1
+  index: -1
+dau do/qua dau
+  rotate: true
+  xy: 2, 7
+  size: 307, 333
+  orig: 309, 335
+  offset: 1, 1
+  index: -1
+longmay
+  rotate: true
+  xy: 945, 12
+  size: 107, 20
+  orig: 109, 22
+  offset: 1, 1
+  index: -1
+longtrang
+  rotate: false
+  xy: 838, 238
+  size: 160, 76
+  orig: 162, 78
+  offset: 1, 1
+  index: -1
+mat1
+  rotate: true
+  xy: 945, 121
+  size: 115, 49
+  orig: 117, 51
+  offset: 1, 1
+  index: -1
+mat2
+  rotate: false
+  xy: 706, 7
+  size: 130, 30
+  orig: 133, 32
+  offset: 1, 1
+  index: -1
+mieng1
+  rotate: true
+  xy: 967, 82
+  size: 37, 13
+  orig: 39, 15
+  offset: 1, 1
+  index: -1
+mieng2
+  rotate: true
+  xy: 670, 2
+  size: 35, 34
+  orig: 37, 36
+  offset: 1, 1
+  index: -1

@@ -46,9 +46,11 @@ public class MinigameGreenEat : BaseActivity
     protected override void OnClickedNextBtn()
     {
         UIService.PlayFadeIn(() => {
-            var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
-            UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
-            UIService.PlayFadeOut();
+            AdsManager.Instance.ShowInterstitial(() => {
+                var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
+                UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
+                UIService.PlayFadeOut();
+            });
         });
     }
 
@@ -68,9 +70,11 @@ public class MinigameGreenEat : BaseActivity
                         frogAnim.AnimationState.SetAnimation(0, animSession, true);
                         await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
                         UIService.PlayFadeIn(() => {
-                            var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
-                            UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
-                            UIService.PlayFadeOut();
+                            AdsManager.Instance.ShowInterstitial(() => {
+                                var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
+                                UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
+                                UIService.PlayFadeOut();
+                            });
                         });
                         return;
                     }

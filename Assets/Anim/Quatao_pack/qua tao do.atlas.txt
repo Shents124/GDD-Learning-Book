@@ -1,0 +1,76 @@
+
+qua tao do.png
+size: 343,463
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+longmay
+  rotate: true
+  xy: 277, 178
+  size: 107, 10
+  orig: 109, 12
+  offset: 1, 1
+  index: -1
+longtrang
+  rotate: true
+  xy: 274, 16
+  size: 160, 67
+  orig: 162, 69
+  offset: 1, 1
+  index: -1
+mat1
+  rotate: true
+  xy: 277, 346
+  size: 115, 40
+  orig: 117, 42
+  offset: 1, 1
+  index: -1
+mat2
+  rotate: true
+  xy: 319, 331
+  size: 130, 18
+  orig: 132, 20
+  offset: 1, 1
+  index: -1
+mieng1
+  rotate: true
+  xy: 289, 249
+  size: 36, 11
+  orig: 38, 13
+  offset: 1, 1
+  index: -1
+mieng2
+  rotate: false
+  xy: 302, 237
+  size: 34, 33
+  orig: 36, 35
+  offset: 1, 1
+  index: -1
+qua tao do/cuong
+  rotate: false
+  xy: 308, 272
+  size: 28, 57
+  orig: 30, 59
+  offset: 1, 1
+  index: -1
+qua tao do/qua
+  rotate: false
+  xy: 2, 2
+  size: 270, 227
+  orig: 272, 229
+  offset: 1, 1
+  index: -1
+qua tao vang/cuong
+  rotate: false
+  xy: 277, 287
+  size: 29, 57
+  orig: 31, 59
+  offset: 1, 1
+  index: -1
+qua tao vang/qua
+  rotate: false
+  xy: 2, 231
+  size: 273, 230
+  orig: 275, 232
+  offset: 1, 1
+  index: -1

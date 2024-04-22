@@ -40,8 +40,10 @@ public class MinigameRedStep1Activity : BaseActivity
     protected override void OnClickedNextBtn()
     {
         UIService.PlayFadeIn(() => {
-            NextStep();
-            UIService.PlayFadeOut();
+            AdsManager.Instance.ShowInterstitial(() => {
+                NextStep();
+                UIService.PlayFadeOut();
+            });
         });
     }
     
@@ -49,9 +51,10 @@ public class MinigameRedStep1Activity : BaseActivity
     {
         if (currentStep == stepInMiniGame.Count - 1)
         {
-            //var manager = Instantiate(MakeCakeManager);
-            var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
-            UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
+            AdsManager.Instance.ShowInterstitial(() => {
+                var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
+                UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
+            });
         }
         else
         {
