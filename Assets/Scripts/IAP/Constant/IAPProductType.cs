@@ -4,6 +4,5 @@
     {
         undefined = -1,
         Store = 1,
-        InUI = 2,
     }
 }
