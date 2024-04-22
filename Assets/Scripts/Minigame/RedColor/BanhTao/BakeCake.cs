@@ -175,12 +175,11 @@ public class BakeCake : BaseActivity
             animPlayer.AnimationState.SetAnimation(0, animWin, true);
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
             UIService.PlayFadeIn(() => {
-                UIService.OpenActivityAsync(ActivityType.Step7Red).Forget();
+                AdsManager.Instance.ShowInterstitial(() => {
+                    UIService.OpenActivityAsync(ActivityType.Step7Red).Forget();
+                });
             });
         };
-        //var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
-        //UIService.CloseActivityAsync(ActivityType.BakeCake, false).Forget();
-        //UIService.PlayFadeOut();
     }
 
     protected override void OnClickedNextBtn()

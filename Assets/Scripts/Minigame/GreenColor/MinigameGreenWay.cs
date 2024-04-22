@@ -62,9 +62,11 @@ public class MinigameGreenWay : MonoBehaviour
     private void OnClickedNextBtn()
     {
         UIService.PlayFadeIn(() => {
-            UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
-            Destroy(this.gameObject);
-            UIService.PlayFadeOut();
+            AdsManager.Instance.ShowInterstitial(() => {
+                UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
+                Destroy(this.gameObject);
+                UIService.PlayFadeOut();
+            });
         });
 
     }
@@ -87,8 +89,11 @@ public class MinigameGreenWay : MonoBehaviour
             if(_currentTurn >= numberTurn)
             {
                 UIService.PlayFadeIn(() => {
-                    UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green, false).Forget();
-                    Destroy(this.gameObject);
+                    AdsManager.Instance.ShowInterstitial(() => {
+                        UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
+                        Destroy(this.gameObject);
+                        UIService.PlayFadeOut();
+                    });
                 });
             }
             else

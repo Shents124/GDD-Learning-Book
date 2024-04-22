@@ -15,7 +15,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     private RectTransform _rectTransform;
     private Vector3 _originPos;
     
-    private Action _callback;
+    private Action _callback, _startDrag, _endDrag;
     private bool _isDrag;
     
     private void Awake()
@@ -27,9 +27,11 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
         canvas.overrideSorting = false;
     }
     
-    public void Initialize(Action callback)
+    public void Initialize(Action callback, Action start = null, Action enddrag = null)
     {
         _callback = callback;
+        _startDrag = start;
+        _endDrag = enddrag;
     }
     
     public void Initialize(Action callback, RectTransform rectTransform)
@@ -45,6 +47,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     
     public void OnBeginDrag(PointerEventData eventData)
     {
+        _startDrag?.Invoke();
         _isDrag = true;
         canvasGroup.blocksRaycasts = false;
         canvas.overrideSorting = true;
@@ -64,6 +67,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
         }
         else
         {
+            _endDrag?.Invoke();
             _rectTransform.anchoredPosition = _originPos;
         }
     }
@@ -75,7 +79,6 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log($"Pointer up, is drag: {_isDrag}");
         if (_isDrag == false)
             _callback?.Invoke();
     }
