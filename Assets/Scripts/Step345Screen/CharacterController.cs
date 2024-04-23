@@ -30,11 +30,12 @@ namespace Step345Screen
         [SpineAnimation(dataField: "skeletonAnimation")]
         public string cheerAnimation= "";
         
+        [SpineAnimation(dataField: "skeletonAnimation")]
+        public string sadAnimation= "";
+        
         [SpineSkin(dataField: "skeletonAnimation")]
         public string noneSkin= "";
         
-        [SpineSkin(dataField: "skeletonAnimation")]
-        public string fullSkin= "";
         
         private void Start()
         {
@@ -57,11 +58,10 @@ namespace Step345Screen
             StartCoroutine(DoMaskCoroutine(value, onFinish));
         }
 
-        private IEnumerator DoMaskCoroutine(float value, Action onFinish, float duration = 0.5f)
+        private IEnumerator DoMaskCoroutine(float value, Action onFinish, float duration = 0.75f)
         {
-            var currentValue = rectMask2D.padding.z;
-            var deltaValue = (value - currentValue) / duration;
-
+            var currentValue = rectMask2D.padding.y;
+          
             var elapsedTime = 0f;
             
             while (elapsedTime < duration)

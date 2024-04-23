@@ -9,6 +9,7 @@ namespace Step345Screen
     public class Card : BaseButtonUI
     {
         [SerializeField] private ColorType colorType;
+        [SerializeField] private GameObject vfx;
 
         private Action<ColorType, Card> _onClick;
 
@@ -27,6 +28,12 @@ namespace Step345Screen
             _onClick?.Invoke(colorType, this);
         }
 
+        public void ShowVfx()
+        {
+            if (vfx != null)
+                vfx.SetActive(true);
+        }
+        
         public void DoShow(Vector2 position, float duration, Action onComplete)
         {
             Button.interactable = false;
