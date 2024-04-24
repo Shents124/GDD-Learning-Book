@@ -16,6 +16,9 @@ namespace Minigame.RedColor
         [SerializeField] private Blender blender;
         [SerializeField] private CupController cupController;
         [SerializeField] private CupGlass cupGlass;
+        [SerializeField] private Transform showBlenderPosition;
+        [SerializeField] private Vector3 newScale = new(1.2f, 1.2f, 1.2f);
+        [SerializeField] private float zoomDuration = 1.5f;
         
         private void Start()
         {
@@ -31,10 +34,18 @@ namespace Minigame.RedColor
         private async UniTask RemoveStrawberries()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(delayDropStrawberry));
-            plateStrawberryObj.SetPlate(false);
-            blender.Initialize(OnBenderFill, OnBlenderRun);
+            ZoomIn();
         }
 
+        private void ZoomIn()
+        {
+            plateStrawberryObj.SetPlate(false);
+            transform.DOMove(showBlenderPosition.position, zoomDuration).SetEase(Ease.Linear);
+            transform.DOScale(newScale, zoomDuration).SetEase(Ease.Linear).OnComplete(() => {
+                blender.Initialize(OnBenderFill, OnBlenderRun);
+            });
+        }
+        
         private void OnBenderFill()
         {
             plateStrawberryObj.SetStrawberries(false);

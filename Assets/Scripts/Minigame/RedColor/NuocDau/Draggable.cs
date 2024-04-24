@@ -27,7 +27,7 @@ namespace Minigame.RedColor
 
         public void AddListener(Action action)
         {
-            _onTrigger = action;
+            _onTrigger += action;
         }
         
         protected virtual void OnMouseDown()
