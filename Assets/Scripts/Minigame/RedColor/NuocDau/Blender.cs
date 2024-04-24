@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Spine.Unity;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Minigame.RedColor
     {
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         [SerializeField] private ItemClick itemClick;
-        
+
         [SpineAnimation(dataField: "skeletonAnimation")]
         public string fullToHalfName = "";
         
