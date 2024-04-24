@@ -14,6 +14,7 @@ namespace Step345Screen
         [SerializeField] private RectTransform balloonState2EndPos;
         [SerializeField] private GameObject balloonState1;
         [SerializeField] private GameObject balloonState2;
+        [SerializeField] private RectTransform giftRectTransform;
 
         [SerializeField] private Button button;
 
@@ -27,6 +28,7 @@ namespace Step345Screen
         public async UniTask Initialize(Action onClick)
         {
             _onClick = onClick;
+            giftRectTransform.DOShakeScale(0.3f, 0.2f, 1, 0);
             await UniTask.Delay(TimeSpan.FromSeconds(delay));
             balloonState1.SetActive(false);
             balloonState2.SetActive(true);

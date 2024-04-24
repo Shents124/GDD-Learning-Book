@@ -109,9 +109,11 @@ namespace Step345Screen
         {
             characterController.DisableMask();
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
-                characterController.PlayAnim(0, characterController.runAnimation, true);
-                characterTransform.DOAnchorPos(characterEnd2Position.anchoredPosition, characterMoveDuration * 2)
-                    .OnComplete(ShowBoard);
+                characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
+                    characterController.PlayAnim(0, characterController.runAnimation, true);
+                    characterTransform.DOAnchorPos(characterEnd2Position.anchoredPosition, characterMoveDuration * 2)
+                        .OnComplete(ShowBoard);
+                });
             });
         }
 
@@ -131,16 +133,22 @@ namespace Step345Screen
         private void OnClickedCard(ColorType colorType, Card card)
         {
             if (_colorType != colorType)
+            {
+                characterController.PlayAnim(0, characterController.sadAnimation, false, () => {
+                    characterController.PlayAnim(0, characterController.idleAnimation, true);
+                });
+                
                 return;
-
+            }
             
+            card.ShowVfx();
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
-                dark.SetActive(true);
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
+                dark.SetActive(true);
                 card.transform.SetParent(transform);
                 card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
+                    StartCoroutine(MoveToNextStep());   
                     vfx.SetActive(true);
-                    StartCoroutine(MoveToNextStep());
                 });
             });
         }

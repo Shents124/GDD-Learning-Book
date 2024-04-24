@@ -226,14 +226,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 3769782406368461423}
+  maskAnim: {fileID: 0}
+  rectMask2D: {fileID: 0}
   runAnimation: Walk
   idleEatAnimation: Idle_Eat
   idleTalkAnimation: Idle_Talk
   idleAnimation: Idle
   exitingAnimation: Excited
   cheerAnimation: Jump_Cheer
+  sadAnimation: 
   noneSkin: NoneColor
-  fullSkin: Color
 --- !u!1 &4407222640856643604
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 146, y: 257}
+  m_AnchoredPosition: {x: 173, y: 348}
   m_SizeDelta: {x: 320, y: 288}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7213556445559517862
