@@ -30,6 +30,8 @@ public class StepCollect : BaseStep
     public GameObject bucketDoneObj;
 
     public UIParticle vfx;
+
+    public UIParticle vfxCollect;
     public int CurrentFruit
     {
         get => _currentStep;
@@ -38,17 +40,18 @@ public class StepCollect : BaseStep
             _currentStep = value;
             if(numberFruitNeed <= _currentStep)
             {
-                bucketCollectDone.transform.DOShakeScale(0.2f, 0.1f, 1, 0);
+                var scale = bucketCollectDone.transform.localScale;
+                bucketCollectDone.transform.DOShakeScale(0.2f, 0.1f, 1, 0).OnComplete(() => {
+                    bucketCollectDone.transform.localScale = scale;
+                }); 
                 Vector3 pos = bucketCollectDone.transform.position;
                 bucketCollectDone.onComplete.RemoveAllListeners();
                 bucketCollectDone.onComplete.AddListener(() => {
                     UIService.PlayFadeIn(()=> 
                     {
-                        AdsManager.Instance.ShowInterstitial(() => {
-                            NextStep();
-                            UIService.PlayFadeOut();
-                            bucketCollectDone.transform.position = pos;
-                        });
+                        NextStep();
+                        UIService.PlayFadeOut();
+                        bucketCollectDone.transform.position = pos;
                     });
                 });
                 bucketCollectDone.transform.parent = bucketDoneObj.transform;
@@ -65,7 +68,10 @@ public class StepCollect : BaseStep
             }
             else
             {
-                bucketCollectDone.transform.DOShakeScale(0.2f, 0.1f, 1, 0);
+                var scale = bucketCollectDone.transform.localScale;
+                bucketCollectDone.transform.DOShakeScale(0.2f, 0.1f, 1, 0).OnComplete(() => {
+                    bucketCollectDone.transform.localScale = scale;
+                });
                 if (_currentStep == 1)
                 {
                     animals[0].OnFall();
@@ -116,6 +122,6 @@ public class StepCollect : BaseStep
     {
         posCollect[CurrentFruit].gameObject.SetActive(true);
         CurrentFruit++;
-        //bucketCollectDone.DOPlay();
+        vfxCollect.Play();
     }
 }
