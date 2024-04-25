@@ -174,11 +174,12 @@ public class BakeCake : BaseActivity
         track.Complete += async Entry => {
             animPlayer.AnimationState.SetAnimation(0, animWin, true);
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            UIService.PlayFadeIn(() => {
-                AdsManager.Instance.ShowInterstitial(() => {
+            AdsManager.Instance.ShowInterstitial(() => {
+                UIService.PlayFadeIn(() => {
                     UIService.OpenActivityAsync(ActivityType.Step7Red).Forget();
                 });
             });
+
         };
     }
 

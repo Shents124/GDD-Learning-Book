@@ -61,13 +61,14 @@ public class MinigameGreenWay : MonoBehaviour
 
     private void OnClickedNextBtn()
     {
-        UIService.PlayFadeIn(() => {
-            AdsManager.Instance.ShowInterstitial(() => {
+        AdsManager.Instance.ShowInterstitial(() => {
+            UIService.PlayFadeIn(() => {
                 UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
                 Destroy(this.gameObject);
                 UIService.PlayFadeOut();
             });
         });
+
 
     }
     private void StartGame()
@@ -86,15 +87,16 @@ public class MinigameGreenWay : MonoBehaviour
         animFrog.transform.DOMove(posJumDone.position, 1.34f).OnComplete(async () => {
             animFrog.AnimationState.SetAnimation(0, animWin, true);
             await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
-            if(_currentTurn >= numberTurn)
+            if (_currentTurn >= numberTurn)
             {
-                UIService.PlayFadeIn(() => {
-                    AdsManager.Instance.ShowInterstitial(() => {
+                AdsManager.Instance.ShowInterstitial(() => {
+                    UIService.PlayFadeIn(() => {
                         UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
                         Destroy(this.gameObject);
                         UIService.PlayFadeOut();
                     });
                 });
+
             }
             else
             {

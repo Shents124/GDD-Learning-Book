@@ -40,9 +40,10 @@ namespace Minigame.BlueColor
             ballBtn.onClick.AddListener(OnClickedBall);
             ShowTalk();
         }
+
         private async void ShowTalk()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            await UniTask.Delay(TimeSpan.FromSeconds(1f)); 
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
             track.Complete += Entry => {
                 animPlayer.AnimationState.SetAnimation(0, animIdle, true);

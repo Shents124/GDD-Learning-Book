@@ -66,11 +66,12 @@ public class ChooseLeavesManager : MonoBehaviour
                 frogAnim.transform.DOJump(posDoneStep.position, jumpPower, 1, 1.34f).OnComplete(async () => {
                     frogAnim.AnimationState.SetAnimation(0, animSession, true);
                     await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
-                    UIService.PlayFadeIn(() => {
-                        AdsManager.Instance.ShowInterstitial(() => {
+                    AdsManager.Instance.ShowInterstitial(() => {
+                        UIService.PlayFadeIn(() => {
                             UIService.OpenActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
                         });
                     });
+
                 });
             }
             else

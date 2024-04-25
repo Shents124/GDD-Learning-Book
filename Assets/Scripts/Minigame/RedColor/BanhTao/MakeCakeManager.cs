@@ -43,12 +43,13 @@ public class MakeCakeManager : MonoBehaviour
     {
         if (currentStep == allSteps.Count - 1)
         {
-            UIService.PlayFadeIn(() => {
-                AdsManager.Instance.ShowInterstitial(() => {
+            AdsManager.Instance.ShowInterstitial(() => {
+                UIService.PlayFadeIn(() => {
                     UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
                     Destroy(this.gameObject);
                 });
             });
+
         }
         else
         {
@@ -66,15 +67,15 @@ public class MakeCakeManager : MonoBehaviour
 
     private void OnClickedNextBtn()
     {
-        UIService.PlayFadeIn(() => {
-            AdsManager.Instance.ShowInterstitial(() => 
-            {
+        AdsManager.Instance.ShowInterstitial(() =>
+        {
+            UIService.PlayFadeIn(() => {
                 UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
                 Destroy(this.gameObject);
                 UIService.PlayFadeOut();
             });
-
         });
+
 
     }
 }

@@ -39,12 +39,13 @@ public class MinigameRedStep1Activity : BaseActivity
 
     protected override void OnClickedNextBtn()
     {
-        UIService.PlayFadeIn(() => {
-            AdsManager.Instance.ShowInterstitial(() => {
+        AdsManager.Instance.ShowInterstitial(() => {
+            UIService.PlayFadeIn(() => {
                 NextStep();
                 UIService.PlayFadeOut();
             });
         });
+
     }
     
     void NextStep()

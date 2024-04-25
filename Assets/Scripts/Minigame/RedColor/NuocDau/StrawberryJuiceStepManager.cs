@@ -80,8 +80,15 @@ namespace Minigame.RedColor
         private void OnClickedNextBtn()
         {
             UIService.PlayFadeIn(() => {
-                UIService.PlayFadeOut();
-                ChangeStep();
+                if (_currentStep >= _stepCount - 1)
+                {
+                    OnFinishAllStep();
+                }
+                else
+                {
+                    UIService.PlayFadeOut();
+                    ChangeStep();
+                }
             });
 
         }
