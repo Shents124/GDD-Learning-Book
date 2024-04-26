@@ -1,20 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Coffee.UIExtensions;
-using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Minigame.RedColor;
 using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
 
 public class BakeCake : BaseActivity
 {
-
     [SpineAnimation(dataField: "animPlayer")]
     public string animWin, animIdle;
 
@@ -174,16 +168,9 @@ public class BakeCake : BaseActivity
         track.Complete += async Entry => {
             animPlayer.AnimationState.SetAnimation(0, animWin, true);
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            UIService.PlayFadeIn(() => {
-                AdsManager.Instance.ShowInterstitial(() => {
-                    UIService.OpenActivityAsync(ActivityType.Step7Red).Forget();
-                });
-            });
+            
+            UIService.OpenActivityWithFadeIn(ActivityType.Step7Red);
         };
     }
-
-    protected override void OnClickedNextBtn()
-    {
-        base.OnClickedNextBtn();
-    }
+    
 }

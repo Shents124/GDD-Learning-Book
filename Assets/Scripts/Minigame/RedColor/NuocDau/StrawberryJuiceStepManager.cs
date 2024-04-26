@@ -16,6 +16,8 @@ namespace Minigame.RedColor
 
         private int _currentStep;
         private int _stepCount;
+
+        private bool _isChangeStep;
         
         private void Start()
         {
@@ -61,13 +63,12 @@ namespace Minigame.RedColor
         private void OnFinishAllStep()
         {
             AdsManager.Instance.ShowInterstitial(() => {
+                _isChangeStep = true;
                 UIService.PlayFadeIn(() => {
                     Destroy(this.gameObject);
                     var step = LoadResourceService.LoadStep<MakeCakeManager>(PathConstants.MAKE_CAKE);
-                    //UIService.OpenActivityAsync(ActivityType.Step7Red, closeLastActivity: false).Forget();
                 });
             });
-            
         }
 
         private async void OnClickedBackBtn()
@@ -79,6 +80,9 @@ namespace Minigame.RedColor
 
         private void OnClickedNextBtn()
         {
+            if (_isChangeStep)
+                return;
+            
             UIService.PlayFadeIn(() => {
                 UIService.PlayFadeOut();
                 ChangeStep();
