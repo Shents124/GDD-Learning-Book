@@ -6,30 +6,54 @@ using UnityEngine.UI;
 
 public class ColorPenController : MonoBehaviour
 {
-    private Vector3 mousePosition;
+    [SerializeField] private GameObject penNotReady, penReady;
 
-    private Vector3 posStart;
+    public Step8Activity step8;
 
-    [SerializeField] private Rect bounds; // Giới hạn vị trí của bút trong hình chữ nhật
+    [SerializeField] private Transform posStart;
 
-    public bool isPlay = false;
+    public bool IsPlay { get => isPlay; }
 
-    private void Awake()
+    private bool isPlay;
+
+    public bool isReady = false;
+
+    public void StartInGame()
     {
-        posStart = transform.position;   
-    }
-
-    private void OnEnable()
-    {
-        transform.position = posStart;
+        transform.position = posStart.position;
+        isPlay = false;
+        isReady = false;
+        penNotReady.SetActive(true);
+        penReady.SetActive(false);
     }
 
     private void Update()
     {
-        if (isPlay)
+        if (isPlay && isReady)
         {
             transform.position = Input.mousePosition;
         }
+    }
 
+
+    public void OnStartDrag()
+    {
+        if (!isReady)
+            return;
+        isPlay = true;
+        penNotReady.SetActive(false);
+        penReady.SetActive(true);  
+        step8.CardManager.Card.InputEnabled = true;
+    }
+
+    public void OnEndDrag()
+    {
+        if (!isReady)
+            return;
+        isPlay = false;
+        transform.position = posStart.position;
+        penNotReady.SetActive(true);
+        penReady.SetActive(false);
+        step8.CardManager.Card.InputEnabled = false;
     }
 }

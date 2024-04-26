@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Coffee.UIExtensions;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using ScratchCardAsset;
@@ -15,34 +16,32 @@ public class Step8Activity : MonoBehaviour
     private TypeObject _typeObject;
     public GameObject[] imagesFill;
     public Image[] imageNotDones;
+    public Image[] imageNotDoneFakes;
     public Image[] imageDone;
     public ColorPenController colorPenController;
-    public GameObject penNotReady;
-    public GameObject penReady;
-
-    public DOTweenAnimation animBoard;
-
     public ScratchCardManager CardManager;
     public EraseProgress EraseProgress;
     
     private Action<TypeObject> _callBack;
     private bool _isDone;
+
+    public UIParticle vfxTo;
     
     private void Start()
     {
         CardManager.MainCamera = Camera.main;
     }
 
-    public async void InitData(TypeObject type)
+    public void InitData(TypeObject type)
     {
         EraseProgress.OnProgress -= DoneFillColor;
         EraseProgress.OnProgress += DoneFillColor;
-        
+        colorPenController.StartInGame();
+
         foreach (var image in imagesFill)
         {
             image.SetActive(false);
         }
-
         imagesFill[(int)type].SetActive(true);
         CardManager.ImageCard = imageNotDones[(int)type].gameObject;
         CardManager.ScratchSurfaceSprite = imageNotDones[(int)type].sprite;
@@ -50,38 +49,21 @@ public class Step8Activity : MonoBehaviour
         CardManager.EraseTextureScale = Vector2.one * 2f;
         _typeObject = type;
         content.localScale = Vector3.zero;
-        content.DOScale(Vector3.one, 0.5f).OnComplete(animBoard.DORestart);
-        CardManager.GetComponentInChildren<ScratchCard>().enabled = false;
-        await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
-        penReady.SetActive(true);
-        colorPenController.isPlay = true;
-        CardManager.GetComponentInChildren<ScratchCard>().enabled = true;
-
-        //penNotReady.SetActive(true);
-        //penReady.SetActive(false);
-        //Vector2 posStart = penNotReady.transform.position;
-        //var rotStart = penNotReady.transform.rotation;
-        //penNotReady.transform.DORotate(penReady.transform.rotation.eulerAngles, 1f);
-        //penNotReady.transform.DOMove(penReady.transform.position, 1f).OnComplete(() => {
-        //    animBoard.DORestart();
-        //    penNotReady.transform.position = posStart;
-        //    penNotReady.transform.rotation = rotStart;
-        //    colorPenController.isPlay = true;
-        //    penNotReady.SetActive(false);
-        //    penReady.SetActive(true);
-        //});
+        content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
+            colorPenController.isReady = true;
+        });
+        CardManager.Card.InputEnabled = false;
     }
 
     public void InitData(TypeObject type, Action<TypeObject> callback)
     {
         EraseProgress.OnProgress -= DoneFillColor2;
         EraseProgress.OnProgress += DoneFillColor2;
-        
+        colorPenController.StartInGame();
+
         _isDone = false;
         _callBack = callback;
-        penNotReady.SetActive(false);
-        penReady.SetActive(false);
-        
+
         foreach (var image in imagesFill)
         {
             image.SetActive(false);
@@ -92,25 +74,14 @@ public class Step8Activity : MonoBehaviour
         CardManager.InitData();
         CardManager.EraseTextureScale = Vector2.one * 2f;
         _typeObject = type;
-        
-        
-       content.localScale = Vector3.zero;
-        
-       content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
-            penNotReady.SetActive(true);
 
-            Vector2 posStart = penNotReady.transform.position;
-            var rotStart = penNotReady.transform.rotation;
-            penNotReady.transform.DORotate(penReady.transform.rotation.eulerAngles, 1f);
-            penNotReady.transform.DOMove(penReady.transform.position, 1f).OnComplete(() => {
-                //animBoard.DORestart();
-                penNotReady.transform.position = posStart;
-                penNotReady.transform.rotation = rotStart;
-                colorPenController.isPlay = true;
-                penNotReady.SetActive(false);
-                penReady.SetActive(true);
-            });
+        content.localScale = Vector3.zero;
+
+        content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
+            colorPenController.isReady = true;
+            imageNotDones[(int)_typeObject].gameObject.SetActive(false);
         });
+        CardManager.Card.InputEnabled = false;
     }
     
     private void DoneFillColor(float progress)
@@ -118,10 +89,22 @@ public class Step8Activity : MonoBehaviour
         if(progress >= percentToDone)
         {
             imageNotDones[(int)_typeObject].gameObject.SetActive(false);
-            //TODO: anim fill done color
             this.gameObject.SetActive(false);
-            //TODO: request event done
             EventManager.SendSimpleEvent(Events.FillColorDone);
+        }
+        else if(progress > 0)
+        {
+            if (imageNotDoneFakes[(int)_typeObject].gameObject.activeSelf)
+            {
+                imageNotDoneFakes[(int)_typeObject].gameObject.SetActive(false);
+            };
+
+            //if(progress * 100 % 20 == 0 && colorPenController.IsPlay)
+            //{
+            //    vfxTo.Play();
+            //    vfxTo.transform.position = colorPenController.transform.position;
+            //}
+
         }
     }
     

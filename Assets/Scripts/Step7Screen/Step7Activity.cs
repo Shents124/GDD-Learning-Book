@@ -14,7 +14,7 @@ namespace Step7
     public class Step7Activity : BaseActivity
     {
         [SpineAnimation]
-        public string animTalk, animIdle;
+        public string animTalk, animIdle, animRun;
 
         public SkeletonGraphic animPlayer;
 
@@ -47,8 +47,16 @@ namespace Step7
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
             track.Complete += Entry => {
-                animPlayer.AnimationState.SetAnimation(0, animIdle, true);
-                animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 2f).OnComplete(() => {
+                animPlayer.AnimationState.SetAnimation(0, animRun, true);
+                if (posFall.localPosition.x - animPlayer.transform.localPosition.x > 0)
+                {
+                    animPlayer.transform.localScale = new Vector2(-Math.Abs(animPlayer.transform.localScale.x), animPlayer.transform.localScale.y);
+                }
+                else
+                {
+                    animPlayer.transform.localScale = new Vector2(Math.Abs(animPlayer.transform.localScale.x), animPlayer.transform.localScale.y);
+                }
+                animPlayer.transform.DOLocalMove(posFall.localPosition, 1.5f).OnComplete(() => {
                     bgPlayer.SetActive(false);
                 });
             };
@@ -73,9 +81,7 @@ namespace Step7
                     await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
                     DoneAll.SetActive(true);
                     await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
-                    AdsManager.Instance.ShowInterstitial(() => {
-                        UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
-                    });
+                    UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
                 });
             }
         }

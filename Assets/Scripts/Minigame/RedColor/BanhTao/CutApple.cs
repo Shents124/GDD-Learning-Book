@@ -10,6 +10,7 @@ public class CutApple : MonoBehaviour
     public GameObject donePeel, lineCut;
 
     public GameObject[] appleCutDone;
+    public GameObject[] shadowAppleCutDone;
 
     public Transform[] posAppleCutMoveDone;
 
@@ -32,7 +33,12 @@ public class CutApple : MonoBehaviour
         {
             appleCutDone[i].SetActive(true);
             appleCutDone[i].transform.DOMove(posAppleCutMoveDone[i].position, timeAnimFake);
-            appleCutDone[i].transform.DORotate(posAppleCutMoveDone[i].rotation.eulerAngles, timeAnimFake);
+            appleCutDone[i].transform.DORotate(posAppleCutMoveDone[i].rotation.eulerAngles, timeAnimFake).OnComplete(() => {
+                foreach (var b in shadowAppleCutDone)
+                {
+                    b.SetActive(true);
+                }
+            });
         }
         donePeel.SetActive(true);
         lineCut.SetActive(false);

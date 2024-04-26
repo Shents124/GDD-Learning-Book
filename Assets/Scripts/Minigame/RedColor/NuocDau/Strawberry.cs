@@ -10,15 +10,13 @@ namespace Minigame.RedColor
         
         public void SetData(Action action)
         {
-            draggable.AddListener(action);
-            draggable.AddListener(() => {
-                GetComponent<PolygonCollider2D>().enabled = false;
+            draggable.AddListener(action, () => {
+                transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.2f);
             });
-        }
 
-        private void OnMouseDown()
-        {
-            transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.2f);
+            draggable.AddListener(() => {
+                transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.2f);
+            });
         }
     }
 }

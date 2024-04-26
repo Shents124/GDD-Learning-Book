@@ -14,6 +14,7 @@ namespace Minigame.RedColor
         protected Vector3 mousePos;
         
         private Action _onTrigger;
+        private Action _onUp;
         private int _sortingOrder;
         private Vector3 _center;
         
@@ -25,9 +26,10 @@ namespace Minigame.RedColor
             _sortingOrder = _spriteRenderer.sortingOrder;
         }
 
-        public void AddListener(Action action)
+        public void AddListener(Action action, Action actionUp = null)
         {
             _onTrigger += action;
+            _onUp += actionUp;
         }
         
         protected virtual void OnMouseDown()
@@ -49,6 +51,7 @@ namespace Minigame.RedColor
 
         protected virtual void OnMouseUp()
         {
+            _onUp?.Invoke();
             transform.position = startPos;
             _spriteRenderer.sortingOrder = _sortingOrder;
         }

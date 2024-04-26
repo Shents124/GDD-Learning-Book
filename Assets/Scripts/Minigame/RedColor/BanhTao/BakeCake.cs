@@ -16,7 +16,7 @@ public class BakeCake : BaseActivity
 
     [Header("Done Step")]
     public Transform doneAll;
-    public CanvasGroup doneAllWithWater;
+    public CanvasGroup doneAllWithWater, showAfterDone;
     public UIParticle vfxDone;
     public Transform cakeShow;
 
@@ -159,7 +159,7 @@ public class BakeCake : BaseActivity
         });
     }
 
-    private async void NextStep()
+    private void NextStep()
     {
         doneAllWithWater.gameObject.SetActive(true);
         doneAllWithWater.DOFade(1, 1f);
