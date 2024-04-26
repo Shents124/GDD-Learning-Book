@@ -1429,7 +1429,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: 94ea43556dfb347439e67a9da6005b9a, type: 3}
+    - sprite: {fileID: 21300000, guid: 9b8303524f80edc479433d41bdcd3e67, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4680,7 +4680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2078391678713113297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9504,7 +9504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4153279808352509908
 RectTransform:
   m_ObjectHideFlags: 0

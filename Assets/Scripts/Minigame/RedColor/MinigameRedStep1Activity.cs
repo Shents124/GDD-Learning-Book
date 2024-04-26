@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Constant;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Minigame.RedColor;
+using Spine.Unity;
 using UI;
 using UnityEngine;
 using Utility;
@@ -13,6 +15,15 @@ public class MinigameRedStep1Activity : BaseActivity
     public List<BaseStep> stepInMiniGame;
 
     private int currentStep = 0;
+
+    public CanvasGroup talkCanvas;
+
+    [SpineAnimation(dataField: "animPlayer")]
+    public string animTalk, animRun;
+
+    public SkeletonGraphic animPlayer;
+
+    private Vector2 posFallPlayer;
 
     protected override void Start()
     {
@@ -36,6 +47,28 @@ public class MinigameRedStep1Activity : BaseActivity
         }
         stepInMiniGame[0].InActive();
     }
+    private void ShowTalkComplete()
+    {
+        talkCanvas.gameObject.SetActive(true);
+        posFallPlayer = animPlayer.transform.position;
+        talkCanvas.DOFade(1, 0.5f).OnComplete(async () => 
+        {
+            animPlayer.gameObject.SetActive(true);
+            var track = animPlayer.AnimationState.SetAnimation(0, animTalk, true);
+            await UniTask.Delay(System.TimeSpan.FromSeconds(2f));
+            animPlayer.transform.localScale = new Vector2(-animPlayer.transform.localScale.x, animPlayer.transform.localScale.y);
+            animPlayer.AnimationState.SetAnimation(0, animRun, true);
+            animPlayer.transform.DOMove(posFallPlayer, 1f).OnComplete(() =>
+            {
+                UIService.PlayFadeIn(() => {
+                    var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
+                    UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
+                    UIService.PlayFadeOut();
+                });
+
+            });
+        });
+    }
 
     protected override void OnClickedNextBtn()
     {
@@ -52,10 +85,8 @@ public class MinigameRedStep1Activity : BaseActivity
     {
         if (currentStep == stepInMiniGame.Count - 1)
         {
-            AdsManager.Instance.ShowInterstitial(() => {
-                var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
-                UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
-            });
+            ShowTalkComplete();
+            stepInMiniGame[currentStep].gameObject.SetActive(false);
         }
         else
         {

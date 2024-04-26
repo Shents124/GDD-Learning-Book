@@ -22,7 +22,7 @@ public class BakeCake : BaseActivity
 
     [Header("Done Step")]
     public Transform doneAll;
-    public CanvasGroup doneAllWithWater;
+    public CanvasGroup doneAllWithWater, showAfterDone;
     public UIParticle vfxDone;
     public Transform cakeShow;
 
@@ -165,22 +165,31 @@ public class BakeCake : BaseActivity
         });
     }
 
-    private async void NextStep()
+    private void NextStep()
     {
-        doneAllWithWater.gameObject.SetActive(true);
-        doneAllWithWater.DOFade(1, 1f);
-        await UniTask.Delay(TimeSpan.FromSeconds(1f));
-        var track = animPlayer.AnimationState.SetAnimation(0, animWin, false);
-        track.Complete += async Entry => {
-            animPlayer.AnimationState.SetAnimation(0, animWin, true);
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            AdsManager.Instance.ShowInterstitial(() => {
-                UIService.PlayFadeIn(() => {
-                    UIService.OpenActivityAsync(ActivityType.Step7Red).Forget();
-                });
+        UIService.PlayFadeIn(() => {
+            UIService.PlayFadeOut();
+            showAfterDone.gameObject.SetActive(true);
+            showAfterDone.DOFade(1, 1f).OnComplete(async () => {
+                await UniTask.Delay(TimeSpan.FromSeconds(1f));
+                doneAllWithWater.gameObject.SetActive(true);
+                doneAllWithWater.DOFade(1, 1f);
+                await UniTask.Delay(TimeSpan.FromSeconds(1f));
+                animPlayer.gameObject.SetActive(true);
+                var track = animPlayer.AnimationState.SetAnimation(0, animWin, false);
+                track.Complete += async Entry => {
+                    animPlayer.AnimationState.SetAnimation(0, animWin, true);
+                    await UniTask.Delay(TimeSpan.FromSeconds(1f));
+                    AdsManager.Instance.ShowInterstitial(() => {
+                        UIService.PlayFadeIn(() => {
+                            UIService.OpenActivityAsync(ActivityType.Step7Red).Forget();
+                        });
+                    });
+                };
             });
 
-        };
+
+        });
     }
 
     protected override void OnClickedNextBtn()

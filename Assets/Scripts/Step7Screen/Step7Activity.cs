@@ -81,9 +81,7 @@ namespace Step7
                     await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
                     DoneAll.SetActive(true);
                     await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
-                    AdsManager.Instance.ShowInterstitial(() => {
-                        UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
-                    });
+                    UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
                 });
             }
         }
