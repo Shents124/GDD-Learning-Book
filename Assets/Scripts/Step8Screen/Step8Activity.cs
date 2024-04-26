@@ -16,11 +16,9 @@ public class Step8Activity : MonoBehaviour
     private TypeObject _typeObject;
     public GameObject[] imagesFill;
     public Image[] imageNotDones;
+    public Image[] imageNotDoneFakes;
     public Image[] imageDone;
     public ColorPenController colorPenController;
-
-    public DOTweenAnimation animBoard;
-
     public ScratchCardManager CardManager;
     public EraseProgress EraseProgress;
     
@@ -44,7 +42,6 @@ public class Step8Activity : MonoBehaviour
         {
             image.SetActive(false);
         }
-        imageDone[(int)type].gameObject.SetActive(false);
         imagesFill[(int)type].SetActive(true);
         CardManager.ImageCard = imageNotDones[(int)type].gameObject;
         CardManager.ScratchSurfaceSprite = imageNotDones[(int)type].sprite;
@@ -53,11 +50,6 @@ public class Step8Activity : MonoBehaviour
         _typeObject = type;
         content.localScale = Vector3.zero;
         content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
-            if (imageNotDones[(int)type].material)
-            {
-                imageDone[(int)type].gameObject.SetActive(true);
-            }
-            animBoard.DORestart();
             colorPenController.isReady = true;
         });
         CardManager.Card.InputEnabled = false;
@@ -87,11 +79,6 @@ public class Step8Activity : MonoBehaviour
        content.localScale = Vector3.zero;
 
         content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
-            if (imageNotDones[(int)type].material)
-            {
-                imageDone[(int)type].gameObject.SetActive(true);
-            }
-            animBoard.DORestart();
             colorPenController.isReady = true;
         });
         CardManager.Card.InputEnabled = false;
@@ -110,13 +97,14 @@ public class Step8Activity : MonoBehaviour
             if (!imageNotDones[(int)_typeObject].gameObject.activeSelf)
             {
                 imageNotDones[(int)_typeObject].gameObject.SetActive(true);
+                imageNotDoneFakes[(int)_typeObject].gameObject.SetActive(false);
             };
 
-            if(progress * 100 % 20 == 0 && colorPenController.IsPlay)
-            {
-                vfxTo.Play();
-                vfxTo.transform.position = colorPenController.transform.position;
-            }
+            //if(progress * 100 % 20 == 0 && colorPenController.IsPlay)
+            //{
+            //    vfxTo.Play();
+            //    vfxTo.transform.position = colorPenController.transform.position;
+            //}
 
         }
     }
