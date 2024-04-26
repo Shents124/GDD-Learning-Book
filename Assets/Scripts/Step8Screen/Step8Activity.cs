@@ -74,12 +74,12 @@ public class Step8Activity : MonoBehaviour
         CardManager.InitData();
         CardManager.EraseTextureScale = Vector2.one * 2f;
         _typeObject = type;
-        
-        
-       content.localScale = Vector3.zero;
+
+        content.localScale = Vector3.zero;
 
         content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
             colorPenController.isReady = true;
+            imageNotDones[(int)_typeObject].gameObject.SetActive(false);
         });
         CardManager.Card.InputEnabled = false;
     }
@@ -92,11 +92,10 @@ public class Step8Activity : MonoBehaviour
             this.gameObject.SetActive(false);
             EventManager.SendSimpleEvent(Events.FillColorDone);
         }
-        else
+        else if(progress > 0)
         {
-            if (!imageNotDones[(int)_typeObject].gameObject.activeSelf)
+            if (imageNotDoneFakes[(int)_typeObject].gameObject.activeSelf)
             {
-                imageNotDones[(int)_typeObject].gameObject.SetActive(true);
                 imageNotDoneFakes[(int)_typeObject].gameObject.SetActive(false);
             };
 
