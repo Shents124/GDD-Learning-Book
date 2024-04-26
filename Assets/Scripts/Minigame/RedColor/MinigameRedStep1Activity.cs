@@ -55,7 +55,7 @@ public class MinigameRedStep1Activity : BaseActivity
         {
             animPlayer.gameObject.SetActive(true);
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, true);
-            await UniTask.Delay(System.TimeSpan.FromSeconds(2f));
+            await AsyncService.Delay(2f, this);
             animPlayer.transform.localScale = new Vector2(-animPlayer.transform.localScale.x, animPlayer.transform.localScale.y);
             animPlayer.AnimationState.SetAnimation(0, animRun, true);
             animPlayer.transform.DOMove(posFallPlayer, 1f).OnComplete(() =>

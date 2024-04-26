@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using UI;
 using UnityEngine;
+using Utility;
 
 public class ArrangeCakeStep : BaseStep
 {
@@ -25,15 +21,13 @@ public class ArrangeCakeStep : BaseStep
     }
     public override async void NextStep()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        await AsyncService.Delay(1, this);
         cakeClickBtn.SetActive(false);
         base.NextStep();
     }
     public void ChangeToBakeStep()
     {
-        cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(() => {
-            NextStep();
-        });
+        cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(NextStep);
     }
 
     public void DoneStep()

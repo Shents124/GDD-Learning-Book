@@ -1,7 +1,7 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Spine.Unity;
 using UnityEngine;
+using Utility;
 
 namespace Minigame.RedColor
 {
@@ -14,7 +14,7 @@ namespace Minigame.RedColor
         
         public async UniTask PlayAnim()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(delay));
+            await AsyncService.Delay(delay, this);
             var track = skeletonAnimation.AnimationState.SetAnimation(0, noneToFullName, false);
         }
     }

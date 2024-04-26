@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using System;
+using Utility;
 
 public class Cake : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class Cake : MonoBehaviour
         transform.DOMove(posDone.position, timeMove).SetEase(Ease.Linear);
         transform.DOScale(posDone.localScale, timeMove).SetEase(Ease.Linear);
         fakeAppleDone.SetActive(true);
-        await UniTask.Delay(TimeSpan.FromSeconds(timeMove));
+        await AsyncService.Delay(timeMove, this);
         this.gameObject.SetActive(false);
     }
 }

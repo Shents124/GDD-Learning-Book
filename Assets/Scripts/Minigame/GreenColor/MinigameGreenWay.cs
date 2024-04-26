@@ -7,6 +7,7 @@ using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 public class MinigameGreenWay : MonoBehaviour
 {
@@ -41,6 +42,8 @@ public class MinigameGreenWay : MonoBehaviour
 
     [SerializeField] private Transform posJumDone;
 
+    private bool _isMoveStep;
+    
     private void Start()
     {
         btnBack.onClick.AddListener(OnClickedBackBtn);
@@ -61,7 +64,11 @@ public class MinigameGreenWay : MonoBehaviour
 
     private void OnClickedNextBtn()
     {
+        if (_isMoveStep)
+            return;
+        
         AdsManager.Instance.ShowInterstitial(() => {
+            _isMoveStep = true;
             UIService.PlayFadeIn(() => {
                 UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
                 Destroy(this.gameObject);
@@ -80,16 +87,20 @@ public class MinigameGreenWay : MonoBehaviour
         RandomPosLand();
     }
 
-    public void CompleteTurn()
+    private void CompleteTurn()
     {
         _currentTurn++;
         animFrog.AnimationState.SetAnimation(0, animJump, false);
         animFrog.transform.DOMove(posJumDone.position, 1.34f).OnComplete(async () => {
             animFrog.AnimationState.SetAnimation(0, animWin, true);
-            await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
+            await AsyncService.Delay(1.5f, this);
             if (_currentTurn >= numberTurn)
             {
+                if (_isMoveStep)
+                    return;
+                
                 AdsManager.Instance.ShowInterstitial(() => {
+                    _isMoveStep = true;
                     UIService.PlayFadeIn(() => {
                         UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
                         Destroy(this.gameObject);

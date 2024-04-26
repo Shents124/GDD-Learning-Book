@@ -69,8 +69,7 @@ public class MinigameGreenEat : BaseActivity
                     if (_currentStep >= stepNeed)
                     {
                         frogAnim.AnimationState.SetAnimation(0, animSession, true);
-                        await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
-                        await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
+                        await AsyncService.Delay(1.5f, this);
                         AdsManager.Instance.ShowInterstitial(() => {
                             UIService.PlayFadeIn(() => {
                                 var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
@@ -83,7 +82,7 @@ public class MinigameGreenEat : BaseActivity
                     else
                     {
                         frogAnim.AnimationState.SetAnimation(0, animSession, false);
-                        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+                        await AsyncService.Delay(1f, this);
                         frogAnim.AnimationState.SetAnimation(0, animIdle, true);
                     }
                     isEating = false;

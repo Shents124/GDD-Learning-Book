@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace Minigame.YellowColor
 {
@@ -43,7 +43,7 @@ namespace Minigame.YellowColor
 
         private async void ShowTalk()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            await AsyncService.Delay(1f, this);
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
             track.Complete += Entry => {
                 animPlayer.AnimationState.SetAnimation(0, animIdle, true);
@@ -103,18 +103,18 @@ namespace Minigame.YellowColor
             //UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow5Screen);
         }
 
-        public async void CheckNextStep()
+        private async void CheckNextStep()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            await AsyncService.Delay(1f, this);
             screenAnim.gameObject.SetActive(true);
             screenAnim.DOFade(1, 0.25f).OnComplete(async () => {
                 screenShoot.SetActive(true);
                 screenAnim.DOFade(0, 0.25f).OnComplete(() => {
                     screenAnim.gameObject.SetActive(false);
                 });
-                await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
+                await AsyncService.Delay(2.5f, this);
                 DoneAll.SetActive(true);
-                await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
+                await AsyncService.Delay(2.5f, this);
                 UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
             });
         }

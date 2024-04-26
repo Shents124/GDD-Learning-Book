@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using Constant;
 using Cysharp.Threading.Tasks;
-using Minigame.RedColor;
 using UI;
 using UnityEngine;
-using Utility;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
 namespace MenuScreen
@@ -30,7 +28,7 @@ namespace MenuScreen
             switch (colorType)
             {
                 case ColorType.Red:
-                    UIService.OpenActivityWithFadeIn(ActivityType.BakeCake, args: colorType);
+                    UIService.OpenActivityWithFadeIn(ActivityType.Step345RedScreen, args: colorType);
                     break;
                 
                 case ColorType.Yellow:

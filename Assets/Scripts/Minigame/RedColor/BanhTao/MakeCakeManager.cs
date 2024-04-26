@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UI;
@@ -12,6 +12,8 @@ public class MakeCakeManager : MonoBehaviour
     public Button btnNext, btnBack;
 
     private int currentStep = 0;
+
+    private bool _isMoveStep;
 
     private void Start()
     {
@@ -43,6 +45,10 @@ public class MakeCakeManager : MonoBehaviour
     {
         if (currentStep == allSteps.Count - 1)
         {
+            if (_isMoveStep)
+                return;
+            
+            _isMoveStep = true;
             AdsManager.Instance.ShowInterstitial(() => {
                 UIService.PlayFadeIn(() => {
                     UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
@@ -67,15 +73,16 @@ public class MakeCakeManager : MonoBehaviour
 
     private void OnClickedNextBtn()
     {
+        if (_isMoveStep)
+            return;
+
+        _isMoveStep = true;
         AdsManager.Instance.ShowInterstitial(() =>
         {
             UIService.PlayFadeIn(() => {
                 UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
                 Destroy(this.gameObject);
-                UIService.PlayFadeOut();
             });
         });
-
-
     }
 }

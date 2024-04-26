@@ -6,6 +6,7 @@ using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace Minigame.BlueColor
 {
@@ -43,7 +44,7 @@ namespace Minigame.BlueColor
 
         private async void ShowTalk()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f)); 
+            await AsyncService.Delay(1, this);
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
             track.Complete += Entry => {
                 animPlayer.AnimationState.SetAnimation(0, animIdle, true);
@@ -98,20 +99,21 @@ namespace Minigame.BlueColor
             //UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow5Screen);
         }
 
-        public async void CheckNextStep()
+        private async void CheckNextStep()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            await AsyncService.Delay(1f, this);
             screenAnim.gameObject.SetActive(true);
-            screenAnim.DOFade(1, 0.25f).OnComplete(async () => {
-                screenShoot.SetActive(true);
-                screenAnim.DOFade(0, 0.25f).OnComplete(() => {
-                    screenAnim.gameObject.SetActive(false);
-                });
-                await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
-                DoneAll.SetActive(true);
-                await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
-                UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
-            });
+            screenAnim.DOFade(1, 0.25f).OnComplete(Action);
+        }
+
+        private async void Action()
+        {
+            screenShoot.SetActive(true);
+            screenAnim.DOFade(0, 0.25f).OnComplete(() => { screenAnim.gameObject.SetActive(false); });
+            await AsyncService.Delay(2.5f, this);
+            DoneAll.SetActive(true);
+            await AsyncService.Delay(2.5f, this);
+            UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
         }
     }
 }

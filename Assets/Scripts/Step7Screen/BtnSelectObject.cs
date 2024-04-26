@@ -1,8 +1,8 @@
-﻿using Cysharp.Threading.Tasks;
-using Step7;
+﻿using Step7;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace Step7Screen
 {
@@ -29,7 +29,7 @@ namespace Step7Screen
             step7.stepFillColor.InitData(objectSelect);
             step7.stepFillColor.gameObject.SetActive(true);
             btnSelect.onClick.RemoveAllListeners();
-            await UniTask.Delay(System.TimeSpan.FromSeconds(1f));
+            await AsyncService.Delay(1f, this);
             imageIcon.sprite = spriteDone;
         }
     }

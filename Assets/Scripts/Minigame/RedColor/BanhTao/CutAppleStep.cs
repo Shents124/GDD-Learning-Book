@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UI;
 using UnityEngine;
+using Utility;
 
 public class CutAppleStep : BaseStep
 {
@@ -38,18 +37,21 @@ public class CutAppleStep : BaseStep
         knife.GetComponent<Knife>().enabled = false;
         knife.transform.position = knifeStart.position;
         transform.DOScale(1.2f, 1f);
-        knife.transform.DOMove(knifeDone.position, 1f).OnComplete(async () => {
-            vfxDone.gameObject.SetActive(true);
-            knife.gameObject.SetActive(false);
-            await UniTask.Delay(System.TimeSpan.FromSeconds(1.25f));
-            UIService.PlayFadeIn(() => {
-                NextStep();
-                UIService.PlayFadeOut();
-            });
+        knife.transform.DOMove(knifeDone.position, 1f).OnComplete(Action);
+    }
+
+    private async void Action()
+    {
+        vfxDone.gameObject.SetActive(true);
+        knife.gameObject.SetActive(false);
+        await AsyncService.Delay(1.25f, this);
+        UIService.PlayFadeIn(() => {
+            NextStep();
+            UIService.PlayFadeOut();
         });
     }
 
-    public async void CompleteMiniStep()
+    private async void CompleteMiniStep()
     {
         await allStep[currentStep].OnDonePeel();
         currentStep++;

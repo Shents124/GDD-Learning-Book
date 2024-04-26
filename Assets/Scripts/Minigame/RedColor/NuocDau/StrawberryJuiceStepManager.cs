@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Constant;
-using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,6 +61,9 @@ namespace Minigame.RedColor
         
         private void OnFinishAllStep()
         {
+            if (_isChangeStep)
+                return;
+            
             AdsManager.Instance.ShowInterstitial(() => {
                 _isChangeStep = true;
                 UIService.PlayFadeIn(() => {
@@ -82,7 +84,8 @@ namespace Minigame.RedColor
         {
             if (_isChangeStep)
                 return;
-            
+
+            _isChangeStep = true;
             UIService.PlayFadeIn(() => {
                 if (_currentStep >= _stepCount - 1)
                 {
@@ -90,8 +93,7 @@ namespace Minigame.RedColor
                 }
                 else
                 {
-                    UIService.PlayFadeOut();
-                    ChangeStep();
+                    UIService.PlayFadeIn(ChangeStep);
                 }
             });
 
