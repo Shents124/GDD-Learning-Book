@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Spine.Unity;
 using UnityEngine;
+using Utility;
 
 namespace Minigame.RedColor
 {
@@ -69,7 +70,7 @@ namespace Minigame.RedColor
 
         private async UniTask OnFinish(Action onFinish)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+            await AsyncService.Delay(0.5f, this);
             onFinish?.Invoke();
         }
         

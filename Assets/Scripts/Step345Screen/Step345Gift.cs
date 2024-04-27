@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace Step345Screen
 {
@@ -29,7 +30,7 @@ namespace Step345Screen
         {
             _onClick = onClick;
             giftRectTransform.DOShakeScale(0.3f, 0.2f, 1, 0);
-            await UniTask.Delay(TimeSpan.FromSeconds(delay));
+            await AsyncService.Delay(delay, this);
             balloonState1.SetActive(false);
             balloonState2.SetActive(true);
             balloonState2.GetComponent<RectTransform>().DOAnchorPos(balloonState2EndPos.anchoredPosition, balloonFlyDuration)

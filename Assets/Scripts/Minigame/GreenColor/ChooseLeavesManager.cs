@@ -6,6 +6,7 @@ using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 public class ChooseLeavesManager : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class ChooseLeavesManager : MonoBehaviour
                 frogAnim.AnimationState.SetAnimation(0, animJump, false);
                 frogAnim.transform.DOJump(posDoneStep.position, jumpPower, 1, 1.34f).OnComplete(async () => {
                     frogAnim.AnimationState.SetAnimation(0, animSession, true);
-                    await UniTask.Delay(System.TimeSpan.FromSeconds(1.5f));
+                    await AsyncService.Delay(1.5f, this);
                     AdsManager.Instance.ShowInterstitial(() => {
                         UIService.PlayFadeIn(() => {
                             UIService.OpenActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();

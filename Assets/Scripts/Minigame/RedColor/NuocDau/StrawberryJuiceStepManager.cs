@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Constant;
-using Cysharp.Threading.Tasks;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +15,8 @@ namespace Minigame.RedColor
 
         private int _currentStep;
         private int _stepCount;
+
+        private bool _isChangeStep;
         
         private void Start()
         {
@@ -60,14 +61,16 @@ namespace Minigame.RedColor
         
         private void OnFinishAllStep()
         {
+            if (_isChangeStep)
+                return;
+            
             AdsManager.Instance.ShowInterstitial(() => {
+                _isChangeStep = true;
                 UIService.PlayFadeIn(() => {
                     Destroy(this.gameObject);
                     var step = LoadResourceService.LoadStep<MakeCakeManager>(PathConstants.MAKE_CAKE);
-                    //UIService.OpenActivityAsync(ActivityType.Step7Red, closeLastActivity: false).Forget();
                 });
             });
-            
         }
 
         private async void OnClickedBackBtn()
@@ -79,6 +82,10 @@ namespace Minigame.RedColor
 
         private void OnClickedNextBtn()
         {
+            if (_isChangeStep)
+                return;
+
+            _isChangeStep = true;
             UIService.PlayFadeIn(() => {
                 if (_currentStep >= _stepCount - 1)
                 {
@@ -86,8 +93,7 @@ namespace Minigame.RedColor
                 }
                 else
                 {
-                    UIService.PlayFadeOut();
-                    ChangeStep();
+                    UIService.PlayFadeIn(ChangeStep);
                 }
             });
 

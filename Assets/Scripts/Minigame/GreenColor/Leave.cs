@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using System;
+using Utility;
 
 public class Leave : MonoBehaviour
 {
@@ -20,6 +18,6 @@ public class Leave : MonoBehaviour
         leaveDone.gameObject.SetActive(true);
         leaveDone.position = posAnimStart.position;
         leaveDone.DOMove(posAnimDone.position, 0.75f);
-        await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
+        await AsyncService.Delay(0.75f, this);
     }
 }

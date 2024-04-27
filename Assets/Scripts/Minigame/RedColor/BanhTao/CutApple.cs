@@ -3,6 +3,7 @@ using System.Collections;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using Utility;
 
 public class CutApple : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class CutApple : MonoBehaviour
         }
         donePeel.SetActive(true);
         lineCut.SetActive(false);
-        await UniTask.Delay(TimeSpan.FromSeconds(timeAnimFake * 2));
+        await AsyncService.Delay(timeAnimFake * 2, this);
         donePeel.SetActive(false);
     }
 

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Utility;
 
 namespace Minigame.RedColor
 {
@@ -31,7 +31,7 @@ namespace Minigame.RedColor
             if (numberStrawberry <= 0)
             {
                 _effect.SetActive(true);
-                await UniTask.Delay(TimeSpan.FromSeconds(1f));
+                await AsyncService.Delay(1f, this);
                 CompletedStep();
             }
         }

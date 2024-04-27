@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using Constant;
 using Cysharp.Threading.Tasks;
-using Minigame.RedColor;
 using UI;
 using UnityEngine;
-using Utility;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
 namespace MenuScreen
@@ -30,8 +28,6 @@ namespace MenuScreen
             switch (colorType)
             {
                 case ColorType.Red:
-                    // var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
-                    // UIService.CloseActivityAsync(ActivityType.MenuScreen, true).Forget();
                     UIService.OpenActivityWithFadeIn(ActivityType.Step345RedScreen, args: colorType);
                     break;
                 

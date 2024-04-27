@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Utility;
 
 public class PeelAppleStep : BaseStep
 {
@@ -24,7 +25,7 @@ public class PeelAppleStep : BaseStep
         EventManager.Disconnect(Events.PeelAppleDone, ()=> CompleteMiniStep().Forget());
     }
 
-    public async UniTask CompleteMiniStep()
+    private async UniTask CompleteMiniStep()
     {
         knife.DisActiveKnife();
         allStep[currentStep].OnDonePeel();
@@ -33,14 +34,9 @@ public class PeelAppleStep : BaseStep
         if(currentStep >= numberStep)
         {
             applePeelDone.SetActive(true);
-            await UniTask.Delay(System.TimeSpan.FromSeconds(0.75f));
+            await AsyncService.Delay(0.75f, this);
             knife.type = TypeKnife.Cut;
             NextStep();
-            //foreach (var peel in allStep)
-            //{
-            //    peel.gameObject.SetActive(false);
-            //    peel.ResetStep();
-            //}
 
         }
         else

@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using Utility;
 
 namespace Minigame.RedColor
 {
@@ -33,7 +34,7 @@ namespace Minigame.RedColor
 
         private async UniTask RemoveStrawberries()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(delayDropStrawberry));
+            await AsyncService.Delay(delayDropStrawberry, this);
             ZoomIn();
         }
 
@@ -77,7 +78,7 @@ namespace Minigame.RedColor
         
         private async UniTask OnCompletedStep()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            await AsyncService.Delay(1f, this);
             CompletedStep();
         }
     }
