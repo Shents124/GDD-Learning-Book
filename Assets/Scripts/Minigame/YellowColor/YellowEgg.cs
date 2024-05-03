@@ -9,6 +9,7 @@ namespace Minigame.YellowColor
         [SerializeField] private GameObject trungObj;
         [SerializeField] private GameObject shadow;
         [SerializeField] private BabyChicken babyChicken;
+        [SerializeField] private GameObject vfx;
 
         private DragObject _dragObject;
         private RectTransform _rectTransform;
@@ -56,14 +57,17 @@ namespace Minigame.YellowColor
             SetOnClick(false);
             _dragObject.DisableOverrideSorting();
             _callback?.Invoke();
+            vfx.SetActive(true);
         }
         
         private void OnClick()
         {
             _rectTransform.SetParent(_parent);
-            _rectTransform.DOAnchorPos(Vector2.zero, _moveDuration).OnComplete(() => {
+            _rectTransform.DOJump(_parent.position, 400f, 1, _moveDuration).OnComplete(() => {
                 _callback?.Invoke();
                 SetOnClick(false);
+                vfx.SetActive(true);
+                _dragObject.DisableOverrideSorting();
             });
         }
 

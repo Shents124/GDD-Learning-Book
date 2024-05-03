@@ -34,12 +34,7 @@ namespace Step345Screen
 
         [SerializeField] private ColorType _colorType;
         private bool _isFilled = false;
-
-        protected override void InitializeData(Memory<object> args)
-        {
-            base.InitializeData(args);
-        }
-
+        
         public override void DidEnter(Memory<object> args)
         {
             var giftTransform = gift.GetComponent<RectTransform>();
@@ -90,7 +85,7 @@ namespace Step345Screen
             _isFilled = true;
             var rectTransform = button.GetComponent<RectTransform>();
             rectTransform.DOJump(characterEndPosition.transform.position, 400f, 1, foodMoveDuration);
-            rectTransform.DOScale(Vector3.zero, foodMoveDuration * 2).OnComplete(Fill);
+            rectTransform.DOScale(Vector3.zero, foodMoveDuration).OnComplete(Fill);
         }
 
         private void Fill()
