@@ -1,3 +1,4 @@
+using Coffee.UIExtensions;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -9,12 +10,15 @@ public class Leave : MonoBehaviour
     public Transform posAnimDone;
     public Transform posFrog;
 
+    public UIParticle vfxDone;
+
     [SerializeField] private Transform leaveDone;
 
     [SerializeField] private Transform leaveFake;
     public async UniTask ShowDone()
     {
         leaveFake.gameObject.SetActive(false);
+        vfxDone.Play();
         leaveDone.gameObject.SetActive(true);
         leaveDone.position = posAnimStart.position;
         leaveDone.DOMove(posAnimDone.position, 0.75f);

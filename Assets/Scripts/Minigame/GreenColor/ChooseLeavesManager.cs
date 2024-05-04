@@ -15,7 +15,7 @@ public class ChooseLeavesManager : MonoBehaviour
     [SpineAnimation]
     public string animJump, animSession, animIdle;
 
-    public LeaveChoose currentLeave;
+    public List<LeaveChoose> leaveSelects;
 
     public SkeletonGraphic frogAnim;
 
@@ -45,12 +45,20 @@ public class ChooseLeavesManager : MonoBehaviour
         {
             posLeaveChooseStart.Add(t.position);
         }
-        currentLeave.posDone = leaves[0].posAnimDone;
         choseLeaves.transform.position = choseLeavesEnd.position;
         choseLeaves.transform.DOMove(choseLeavesStart.position, 0.5f).SetDelay(2f).OnComplete(() => {
-            currentLeave.StartChoose();
+            StartChooseAllLeave();
         });
 
+    }
+
+    private void StartChooseAllLeave()
+    {
+        foreach(var l in leaveSelects)
+        {
+            l.posDone = leaves[currentStep].posAnimDone;
+            l.StartChoose();
+        }
     }
 
     private void PlayAnimJum()
@@ -83,17 +91,19 @@ public class ChooseLeavesManager : MonoBehaviour
                 }
                 choseLeaves.SetActive(true);
                 choseLeaves.transform.DOMove(choseLeavesStart.position, 0.5f).OnComplete(() => {
-                    currentLeave.StartChoose();
+                    StartChooseAllLeave();
                 });
                 leaves[currentStep].gameObject.SetActive(true);
-                currentLeave.posDone = leaves[currentStep].posAnimDone;
             }
         };
     }
 
     public async void NextStep()
     {
-        currentLeave.ResetLeave();
+        foreach (var l in leaveSelects)
+        {
+            l.ResetLeave();
+        }
         choseLeaves.transform.DOMove(choseLeavesEnd.position, 0.5f).OnComplete(() => {
             choseLeaves.SetActive(false);
         });

@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class LeaveChoose : MonoBehaviour
 {
+    public Sprite[] imageNotCorrect;
+
+    public bool isCurrentLeave;
     public ChooseLeavesManager manager;
     public Transform posDone;
 
@@ -34,6 +38,11 @@ public class LeaveChoose : MonoBehaviour
     public void StartChoose()
     {
         isStarted = true;
+        if (!isCurrentLeave)
+        {
+            int ran = Random.Range(0, imageNotCorrect.Length);
+            GetComponent<Image>().sprite = imageNotCorrect[ran];
+        }
     }
 
     public void ResetLeave()
@@ -54,7 +63,7 @@ public class LeaveChoose : MonoBehaviour
 
     public void OnEndDrag()
     {
-        if (Vector2.Distance(transform.position, posDone.position) < 50f)
+        if (isCurrentLeave && Vector2.Distance(transform.position, posDone.position) < 50f )
         {
             manager.NextStep();
         }
