@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class LeaveChoose : MonoBehaviour
 {
-    public Sprite[] imageNotCorrect;
-
     public bool isCurrentLeave;
     public ChooseLeavesManager manager;
     public Transform posDone;
@@ -23,8 +21,13 @@ public class LeaveChoose : MonoBehaviour
 
     private void Start()
     {
-        posStart = transform.position;   
+        ResetStartPos();
         scaleStart = transform.localScale;
+    }
+
+    public void ResetStartPos()
+    {
+        posStart = transform.position;
     }
 
     private void Update()
@@ -38,11 +41,6 @@ public class LeaveChoose : MonoBehaviour
     public void StartChoose()
     {
         isStarted = true;
-        if (!isCurrentLeave)
-        {
-            int ran = Random.Range(0, imageNotCorrect.Length);
-            GetComponent<Image>().sprite = imageNotCorrect[ran];
-        }
     }
 
     public void ResetLeave()
@@ -63,9 +61,19 @@ public class LeaveChoose : MonoBehaviour
 
     public void OnEndDrag()
     {
-        if (isCurrentLeave && Vector2.Distance(transform.position, posDone.position) < 50f )
+        if (Vector2.Distance(transform.position, posDone.position) < 50f)
         {
-            manager.NextStep();
+            if (!isCurrentLeave)
+            {
+                isClick = false;
+                transform.position = posStart;
+                transform.localScale = scaleStart;
+                transform.DOShakePosition(0.5f, 15, 50, 90);
+            }
+            else
+            {
+                manager.NextStep();
+            }
         }
         else
         {

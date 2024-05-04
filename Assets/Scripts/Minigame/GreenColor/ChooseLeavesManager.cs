@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Spine.Unity;
@@ -16,6 +17,8 @@ public class ChooseLeavesManager : MonoBehaviour
     public string animJump, animSession, animIdle;
 
     public List<LeaveChoose> leaveSelects;
+
+    public LeaveChoose leaveCurrent;
 
     public SkeletonGraphic frogAnim;
 
@@ -54,6 +57,8 @@ public class ChooseLeavesManager : MonoBehaviour
 
     private void StartChooseAllLeave()
     {
+        leaveCurrent.posDone = leaves[currentStep].posAnimDone;
+        leaveCurrent.StartChoose();
         foreach(var l in leaveSelects)
         {
             l.posDone = leaves[currentStep].posAnimDone;
@@ -104,6 +109,7 @@ public class ChooseLeavesManager : MonoBehaviour
         {
             l.ResetLeave();
         }
+        leaveCurrent.ResetLeave();
         choseLeaves.transform.DOMove(choseLeavesEnd.position, 0.5f).OnComplete(() => {
             choseLeaves.SetActive(false);
         });
@@ -114,10 +120,42 @@ public class ChooseLeavesManager : MonoBehaviour
 
     private void ResetCollect()
     {
-        for (int i = 0; i < btnChoose.Length; i++)
+        foreach(var l in leaveSelects)
         {
-            btnChoose[i].position = posLeaveChooseStart[i];
-            btnChoose[i].gameObject.SetActive(true);
+            l.gameObject.SetActive(false);
+        }
+
+        List<LeaveChoose> tempList  = leaveSelects.ToList();
+
+        List<LeaveChoose> randomElements = new();
+
+        for (int i = 0; i < 2; i++)
+        {
+            int randomIndex = Random.Range(0, tempList.Count);
+            randomElements.Add(tempList[randomIndex]);
+            tempList.RemoveAt(randomIndex);
+        }
+
+        randomElements.Add(leaveCurrent);
+
+        Shuffle(randomElements);
+
+        for (int i = 0; i < randomElements.Count; i++)
+        {
+            randomElements[i].transform.position = posLeaveChooseStart[i];
+            randomElements[i].ResetStartPos();
+            randomElements[i].gameObject.SetActive(true);
+        }
+    }
+
+    void Shuffle<T>(List<T> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            int randomIndex = Random.Range(i, list.Count);
+            T temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
         }
     }
 }

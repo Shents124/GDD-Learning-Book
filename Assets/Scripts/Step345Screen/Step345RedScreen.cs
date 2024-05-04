@@ -144,6 +144,7 @@ namespace Step345Screen
         {
             if (_colorType != colorType)
             {
+                card.transform.DOShakePosition(0.5f, 15, 50, 90);
                 characterController.PlayAnim(0, characterController.sadAnimation, false, () => {
                     characterController.PlayAnim(0, characterController.idleAnimation, true);
                 });

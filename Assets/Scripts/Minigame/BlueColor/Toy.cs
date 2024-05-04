@@ -53,7 +53,8 @@ namespace Minigame.BlueColor
         public void DoMove(RectTransform destination, Vector3 scale, float duration, Action onFinish)
         {
             shadow.SetActive(false);
-            _button.interactable = false;
+            if(_button)
+                _button.interactable = false;
             _rectTransform.SetParent(destination);
             _rectTransform.DOJump(destination.transform.position, 400f, 1, duration).OnComplete(() => {
                 onFinish?.Invoke();

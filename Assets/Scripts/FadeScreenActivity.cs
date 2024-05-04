@@ -18,21 +18,21 @@ namespace DefaultNamespace
             return base.Initialize(args);
         }
         
-        public void FadeIn(Action callback)
+        public void FadeIn(Action callback, float timeDuration = 0.5f, float alphaDone = 0)
         {
-            canvasGroup.alpha = 0f;
+            canvasGroup.alpha = 0;
             SetBlockRaycast(true);
-            canvasGroup.DOFade(1, animDuration).OnComplete(() => {
+            canvasGroup.DOFade(alphaDone, timeDuration).OnComplete(() => {
                 SetBlockRaycast(false);
                 callback?.Invoke();
             });
         }
 
-        public void FadeOut(Action callback)
+        public void FadeOut(Action callback, float timeDuration = 0.5f)
         {
             canvasGroup.alpha = 1f;
             SetBlockRaycast(true);
-            canvasGroup.DOFade(0, animDuration).OnComplete(() => {
+            canvasGroup.DOFade(0, timeDuration).OnComplete(() => {
                 SetBlockRaycast(false);
                 callback?.Invoke();
             });

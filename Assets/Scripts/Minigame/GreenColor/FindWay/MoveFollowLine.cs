@@ -58,6 +58,7 @@ public class MoveFollowLine : MonoBehaviour
     {
         positionMove = wayControl.getPoints().ToArray();
         wayControl.StopDraw();
+        wayControl.Init();
         startMovement = true;
         moveIndex = 0;
     }
@@ -78,7 +79,7 @@ public class MoveFollowLine : MonoBehaviour
             if(distance <= 0.05f)
             {
                 moveIndex++;
-                wayControl.DeleteFirstPoint();
+                //wayControl.DeleteFirstPoint();
             }
             if (moveIndex >= positionMove.Length)
             {

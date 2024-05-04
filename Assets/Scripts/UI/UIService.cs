@@ -78,7 +78,7 @@ namespace UI
             await activityContainer.ShowAsync(ActivityType.FadeScreen.ToString(), false);
         }
         
-        public static void PlayFadeIn(Action callback)
+        public static void PlayFadeIn(Action callback, float timeDuration = 0.5f, float alphaDone = 1)
         {
             var activityContainer = ActivityContainer.Find(UIConstant.FADE_ACTIVITY);
             bool popupExist = activityContainer.TryGet(ActivityType.FadeScreen.ToString(), out var toast);
@@ -88,11 +88,11 @@ namespace UI
             
             if (toast.View is FadeScreenActivity fadeScreenActivity)
             {
-                fadeScreenActivity.FadeIn(callback);
+                fadeScreenActivity.FadeIn(callback, timeDuration, alphaDone);
             }
         }
         
-        public static void PlayFadeOut(Action callback = null)
+        public static void PlayFadeOut(Action callback = null, float timeDuration = 0.5f)
         {
             var activityContainer = ActivityContainer.Find(UIConstant.FADE_ACTIVITY);
             bool popupExist = activityContainer.TryGet(ActivityType.FadeScreen.ToString(), out var toast);
@@ -102,7 +102,7 @@ namespace UI
             
             if (toast.View is FadeScreenActivity fadeScreenActivity)
             {
-                fadeScreenActivity.FadeOut(callback);
+                fadeScreenActivity.FadeOut(callback, timeDuration);
             }
         }
     }
