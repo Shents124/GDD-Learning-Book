@@ -10,6 +10,8 @@ namespace Minigame.YellowColor
         [SerializeField] private GameObject shadow;
         [SerializeField] private BabyChicken babyChicken;
         [SerializeField] private GameObject vfx;
+        [SerializeField] private DOTweenAnimation anim1;
+        [SerializeField] private DOTweenAnimation anim2;
 
         private DragObject _dragObject;
         private RectTransform _rectTransform;
@@ -54,29 +56,33 @@ namespace Minigame.YellowColor
             shadow.SetActive(false);
             _rectTransform.SetParent(_parent);
             _rectTransform.anchoredPosition = Vector2.one;
-            SetOnClick(false);
-            _dragObject.DisableOverrideSorting();
-            _callback?.Invoke();
-            vfx.SetActive(true);
+            OnInBasketEgg();
         }
         
         private void OnClick()
         {
             _rectTransform.SetParent(_parent);
-            _rectTransform.DOJump(_parent.position, 400f, 1, _moveDuration).OnComplete(() => {
-                _callback?.Invoke();
-                SetOnClick(false);
-                vfx.SetActive(true);
-                _dragObject.DisableOverrideSorting();
-            });
+            _rectTransform.DOJump(_parent.position, 400f, 1, _moveDuration).OnComplete(OnInBasketEgg);
         }
 
+        private void OnInBasketEgg()
+        {
+            _callback?.Invoke();
+            SetOnClick(false);
+            vfx.SetActive(true);
+            _dragObject.DisableOverrideSorting();
+            anim1.DOPlay();
+            //anim2.DOPlay();
+        }
+        
         public void BirthChicken()
         {
             trungObj.SetActive(false);
             shadow.SetActive(false);
             babyChicken.gameObject.SetActive(true);
             babyChicken.PlayAnimRun();
+            anim1.DOKill();
+            //anim2.DOKill();
         }
     }
 }

@@ -18,7 +18,9 @@ namespace Minigame.YellowColor
         [SerializeField] private RectTransform showPosition;
         [SerializeField] private GameObject backDrop;
 
-        [SerializeField] private DropObject _dropObject;
+        [SerializeField] private GameObject vfx;
+        
+        private DropObject _dropObject;
         
         private int _currentEgg;
         private Action _onFinish;
@@ -75,6 +77,7 @@ namespace Minigame.YellowColor
 
         private void PlayAnimRun()
         {
+            vfx.SetActive(true);
             StartCoroutine(Coroutine());
             foreach (var egg in eggs)
             {

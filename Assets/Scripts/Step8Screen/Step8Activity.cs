@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Coffee.UIExtensions;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using ScratchCardAsset;
 using UI;
