@@ -110,6 +110,14 @@ public class Step8Activity : MonoBehaviour
     
     private void DoneFillColor2(float progress)
     {
+        if (progress > 0)
+        {
+            if (imageNotDoneFakes[(int)_typeObject].gameObject.activeSelf)
+            {
+                imageNotDoneFakes[(int)_typeObject].gameObject.SetActive(false);
+            };
+        }
+
         if (!(progress >= percentToDone) || _isDone)
         {
             return;

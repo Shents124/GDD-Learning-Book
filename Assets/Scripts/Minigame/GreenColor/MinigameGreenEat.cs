@@ -22,16 +22,23 @@ public class MinigameGreenEat : BaseActivity
 
     public TongleFrog frog;
 
-    public SkeletonGraphic frogAnim;
+    public SkeletonGraphic frogAnim, animPlayer;
 
     [SpineAnimation]
     public string animEat, animIdle, animSession;
 
+    [SpineAnimation(dataField: "animPlayer")]
+    public string animPlayerTalk, animPlayerIdle;
     private bool isEating;
+
+    public Transform posFall;
+
+    public GameObject bgPlayer;
     protected override void Start()
     {
         UIService.PlayFadeOut();
         isEating = false;
+        ShowTalk();
         foreach (var anim in animalFlyRandoms)
         {
             anim.actionClick += ()=>
@@ -41,6 +48,17 @@ public class MinigameGreenEat : BaseActivity
                 frog.Eat(anim, OnClickAnimal);
             };
         }
+    }
+    private async void ShowTalk()
+    {
+        await AsyncService.Delay(1, this);
+        var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, false);
+        track.Complete += Entry => {
+            animPlayer.AnimationState.SetAnimation(0, animPlayerIdle, true);
+            animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 2f).OnComplete(() => {
+                bgPlayer.SetActive(false);
+            });
+        };
     }
 
     protected override void OnClickedNextBtn()
@@ -75,7 +93,7 @@ public class MinigameGreenEat : BaseActivity
                                 var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
                                 UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
                                 UIService.PlayFadeOut();
-                            });
+                            }, alphaDone : 0.75f);
                         });
                         return;
                     }

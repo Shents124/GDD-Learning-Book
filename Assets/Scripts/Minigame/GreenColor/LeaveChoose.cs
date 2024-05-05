@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class LeaveChoose : MonoBehaviour
 {
+    public bool isCurrentLeave;
     public ChooseLeavesManager manager;
     public Transform posDone;
 
@@ -19,8 +21,13 @@ public class LeaveChoose : MonoBehaviour
 
     private void Start()
     {
-        posStart = transform.position;   
+        ResetStartPos();
         scaleStart = transform.localScale;
+    }
+
+    public void ResetStartPos()
+    {
+        posStart = transform.position;
     }
 
     private void Update()
@@ -56,7 +63,17 @@ public class LeaveChoose : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, posDone.position) < 50f)
         {
-            manager.NextStep();
+            if (!isCurrentLeave)
+            {
+                isClick = false;
+                transform.position = posStart;
+                transform.localScale = scaleStart;
+                transform.DOShakePosition(0.5f, 15, 50, 90);
+            }
+            else
+            {
+                manager.NextStep();
+            }
         }
         else
         {

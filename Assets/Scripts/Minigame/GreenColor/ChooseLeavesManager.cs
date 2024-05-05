@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Spine.Unity;
@@ -15,7 +16,9 @@ public class ChooseLeavesManager : MonoBehaviour
     [SpineAnimation]
     public string animJump, animSession, animIdle;
 
-    public LeaveChoose currentLeave;
+    public List<LeaveChoose> leaveSelects;
+
+    public LeaveChoose leaveCurrent;
 
     public SkeletonGraphic frogAnim;
 
@@ -45,12 +48,22 @@ public class ChooseLeavesManager : MonoBehaviour
         {
             posLeaveChooseStart.Add(t.position);
         }
-        currentLeave.posDone = leaves[0].posAnimDone;
         choseLeaves.transform.position = choseLeavesEnd.position;
         choseLeaves.transform.DOMove(choseLeavesStart.position, 0.5f).SetDelay(2f).OnComplete(() => {
-            currentLeave.StartChoose();
+            StartChooseAllLeave();
         });
 
+    }
+
+    private void StartChooseAllLeave()
+    {
+        leaveCurrent.posDone = leaves[currentStep].posAnimDone;
+        leaveCurrent.StartChoose();
+        foreach(var l in leaveSelects)
+        {
+            l.posDone = leaves[currentStep].posAnimDone;
+            l.StartChoose();
+        }
     }
 
     private void PlayAnimJum()
@@ -83,17 +96,20 @@ public class ChooseLeavesManager : MonoBehaviour
                 }
                 choseLeaves.SetActive(true);
                 choseLeaves.transform.DOMove(choseLeavesStart.position, 0.5f).OnComplete(() => {
-                    currentLeave.StartChoose();
+                    StartChooseAllLeave();
                 });
                 leaves[currentStep].gameObject.SetActive(true);
-                currentLeave.posDone = leaves[currentStep].posAnimDone;
             }
         };
     }
 
     public async void NextStep()
     {
-        currentLeave.ResetLeave();
+        foreach (var l in leaveSelects)
+        {
+            l.ResetLeave();
+        }
+        leaveCurrent.ResetLeave();
         choseLeaves.transform.DOMove(choseLeavesEnd.position, 0.5f).OnComplete(() => {
             choseLeaves.SetActive(false);
         });
@@ -104,10 +120,42 @@ public class ChooseLeavesManager : MonoBehaviour
 
     private void ResetCollect()
     {
-        for (int i = 0; i < btnChoose.Length; i++)
+        foreach(var l in leaveSelects)
         {
-            btnChoose[i].position = posLeaveChooseStart[i];
-            btnChoose[i].gameObject.SetActive(true);
+            l.gameObject.SetActive(false);
+        }
+
+        List<LeaveChoose> tempList  = leaveSelects.ToList();
+
+        List<LeaveChoose> randomElements = new();
+
+        for (int i = 0; i < 2; i++)
+        {
+            int randomIndex = Random.Range(0, tempList.Count);
+            randomElements.Add(tempList[randomIndex]);
+            tempList.RemoveAt(randomIndex);
+        }
+
+        randomElements.Add(leaveCurrent);
+
+        Shuffle(randomElements);
+
+        for (int i = 0; i < randomElements.Count; i++)
+        {
+            randomElements[i].transform.position = posLeaveChooseStart[i];
+            randomElements[i].ResetStartPos();
+            randomElements[i].gameObject.SetActive(true);
+        }
+    }
+
+    void Shuffle<T>(List<T> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            int randomIndex = Random.Range(i, list.Count);
+            T temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
         }
     }
 }
