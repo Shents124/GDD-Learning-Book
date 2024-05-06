@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,7 +22,6 @@ namespace Minigame.YellowColor
         {
             container.anchoredPosition = hidePosition.anchoredPosition;
             tableDropObject.Initialize(OnDrop);
-
         }
 
         private void OnDrop(PointerEventData eventData)
