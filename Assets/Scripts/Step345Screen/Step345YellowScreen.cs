@@ -34,12 +34,7 @@ namespace Step345Screen
 
         [SerializeField] private ColorType _colorType;
         private bool _isFilled = false;
-
-        protected override void InitializeData(Memory<object> args)
-        {
-            base.InitializeData(args);
-        }
-
+        
         public override void DidEnter(Memory<object> args)
         {
             var giftTransform = gift.GetComponent<RectTransform>();
