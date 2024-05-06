@@ -92,5 +92,12 @@ namespace Step345Screen
             skeletonAnimation.Skeleton.SetSlotsToSetupPose();
             skeletonAnimation.Skeleton.SetBonesToSetupPose();
         }
+        
+        public void FlipX(float value)
+        {
+            skeletonAnimation.Skeleton.ScaleX = value;
+            skeletonAnimation.Skeleton.SetSlotsToSetupPose();
+            skeletonAnimation.Skeleton.SetBonesToSetupPose();
+        }
     }
 }

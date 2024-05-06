@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UI;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace Minigame.YellowColor
             new List<YellowFood> { YellowFood.RauCai, YellowFood.XupLo, YellowFood.Carot },
         };
 
+        [SerializeField] private Step345Screen.CharacterController characterController;
+        [SerializeField] private RectTransform endPositionCharacter;
         [SerializeField] private float chickenMoveDuration = 1f;
         [SerializeField] private List<RectTransform> lines;
         [SerializeField] private RectTransform selectFoodPosition;
@@ -24,11 +27,10 @@ namespace Minigame.YellowColor
 
         private int _chickenIndex;
         private int _chickenCount;
-
         
         public override void DidEnter(Memory<object> args)
         {
-            StartCoroutine(SetLineChicken(BabyChickenSelectFood));
+            StartCoroutine(SetLineChicken(MoveCharacter));
             base.DidEnter(args);
         }
 
@@ -83,10 +85,30 @@ namespace Minigame.YellowColor
             else
             {
                 currentChicken.OnEat(item, HideTable, CheckFinish);
-
             }
         }
 
+        private void MoveCharacter()
+        {
+            var playerRect = characterController.GetComponent<RectTransform>();
+            var originPos = playerRect.anchoredPosition;
+            
+            characterController.PlayAnim(0, characterController.runAnimation, true, applyToMask: false);
+            playerRect.DOAnchorPos(endPositionCharacter.anchoredPosition, 2f)
+                .OnComplete(() => {
+
+                    characterController.PlayAnim(0, characterController.idleTalkAnimation, false, applyToMask: false, onFinish: () => {
+                        characterController.PlayAnim(0, characterController.idleTalkAnimation, false, applyToMask: false,
+                            onFinish: () => 
+                            {
+                                characterController.FlipX(1f);
+                                characterController.PlayAnim(0, characterController.runAnimation, true, applyToMask: false);
+                                playerRect.DOAnchorPos(originPos, 2f).OnComplete(BabyChickenSelectFood);
+                            });
+                    });
+                });
+        }
+        
         private void CheckFinish()
         {
             _chickenIndex++;
@@ -99,5 +121,6 @@ namespace Minigame.YellowColor
                 BabyChickenSelectFood();
             }
         }
+        
     }
 }

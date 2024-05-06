@@ -10,7 +10,7 @@ namespace Minigame.YellowColor
     {
         [SerializeField] public YellowFood yellowFood;
         [SerializeField] private RectTransform eatPosition;
-        [SerializeField] private GameObject dialog;
+        [SerializeField] private CanvasGroup dialog;
         [SerializeField] private Image foodSprite;
 
         private void Start()
@@ -29,7 +29,7 @@ namespace Minigame.YellowColor
         
         public void OnEat(TableFoodItem foodItem, Action onHide, Action onFinish)
         {
-            dialog.SetActive(false);
+            dialog.gameObject.SetActive(false);
             foodItem.OnSelectRight(eatPosition, 0.5f, () => 
             {
                 onHide?.Invoke();
@@ -53,9 +53,11 @@ namespace Minigame.YellowColor
         public void ShowDialog()
         {
             foodSprite.sprite = LoadSpriteService.LoadYellowFood(yellowFood);
-            dialog.SetActive(true);
+            dialog.gameObject.SetActive(true);
+            dialog.alpha = 0f;
+            dialog.DOFade(1f, 1f);
         }
 
-        private void HideDialog() => dialog.SetActive(false);
+        private void HideDialog() => dialog.gameObject.SetActive(false);
     }
 }
