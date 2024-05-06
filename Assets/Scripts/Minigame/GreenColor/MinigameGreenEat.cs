@@ -55,7 +55,7 @@ public class MinigameGreenEat : BaseActivity
         var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, false);
         track.Complete += Entry => {
             animPlayer.AnimationState.SetAnimation(0, animPlayerIdle, true);
-            animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 2f).OnComplete(() => {
+            animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1f).OnComplete(() => {
                 bgPlayer.SetActive(false);
             });
         };

@@ -57,7 +57,7 @@ namespace Step7
                 {
                     animPlayer.transform.localScale = new Vector2(Math.Abs(animPlayer.transform.localScale.x), animPlayer.transform.localScale.y);
                 }
-                animPlayer.transform.DOLocalMove(posFall.localPosition, 1.5f).OnComplete(() => {
+                animPlayer.transform.DOLocalMove(posFall.localPosition, 1f).OnComplete(() => {
                     bgPlayer.SetActive(false);
                 });
             };

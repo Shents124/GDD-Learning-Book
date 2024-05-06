@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UI;
 using UnityEngine;
@@ -39,6 +40,7 @@ namespace Minigame.YellowColor
             for (int i = 0, n = babyChickens.Count; i < n; i++)
             {
                 babyChickens[i].RunToPosition(lines[i], chickenMoveDuration);
+                babyChickens[i].transform.SetSiblingIndex(babyChickens.Count - 1 - i);
                 _chickenCount++;
             }
 

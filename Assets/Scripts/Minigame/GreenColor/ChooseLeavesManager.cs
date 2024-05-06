@@ -39,11 +39,10 @@ public class ChooseLeavesManager : MonoBehaviour
 
     private List<Vector2> posLeaveChooseStart = new();
 
-    private Vector2 posDoneBg;
+    [SerializeField] private Transform[] posDoneBg;
 
     private void Start()
     {
-        posDoneBg = transform.position;
         foreach (Transform t in btnChoose)
         {
             posLeaveChooseStart.Add(t.position);
@@ -92,8 +91,9 @@ public class ChooseLeavesManager : MonoBehaviour
             {
                 if (currentStep == 2)
                 {
-                    transform.DOMove(posDoneBg, 1f);
+                    transform.DOMove(posDoneBg[0].position, 1f);
                 }
+
                 choseLeaves.SetActive(true);
                 choseLeaves.transform.DOMove(choseLeavesStart.position, 0.5f).OnComplete(() => {
                     StartChooseAllLeave();

@@ -47,7 +47,7 @@ namespace Minigame.YellowColor
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
             track.Complete += Entry => {
                 animPlayer.AnimationState.SetAnimation(0, animIdle, true);
-                animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 2f).OnComplete(() => {
+                animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1).OnComplete(() => {
                     bgPlayer.SetActive(false);
                 });
             };
