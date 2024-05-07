@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,6 +58,7 @@ public class BtnCollectFruit : MonoBehaviour
 
         if (correctFruit)
         {
+            AudioUtility.PlaySFX(AudioClipName.Jump);
             Vector2 scale = transform.localScale;
             transform.DOScale(scale * 0.8f, timeJump);
             transform.DOJump(managerStep.posCollect[managerStep.CurrentFruit].position, jumpower, 1, timeJump).OnComplete(() => {
@@ -70,6 +70,7 @@ public class BtnCollectFruit : MonoBehaviour
         }
         else
         {
+            AudioUtility.PlaySFX(AudioClipName.Falldown);
             animShake.DOPlay();
         }
     }

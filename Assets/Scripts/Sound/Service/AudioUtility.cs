@@ -25,5 +25,11 @@ namespace Sound.Service
             var audio = GetAudioClip(AudioClipName);
             EazySoundManager.Instance.PlaySound(audio, false);
         }
+
+        public static void PlayUISfx(AudioClipName audioClipName)
+        {
+            var audio = GetAudioClip(audioClipName);
+            EazySoundManager.Instance.PlayUISound(audio);
+        }
     }
 }

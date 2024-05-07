@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
@@ -31,6 +32,8 @@ namespace Step345Screen
             _onClick = onClick;
             giftRectTransform.DOShakeScale(0.3f, 0.2f, 1, 0);
             await AsyncService.Delay(delay, this);
+            
+            AudioUtility.PlaySFX(AudioClipName.Jump);
             balloonState1.SetActive(false);
             balloonState2.SetActive(true);
             balloonState2.GetComponent<RectTransform>().DOAnchorPos(balloonState2EndPos.anchoredPosition, balloonFlyDuration)
