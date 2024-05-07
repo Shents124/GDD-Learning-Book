@@ -19,7 +19,7 @@ public class ShowTalkStartGame : MonoBehaviour
         var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, false);
         track.Complete += Entry => {
             animPlayer.AnimationState.SetAnimation(0, animPlayerIdle, true);
-            animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 2f).OnComplete(() => {
+            animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1).OnComplete(() => {
                 gameObject.SetActive(false);
                 callback?.Invoke();
             });

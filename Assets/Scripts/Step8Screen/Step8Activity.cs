@@ -77,7 +77,6 @@ public class Step8Activity : MonoBehaviour
 
         content.DOScale(Vector3.one, 0.5f).OnComplete(() => {
             colorPenController.isReady = true;
-            imageNotDones[(int)_typeObject].gameObject.SetActive(false);
         });
         CardManager.Card.InputEnabled = false;
     }
