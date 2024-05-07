@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 
 namespace Minigame.BlueColor
@@ -49,7 +50,7 @@ namespace Minigame.BlueColor
             }
 
             yield return new WaitForSeconds(duration);
-            
+            AudioUtility.PlaySFX(AudioClipName.Hanging_clothes);
             for (int i = 0; i < n; i++)
             {
                 redClothes[i].gameObject.SetActive(false);

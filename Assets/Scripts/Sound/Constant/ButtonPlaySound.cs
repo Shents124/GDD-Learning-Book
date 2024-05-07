@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Hellmade.Sound;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.UI;
 

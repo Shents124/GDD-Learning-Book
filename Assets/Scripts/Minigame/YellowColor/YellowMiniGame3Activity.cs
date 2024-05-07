@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Sound.Service;
 using UI;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Minigame.YellowColor
         
         public override void DidEnter(Memory<object> args)
         {
+            AudioUtility.PlaySFX(AudioClipName.Chicken_all);
             StartCoroutine(NextMiniGame());
             base.DidEnter(args);
         }

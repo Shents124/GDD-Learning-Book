@@ -1,4 +1,5 @@
 ﻿using System;
+using Sound.Service;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -30,6 +31,7 @@ namespace Minigame.YellowColor
         
         public void LayEgg(Action onFinish)
         {
+            AudioUtility.PlaySFX(AudioClipName.Chicken_mom);
             var track = skeletonAnimation.AnimationState.SetAnimation(0, animLayEgg, false);
             track.Event += HandleEvent;
             track.Complete += entry => LayEggTwo(onFinish);
@@ -37,6 +39,7 @@ namespace Minigame.YellowColor
 
         private void LayEggTwo(Action onFinish)
         {
+            AudioUtility.PlaySFX(AudioClipName.Chicken_mom);
             var track = skeletonAnimation.AnimationState.SetAnimation(0, animLayEgg, false);
             track.Event += HandleEvent;
             track.Complete += entry => onFinish?.Invoke();

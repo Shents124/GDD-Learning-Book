@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sound.Service;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utility;
@@ -70,6 +71,7 @@ namespace Minigame.BlueColor
                 if (clothes == null)
                     return;
                 
+                AudioUtility.PlaySFX(AudioClipName.Hanging_clothes);
                 clothes.SetCanDrag(false);
                 clothes.SetPosition(GetComponent<RectTransform>().anchoredPosition);
                 ShowClothes(clothes.BlueClothesType);
