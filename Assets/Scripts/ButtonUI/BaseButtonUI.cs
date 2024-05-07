@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -46,6 +47,7 @@ namespace ButtonUI
             if (IsInteractable() == false)
                 return;
             
+            AudioUtility.PlayUISfx(AudioClipName.Button);
             _onClick?.Invoke();
         }
 

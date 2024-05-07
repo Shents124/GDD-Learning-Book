@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ namespace Minigame.RedColor
 
         private void PlayAnimFill()
         {
+            AudioUtility.PlaySFX(AudioClipName.Blender);
             _onFill?.Invoke();
             itemClick.gameObject.SetActive(false);
             var track = skeletonAnimation.AnimationState.SetAnimation(0, noneToFullName, false);
@@ -49,6 +51,7 @@ namespace Minigame.RedColor
         private void PlayAnimRun()
         {
             _onRun?.Invoke();
+            AudioUtility.PlaySFX(AudioClipName.Pour_water);
             var track = skeletonAnimation.AnimationState.SetAnimation(0, fullToHalfName, false);
         }
     }
