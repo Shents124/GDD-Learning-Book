@@ -52,5 +52,6 @@ public enum AudioClipName
     Chicken_all,
     Chicken_single,
     Chicken_happy,
-    Hanging_clothes
+    Hanging_clothes,
+    Strawberry_pouring
 }

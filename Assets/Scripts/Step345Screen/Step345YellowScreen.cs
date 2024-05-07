@@ -3,6 +3,7 @@ using System.Collections;
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
@@ -41,22 +42,28 @@ namespace Step345Screen
             characterController.PlayAnim(0, characterController.runAnimation, true);
             characterTransform.DOAnchorPos(characterEndPosition.anchoredPosition, characterMoveDuration).OnComplete(
                 () => {
-                    characterController.PlayAnim(0, characterController.idleAnimation, true);
+                    AudioUtility.PlaySFX(AudioClipName.Yellow_intro);
+                    characterController.PlayAnim(0, characterController.idleTalkAnimation, false, () => {
+                        characterController.PlayAnim(0, characterController.idleAnimation, true);
 
-                    giftTransform.DOAnchorPos(giftEndPosition.anchoredPosition, giftMoveDuration).SetEase(Ease.OutQuad)
-                        .OnComplete(() => {
-                            characterController.PlayAnim(0, characterController.exitingAnimation, false, () => {
-                                characterController.PlayAnim(0, characterController.idleAnimation, true);
+                        AudioUtility.PlaySFX(AudioClipName.Gift_fall);
+                        giftTransform.DOAnchorPos(giftEndPosition.anchoredPosition, giftMoveDuration).SetEase(Ease.OutQuad)
+                            .OnComplete(() => {
+                                characterController.PlayAnim(0, characterController.exitingAnimation, false, () => {
+                                    characterController.PlayAnim(0, characterController.idleAnimation, true);
+                                });
+
+                                gift.Initialize(OnClickOpenGift).Forget();
                             });
-
-                            gift.Initialize(OnClickOpenGift).Forget();
-                        });
+                    });
+                    
                 });
             base.DidEnter(args);
         }
 
         private void OnClickOpenGift()
         {
+            AudioUtility.PlaySFX(AudioClipName.Gift_open);
             gift.gameObject.SetActive(false);
             ShowFoods();
         }
@@ -82,7 +89,10 @@ namespace Step345Screen
         {
             if (_isFilled)
                 return;
+            
             _isFilled = true;
+            
+            AudioUtility.PlaySFX(AudioClipName.Jump);
             var rectTransform = button.GetComponent<RectTransform>();
             rectTransform.DOJump(characterEndPosition.transform.position, 400f, 1, foodMoveDuration);
             rectTransform.DOScale(Vector3.zero, foodMoveDuration).OnComplete(Fill);
@@ -91,6 +101,7 @@ namespace Step345Screen
         private void Fill()
         {
             _fillCount++;
+            AudioUtility.PlaySFX(AudioClipName.Crayon_eat);
             characterController.PlayAnim(0, characterController.idleEatAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
                 switch (_fillCount)
@@ -126,10 +137,12 @@ namespace Step345Screen
         private void ShowBoard()
         {
             characterController.FlipX();
+            AudioUtility.PlaySFX(AudioClipName.Yellow_quiz);
             characterController.PlayAnim(0, characterController.idleTalkAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
             });
 
+            AudioUtility.PlaySFX(AudioClipName.Falldown);
             dialog.SetActive(true);
             board.DoMove(() => {
                 board.Initialize(OnClickedCard);
@@ -140,6 +153,7 @@ namespace Step345Screen
         {
             if (_colorType != colorType)
             {
+                AudioUtility.PlaySFX(AudioClipName.Fail);
                 card.transform.DOShakePosition(0.5f, 15, 50, 90);
                 characterController.PlayAnim(0, characterController.sadAnimation, false, () => {
                     characterController.PlayAnim(0, characterController.idleAnimation, true);
@@ -148,6 +162,7 @@ namespace Step345Screen
                 return;
             }
             
+            AudioUtility.PlaySFX(AudioClipName.Correct);
             card.ShowVfx();
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);

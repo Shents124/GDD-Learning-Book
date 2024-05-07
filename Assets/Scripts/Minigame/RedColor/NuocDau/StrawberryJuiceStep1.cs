@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Sound.Service;
 using UnityEngine;
 using Utility;
 
@@ -27,6 +28,7 @@ namespace Minigame.RedColor
         
         private async UniTask OnCleanStrawberry()
         {
+            AudioUtility.PlaySFX(AudioClipName.Remove);
             numberStrawberry--;
             if (numberStrawberry <= 0)
             {

@@ -1,6 +1,6 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using Utility;
 
@@ -34,7 +34,9 @@ namespace Minigame.RedColor
 
         private async UniTask RemoveStrawberries()
         {
-            await AsyncService.Delay(delayDropStrawberry, this);
+            await AsyncService.Delay(delayDropStrawberry / 4, this);
+            AudioUtility.PlaySFX(AudioClipName.Strawberry_pouring);
+            await AsyncService.Delay(delayDropStrawberry * (3f / 4), this);
             ZoomIn();
         }
 
