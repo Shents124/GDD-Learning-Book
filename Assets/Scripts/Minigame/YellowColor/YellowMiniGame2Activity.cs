@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Sound.Service;
 using UI;
 using UnityEngine;
 
@@ -31,6 +32,7 @@ namespace Minigame.YellowColor
         
         public override void DidEnter(Memory<object> args)
         {
+            AudioUtility.PlaySFX(AudioClipName.Chicken_all);
             StartCoroutine(SetLineChicken(MoveCharacter));
             base.DidEnter(args);
         }
@@ -73,6 +75,7 @@ namespace Minigame.YellowColor
 
         private void ShowChickenSelectFood()
         {
+            AudioUtility.PlaySFX(AudioClipName.Chicken_single);
             babyChickens[_chickenIndex].ShowDialog();
             ShowTable();
         }

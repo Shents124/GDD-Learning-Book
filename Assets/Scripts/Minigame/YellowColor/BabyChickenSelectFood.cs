@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
@@ -32,6 +33,7 @@ namespace Minigame.YellowColor
             dialog.gameObject.SetActive(false);
             foodItem.OnSelectRight(eatPosition, 0.5f, () => 
             {
+                AudioUtility.PlaySFX(AudioClipName.Chicken_happy);
                 onHide?.Invoke();
                 var eatTrack = skeletonAnimation.AnimationState.SetAnimation(0, eatAnim, false);
                 var duration = skeletonAnimation.SkeletonData.FindAnimation(eatAnim).Duration;

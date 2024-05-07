@@ -48,4 +48,9 @@ public enum AudioClipName
     Yellow_intro,
     Yellow_pickup_egg,
     Yellow_quiz,
+    Chicken_mom,
+    Chicken_all,
+    Chicken_single,
+    Chicken_happy,
+    Hanging_clothes
 }

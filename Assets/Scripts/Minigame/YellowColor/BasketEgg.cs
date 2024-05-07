@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -79,6 +80,7 @@ namespace Minigame.YellowColor
         {
             vfx.SetActive(true);
             StartCoroutine(Coroutine());
+            AudioUtility.PlaySFX(AudioClipName.Chicken_all);
             foreach (var egg in eggs)
             {
                 egg.BirthChicken();
