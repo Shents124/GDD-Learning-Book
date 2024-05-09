@@ -7,6 +7,8 @@ namespace Sound.Service
 {
     public static class AudioUtility
     {
+        private static int s_indexGameplay = 0;
+        
         private static AudioClip GetAudioClip(AudioClipName AudioClipName)
         {
             return LoadResourceService.LoadAsset<AudioClip>(AudioClipName.ToString());
@@ -20,6 +22,28 @@ namespace Sound.Service
             callback?.Invoke();
         }
 
+        public static void PlayMusic(AudioClipName audioClipName, bool loop = true)
+        {
+            var audio = GetAudioClip(audioClipName);
+            EazySoundManager.Instance.PlayMusic(audio, loop);
+        }
+
+        public static void PlayMusicGamePlay(bool loop = true)
+        {
+            if (s_indexGameplay % 2 == 0)
+            {
+                var gameplay1 = GetAudioClip(AudioClipName.Gameplay1);
+                EazySoundManager.Instance.PlayMusic(gameplay1, loop);
+            }
+            else
+            {
+                var gameplay2 = GetAudioClip(AudioClipName.Gameplay2);
+                EazySoundManager.Instance.PlayMusic(gameplay2, loop);
+            }
+
+            s_indexGameplay++;
+        }
+        
         public static void PlaySFX(AudioClipName AudioClipName)
         {
             var audio = GetAudioClip(AudioClipName);
@@ -30,6 +54,7 @@ namespace Sound.Service
         {
             EazySoundManager.Instance.StopAllSounds();
         }
+        
         public static void PlayUISfx(AudioClipName audioClipName)
         {
             var audio = GetAudioClip(audioClipName);

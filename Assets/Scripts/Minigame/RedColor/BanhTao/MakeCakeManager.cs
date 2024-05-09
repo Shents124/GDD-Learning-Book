@@ -72,6 +72,7 @@ public class MakeCakeManager : MonoBehaviour
 
     private async void OnClickedBackBtn()
     {
+        AudioUtility.PlayUISfx(AudioClipName.Button);
         await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
         Destroy(this.gameObject);
@@ -79,6 +80,7 @@ public class MakeCakeManager : MonoBehaviour
 
     private void OnClickedNextBtn()
     {
+        AudioUtility.PlayUISfx(AudioClipName.Button);
         if (_isMoveStep)
             return;
 

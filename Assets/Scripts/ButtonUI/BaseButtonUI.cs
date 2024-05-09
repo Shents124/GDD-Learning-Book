@@ -47,7 +47,7 @@ namespace ButtonUI
             if (IsInteractable() == false)
                 return;
             
-            AudioUtility.PlayUISfx(AudioClipName.Button);
+            //AudioUtility.PlayUISfx(AudioClipName.Button);
             _onClick?.Invoke();
         }
 

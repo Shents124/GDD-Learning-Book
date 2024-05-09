@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Constant;
+using Sound.Service;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -75,6 +76,7 @@ namespace Minigame.RedColor
 
         private async void OnClickedBackBtn()
         {
+            AudioUtility.PlayUISfx(AudioClipName.Button);
             await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
             UIService.PlayFadeOut();
             Destroy(this.gameObject);
@@ -82,6 +84,7 @@ namespace Minigame.RedColor
 
         private void OnClickedNextBtn()
         {
+            AudioUtility.PlayUISfx(AudioClipName.Button);
             if (_isChangeStep)
                 return;
 

@@ -34,6 +34,8 @@ public enum AudioClipName
     Blue_intro,
     Blue_quiz,
     Blue_toy,
+    Blue_cleanroom,
+    Blue_clothes,
     Green_frog_cross,
     Green_frog_eat,
     Green_intro,
@@ -53,5 +55,5 @@ public enum AudioClipName
     Chicken_single,
     Chicken_happy,
     Hanging_clothes,
-    Strawberry_pouring
+    Strawberry_pouring,
 }

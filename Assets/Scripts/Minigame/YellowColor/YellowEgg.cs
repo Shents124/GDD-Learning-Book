@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 
 namespace Minigame.YellowColor
@@ -53,6 +54,7 @@ namespace Minigame.YellowColor
 
         public void Move()
         {
+            AudioUtility.PlaySFX(AudioClipName.Correct);
             shadow.SetActive(false);
             _rectTransform.SetParent(_parent);
             _rectTransform.anchoredPosition = Vector2.one;
@@ -61,6 +63,7 @@ namespace Minigame.YellowColor
         
         private void OnClick()
         {
+            AudioUtility.PlaySFX(AudioClipName.Correct);
             _rectTransform.SetParent(_parent);
             _rectTransform.DOJump(_parent.position, 400f, 1, _moveDuration).OnComplete(OnInBasketEgg);
         }

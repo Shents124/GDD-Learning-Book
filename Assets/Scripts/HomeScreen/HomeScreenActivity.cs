@@ -1,6 +1,7 @@
 ﻿using System;
 using ButtonUI;
 using Cysharp.Threading.Tasks;
+using Sound.Service;
 using UI;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
@@ -12,13 +13,15 @@ namespace HomeScreen
         [SerializeField] private BaseButtonUI button;
         public override UniTask Initialize(Memory<object> args)
         {
-            button.AddListener( OnClickedPlay);
+            AudioUtility.PlayMusic(AudioClipName.HomeMenu);
+            button.AddListener(OnClickedPlay);
             return base.Initialize(args);
         }
         
         private static void OnClickedPlay()
         {
-            UIService.OpenActivityWithFadeIn(ActivityType.MenuScreen);
+            AudioUtility.PlayUISfx(AudioClipName.Button);
+            UIService.OpenActivityWithFadeIn(ActivityType.MenuScreen, args: true);
         }
     }
 }
