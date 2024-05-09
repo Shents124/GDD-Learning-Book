@@ -26,6 +26,10 @@ namespace Sound.Service
             EazySoundManager.Instance.PlaySound(audio, false);
         }
 
+        public static void StopSFX()
+        {
+            EazySoundManager.Instance.StopAllSounds();
+        }
         public static void PlayUISfx(AudioClipName audioClipName)
         {
             var audio = GetAudioClip(audioClipName);

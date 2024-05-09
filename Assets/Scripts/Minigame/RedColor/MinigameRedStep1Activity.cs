@@ -3,6 +3,7 @@ using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Minigame.RedColor;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
@@ -55,6 +56,8 @@ public class MinigameRedStep1Activity : BaseActivity
         {
             animPlayer.gameObject.SetActive(true);
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, true);
+            AudioUtility.PlaySFX(AudioClipName.Clearstep);
+            //AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
             await AsyncService.Delay(2f, this);
             animPlayer.transform.localScale = new Vector2(-animPlayer.transform.localScale.x, animPlayer.transform.localScale.y);
             animPlayer.AnimationState.SetAnimation(0, animRun, true);

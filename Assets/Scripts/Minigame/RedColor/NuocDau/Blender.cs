@@ -44,6 +44,7 @@ namespace Minigame.RedColor
             itemClick.gameObject.SetActive(false);
             var track = skeletonAnimation.AnimationState.SetAnimation(0, noneToFullName, false);
             track.Complete += entry => {
+                AudioUtility.StopSFX();
                 PlayAnimRun();
             };
         }

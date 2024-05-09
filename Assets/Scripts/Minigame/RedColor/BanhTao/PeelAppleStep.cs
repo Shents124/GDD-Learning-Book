@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Sound.Service;
 using UnityEngine;
 using Utility;
 
@@ -31,6 +32,7 @@ public class PeelAppleStep : BaseStep
         allStep[currentStep].OnDonePeel();
         allStep[currentStep].gameObject.SetActive(false);
         currentStep++;
+        AudioUtility.PlaySFX(AudioClipName.Apple_skin_remove);
         if(currentStep >= numberStep)
         {
             applePeelDone.SetActive(true);

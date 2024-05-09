@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Sound.Service;
 using UI;
 using UnityEngine;
 using Utility;
@@ -43,6 +44,7 @@ public class CutAppleStep : BaseStep
     private async void Action()
     {
         vfxDone.gameObject.SetActive(true);
+        AudioUtility.PlaySFX(AudioClipName.Clearstep);
         knife.gameObject.SetActive(false);
         await AsyncService.Delay(1.25f, this);
         UIService.PlayFadeIn(() => {
@@ -53,6 +55,7 @@ public class CutAppleStep : BaseStep
 
     private async void CompleteMiniStep()
     {
+        AudioUtility.PlaySFX(AudioClipName.Apple_cut);
         await allStep[currentStep].OnDonePeel();
         currentStep++;
         if (currentStep >= numberStep)

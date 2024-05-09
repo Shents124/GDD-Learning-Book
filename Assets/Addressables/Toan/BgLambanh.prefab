@@ -138,6 +138,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 8494443357600238998}
+        m_TargetAssemblyTypeName: MakeCakeManager, Assembly-CSharp
+        m_MethodName: PlaySoundButTao
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   isMoveWithMouse: 1
   type: 1
   threshold: 100

@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 
 public class AnimalFood : MonoBehaviour
 {
+    public AudioClipName audioFall;
     public float speedFly = 200f;
     public List<Transform> posFoods;
     public Transform posFall;
@@ -50,6 +52,7 @@ public class AnimalFood : MonoBehaviour
     {
         isFall = true;
         transform.DOKill();
+        AudioUtility.PlaySFX(audioFall);
         transform.DOMoveY(posFall.position.y, 1.5f).OnComplete(() => {
             gameObject.SetActive(false);
         });
