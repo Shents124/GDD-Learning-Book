@@ -128,7 +128,9 @@ namespace Step345Screen
         private void OnStep5()
         {
             characterController.DisableMask();
+            AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
+                AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
                 characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
                     characterController.PlayAnim(0, characterController.runAnimation, true);
                     characterTransform.DOAnchorPos(characterEnd2Position.anchoredPosition, characterMoveDuration * 2)
@@ -166,13 +168,15 @@ namespace Step345Screen
             }
             
             AudioUtility.PlaySFX(AudioClipName.Correct);
+            AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
             card.ShowVfx();
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
                 dark.SetActive(true);
                 card.transform.SetParent(transform);
                 card.DoShow(showCardPosition.anchoredPosition, 1f, () => {
-                    StartCoroutine(MoveToNextStep());   
+                    StartCoroutine(MoveToNextStep());
+                    AudioUtility.PlaySFX(AudioClipName.Clearstep);
                     vfx.SetActive(true);
                 });
             });

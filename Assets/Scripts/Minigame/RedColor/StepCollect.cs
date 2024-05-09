@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Coffee.UIExtensions;
 using DG.Tweening;
+using Sound.Service;
 using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -60,6 +61,7 @@ public class StepCollect : BaseStep
                 bucketCollectDone.transform.DOScale(bucketDonePos.localScale, 1f);
                 vfx.transform.localScale = Vector3.zero;
                 vfx.transform.DOScale(1, 1f);
+                AudioUtility.PlaySFX(AudioClipName.Clearstep);
                 bucketCollectDone.transform.DOMove(bucketDonePos.position, 1f).OnComplete(() => 
                 {
                     vfx.gameObject.SetActive(true);

@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Sound.Service;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +40,11 @@ public class MakeCakeManager : MonoBehaviour
 
         }
         //allSteps[0].InActive();
+    }
+
+    public void PlaySoundButTao()
+    {
+        AudioUtility.PlaySFX(AudioClipName.Remove);
     }
 
     private void NextStep()

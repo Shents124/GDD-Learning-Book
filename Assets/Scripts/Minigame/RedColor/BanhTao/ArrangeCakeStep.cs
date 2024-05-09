@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using Utility;
 
@@ -27,6 +28,7 @@ public class ArrangeCakeStep : BaseStep
     }
     public void ChangeToBakeStep()
     {
+        AudioUtility.PlaySFX(AudioClipName.Clearstep);
         cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(NextStep);
     }
 

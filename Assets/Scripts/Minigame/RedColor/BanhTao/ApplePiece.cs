@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sound.Service;
 using UnityEngine;
 
 public class ApplePiece : MonoBehaviour
@@ -43,6 +44,7 @@ public class ApplePiece : MonoBehaviour
             gameObject.SetActive(false);
             currentCake.GetComponent<Cake>().FillPieces(manager.currentPieceDone);
             manager.currentPieceDone++;
+            AudioUtility.PlaySFX(AudioClipName.Apple_cut);
         }
         else
         {

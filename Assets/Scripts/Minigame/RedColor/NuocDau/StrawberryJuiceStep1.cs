@@ -33,6 +33,7 @@ namespace Minigame.RedColor
             if (numberStrawberry <= 0)
             {
                 _effect.SetActive(true);
+                AudioUtility.PlaySFX(AudioClipName.Clearstep);
                 await AsyncService.Delay(1f, this);
                 CompletedStep();
             }

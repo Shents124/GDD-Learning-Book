@@ -42,6 +42,7 @@ namespace Minigame.RedColor
 
         private void ZoomIn()
         {
+            AudioUtility.PlaySFX(AudioClipName.Focus);
             plateStrawberryObj.SetPlate(false);
             transform.DOMove(showBlenderPosition.position, zoomDuration).SetEase(Ease.Linear);
             transform.DOScale(newScale, zoomDuration).SetEase(Ease.Linear).OnComplete(() => {
