@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Constant;
 using Cysharp.Threading.Tasks;
+using Sound.Service;
 using UI;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
@@ -14,6 +15,11 @@ namespace MenuScreen
 
         public override UniTask Initialize(Memory<object> args)
         {
+            if (args.IsEmpty)
+            {
+                AudioUtility.PlayMusic(AudioClipName.HomeMenu);
+            }
+            
             UIService.PlayFadeOut();
             
             foreach (var item in menuItems)
@@ -25,6 +31,7 @@ namespace MenuScreen
 
         private void OnChoseColor(ColorType colorType)
         {
+            AudioUtility.PlayUISfx(AudioClipName.Button);
             switch (colorType)
             {
                 case ColorType.Red:
@@ -32,7 +39,7 @@ namespace MenuScreen
                     break;
                 
                 case ColorType.Yellow:
-                    UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellowScreen, args: colorType);
+                    UIService.OpenActivityWithFadeIn(ActivityType.Step345YellowScreen, args: colorType);
                     break;
                 
                 case ColorType.Green:
@@ -40,7 +47,7 @@ namespace MenuScreen
                     break;
                 
                 case ColorType.Blue:
-                    UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlue1Screen, args: colorType);
+                    UIService.OpenActivityWithFadeIn(ActivityType.Step345BlueScreen, args: colorType);
                     break;
             }
         }

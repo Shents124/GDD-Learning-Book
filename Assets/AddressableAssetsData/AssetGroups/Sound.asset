@@ -277,6 +277,31 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39a789849c825894284a555384ed0d61
+    m_Address: Gameplay1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5feade5177fbdac4cb9fe1376654cd17
+    m_Address: Gameplay2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d24c3ba122113b748bd6562f839aefab
+    m_Address: Blue_clothes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddf2dcfe580b49c4abfb93e42acf6fb6
+    m_Address: Blue_toy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5389b0ee0ca1e340b68e69aef3e6526
+    m_Address: Blue_cleanroom
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2f8da982462e67842aabe7df00efca11, type: 2}
   m_SchemaSet:

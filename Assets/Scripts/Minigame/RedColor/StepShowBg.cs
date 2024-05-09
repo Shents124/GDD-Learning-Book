@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
@@ -39,6 +37,7 @@ public class StepShowBg : BaseStep
         SetUpPage();
         posStart = transform.position;
         m_RectTransform.DOAnchorPosX(m_RectTransform.rect.width, 1.5f).OnComplete(() => {
+            AudioUtility.PlaySFX(AudioClipName.Red_harvest);
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
             track.Complete += entry => {
                 UIService.PlayFadeIn(() =>

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Sound.Service;
 using UI;
 using UnityEngine;
 
@@ -20,6 +21,12 @@ namespace Minigame.BlueColor
         {
             selectedClothes.Initialize(OnFinishSelectBlueClothes);
             base.InitializeData(args);
+        }
+
+        public override void DidEnter(Memory<object> args)
+        {
+            AudioUtility.PlaySFX(AudioClipName.Blue_clothes);
+            base.DidEnter(args);
         }
 
         private void OnFinishSelectBlueClothes()

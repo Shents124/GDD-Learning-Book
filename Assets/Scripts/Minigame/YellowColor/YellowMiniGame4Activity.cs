@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
@@ -61,6 +62,7 @@ namespace Minigame.YellowColor
 
         protected override void OnClickedNextBtn()
         {
+            AudioUtility.PlayUISfx(AudioClipName.Button);
             UIService.OpenActivityWithFadeIn(nextActivity, playAd: false);
         }
 

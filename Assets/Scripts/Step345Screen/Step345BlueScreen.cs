@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Step345Screen
 {
-    public class Step345BlueScreen : BaseActivity
+    public class Step345BlueScreen : Step345BaseScreen
     {
         [SerializeField] private float characterMoveDuration = 1.75f;
         [SerializeField] private float giftMoveDuration = 0.3f;

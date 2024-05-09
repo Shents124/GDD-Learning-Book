@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Sound.Service;
 using UI;
 using UnityEngine;
 
@@ -28,6 +29,7 @@ namespace Minigame.YellowColor
         private void TransitionToStep2()
         {
             content.DOAnchorPos(step2Position.anchoredPosition, durationMove).OnComplete(() => {
+                AudioUtility.PlaySFX(AudioClipName.Yellow_pickup_egg);
                 basketEgg.Initialize(OnCollectEggsFinish, GetComponent<RectTransform>());
             });
         }

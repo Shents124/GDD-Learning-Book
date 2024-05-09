@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Sound.Service;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,12 +40,14 @@ public class BaseActivity : Activity
 
     private static async UniTask OnClickedBackBtn()
     {
+        AudioUtility.PlayUISfx(AudioClipName.Button);
         await UIService.OpenActivityAsync(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
     }
 
     protected virtual void OnClickedNextBtn()
     {
+        AudioUtility.PlayUISfx(AudioClipName.Button);
         UIService.OpenActivityWithFadeIn(nextActivity);
     }
     

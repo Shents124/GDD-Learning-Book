@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Constant;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
@@ -63,6 +64,7 @@ public class MinigameGreenEat : BaseActivity
 
     protected override void OnClickedNextBtn()
     {
+        AudioUtility.PlayUISfx(AudioClipName.Button);
         AdsManager.Instance.ShowInterstitial(() => {
             UIService.PlayFadeIn(() => {
                 var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);

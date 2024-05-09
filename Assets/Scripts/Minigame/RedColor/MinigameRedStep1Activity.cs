@@ -54,6 +54,7 @@ public class MinigameRedStep1Activity : BaseActivity
         posFallPlayer = animPlayer.transform.position;
         talkCanvas.DOFade(1, 0.5f).OnComplete(async () => 
         {
+            AudioUtility.PlaySFX(AudioClipName.Red_cook);
             animPlayer.gameObject.SetActive(true);
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, true);
             AudioUtility.PlaySFX(AudioClipName.Clearstep);
@@ -75,6 +76,7 @@ public class MinigameRedStep1Activity : BaseActivity
 
     protected override void OnClickedNextBtn()
     {
+        AudioUtility.PlayUISfx(AudioClipName.Button);
         AdsManager.Instance.ShowInterstitial(() => {
             UIService.PlayFadeIn(() => {
                 NextStep();

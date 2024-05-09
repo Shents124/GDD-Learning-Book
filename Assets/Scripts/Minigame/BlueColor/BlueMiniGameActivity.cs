@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Minigame.YellowColor;
+using Sound.Service;
 using UI;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -42,6 +43,7 @@ namespace Minigame.BlueColor
 
         private void InitializeToy()
         {
+            AudioUtility.PlaySFX(AudioClipName.Blue_toy);
             foreach (var blueToy in blueToys)
             {
                 blueToy.Initialize(_blueToyCount, OnClickBlueToy);
