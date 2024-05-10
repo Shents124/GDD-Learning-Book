@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 6452030227016941142}
   - component: {fileID: 3318384349936725110}
   - component: {fileID: 3627724828856993290}
+  - component: {fileID: 3511827837544560869}
   m_Layer: 5
   m_Name: Strawberry2
   m_TagString: Untagged
@@ -643,6 +644,19 @@ MonoBehaviour:
   MAX_SCALE: {x: 1.05, y: 1.05, z: 1.05}
   duration: 0.15
   startScale: 1
+--- !u!114 &3511827837544560869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924938427040013170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9b430e6a260f54a8073b3071c939ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 7
 --- !u!1 &1510987121237099371
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +988,7 @@ MonoBehaviour:
   step8: {fileID: 8272001548511710098}
   posStart: {fileID: 1752473831}
   isReady: 0
+  isPlaySound: 0
 --- !u!222 &683525966149799491
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1612,6 +1627,7 @@ GameObject:
   - component: {fileID: 7725384855828178598}
   - component: {fileID: 8885717164688330746}
   - component: {fileID: 4561416997050259608}
+  - component: {fileID: 1573158560792031491}
   m_Layer: 5
   m_Name: Apple2
   m_TagString: Untagged
@@ -1720,7 +1736,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4699531562985410255}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8225821824339942778}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8885717164688330746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,10 +1778,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1777102b299f42bb9fde86c52bc0d9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MIN_SCALE: {x: 0.75, y: 0.75, z: 0.75}
-  MAX_SCALE: {x: 1.55, y: 1.55, z: 1.55}
+  MIN_SCALE: {x: 0.6, y: 0.6, z: 0.6}
+  MAX_SCALE: {x: 0.75, y: 0.75, z: 0.75}
   duration: 0.15
   startScale: 0.67
+--- !u!114 &1573158560792031491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834795976637355715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9b430e6a260f54a8073b3071c939ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 7
 --- !u!1 &2952116427648570817
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
@@ -41,6 +42,7 @@ public class MinigameGreenWay : MonoBehaviour
     private Vector3 posAnimStart;
 
     [SerializeField] private Transform posJumDone;
+    [SerializeField] private ShowTalkStartGame showTalk;
 
     private bool _isMoveStep;
     
@@ -50,6 +52,7 @@ public class MinigameGreenWay : MonoBehaviour
         btnNext.onClick.AddListener(OnClickedNextBtn);
         posPlayerStart = playerPos.position;
         posAnimStart = animFrog.transform.localPosition;
+        showTalk.ShowTalk();
         StartGame();
         EventManager.Connect(Events.ErrorWay, OnErrorWay);
         EventManager.Connect(Events.CurrentWay, OnMoveDone);
@@ -93,7 +96,9 @@ public class MinigameGreenWay : MonoBehaviour
         animFrog.AnimationState.SetAnimation(0, animJump, false);
         animFrog.transform.DOMove(posJumDone.position, 1.34f).OnComplete(async () => {
             animFrog.AnimationState.SetAnimation(0, animWin, true);
+            AudioUtility.PlaySFX(AudioClipName.Frog_laugh, true);
             await AsyncService.Delay(1.5f, this);
+            AudioUtility.StopSFX();
             if (_currentTurn >= numberTurn)
             {
                 if (_isMoveStep)
@@ -144,6 +149,7 @@ public class MinigameGreenWay : MonoBehaviour
             return;
         playerController.StopDraw();
         ShowErrorWay();
+        AudioUtility.PlaySFX(AudioClipName.Fail);
     }
 
     private void ShowErrorWay()
@@ -165,6 +171,7 @@ public class MinigameGreenWay : MonoBehaviour
         if (!playerController.isDrawing || isDone)
             return;
         isDone = true;
+        AudioUtility.PlaySFX(AudioClipName.Correct);
         playerController.StartMove();
     }
 }

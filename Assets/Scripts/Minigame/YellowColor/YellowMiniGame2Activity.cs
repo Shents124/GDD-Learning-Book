@@ -101,16 +101,11 @@ namespace Minigame.YellowColor
             characterController.PlayAnim(0, characterController.runAnimation, true, applyToMask: false);
             playerRect.DOAnchorPos(endPositionCharacter.anchoredPosition, 2f)
                 .OnComplete(() => {
-                    
-                    AudioUtility.PlaySFX(AudioClipName.Yellow_feed_chicks);
-                    characterController.PlayAnim(0, characterController.idleTalkAnimation, false, applyToMask: false, onFinish: () => {
-                        characterController.PlayAnim(0, characterController.idleTalkAnimation, false, applyToMask: false,
-                            onFinish: () => 
-                            {
-                                characterController.FlipX(1f);
-                                characterController.PlayAnim(0, characterController.runAnimation, true, applyToMask: false);
-                                playerRect.DOAnchorPos(originPos, 2f).OnComplete(BabyChickenSelectFood);
-                            });
+                    characterController.PlayAnim(0, characterController.idleTalkAnimation, true, applyToMask: false);
+                    AudioUtility.PlaySFX(this, AudioClipName.Yellow_feed_chicks,0 , () => {
+                        characterController.FlipX(1f);
+                        characterController.PlayAnim(0, characterController.runAnimation, true, applyToMask: false);
+                        playerRect.DOAnchorPos(originPos, 2f).OnComplete(BabyChickenSelectFood);
                     });
                 });
         }

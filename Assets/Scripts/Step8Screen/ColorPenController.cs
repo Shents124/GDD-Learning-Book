@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,13 +17,14 @@ public class ColorPenController : MonoBehaviour
 
     private bool isPlay;
 
-    public bool isReady = false;
+    public bool isReady = false, isPlaySound = false;
 
     public void StartInGame()
     {
         transform.position = posStart.position;
         isPlay = false;
         isReady = false;
+        isPlaySound = false;
         penNotReady.SetActive(true);
         penReady.SetActive(false);
     }
@@ -48,8 +50,14 @@ public class ColorPenController : MonoBehaviour
 
     public void OnEndDrag()
     {
+
         if (!isReady)
             return;
+        if (isPlaySound)
+        {
+            isPlaySound = false;
+            AudioUtility.StopSFX();
+        }
         isPlay = false;
         transform.position = posStart.position;
         penNotReady.SetActive(true);

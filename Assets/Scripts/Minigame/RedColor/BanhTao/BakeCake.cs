@@ -78,6 +78,7 @@ public class BakeCake : BaseActivity
         activeLo.DOFade(1, 1f);
         currentTimeBake = timeBake;
         UpdateNumber();
+        AudioUtility.PlaySFX(AudioClipName.Applepie_baking, true);
         StartBakeCake();
         AnimBakeCake();
     }
@@ -109,7 +110,6 @@ public class BakeCake : BaseActivity
 
     private async void StartBakeCake()
     {
-        AudioUtility.PlaySFX(AudioClipName.Applepie_baking, true);
         await AsyncService.Delay(1f, this);
         currentTimeBake--;
         if(currentTimeBake <= 0)
@@ -178,6 +178,7 @@ public class BakeCake : BaseActivity
         AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
         track.Complete += async Entry => {
             animPlayer.AnimationState.SetAnimation(0, animWin, true);
+            AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
             await AsyncService.Delay(1f, this);
             UIService.OpenActivityWithFadeIn(ActivityType.Step7Red);
         };

@@ -3,6 +3,7 @@ using System.Collections;
 using Coffee.UIExtensions;
 using DG.Tweening;
 using ScratchCardAsset;
+using Sound.Service;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -85,6 +86,7 @@ public class Step8Activity : MonoBehaviour
     {
         if(progress >= percentToDone)
         {
+            AudioUtility.StopSFX();
             imageNotDones[(int)_typeObject].gameObject.SetActive(false);
             this.gameObject.SetActive(false);
             EventManager.SendSimpleEvent(Events.FillColorDone);
@@ -95,6 +97,12 @@ public class Step8Activity : MonoBehaviour
             {
                 imageNotDoneFakes[(int)_typeObject].gameObject.SetActive(false);
             };
+
+            if (!colorPenController.isPlaySound && colorPenController.IsPlay)
+            {
+                AudioUtility.PlaySFX(AudioClipName.Crayon, true);
+                colorPenController.isPlaySound = true;
+            }
 
             //if(progress * 100 % 20 == 0 && colorPenController.IsPlay)
             //{
@@ -113,6 +121,11 @@ public class Step8Activity : MonoBehaviour
             {
                 imageNotDoneFakes[(int)_typeObject].gameObject.SetActive(false);
             };
+            if (!colorPenController.isPlaySound && colorPenController.IsPlay)
+            {
+                AudioUtility.PlaySFX(AudioClipName.Crayon, true);
+                colorPenController.isPlaySound = true;
+            }
         }
 
         if (!(progress >= percentToDone) || _isDone)
@@ -126,6 +139,7 @@ public class Step8Activity : MonoBehaviour
     private IEnumerator ShowImage()
     {
         _isDone = true;
+        AudioUtility.StopSFX();
         yield return new WaitForSeconds(1f);
         var index = (int)_typeObject;
         imageNotDones[index].gameObject.SetActive(false);

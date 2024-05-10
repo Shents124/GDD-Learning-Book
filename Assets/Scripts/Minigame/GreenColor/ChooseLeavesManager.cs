@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
@@ -39,6 +40,8 @@ public class ChooseLeavesManager : MonoBehaviour
 
     private List<Vector2> posLeaveChooseStart = new();
 
+    [SerializeField] private ShowTalkStartGame showTalk;
+
     [SerializeField] private Transform[] posDoneBg;
 
     private void Start()
@@ -51,7 +54,14 @@ public class ChooseLeavesManager : MonoBehaviour
         choseLeaves.transform.DOMove(choseLeavesStart.position, 0.5f).SetDelay(2f).OnComplete(() => {
             StartChooseAllLeave();
         });
+        
+    }
 
+    public void PlayShowTalk()
+    {
+        AudioUtility.PlaySFX(AudioClipName.Frog_sound);
+        showTalk.gameObject.SetActive(true);
+        showTalk.ShowTalk();
     }
 
     private void StartChooseAllLeave()
@@ -68,6 +78,7 @@ public class ChooseLeavesManager : MonoBehaviour
     private void PlayAnimJum()
     {
         var track = frogAnim.AnimationState.SetAnimation(0, animJump, false);
+        AudioUtility.PlaySFX(AudioClipName.Jump);
         frogAnim.transform.DOJump(leaves[currentStep].posFrog.position, jumpPower, 1, 1.34f);
         track.Complete += entry => 
         {
@@ -76,8 +87,10 @@ public class ChooseLeavesManager : MonoBehaviour
             if (currentStep >= stepNeed)
             {
                 frogAnim.AnimationState.SetAnimation(0, animJump, false);
+                AudioUtility.PlaySFX(AudioClipName.Jump);
                 frogAnim.transform.DOJump(posDoneStep.position, jumpPower, 1, 1.34f).OnComplete(async () => {
                     frogAnim.AnimationState.SetAnimation(0, animSession, true);
+                    AudioUtility.PlaySFX(AudioClipName.Frog_laugh);
                     await AsyncService.Delay(1.5f, this);
                     AdsManager.Instance.ShowInterstitial(() => {
                         UIService.PlayFadeIn(() => {
@@ -110,6 +123,7 @@ public class ChooseLeavesManager : MonoBehaviour
             l.ResetLeave();
         }
         leaveCurrent.ResetLeave();
+        AudioUtility.PlaySFX(AudioClipName.Place_lotus_leaf);
         choseLeaves.transform.DOMove(choseLeavesEnd.position, 0.5f).OnComplete(() => {
             choseLeaves.SetActive(false);
         });
