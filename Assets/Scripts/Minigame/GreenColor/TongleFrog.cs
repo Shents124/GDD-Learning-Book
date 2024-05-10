@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,7 @@ public class TongleFrog : MonoBehaviour
     {
         image.fillAmount = 0;
         animal.CancelFly();
+        AudioUtility.PlaySFX(AudioClipName.Frog_catch);
         transform.rotation = Vector2Extensions.LookAt2D(transform.position, animal.transform.position);
         float distance = Vector2.Distance(animal.transform.position, transform.position);
         m_RectTransform.sizeDelta = new Vector2(570f * distance / distanceConst, m_RectTransform.sizeDelta.y);
@@ -38,6 +40,7 @@ public class TongleFrog : MonoBehaviour
                 animal.gameObject.SetActive(false);
             });
             image.DOFillAmount(0, 0.75f).OnComplete(() => {
+                AudioUtility.PlaySFX(AudioClipName.Frog_eat);
                 callBack?.Invoke(animal.isCurrentAnimal);
             });
         });

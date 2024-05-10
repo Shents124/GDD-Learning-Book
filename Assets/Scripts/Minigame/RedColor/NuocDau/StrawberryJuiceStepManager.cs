@@ -85,21 +85,7 @@ namespace Minigame.RedColor
         private void OnClickedNextBtn()
         {
             AudioUtility.PlayUISfx(AudioClipName.Button);
-            if (_isChangeStep)
-                return;
-
-            _isChangeStep = true;
-            UIService.PlayFadeIn(() => {
-                if (_currentStep >= _stepCount - 1)
-                {
-                    OnFinishAllStep();
-                }
-                else
-                {
-                    UIService.PlayFadeIn(ChangeStep);
-                }
-            });
-
+            OnFinishAllStep();
         }
     }
 }

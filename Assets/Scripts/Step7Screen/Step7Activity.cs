@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
-using ZBase.UnityScreenNavigator.Core.Activities;
 
 namespace Step7
 {
@@ -46,8 +44,8 @@ namespace Step7
         private async void ShowTalk()
         {
             await AsyncService.Delay(1f, this);
-            var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
-            track.Complete += Entry => {
+            animPlayer.AnimationState.SetAnimation(0, animTalk, true);
+            AudioUtility.PlaySFX(this, AudioClipName.Voice_coloring, 0, () => {
                 animPlayer.AnimationState.SetAnimation(0, animRun, true);
                 if (posFall.localPosition.x - animPlayer.transform.localPosition.x > 0)
                 {
@@ -60,7 +58,7 @@ namespace Step7
                 animPlayer.transform.DOLocalMove(posFall.localPosition, 1f).OnComplete(() => {
                     bgPlayer.SetActive(false);
                 });
-            };
+            });
         }
 
         protected override void OnDisable()
@@ -74,12 +72,15 @@ namespace Step7
             {
                 await AsyncService.Delay(1f, this);
                 screenAnim.gameObject.SetActive(true);
+                AudioUtility.StopSFX();
+                AudioUtility.PlaySFX(AudioClipName.Photo);
                 screenAnim.DOFade(1, 0.25f).OnComplete(async () => {
                     screenShoot.SetActive(true);
                     screenAnim.DOFade(0, 0.25f).OnComplete(() => {
                         screenAnim.gameObject.SetActive(false);
                     });
                     await AsyncService.Delay(2.5f, this);
+                    AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
                     DoneAll.SetActive(true);
                     await AsyncService.Delay(2.5f, this);
                     UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);

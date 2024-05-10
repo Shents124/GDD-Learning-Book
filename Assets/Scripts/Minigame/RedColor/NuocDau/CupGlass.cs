@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Sound.Service;
 using Spine.Unity;
 using UnityEngine;
 using Utility;
@@ -16,6 +17,10 @@ namespace Minigame.RedColor
         {
             await AsyncService.Delay(delay, this);
             var track = skeletonAnimation.AnimationState.SetAnimation(0, noneToFullName, false);
+            AudioUtility.PlaySFX(AudioClipName.Pour_water);
+            track.Complete += entry => {
+                AudioUtility.StopSFX();
+            };
         }
     }
 }

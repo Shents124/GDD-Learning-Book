@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -65,6 +66,7 @@ public class LeaveChoose : MonoBehaviour
         {
             if (!isCurrentLeave)
             {
+                AudioUtility.PlaySFX(AudioClipName.Fail);
                 isClick = false;
                 transform.position = posStart;
                 transform.localScale = scaleStart;
@@ -72,6 +74,7 @@ public class LeaveChoose : MonoBehaviour
             }
             else
             {
+                AudioUtility.PlaySFX(AudioClipName.Correct);
                 manager.NextStep();
             }
         }

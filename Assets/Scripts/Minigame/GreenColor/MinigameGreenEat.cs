@@ -53,13 +53,13 @@ public class MinigameGreenEat : BaseActivity
     private async void ShowTalk()
     {
         await AsyncService.Delay(1, this);
-        var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, false);
-        track.Complete += Entry => {
+        var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, true);
+        AudioUtility.PlaySFX(this, AudioClipName.Green_frog_eat, 0,  () => {
             animPlayer.AnimationState.SetAnimation(0, animPlayerIdle, true);
             animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1f).OnComplete(() => {
                 bgPlayer.SetActive(false);
             });
-        };
+        });
     }
 
     protected override void OnClickedNextBtn()
@@ -78,8 +78,10 @@ public class MinigameGreenEat : BaseActivity
     public void OnClickAnimal(bool isCurrentAnimal)
     {
         isEating = true;
+        AudioUtility.PlaySFX(AudioClipName.Frog_eat);
         var track = frogAnim.AnimationState.SetAnimation(0, animEat, false);
         track.Complete += Entry => {
+            AudioUtility.StopSFX();
             if (isCurrentAnimal)
             {
                 animalMissions[_currentStep].SetActive(true);
@@ -88,8 +90,10 @@ public class MinigameGreenEat : BaseActivity
                     _currentStep++;
                     if (_currentStep >= stepNeed)
                     {
+                        AudioUtility.PlaySFX(AudioClipName.Frog_laugh);
                         frogAnim.AnimationState.SetAnimation(0, animSession, true);
                         await AsyncService.Delay(1.5f, this);
+                        AudioUtility.StopSFX();
                         AdsManager.Instance.ShowInterstitial(() => {
                             UIService.PlayFadeIn(() => {
                                 var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
@@ -101,8 +105,10 @@ public class MinigameGreenEat : BaseActivity
                     }
                     else
                     {
+                        AudioUtility.PlaySFX(AudioClipName.Frog_laugh);
                         frogAnim.AnimationState.SetAnimation(0, animSession, false);
                         await AsyncService.Delay(1f, this);
+                        AudioUtility.StopSFX();
                         frogAnim.AnimationState.SetAnimation(0, animIdle, true);
                     }
                     isEating = false;
@@ -110,6 +116,7 @@ public class MinigameGreenEat : BaseActivity
             }
             else
             {
+                AudioUtility.PlaySFX(AudioClipName.Fail);
                 frogAnim.AnimationState.SetAnimation(0, animIdle, true);
                 isEating = false;
             }

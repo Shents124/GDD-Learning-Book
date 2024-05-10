@@ -2,6 +2,7 @@ using System;
 using Coffee.UIExtensions;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sound.Service;
 using Spine.Unity;
 using UI;
 using UnityEngine;
@@ -77,6 +78,7 @@ public class BakeCake : BaseActivity
         activeLo.DOFade(1, 1f);
         currentTimeBake = timeBake;
         UpdateNumber();
+        AudioUtility.PlaySFX(AudioClipName.Applepie_baking, true);
         StartBakeCake();
         AnimBakeCake();
     }
@@ -113,8 +115,9 @@ public class BakeCake : BaseActivity
         if(currentTimeBake <= 0)
         {
             UpdateNumber();
+            AudioUtility.StopSFX();
             animCuaLo.AnimationState.SetAnimation(0, animMo, false);
-            //Anim banh done
+            AudioUtility.PlaySFX(AudioClipName.Correct);
         }
         else
         {
@@ -160,6 +163,7 @@ public class BakeCake : BaseActivity
     private async UniTaskVoid Action()
     {
         vfxDone.gameObject.SetActive(true);
+        AudioUtility.PlaySFX(AudioClipName.Clearstep);
         cakeComplete.transform.SetAsFirstSibling();
         await AsyncService.Delay(1f, this);
         NextStep().Forget();
@@ -171,10 +175,11 @@ public class BakeCake : BaseActivity
         doneAllWithWater.DOFade(1, 1f);
         await AsyncService.Delay(1f, this);
         var track = animPlayer.AnimationState.SetAnimation(0, animWin, false);
+        AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
         track.Complete += async Entry => {
             animPlayer.AnimationState.SetAnimation(0, animWin, true);
+            AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
             await AsyncService.Delay(1f, this);
-            
             UIService.OpenActivityWithFadeIn(ActivityType.Step7Red);
         };
     }

@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2516e6db3c6bbba4dbf6ab1de909e51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIdle: 1.5
+  timeIdle: 3
   playerAnims:
   - {fileID: 2778491507854241403}
   - {fileID: 3850975986158098479}
@@ -138,9 +138,8 @@ MonoBehaviour:
   - {fileID: 708623151158760153}
   animRandom:
   - Jump_Cheer
-  - Laugh
+  - Yay_yay
   - Jump_Win
-  - Laugh
   animIdle: Idle
 --- !u!1 &1380899748072853090
 GameObject:

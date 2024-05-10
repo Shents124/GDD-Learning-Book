@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sound.Service;
 using UnityEngine;
 
 public class ApplePieceManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class ApplePieceManager : MonoBehaviour
         set
         {
             _currentPieceDone = value;
+            AudioUtility.PlaySFX(AudioClipName.Correct);
             CheckDone();
         }
     }

@@ -28,7 +28,7 @@ public class ArrangeCakeStep : BaseStep
     }
     public void ChangeToBakeStep()
     {
-        AudioUtility.PlaySFX(AudioClipName.Clearstep);
+        AudioUtility.PlaySFX(AudioClipName.Applepie_done);
         cakeDoneEndStep.DOFade(1, 0.75f).OnComplete(NextStep);
     }
 

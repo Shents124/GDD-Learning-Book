@@ -598,12 +598,12 @@ namespace Hellmade.Sound
         /// <returns>The ID of the created Audio object</returns>
         public int PlayMusic(AudioClip clip)
         {
-            return PlayAudio(Audio.AudioType.Music, clip, 1f, false, false, 1f, 1f, -1f, null);
+            return PlayAudio(Audio.AudioType.Music, clip, 0.8f, false, false, 1f, 1f, -1f, null);
         }
 
         public int PlayMusic(AudioClip clip, bool loop)
         {
-            return PlayAudio(Audio.AudioType.Music, clip, 1f, loop, false, 1f, 1f, -1f, null);
+            return PlayAudio(Audio.AudioType.Music, clip, 0.8f, loop, false, 1f, 1f, -1f, null);
         }
 
         /// <summary>
