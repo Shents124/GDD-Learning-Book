@@ -43,10 +43,10 @@ namespace Step345Screen
             characterController.PlayAnim(0, characterController.runAnimation, true);
             characterTransform.DOAnchorPos(characterEndPosition.anchoredPosition, characterMoveDuration).OnComplete(
                 () => {
-                    AudioUtility.PlaySFX(AudioClipName.Red_intro);
-                    characterController.PlayAnim(0, characterController.idleTalkAnimation, false, () => 
-                    {
+                    characterController.PlayAnim(0, characterController.idleTalkAnimation, true);
+                    AudioUtility.PlaySFX(this, AudioClipName.Red_intro, 0, () => {
                         characterController.PlayAnim(0, characterController.idleAnimation, true);
+
                         AudioUtility.PlaySFX(AudioClipName.Gift_fall);
                         giftTransform.DOAnchorPos(giftEndPosition.anchoredPosition, giftMoveDuration).SetEase(Ease.OutQuad)
                             .OnComplete(() => {
@@ -57,8 +57,6 @@ namespace Step345Screen
                                 gift.Initialize(OnClickOpenGift).Forget();
                             });
                     });
-                    
-                   
                 });
             base.DidEnter(args);
         }

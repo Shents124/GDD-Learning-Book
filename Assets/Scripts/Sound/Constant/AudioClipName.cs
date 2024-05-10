@@ -56,4 +56,8 @@ public enum AudioClipName
     Chicken_happy,
     Hanging_clothes,
     Strawberry_pouring,
+    Congratulation_end,
+    Applepie_done,
+    Applepie_baking,
+    Voice_coloring
 }

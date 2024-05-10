@@ -52,24 +52,23 @@ public class MinigameRedStep1Activity : BaseActivity
     {
         talkCanvas.gameObject.SetActive(true);
         posFallPlayer = animPlayer.transform.position;
-        talkCanvas.DOFade(1, 0.5f).OnComplete(async () => 
+        talkCanvas.DOFade(1, 0.5f).OnComplete(() => 
         {
-            AudioUtility.PlaySFX(AudioClipName.Red_cook);
+            AudioUtility.PlaySFX(AudioClipName.Clearstep);
             animPlayer.gameObject.SetActive(true);
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, true);
-            AudioUtility.PlaySFX(AudioClipName.Clearstep);
-            //AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
-            await AsyncService.Delay(2f, this);
-            animPlayer.transform.localScale = new Vector2(-animPlayer.transform.localScale.x, animPlayer.transform.localScale.y);
-            animPlayer.AnimationState.SetAnimation(0, animRun, true);
-            animPlayer.transform.DOMove(posFallPlayer, 1f).OnComplete(() =>
-            {
-                UIService.PlayFadeIn(() => {
-                    var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
-                    UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
-                    UIService.PlayFadeOut();
-                });
+            AudioUtility.PlaySFX(this, AudioClipName.Red_cook, callback: () => {
+                animPlayer.transform.localScale = new Vector2(-animPlayer.transform.localScale.x, animPlayer.transform.localScale.y);
+                animPlayer.AnimationState.SetAnimation(0, animRun, true);
+                animPlayer.transform.DOMove(posFallPlayer, 1f).OnComplete(() =>
+                {
+                    UIService.PlayFadeIn(() => {
+                        var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
+                        UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
+                        UIService.PlayFadeOut();
+                    });
 
+                });
             });
         });
     }

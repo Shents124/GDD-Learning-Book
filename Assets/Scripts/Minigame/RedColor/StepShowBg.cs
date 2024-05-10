@@ -37,16 +37,15 @@ public class StepShowBg : BaseStep
         SetUpPage();
         posStart = transform.position;
         m_RectTransform.DOAnchorPosX(m_RectTransform.rect.width, 1.5f).OnComplete(() => {
-            AudioUtility.PlaySFX(AudioClipName.Red_harvest);
-            var track = animPlayer.AnimationState.SetAnimation(0, animTalk, false);
-            track.Complete += entry => {
+            var track = animPlayer.AnimationState.SetAnimation(0, animTalk, true);
+            AudioUtility.PlaySFX(this, AudioClipName.Red_harvest, callback: () => {
                 UIService.PlayFadeIn(() =>
                 {
                     NextStep();
                     UIService.PlayFadeOut();
                     transform.position = posStart;
                 });
-            };
+            });
         }).SetDelay(1f);
     }
 }

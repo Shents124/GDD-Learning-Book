@@ -54,6 +54,9 @@ namespace Minigame.RedColor
             _onRun?.Invoke();
             AudioUtility.PlaySFX(AudioClipName.Pour_water);
             var track = skeletonAnimation.AnimationState.SetAnimation(0, fullToHalfName, false);
+            track.Complete += entry => {
+                AudioUtility.StopSFX();
+            };
         }
     }
 }

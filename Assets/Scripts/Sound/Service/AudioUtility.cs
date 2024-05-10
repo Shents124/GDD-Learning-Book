@@ -44,10 +44,10 @@ namespace Sound.Service
             s_indexGameplay++;
         }
         
-        public static void PlaySFX(AudioClipName AudioClipName)
+        public static void PlaySFX(AudioClipName AudioClipName, bool loop = false)
         {
             var audio = GetAudioClip(AudioClipName);
-            EazySoundManager.Instance.PlaySound(audio, false);
+            EazySoundManager.Instance.PlaySound(audio, loop);
         }
 
         public static void StopSFX()
