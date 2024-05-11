@@ -1,209 +1,209 @@
 
 con ech.png
-size: 1732,689
+size: 1671,723
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 b
   rotate: false
-  xy: 782, 515
-  size: 847, 172
+  xy: 677, 547
+  size: 849, 174
   orig: 849, 174
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 bung body
-  rotate: false
-  xy: 2, 14
+  rotate: true
+  xy: 2, 5
   size: 716, 673
   orig: 716, 673
   offset: 0, 0
   index: -1
 cay tren dau
   rotate: true
-  xy: 1108, 5
-  size: 118, 139
+  xy: 1528, 601
+  size: 120, 141
   orig: 120, 141
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 chan p
-  rotate: false
-  xy: 720, 2
+  rotate: true
+  xy: 1242, 7
   size: 192, 113
   orig: 192, 113
   offset: 0, 0
   index: -1
 chan t
-  rotate: false
-  xy: 914, 6
+  rotate: true
+  xy: 1357, 7
   size: 192, 113
   orig: 192, 113
   offset: 0, 0
   index: -1
 eye p
   rotate: true
-  xy: 1417, 44
-  size: 204, 185
+  xy: 1053, 21
+  size: 206, 187
   orig: 206, 187
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 eye p duoi
-  rotate: true
-  xy: 782, 121
-  size: 231, 209
+  rotate: false
+  xy: 769, 272
+  size: 233, 211
   orig: 233, 211
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 eye t
-  rotate: false
-  xy: 993, 125
-  size: 252, 239
+  rotate: true
+  xy: 1004, 229
+  size: 254, 241
   orig: 254, 241
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 eye t duoi
-  rotate: false
-  xy: 1343, 250
-  size: 276, 263
+  rotate: true
+  xy: 1249, 267
+  size: 278, 265
   orig: 278, 265
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 len p 1
-  rotate: true
-  xy: 1664, 7
-  size: 45, 55
+  rotate: false
+  xy: 1396, 208
+  size: 47, 57
   orig: 47, 57
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 len p 2
   rotate: true
-  xy: 1247, 262
-  size: 58, 46
+  xy: 1247, 205
+  size: 60, 48
   orig: 60, 48
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 len t 1
   rotate: false
-  xy: 1295, 264
-  size: 46, 56
+  xy: 1346, 207
+  size: 48, 58
   orig: 48, 58
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 len t 2
-  rotate: false
-  xy: 1604, 7
-  size: 58, 45
+  rotate: true
+  xy: 1297, 205
+  size: 60, 47
   orig: 60, 47
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 ma 8 p
-  rotate: true
-  xy: 1092, 376
-  size: 137, 113
+  rotate: false
+  xy: 1528, 484
+  size: 139, 115
   orig: 139, 115
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 ma 8 t
-  rotate: true
-  xy: 1092, 376
-  size: 137, 113
+  rotate: false
+  xy: 1528, 484
+  size: 139, 115
   orig: 139, 115
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 ma hong
   rotate: true
-  xy: 1631, 354
-  size: 333, 88
+  xy: 677, 147
+  size: 335, 90
   orig: 335, 90
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 mom 1
-  rotate: true
-  xy: 1704, 309
-  size: 43, 26
+  rotate: false
+  xy: 1002, 199
+  size: 45, 28
   orig: 45, 28
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 mom 2
-  rotate: false
-  xy: 1247, 322
-  size: 86, 64
+  rotate: true
+  xy: 855, 60
+  size: 88, 66
   orig: 88, 66
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 mom 3
-  rotate: true
-  xy: 839, 359
-  size: 154, 113
+  rotate: false
+  xy: 769, 150
+  size: 156, 115
   orig: 156, 115
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 mom 4
   rotate: true
-  xy: 1621, 226
-  size: 53, 78
+  xy: 1531, 144
+  size: 55, 80
   orig: 55, 80
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 mom 5
   rotate: true
-  xy: 782, 357
-  size: 156, 55
+  xy: 1472, 41
+  size: 158, 57
   orig: 158, 57
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 mom 6
-  rotate: true
-  xy: 1249, 2
-  size: 40, 54
+  rotate: false
+  xy: 855, 2
+  size: 42, 56
   orig: 42, 56
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 mom 7
-  rotate: false
-  xy: 954, 366
-  size: 136, 147
+  rotate: true
+  xy: 677, 7
+  size: 138, 149
   orig: 138, 149
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 mom 7 luoi
-  rotate: true
-  xy: 720, 117
+  rotate: false
+  xy: 677, 485
   size: 570, 60
   orig: 570, 60
   offset: 0, 0
   index: -1
 mom 8a
   rotate: true
-  xy: 1207, 380
-  size: 133, 23
+  xy: 828, 13
+  size: 135, 25
   orig: 135, 25
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 tay p
   rotate: false
-  xy: 1604, 54
+  xy: 927, 15
   size: 124, 170
   orig: 124, 170
   offset: 0, 0
   index: -1
 tay t
-  rotate: true
-  xy: 1247, 125
+  rotate: false
+  xy: 1516, 201
   size: 123, 168
   orig: 123, 168
   offset: 0, 0
   index: -1
 tim
-  rotate: false
-  xy: 1621, 281
-  size: 81, 71
+  rotate: true
+  xy: 927, 187
+  size: 83, 73
   orig: 83, 73
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 tim 2
-  rotate: true
-  xy: 1232, 388
-  size: 125, 109
+  rotate: false
+  xy: 1516, 371
+  size: 127, 111
   orig: 127, 111
-  offset: 1, 1
+  offset: 0, 0
   index: -1

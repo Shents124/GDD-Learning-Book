@@ -743,6 +743,7 @@ MonoBehaviour:
   step8: {fileID: 8272001548511710098}
   posStart: {fileID: 9163696857782829273}
   isReady: 0
+  isPlaySound: 0
 --- !u!222 &5734192693355212914
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1829,6 +1830,7 @@ GameObject:
   - component: {fileID: 578880919729182995}
   - component: {fileID: 4360831903617649931}
   - component: {fileID: 3035891095302054139}
+  - component: {fileID: 4667195612562914585}
   m_Layer: 5
   m_Name: Not done
   m_TagString: Untagged
@@ -1956,6 +1958,19 @@ MonoBehaviour:
   MAX_SCALE: {x: 1.05, y: 1.05, z: 1.05}
   duration: 0.15
   startScale: 1
+--- !u!114 &4667195612562914585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4340857289744412475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9b430e6a260f54a8073b3071c939ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 7
 --- !u!1 &4652917567227975206
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,6 +2325,7 @@ GameObject:
   - component: {fileID: 1502208503575547433}
   - component: {fileID: 6397009916905244117}
   - component: {fileID: 3414821423555931926}
+  - component: {fileID: 3700048394384832336}
   m_Layer: 5
   m_Name: Not Done
   m_TagString: Untagged
@@ -2435,6 +2451,19 @@ MonoBehaviour:
   MAX_SCALE: {x: 1.05, y: 1.05, z: 1.05}
   duration: 0.15
   startScale: 1
+--- !u!114 &3700048394384832336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353858147070761869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9b430e6a260f54a8073b3071c939ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 7
 --- !u!1 &5612433948649544665
 GameObject:
   m_ObjectHideFlags: 0

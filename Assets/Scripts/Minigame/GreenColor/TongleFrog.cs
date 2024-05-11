@@ -25,8 +25,9 @@ public class TongleFrog : MonoBehaviour
         image.fillAmount = 0;
     }
 
-    public void Eat(AnimalFlyRandom animal, Action<bool> callBack)
+    public void Eat(AnimalFlyRandom animal, Action<bool> callBack, Action startEat)
     {
+        startEat?.Invoke();
         image.fillAmount = 0;
         animal.CancelFly();
         AudioUtility.PlaySFX(AudioClipName.Frog_catch);

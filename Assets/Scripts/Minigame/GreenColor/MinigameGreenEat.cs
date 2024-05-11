@@ -26,7 +26,7 @@ public class MinigameGreenEat : BaseActivity
     public SkeletonGraphic frogAnim, animPlayer;
 
     [SpineAnimation]
-    public string animEat, animIdle, animSession;
+    public string animOpen, animMid, animEat, animIdle, animSession;
 
     [SpineAnimation(dataField: "animPlayer")]
     public string animPlayerTalk, animPlayerIdle;
@@ -46,7 +46,7 @@ public class MinigameGreenEat : BaseActivity
             {
                 if (isEating)
                     return;
-                frog.Eat(anim, OnClickAnimal);
+                frog.Eat(anim, OnClickAnimal, StartEat);
             };
         }
     }
@@ -72,6 +72,14 @@ public class MinigameGreenEat : BaseActivity
                 UIService.PlayFadeOut();
             });
         });
+
+    }
+    private void StartEat()
+    {
+        var track = frogAnim.AnimationState.SetAnimation(0, animOpen, false);
+        track.Complete += Entry => {
+            frogAnim.AnimationState.SetAnimation(0, animMid, true);
+        };
 
     }
 

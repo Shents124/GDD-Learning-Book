@@ -31,6 +31,7 @@ namespace Step7Screen
             btnSelect.onClick.RemoveAllListeners();
             await AsyncService.Delay(1f, this);
             imageIcon.sprite = spriteDone;
+            btnSelect.interactable = false;
         }
     }
 }
