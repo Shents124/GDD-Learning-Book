@@ -76,6 +76,7 @@ namespace Minigame.RedColor
 
         private async void OnClickedBackBtn()
         {
+            AudioUtility.StopSFX();
             AudioUtility.PlayUISfx(AudioClipName.Button);
             await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
             UIService.PlayFadeOut();
@@ -84,6 +85,7 @@ namespace Minigame.RedColor
 
         private void OnClickedNextBtn()
         {
+            AudioUtility.StopSFX();
             AudioUtility.PlayUISfx(AudioClipName.Button);
             OnFinishAllStep();
         }

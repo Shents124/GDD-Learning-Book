@@ -59,6 +59,7 @@ namespace Minigame.BlueColor
 
         private void OnClickBlueToy(Toy blueToy)
         {
+            AudioUtility.PlaySFX(AudioClipName.Correct);
             var index = blueToy.Index;
             var parent = blueToyContainer.GetToyParent(index);
             blueToy.GetComponent<Canvas>().overrideSorting = false;
@@ -68,7 +69,8 @@ namespace Minigame.BlueColor
 
         private void OnClickRedToy(Toy redToy)
         {
-
+            AudioUtility.PlaySFX(AudioClipName.Fail);
+            redToy.transform.DOShakePosition(0.5f, 15, 50, 90);
         }
 
         private void OnMoveToyFinish()
@@ -97,7 +99,7 @@ namespace Minigame.BlueColor
                 redToy.GetComponent<Canvas>().overrideSorting = false;
                 redToy.DoMove(parent, new Vector3(toyScale, toyScale, toyScale), 1, null);
             }
-
+            AudioUtility.PlaySFX(AudioClipName.Correct);
             yield return new WaitForSeconds(1);
             redToyContainer.Shake(() => {
                 UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlue1Screen);

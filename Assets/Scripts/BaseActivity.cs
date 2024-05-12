@@ -40,6 +40,7 @@ public class BaseActivity : Activity
 
     private static async UniTask OnClickedBackBtn()
     {
+        AudioUtility.StopSFX();
         AudioUtility.PlayUISfx(AudioClipName.Button);
         await UIService.OpenActivityAsync(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
@@ -47,6 +48,7 @@ public class BaseActivity : Activity
 
     protected virtual void OnClickedNextBtn()
     {
+        AudioUtility.StopSFX();
         AudioUtility.PlayUISfx(AudioClipName.Button);
         UIService.OpenActivityWithFadeIn(nextActivity);
     }

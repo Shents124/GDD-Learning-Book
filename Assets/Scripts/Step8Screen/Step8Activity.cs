@@ -102,13 +102,8 @@ public class Step8Activity : MonoBehaviour
             {
                 AudioUtility.PlaySFX(AudioClipName.Crayon, true);
                 colorPenController.isPlaySound = true;
+                vfxTo.gameObject.SetActive(true);
             }
-
-            //if(progress * 100 % 20 == 0 && colorPenController.IsPlay)
-            //{
-            //    vfxTo.Play();
-            //    vfxTo.transform.position = colorPenController.transform.position;
-            //}
 
         }
     }
@@ -125,6 +120,7 @@ public class Step8Activity : MonoBehaviour
             {
                 AudioUtility.PlaySFX(AudioClipName.Crayon, true);
                 colorPenController.isPlaySound = true;
+                vfxTo.gameObject.SetActive(true);
             }
         }
 

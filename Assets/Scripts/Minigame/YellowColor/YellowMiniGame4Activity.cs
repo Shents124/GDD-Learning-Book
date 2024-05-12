@@ -109,12 +109,15 @@ namespace Minigame.YellowColor
         {
             await AsyncService.Delay(1f, this);
             screenAnim.gameObject.SetActive(true);
+            AudioUtility.StopSFX();
+            AudioUtility.PlaySFX(AudioClipName.Photo);
             screenAnim.DOFade(1, 0.25f).OnComplete(async () => {
                 screenShoot.SetActive(true);
                 screenAnim.DOFade(0, 0.25f).OnComplete(() => {
                     screenAnim.gameObject.SetActive(false);
                 });
                 await AsyncService.Delay(2.5f, this);
+                AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
                 DoneAll.SetActive(true);
                 await AsyncService.Delay(2.5f, this);
                 UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);

@@ -60,6 +60,7 @@ public class MinigameGreenWay : MonoBehaviour
     }
     private async void OnClickedBackBtn()
     {
+        AudioUtility.StopSFX();
         await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
         Destroy(this.gameObject);
@@ -69,7 +70,7 @@ public class MinigameGreenWay : MonoBehaviour
     {
         if (_isMoveStep)
             return;
-        
+        AudioUtility.StopSFX();
         AdsManager.Instance.ShowInterstitial(() => {
             _isMoveStep = true;
             UIService.PlayFadeIn(() => {

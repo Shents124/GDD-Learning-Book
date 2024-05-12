@@ -94,11 +94,6 @@ namespace Minigame.BlueColor
             }
         }
 
-        private IEnumerator MoveToNextStep()
-        {
-            yield return new WaitForSeconds(1f);
-            //UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow5Screen);
-        }
 
         private async void CheckNextStep()
         {
@@ -111,7 +106,10 @@ namespace Minigame.BlueColor
         {
             screenShoot.SetActive(true);
             screenAnim.DOFade(0, 0.25f).OnComplete(() => { screenAnim.gameObject.SetActive(false); });
+            AudioUtility.StopSFX();
+            AudioUtility.PlaySFX(AudioClipName.Photo);
             await AsyncService.Delay(2.5f, this);
+            AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
             DoneAll.SetActive(true);
             await AsyncService.Delay(2.5f, this);
             UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);

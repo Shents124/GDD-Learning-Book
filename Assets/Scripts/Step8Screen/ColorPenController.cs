@@ -57,6 +57,7 @@ public class ColorPenController : MonoBehaviour
         {
             isPlaySound = false;
             AudioUtility.StopSFX();
+            step8.vfxTo.gameObject.SetActive(false);
         }
         isPlay = false;
         transform.position = posStart.position;

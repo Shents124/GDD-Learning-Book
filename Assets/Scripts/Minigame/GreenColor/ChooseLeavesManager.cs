@@ -86,18 +86,21 @@ public class ChooseLeavesManager : MonoBehaviour
             currentStep++;
             if (currentStep >= stepNeed)
             {
-                frogAnim.AnimationState.SetAnimation(0, animJump, false);
-                AudioUtility.PlaySFX(AudioClipName.Jump);
-                frogAnim.transform.DOJump(posDoneStep.position, jumpPower, 1, 1.34f).OnComplete(async () => {
-                    frogAnim.AnimationState.SetAnimation(0, animSession, true);
-                    AudioUtility.PlaySFX(AudioClipName.Frog_laugh);
-                    await AsyncService.Delay(1.5f, this);
-                    AdsManager.Instance.ShowInterstitial(() => {
-                        UIService.PlayFadeIn(() => {
-                            UIService.OpenActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
+                transform.DOMove(posDoneBg[1].position, 1f).OnComplete(() => 
+                {
+                    frogAnim.AnimationState.SetAnimation(0, animJump, false);
+                    AudioUtility.PlaySFX(AudioClipName.Jump);
+                    frogAnim.transform.DOJump(posDoneStep.position, jumpPower, 1, 1.34f).OnComplete(async () => {
+                        frogAnim.AnimationState.SetAnimation(0, animSession, true);
+                        AudioUtility.PlaySFX(AudioClipName.Frog_laugh);
+                        await AsyncService.Delay(1.5f, this);
+                        AdsManager.Instance.ShowInterstitial(() => {
+                            UIService.PlayFadeIn(() => {
+                                UIService.OpenActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
+                            });
                         });
-                    });
 
+                    });
                 });
             }
             else
@@ -106,7 +109,6 @@ public class ChooseLeavesManager : MonoBehaviour
                 {
                     transform.DOMove(posDoneBg[0].position, 1f);
                 }
-
                 choseLeaves.SetActive(true);
                 choseLeaves.transform.DOMove(choseLeavesStart.position, 0.5f).OnComplete(() => {
                     StartChooseAllLeave();
