@@ -456,24 +456,24 @@ namespace SCN.Ads
             });
         }
 
-        public void ShowInterstitial(Action callback = null)
+        public void ShowInterstitial(Action<bool> callback = null, Action callback2 = null)
         {
             if (AdmobConfig.Instance.IsBlockRequest)
             {
-                callback?.Invoke();
+                callback?.Invoke(false);
                 return;
             }
             if (HasInter)
             {
                 AdTracker.LogAdInterStatus(AdStatus.impress);
-                onInterSuccess = callback;
+                onInterSuccess = callback2;
                 Log("Interstitial", "Show start..");
                 inter.Show();
             }
             else
             {
                 Log("Interstitial", "Show failed: ad not ready. Invoke callback.");
-                callback?.Invoke();
+                callback?.Invoke(true);
                 RequestInterstitial();
             }
         }

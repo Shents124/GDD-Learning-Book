@@ -1,11 +1,11 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Sound.Service;
+using Tracking;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using ZBase.UnityScreenNavigator.Core.Activities;
-
 
 public class BaseActivity : Activity
 {
@@ -13,6 +13,8 @@ public class BaseActivity : Activity
     [SerializeField] protected Button nextBtn;
     [SerializeField] protected ActivityType nextActivity;
 
+    protected TrackingAdInter trackingAdInter;
+    
     protected override void Awake()
     {
         backBtn.onClick.AddListener(() => {
@@ -33,15 +35,13 @@ public class BaseActivity : Activity
         return base.Initialize(args);
     }
 
-    protected virtual void InitializeData(Memory<object> args)
-    {
-        
-    }
+    protected virtual void InitializeData(Memory<object> args) { }
 
-    private static async UniTask OnClickedBackBtn()
+    private async UniTask OnClickedBackBtn()
     {
         AudioUtility.StopSFX();
         AudioUtility.PlayUISfx(AudioClipName.Button);
+        
         await UIService.OpenActivityAsync(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
     }
@@ -50,7 +50,13 @@ public class BaseActivity : Activity
     {
         AudioUtility.StopSFX();
         AudioUtility.PlayUISfx(AudioClipName.Button);
-        UIService.OpenActivityWithFadeIn(nextActivity);
+        SetDataTrackingAd();
+        UIService.OpenActivityWithFadeIn(nextActivity, trackingAdInter: trackingAdInter);
+    }
+
+    protected virtual void SetDataTrackingAd()
+    {
+        trackingAdInter = default;
     }
     
     private static void FadeOut()

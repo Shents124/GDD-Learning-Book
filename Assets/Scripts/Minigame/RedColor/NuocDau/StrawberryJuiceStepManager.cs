@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Constant;
 using Sound.Service;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,7 +67,10 @@ namespace Minigame.RedColor
             if (_isChangeStep)
                 return;
             
-            AdsManager.Instance.ShowInterstitial(() => {
+            AdsManager.Instance.ShowInterstitial((result) => {
+                
+                AdTracker.LogAdInter(GetTrackingAdInter(), result);
+                
                 _isChangeStep = true;
                 UIService.PlayFadeIn(() => {
                     Destroy(this.gameObject);
@@ -88,6 +93,17 @@ namespace Minigame.RedColor
             AudioUtility.StopSFX();
             AudioUtility.PlayUISfx(AudioClipName.Button);
             OnFinishAllStep();
+        }
+        
+        private static TrackingAdInter GetTrackingAdInter()
+        {
+            return new TrackingAdInter {
+                hasData = true,
+                adLocation = AdLocation.start,
+                levelName = LevelName.red,
+                miniGameSession = "3",
+                isWoaAd = false
+            };
         }
     }
 }

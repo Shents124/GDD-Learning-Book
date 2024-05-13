@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Minigame.YellowColor;
 using Sound.Service;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -102,8 +104,21 @@ namespace Minigame.BlueColor
             AudioUtility.PlaySFX(AudioClipName.Correct);
             yield return new WaitForSeconds(1);
             redToyContainer.Shake(() => {
-                UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlue1Screen);
+                
+                SetDataTrackingAd();
+                UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlue1Screen, trackingAdInter: trackingAdInter);
             });
+        }
+        
+        protected override void SetDataTrackingAd()
+        {
+            trackingAdInter = new TrackingAdInter {
+                hasData = true,
+                levelName = LevelName.blue,
+                adLocation = AdLocation.start, 
+                miniGameSession = "2", 
+                isWoaAd = false
+            };
         }
     }
 }

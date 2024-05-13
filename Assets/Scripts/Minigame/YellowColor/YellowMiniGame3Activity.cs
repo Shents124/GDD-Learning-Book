@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using Sound.Service;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 
@@ -20,7 +22,19 @@ namespace Minigame.YellowColor
         private IEnumerator NextMiniGame()
         {
             yield return new WaitForSeconds(duration);
-            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow4Screen);
+            SetDataTrackingAd();
+            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow4Screen, trackingAdInter: trackingAdInter);
+        }
+        
+        protected override void SetDataTrackingAd()
+        {
+            trackingAdInter = new TrackingAdInter {
+                hasData = true,
+                levelName = LevelName.yellow,
+                adLocation = AdLocation.end, 
+                miniGameSession = "2", 
+                isWoaAd = false
+            };
         }
     }
 }

@@ -139,26 +139,26 @@ public class AdsManager : MonoBehaviour
         return 0;
     }
 
-    public void ShowInterstitial(Action callback = null)
+    public void ShowInterstitial(Action<bool> callback = null, Action callback2 = null)
     {
         if (IsRemovedAds)
         {
             lastTimeInter = Time.time + interval;
-            callback?.Invoke();
+            callback?.Invoke(false);
             return;
         }
 
         OnShowAdStart();
-        callback += OnShowAdFinished;
+        callback2 += OnShowAdFinished;
 
         if (useAdmob && AdsAdmob.Instance.HasInter)
         {
             countInter += 1;
             countPlay = 0;
             lastTimeInter = Time.time + interval;
-            AdsAdmob.Instance.ShowInterstitial(callback);
+            AdsAdmob.Instance.ShowInterstitial(callback, callback2);
         }
-        else callback?.Invoke();
+        else callback?.Invoke(false);
     }
 
     public void ShowRewardVideo(Action onSuccess, Action onClosed = null)

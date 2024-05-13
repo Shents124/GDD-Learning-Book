@@ -6,6 +6,8 @@ using DG.Tweening;
 using Minigame.BlueColor;
 using Sound.Service;
 using Spine.Unity;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 
@@ -169,7 +171,14 @@ namespace Step345Screen
         private static IEnumerator MoveToNextStep()
         {
             yield return new WaitForSeconds(1f);
-            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlueScreen);
+            var trackingAdInter = new TrackingAdInter {
+                hasData = true,
+                levelName = LevelName.blue,
+                adLocation = AdLocation.start, 
+                miniGameSession = "1", 
+                isWoaAd = false
+            };
+            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlueScreen, trackingAdInter: trackingAdInter);
         }
     }
 }

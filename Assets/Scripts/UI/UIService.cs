@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using DefaultNamespace;
+using Tracking;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core.Activities;
 using ZBase.UnityScreenNavigator.Core.Views;
@@ -32,11 +33,14 @@ namespace UI
         
         public static void OpenActivityWithFadeIn(ActivityType activityType, bool playAnimation = false, 
             OnViewLoadedCallback onLoadedCallBack = null, bool closeLastActivity = true, bool playAd = true,
-            params object[] args)
+            TrackingAdInter trackingAdInter = default, params object[] args)
         {
             if (playAd)
             {
-                AdsManager.Instance.ShowInterstitial(() => {
+                AdsManager.Instance.ShowInterstitial((result) => {
+                    
+                    AdTracker.LogAdInter(trackingAdInter, result);
+                    
                     PlayFadeIn(() => 
                         OpenActivityAsync(activityType, playAnimation, onLoadedCallBack, closeLastActivity, args).Forget());
                 });

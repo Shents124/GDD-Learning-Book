@@ -4,6 +4,8 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sound.Service;
 using Spine.Unity;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -112,7 +114,19 @@ namespace Minigame.BlueColor
             AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
             DoneAll.SetActive(true);
             await AsyncService.Delay(2.5f, this);
-            UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
+            SetDataTrackingAd();
+            UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
+        }
+        
+        protected override void SetDataTrackingAd()
+        {
+            trackingAdInter = new TrackingAdInter {
+                hasData = true,
+                levelName = LevelName.blue,
+                adLocation = AdLocation.end, 
+                miniGameSession = null, 
+                isWoaAd = false
+            };
         }
     }
 }

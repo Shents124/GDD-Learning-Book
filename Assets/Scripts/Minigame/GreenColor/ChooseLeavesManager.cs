@@ -5,6 +5,8 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sound.Service;
 using Spine.Unity;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -94,7 +96,9 @@ public class ChooseLeavesManager : MonoBehaviour
                         frogAnim.AnimationState.SetAnimation(0, animSession, true);
                         AudioUtility.PlaySFX(AudioClipName.Frog_laugh);
                         await AsyncService.Delay(1.5f, this);
-                        AdsManager.Instance.ShowInterstitial(() => {
+                        AdsManager.Instance.ShowInterstitial((result) => {
+                            
+                            AdTracker.LogAdInter(GetTrackingAdInter(), result);
                             UIService.PlayFadeIn(() => {
                                 UIService.OpenActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
                             });
@@ -173,5 +177,16 @@ public class ChooseLeavesManager : MonoBehaviour
             list[i] = list[randomIndex];
             list[randomIndex] = temp;
         }
+    }
+    
+    private static TrackingAdInter GetTrackingAdInter()
+    {
+        return new TrackingAdInter {
+            hasData = true,
+            adLocation = AdLocation.start,
+            levelName = LevelName.green,
+            miniGameSession = "2",
+            isWoaAd = false
+        };
     }
 }

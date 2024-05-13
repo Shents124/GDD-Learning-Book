@@ -5,6 +5,8 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sound.Service;
 using Spine.Unity;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -185,7 +187,14 @@ namespace Step345Screen
         private static IEnumerator MoveToNextStep()
         {
             yield return new WaitForSeconds(1f);
-            UIService.OpenActivityWithFadeIn(ActivityType.MinigameGreen1Screen);
+            var trackingAdInter = new TrackingAdInter {
+                hasData = true,
+                levelName = LevelName.green,
+                adLocation = AdLocation.start, 
+                miniGameSession = "1", 
+                isWoaAd = false
+            };
+            UIService.OpenActivityWithFadeIn(ActivityType.MinigameGreen1Screen, trackingAdInter: trackingAdInter);
         }
     }
 }

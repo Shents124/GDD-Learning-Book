@@ -1,7 +1,8 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sound.Service;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,7 +56,10 @@ public class MakeCakeManager : MonoBehaviour
                 return;
             
             _isMoveStep = true;
-            AdsManager.Instance.ShowInterstitial(() => {
+            AdsManager.Instance.ShowInterstitial((result) => {
+                
+                AdTracker.LogAdInter(GetTrackingAdInter(), result);
+                
                 UIService.PlayFadeIn(() => {
                     UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
                     Destroy(this.gameObject);
@@ -68,8 +72,7 @@ public class MakeCakeManager : MonoBehaviour
             currentStep++;
         }
     }
-
-
+    
     private async void OnClickedBackBtn()
     {
         AudioUtility.StopSFX();
@@ -87,12 +90,25 @@ public class MakeCakeManager : MonoBehaviour
             return;
 
         _isMoveStep = true;
-        AdsManager.Instance.ShowInterstitial(() =>
+        AdsManager.Instance.ShowInterstitial((result) =>
         {
+            AdTracker.LogAdInter(GetTrackingAdInter(), result);
+            
             UIService.PlayFadeIn(() => {
                 UIService.OpenActivityAsyncNoClose(ActivityType.BakeCake).Forget();
                 Destroy(this.gameObject);
             });
         });
+    }
+
+    private static TrackingAdInter GetTrackingAdInter()
+    {
+        return new TrackingAdInter {
+            hasData = true,
+            adLocation = AdLocation.start,
+            levelName = LevelName.red,
+            miniGameSession = "2",
+            isWoaAd = false
+        };
     }
 }

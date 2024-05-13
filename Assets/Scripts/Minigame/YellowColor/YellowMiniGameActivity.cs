@@ -1,6 +1,8 @@
 ﻿using System;
 using DG.Tweening;
 using Sound.Service;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 
@@ -36,7 +38,19 @@ namespace Minigame.YellowColor
 
         private void OnCollectEggsFinish()
         {
-            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow2Screen);
+            SetDataTrackingAd();
+            UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow2Screen, trackingAdInter: trackingAdInter);
+        }
+
+        protected override void SetDataTrackingAd()
+        {
+            trackingAdInter = new TrackingAdInter {
+                hasData = true,
+                levelName = LevelName.yellow,
+                adLocation = AdLocation.start, 
+                miniGameSession = "2", 
+                isWoaAd = false
+            };
         }
     }
 }

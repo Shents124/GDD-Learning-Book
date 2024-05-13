@@ -6,6 +6,8 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sound.Service;
 using Spine.Unity;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using Utility;
@@ -65,7 +67,10 @@ public class MinigameGreenEat : BaseActivity
     protected override void OnClickedNextBtn()
     {
         AudioUtility.PlayUISfx(AudioClipName.Button);
-        AdsManager.Instance.ShowInterstitial(() => {
+        AdsManager.Instance.ShowInterstitial((result) => {
+            
+            AdTracker.LogAdInter(GetTrackingAdInter(), result);
+            
             UIService.PlayFadeIn(() => {
                 var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
                 UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
@@ -102,7 +107,10 @@ public class MinigameGreenEat : BaseActivity
                         frogAnim.AnimationState.SetAnimation(0, animSession, true);
                         await AsyncService.Delay(1.5f, this);
                         AudioUtility.StopSFX();
-                        AdsManager.Instance.ShowInterstitial(() => {
+                        AdsManager.Instance.ShowInterstitial((result) => {
+                            
+                            AdTracker.LogAdInter(GetTrackingAdInter(), result);
+                            
                             UIService.PlayFadeIn(() => {
                                 var step = LoadResourceService.LoadStep<MinigameGreenWay>(PathConstants.MINI_GAME_GREEN_STEP_3);
                                 UIService.CloseActivityAsync(ActivityType.MinigameGreen2Screen, false).Forget();
@@ -128,6 +136,17 @@ public class MinigameGreenEat : BaseActivity
                 frogAnim.AnimationState.SetAnimation(0, animIdle, true);
                 isEating = false;
             }
+        };
+    }
+    
+    private static TrackingAdInter GetTrackingAdInter()
+    {
+        return new TrackingAdInter {
+            hasData = true,
+            adLocation = AdLocation.start,
+            levelName = LevelName.green,
+            miniGameSession = "3",
+            isWoaAd = false
         };
     }
 }

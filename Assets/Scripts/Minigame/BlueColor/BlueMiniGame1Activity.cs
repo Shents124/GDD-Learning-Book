@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sound.Service;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 

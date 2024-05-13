@@ -5,6 +5,8 @@ using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using Sound.Service;
 using Spine.Unity;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -71,7 +73,9 @@ public class MinigameGreenWay : MonoBehaviour
         if (_isMoveStep)
             return;
         AudioUtility.StopSFX();
-        AdsManager.Instance.ShowInterstitial(() => {
+        AdsManager.Instance.ShowInterstitial((result) => {
+            
+            AdTracker.LogAdInter(GetTrackingAdInter(), result);
             _isMoveStep = true;
             UIService.PlayFadeIn(() => {
                 UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
@@ -105,7 +109,8 @@ public class MinigameGreenWay : MonoBehaviour
                 if (_isMoveStep)
                     return;
                 
-                AdsManager.Instance.ShowInterstitial(() => {
+                AdsManager.Instance.ShowInterstitial((result) => {
+                    AdTracker.LogAdInter(GetTrackingAdInter(), result);
                     _isMoveStep = true;
                     UIService.PlayFadeIn(() => {
                         UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
@@ -174,5 +179,16 @@ public class MinigameGreenWay : MonoBehaviour
         isDone = true;
         AudioUtility.PlaySFX(AudioClipName.Correct);
         playerController.StartMove();
+    }
+    
+    private static TrackingAdInter GetTrackingAdInter()
+    {
+        return new TrackingAdInter {
+            hasData = true,
+            adLocation = AdLocation.end,
+            levelName = LevelName.green,
+            miniGameSession = "3",
+            isWoaAd = false
+        };
     }
 }

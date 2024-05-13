@@ -5,6 +5,8 @@ using DG.Tweening;
 using Minigame.RedColor;
 using Sound.Service;
 using Spine.Unity;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using Utility;
@@ -76,13 +78,28 @@ public class MinigameRedStep1Activity : BaseActivity
     protected override void OnClickedNextBtn()
     {
         AudioUtility.PlayUISfx(AudioClipName.Button);
-        AdsManager.Instance.ShowInterstitial(() => {
+        AdsManager.Instance.ShowInterstitial((result) => {
+            
+            SetDataTrackingAd();
+            AdTracker.LogAdInter(trackingAdInter, result);
+            
             UIService.PlayFadeIn(() => {
                 NextStep();
                 UIService.PlayFadeOut();
             });
         });
 
+    }
+    
+    protected override void SetDataTrackingAd()
+    {
+        trackingAdInter = new TrackingAdInter {
+            hasData = true,
+            levelName = LevelName.red,
+            adLocation = AdLocation.start, 
+            miniGameSession = "2", 
+            isWoaAd = false
+        };
     }
     
     void NextStep()

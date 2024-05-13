@@ -15,7 +15,24 @@ namespace Tracking
 
     public static class AdTracker
     {
-        public static void LogAdInterSuccess(AdLocation adLocation, string levelName, string miniGameSession, bool isWoaAds)
+        public static void LogAdInter(TrackingAdInter trackingAdInter, bool isSuccess)
+        {
+            if (trackingAdInter.hasData == false)
+                return;
+            
+            if (isSuccess)
+            {
+                LogAdInterSuccess(trackingAdInter.adLocation, trackingAdInter.levelName.ToString(),
+                    trackingAdInter.miniGameSession, trackingAdInter.isWoaAd);
+            }
+            else
+            {
+                LogAdInterFailed(trackingAdInter.adLocation, trackingAdInter.levelName.ToString(),
+                    trackingAdInter.miniGameSession, trackingAdInter.isWoaAd);
+            }
+        }
+        
+        private static void LogAdInterSuccess(AdLocation adLocation, string levelName, string miniGameSession, bool isWoaAds)
         {
             Parameter[] firebaseParams = {
                 new(FirebaseParam.LOCATION, adLocation.ToString()),
@@ -28,7 +45,7 @@ namespace Tracking
             FirebaseAnalytics.LogEvent(FirebaseEventName.AD_INTER_SUCCESS, firebaseParams);
         }
         
-        public static void LogAdInterFailed(AdLocation adLocation, string levelName, string miniGameSession, bool isWoaAds)
+        private static void LogAdInterFailed(AdLocation adLocation, string levelName, string miniGameSession, bool isWoaAds)
         {
             Parameter[] firebaseParams = {
                 new(FirebaseParam.LOCATION, adLocation.ToString()),

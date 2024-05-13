@@ -115,7 +115,7 @@ namespace Minigame.YellowColor
             _chickenIndex++;
             if (_chickenIndex >= _chickenCount)
             {
-                UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow3Screen);
+                UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow3Screen, playAd: false);
             }
             else
             {

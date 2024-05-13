@@ -3,6 +3,8 @@ using System.Collections;
 using DG.Tweening;
 using Sound.Service;
 using Spine.Unity;
+using Tracking;
+using Tracking.Constant;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -98,13 +100,7 @@ namespace Minigame.YellowColor
                 CheckNextStep();
             }
         }
-
-        private IEnumerator MoveToNextStep()
-        {
-            yield return new WaitForSeconds(1f);
-            //UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow5Screen);
-        }
-
+        
         private async void CheckNextStep()
         {
             await AsyncService.Delay(1f, this);
@@ -120,8 +116,21 @@ namespace Minigame.YellowColor
                 AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
                 DoneAll.SetActive(true);
                 await AsyncService.Delay(2.5f, this);
-                UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
+                SetDataTrackingAd();
+                
+                UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
             });
+        }
+        
+        protected override void SetDataTrackingAd()
+        {
+            trackingAdInter = new TrackingAdInter {
+                hasData = true,
+                levelName = LevelName.yellow,
+                adLocation = AdLocation.end, 
+                miniGameSession = null, 
+                isWoaAd = false
+            };
         }
     }
 }
