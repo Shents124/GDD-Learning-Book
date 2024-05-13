@@ -7,16 +7,15 @@ namespace Tracking
     {
         memu, start, end, back
     }
-    
+
+    public enum AdStatus
+    {
+        request, impress, click
+    }
+
     public static class AdTracker
     {
-        public static void LogAdEvent(string eventName)
-        {
-            FirebaseUserTracker.SetUserProperties();
-            FirebaseAnalytics.LogEvent(eventName);
-        }
-
-        public static void LodAdInterSuccess(AdLocation adLocation, string levelName, string miniGameSession, bool isWoaAds)
+        public static void LogAdInterSuccess(AdLocation adLocation, string levelName, string miniGameSession, bool isWoaAds)
         {
             Parameter[] firebaseParams = {
                 new(FirebaseParam.LOCATION, adLocation.ToString()),
@@ -29,7 +28,7 @@ namespace Tracking
             FirebaseAnalytics.LogEvent(FirebaseEventName.AD_INTER_SUCCESS, firebaseParams);
         }
         
-        public static void LodAdInterFailed(AdLocation adLocation, string levelName, string miniGameSession, bool isWoaAds)
+        public static void LogAdInterFailed(AdLocation adLocation, string levelName, string miniGameSession, bool isWoaAds)
         {
             Parameter[] firebaseParams = {
                 new(FirebaseParam.LOCATION, adLocation.ToString()),
@@ -39,7 +38,41 @@ namespace Tracking
             };
 
             FirebaseUserTracker.SetUserProperties();
-            FirebaseAnalytics.LogEvent(FirebaseEventName.AD_INTER_SUCCESS, firebaseParams);
+            FirebaseAnalytics.LogEvent(FirebaseEventName.AD_INTER_FAILED, firebaseParams);
+        }
+
+        public static void LogAdInterStatus(AdStatus status)
+        {
+            FirebaseUserTracker.SetUserProperties();
+            switch (status)
+            {
+                case AdStatus.request:
+                    FirebaseAnalytics.LogEvent(FirebaseEventName.AD_INTER_REQUEST);
+                    break;
+                case AdStatus.click:
+                    FirebaseAnalytics.LogEvent(FirebaseEventName.AD_INTER_CLICK);
+                    break;
+                case AdStatus.impress:
+                    FirebaseAnalytics.LogEvent(FirebaseEventName.AD_INTER_IMPRESS);
+                    break;
+            }
+        }
+
+        public static void LogAdBannerStatus(AdStatus status)
+        {
+            FirebaseUserTracker.SetUserProperties();
+            switch (status)
+            {
+                case AdStatus.request:
+                    FirebaseAnalytics.LogEvent(FirebaseEventName.AD_BANNER_REQUEST);
+                    break;
+                case AdStatus.click:
+                    FirebaseAnalytics.LogEvent(FirebaseEventName.AD_BANNER_CLICK);
+                    break;
+                case AdStatus.impress:
+                    FirebaseAnalytics.LogEvent(FirebaseEventName.AD_BANNER_IMPRESS);
+                    break;
+            }
         }
     }
 }

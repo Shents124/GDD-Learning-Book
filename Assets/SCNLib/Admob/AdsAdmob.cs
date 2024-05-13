@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using GoogleMobileAds.Api;
 using UnityEngine;
 using DG.Tweening;
+using Tracking;
+
 namespace SCN.Ads
 {
     public class AdsAdmob : MonoBehaviour
@@ -294,11 +296,14 @@ namespace SCN.Ads
             //IL_0044: Expected O, but got Unknown
             Log("Banner", "Request starting...");
             DestroyBanner();
+            AdTracker.LogAdBannerStatus(AdStatus.request);
             bannerView = new BannerView(AdmobConfig.Instance.BannerID, GetAdsize(), (AdPosition)(AdmobConfig.Instance.ShowBannerOnBottom ? 1 : 0));
             bannerView.OnBannerAdLoaded += () => OnBannerAdLoaded();
             bannerView.OnBannerAdLoadFailed += (LoadAdError error) => OnBannerAdFailedToLoad(error);
             bannerView.OnAdImpressionRecorded += () => OnBannerAdOpened();
-
+            bannerView.OnAdClicked += () => {
+                AdTracker.LogAdBannerStatus(AdStatus.click);
+            };
             bannerView.LoadAd(CreateAdRequest());
         }
 
@@ -329,6 +334,7 @@ namespace SCN.Ads
             {
                 if (bannerView != null)
                 {
+                    AdTracker.LogAdBannerStatus(AdStatus.impress);
                     waitToShowBanner = false;
                     isBannerShowing = true;
                     bannerView.Show();
@@ -410,6 +416,7 @@ namespace SCN.Ads
                     Log("Interstitial", "Interstitial ad failed to load.");
                     return;
                 }
+                AdTracker.LogAdInterStatus(AdStatus.request);
                 Log("Interstitial", "Interstitial ad loaded.");
                 inter = ad;
                 OnInterLoaded();
@@ -431,6 +438,7 @@ namespace SCN.Ads
                 ad.OnAdClicked += () =>
                 {
                     Log("Interstitial", "Interstitial ad recorded a click.");
+                    AdTracker.LogAdInterStatus(AdStatus.click);
                 };
                 ad.OnAdFullScreenContentFailed += (AdError error) =>
                 {
@@ -457,6 +465,7 @@ namespace SCN.Ads
             }
             if (HasInter)
             {
+                AdTracker.LogAdInterStatus(AdStatus.impress);
                 onInterSuccess = callback;
                 Log("Interstitial", "Show start..");
                 inter.Show();
@@ -648,6 +657,7 @@ namespace SCN.Ads
 
         }      
         #endregion
+
         #region InterBanner
         private void OnBannerAdLoaded()
         {

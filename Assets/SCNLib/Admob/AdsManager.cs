@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using SCN.Ads;
+using Tracking;
+
 public class AdsManager : MonoBehaviour
 {
     private float interval = 60f;
