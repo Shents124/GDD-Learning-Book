@@ -85,6 +85,8 @@ namespace Step345Screen
 
                 food.onClick.AddListener(() => OnClickedFood(food));
             }
+
+            ProductTracking.step = 2;
         }
 
         private void OnClickedFood(Button button)
@@ -128,6 +130,8 @@ namespace Step345Screen
 
         private void OnStep5()
         {
+            ProductTracking.step = 3;
+            
             characterController.DisableMask();
             AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {

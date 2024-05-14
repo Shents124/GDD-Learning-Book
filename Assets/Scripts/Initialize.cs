@@ -1,12 +1,10 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Tracking;
 using UI;
 using UnityEngine;
 
 public class Initialize : MonoBehaviour
 {
-    public ColorSelect currentColor;
-    
     [SerializeField] private UIController uiController;
 
     private void Awake()
@@ -29,12 +27,10 @@ public class Initialize : MonoBehaviour
         UIService.OpenActivityAsync(ActivityType.HomeScreen).Forget();
         UIService.InitializeFadeScreen().Forget();
     }
-}
 
-public enum ColorSelect
-{
-    Red,
-    Yellow,
-    Green,
-    Blue,
+    public void OnApplicationQuit()
+    {
+        ProductTracking.LogLevelEnd(ResultType.quit);
+        ProductTracking.LogMiniGameEnd(ResultType.quit);
+    }
 }

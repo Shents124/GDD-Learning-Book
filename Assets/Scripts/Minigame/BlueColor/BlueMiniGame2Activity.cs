@@ -14,6 +14,7 @@ namespace Minigame.BlueColor
         
         public override void DidEnter(Memory<object> args)
         {
+            ProductTracking.miniGameSession = 4;
             AudioUtility.PlaySFX(AudioClipName.Clearstep);
             StartCoroutine(NextMiniGame());
             base.DidEnter(args);
@@ -23,7 +24,14 @@ namespace Minigame.BlueColor
         {
             yield return new WaitForSeconds(duration);
             SetDataTrackingAd();
+            ProductTracking.LogMiniGameEnd(ResultType.win);
             UIService.OpenActivityWithFadeIn(ActivityType.MiniGameBlue3Screen, trackingAdInter: trackingAdInter);
+        }
+        
+        protected override void OnClickedNextBtn()
+        {
+            ProductTracking.LogMiniGameEnd(ResultType.win);
+            base.OnClickedNextBtn();
         }
         
         protected override void SetDataTrackingAd()

@@ -19,6 +19,11 @@ namespace Minigame.YellowColor
 
         public override void DidEnter(Memory<object> args)
         {
+            ProductTracking.miniGameSession = 1;
+            ProductTracking.miniGameStep = 1;
+            ProductTracking.step = 4;
+            ProductTracking.LogMiniGameStart();
+            
             MomChickenLayEgg();
             base.DidEnter(args);
         }

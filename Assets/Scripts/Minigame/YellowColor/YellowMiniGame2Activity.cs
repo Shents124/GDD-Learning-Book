@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Sound.Service;
+using Tracking;
 using UI;
 using UnityEngine;
 
@@ -32,6 +33,9 @@ namespace Minigame.YellowColor
         
         public override void DidEnter(Memory<object> args)
         {
+            ProductTracking.miniGameSession = 2;
+            ProductTracking.miniGameStep = 1;
+            
             AudioUtility.PlaySFX(AudioClipName.Chicken_all);
             StartCoroutine(SetLineChicken(MoveCharacter));
             base.DidEnter(args);
@@ -48,6 +52,7 @@ namespace Minigame.YellowColor
 
             yield return new WaitForSeconds(chickenMoveDuration);
             onFinish?.Invoke();
+            ProductTracking.miniGameStep = 2;
         }
 
         private void BabyChickenSelectFood()

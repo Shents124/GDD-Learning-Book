@@ -32,6 +32,11 @@ namespace Minigame.BlueColor
         
         public override void DidEnter(Memory<object> args)
         {
+            ProductTracking.miniGameStep = 1;
+            ProductTracking.miniGameSession = 1;
+            ProductTracking.step = 4;
+            ProductTracking.LogMiniGameStart();
+            
             blueDropObject.Initialize(OnDrop);
             blueToyContainer.DoShow(toyContainerShowDuration, InitializeToy);
             base.DidEnter(args);
@@ -57,6 +62,8 @@ namespace Minigame.BlueColor
                 redToy.Initialize(_redToyCount, OnClickRedToy);
                 _redToyCount++;
             }
+
+            ProductTracking.miniGameSession = 2;
         }
 
         private void OnClickBlueToy(Toy blueToy)
@@ -94,6 +101,7 @@ namespace Minigame.BlueColor
 
         private IEnumerator MoveRedToys()
         {
+            ProductTracking.miniGameSession = 3;
             foreach (var redToy in redToys)
             {
                 var index = redToy.Index;

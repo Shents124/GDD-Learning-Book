@@ -41,7 +41,8 @@ public class BaseActivity : Activity
     {
         AudioUtility.StopSFX();
         AudioUtility.PlayUISfx(AudioClipName.Button);
-        
+        ProductTracking.LogLevelEnd(ResultType.back);
+        ProductTracking.LogMiniGameEnd(ResultType.back);
         await UIService.OpenActivityAsync(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
     }

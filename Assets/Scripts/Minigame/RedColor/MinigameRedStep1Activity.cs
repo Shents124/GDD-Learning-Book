@@ -30,6 +30,11 @@ public class MinigameRedStep1Activity : BaseActivity
 
     protected override void Start()
     {
+        ProductTracking.step = 4;
+        ProductTracking.miniGameSession = 1;
+        ProductTracking.miniGameStep = 1;
+        ProductTracking.LogMiniGameStart();
+        
         for (int i = 0; i < stepInMiniGame.Count; i++)
         {
             if (i == 0)

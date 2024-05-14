@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using DG.Tweening;
 using Sound.Service;
 using Spine.Unity;
@@ -39,6 +38,7 @@ namespace Minigame.YellowColor
         
         protected override void Start()
         {
+            ProductTracking.step = 5;
             momChickenBtn.onClick.AddListener(OnClickedMomChicken);
             babyChickenBtn.onClick.AddListener(OnClickedBabyChicken);
             ShowTalk();
@@ -64,8 +64,8 @@ namespace Minigame.YellowColor
 
         protected override void OnClickedNextBtn()
         {
-            AudioUtility.PlayUISfx(AudioClipName.Button);
-            UIService.OpenActivityWithFadeIn(nextActivity, playAd: false);
+            ProductTracking.LogLevelStart(ProductLocation.next_color, LevelName.green);
+            base.OnClickedNextBtn();
         }
 
         private void OnClickedMomChicken()
@@ -103,6 +103,7 @@ namespace Minigame.YellowColor
         
         private async void CheckNextStep()
         {
+            ProductTracking.step = 6;
             await AsyncService.Delay(1f, this);
             screenAnim.gameObject.SetActive(true);
             AudioUtility.StopSFX();
@@ -118,10 +119,12 @@ namespace Minigame.YellowColor
                 await AsyncService.Delay(2.5f, this);
                 SetDataTrackingAd();
                 
+                ProductTracking.LogLevelEnd(ResultType.win);
+                ProductTracking.LogLevelStart(ProductLocation.auto, LevelName.green);
                 UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
             });
         }
-        
+
         protected override void SetDataTrackingAd()
         {
             trackingAdInter = new TrackingAdInter {

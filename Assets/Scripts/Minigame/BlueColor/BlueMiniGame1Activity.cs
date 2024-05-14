@@ -21,6 +21,8 @@ namespace Minigame.BlueColor
 
         protected override void InitializeData(Memory<object> args)
         {
+            ProductTracking.miniGameSession = 2;
+            ProductTracking.miniGameStep = 2;
             selectedClothes.Initialize(OnFinishSelectBlueClothes);
             base.InitializeData(args);
         }
@@ -38,6 +40,7 @@ namespace Minigame.BlueColor
 
         private void MoveRedClothes()
         {
+            ProductTracking.miniGameStep = 3;
             selectedClothes.MoveRedClothes(redClothes, moveRedClothsDuration, OnFinish);
         }
 

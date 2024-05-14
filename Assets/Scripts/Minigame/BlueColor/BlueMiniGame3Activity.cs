@@ -40,6 +40,7 @@ namespace Minigame.BlueColor
         
         protected override void Start()
         {
+            ProductTracking.step = 5;
             pandoBtn.onClick.AddListener(OnClickedPando);
             ballBtn.onClick.AddListener(OnClickedBall);
             ShowTalk();
@@ -106,6 +107,7 @@ namespace Minigame.BlueColor
 
         private async void Action()
         {
+            ProductTracking.step = 6;
             screenShoot.SetActive(true);
             screenAnim.DOFade(0, 0.25f).OnComplete(() => { screenAnim.gameObject.SetActive(false); });
             AudioUtility.StopSFX();
@@ -115,6 +117,8 @@ namespace Minigame.BlueColor
             DoneAll.SetActive(true);
             await AsyncService.Delay(2.5f, this);
             SetDataTrackingAd();
+            
+            ProductTracking.LogLevelEnd(ResultType.win);
             UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
         }
         

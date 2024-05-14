@@ -77,6 +77,8 @@ namespace Step345Screen
                 food.gameObject.SetActive(true);
                 food.Initialize(characterEndPosition, foodMoveDuration, i, OnClickedFood);
             }
+
+            ProductTracking.step = 2;
         }
 
         private void OnClickedFood(int index)
@@ -113,6 +115,8 @@ namespace Step345Screen
 
         private void OnStep5()
         {
+            ProductTracking.step = 3;
+            
             characterController.DisableMask();
             AudioUtility.PlaySFX(AudioClipName.Hooray_WF);
             characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {

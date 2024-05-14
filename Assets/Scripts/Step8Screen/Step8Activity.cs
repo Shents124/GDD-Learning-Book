@@ -4,6 +4,7 @@ using Coffee.UIExtensions;
 using DG.Tweening;
 using ScratchCardAsset;
 using Sound.Service;
+using Tracking;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;

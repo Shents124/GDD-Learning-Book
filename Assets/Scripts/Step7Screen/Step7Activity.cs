@@ -9,7 +9,6 @@ using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
-using Constant;
 
 namespace Step7
 {
@@ -42,6 +41,7 @@ namespace Step7
 
         public override UniTask Initialize(Memory<object> args)
         {
+            ProductTracking.step = 5;
             ShowTalk();
             EventManager.Connect(Events.FillColorDone, CheckNextStep);
             return base.Initialize(args);
@@ -75,6 +75,7 @@ namespace Step7
         {
             if(currentStep >= stepToDone)
             {
+                ProductTracking.step = 6;
                 await AsyncService.Delay(1f, this);
                 screenAnim.gameObject.SetActive(true);
                 AudioUtility.StopSFX();
@@ -88,11 +89,22 @@ namespace Step7
                     AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
                     DoneAll.SetActive(true);
                     await AsyncService.Delay(2.5f, this);
+                    
                     SetDataTrackingAd();
+                    
+                    ProductTracking.LogLevelEnd(ResultType.win);
+                    ProductTracking.LogLevelStart(ProductLocation.auto, LevelName.yellow);
                     UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
                 });
             }
         }
+        
+        protected override void OnClickedNextBtn()
+        {
+            ProductTracking.LogLevelStart(ProductLocation.next_color, levelName);
+            base.OnClickedNextBtn();
+        }
+        
         protected override void SetDataTrackingAd()
         {
             trackingAdInter = new TrackingAdInter {

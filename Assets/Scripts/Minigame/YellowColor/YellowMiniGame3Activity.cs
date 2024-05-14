@@ -14,6 +14,7 @@ namespace Minigame.YellowColor
         
         public override void DidEnter(Memory<object> args)
         {
+            ProductTracking.miniGameStep = 3;
             AudioUtility.PlaySFX(AudioClipName.Chicken_all);
             StartCoroutine(NextMiniGame());
             base.DidEnter(args);
@@ -21,9 +22,16 @@ namespace Minigame.YellowColor
 
         private IEnumerator NextMiniGame()
         {
+            ProductTracking.LogMiniGameEnd(ResultType.win);
             yield return new WaitForSeconds(duration);
             SetDataTrackingAd();
             UIService.OpenActivityWithFadeIn(ActivityType.MiniGameYellow4Screen, trackingAdInter: trackingAdInter);
+        }
+
+        protected override void OnClickedNextBtn()
+        {
+            ProductTracking.LogMiniGameEnd(ResultType.win);
+            base.OnClickedNextBtn();
         }
         
         protected override void SetDataTrackingAd()
