@@ -37,7 +37,7 @@ public class AdsManager : MonoBehaviour
     /// </summary>
     public bool IsRemovedAds
     {
-        get => PlayerPrefs.HasKey(RemoveAdsKey);
+        get => PlayerPrefs.GetInt(RemoveAdsKey, 0) == 1;
     }
 
     /// <summary>
@@ -46,8 +46,22 @@ public class AdsManager : MonoBehaviour
     /// </summary>
     public void SetRemovedAds()
     {
+        if (IsRemovedAds)
+            return;
         PlayerPrefs.SetInt(RemoveAdsKey, 1);
         DestroyBanner();
+    }
+
+    /// <summary>
+    /// Remove all Banner & Interstital ads (Still keep reward video ads)
+    /// <para>Call this when user buy Remove_Ads.</para>
+    /// </summary>
+    public void SetUnRemovedAds()
+    {
+        if(!IsRemovedAds) 
+            return;
+        PlayerPrefs.SetInt(RemoveAdsKey, 0);
+        ShowBanner();
     }
     #endregion
 

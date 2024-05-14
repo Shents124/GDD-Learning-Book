@@ -10,15 +10,16 @@ namespace IAP
         {
             get
             {
-                if (products == null)
+                if (_products == null)
                 {
                     ConvertData();
                 }
-                return products;
+                return _products;
             }
         }
 
-        public Dictionary<string, IAPProductCsv> _products;
+        private Dictionary<string, IAPProductCsv> _products;
+
         #region Initialize
 
         public IAPProductCsv[] _dataIAP;

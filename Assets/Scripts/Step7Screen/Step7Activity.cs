@@ -3,15 +3,20 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sound.Service;
 using Spine.Unity;
+using Tracking.Constant;
+using Tracking;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
+using Constant;
 
 namespace Step7
 {
     public class Step7Activity : BaseActivity
     {
+        public LevelName levelName;
+
         [SpineAnimation]
         public string animTalk, animIdle, animRun;
 
@@ -83,9 +88,20 @@ namespace Step7
                     AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
                     DoneAll.SetActive(true);
                     await AsyncService.Delay(2.5f, this);
-                    UIService.OpenActivityWithFadeIn(nextActivity, screenAnim);
+                    SetDataTrackingAd();
+                    UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
                 });
             }
+        }
+        protected override void SetDataTrackingAd()
+        {
+            trackingAdInter = new TrackingAdInter {
+                hasData = true,
+                levelName = this.levelName,
+                adLocation = AdLocation.end,
+                miniGameSession = null,
+                isWoaAd = false
+            };
         }
     }
 }

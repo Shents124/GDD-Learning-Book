@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Purchasing;
 
 namespace IAP
 {
@@ -15,9 +16,10 @@ namespace IAP
 
         public float appleAppStorePrice;
 
-        public IAPProductType gameProductType;
+        public ProductType productType;
 
         public int idPack;
+
         public string GetStoreId()
         {
 #if UNITY_ANDROID

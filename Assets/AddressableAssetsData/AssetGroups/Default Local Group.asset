@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 47615328d1336574693b2eb07bdab90c
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: b4d9e712611fe8447b468fbf65f3d68d
+    m_Address: IAP.IAPProductsData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2f8da982462e67842aabe7df00efca11, type: 2}
   m_SchemaSet:

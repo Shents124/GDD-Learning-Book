@@ -769,6 +769,7 @@ MonoBehaviour:
   backBtn: {fileID: 4013288080615912611}
   nextBtn: {fileID: 5956419885429567432}
   nextActivity: 14
+  levelName: 3
   animTalk: Idle_Talk
   animIdle: Idle
   animRun: Run_c
