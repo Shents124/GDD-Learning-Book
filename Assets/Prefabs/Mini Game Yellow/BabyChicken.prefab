@@ -157,8 +157,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  skeletonDataAsset: {fileID: 11400000, guid: 8a0540645ef5c5a43b3d7892cb9058d2, type: 2}
-  initialSkinName: Gacon1
+  skeletonDataAsset: {fileID: 11400000, guid: eb592c7ad5adc824c97723a618e01a73, type: 2}
+  initialSkinName: ga con 1
   initialFlipX: 0
   initialFlipY: 0
   startingAnimation: 
@@ -199,7 +199,7 @@ MonoBehaviour:
   runAnim: chay
   eatAnim: nhai
   jumpAnim: jump360
-  vayCanh: 
+  vayCanh: vay_canh
   moveRight: 1
   moveDuration: 3
   moveDistance: 2000
@@ -294,7 +294,7 @@ GameObject:
   m_Layer: 5
   m_Name: EatPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -314,6 +314,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 43, y: 384}
+  m_AnchoredPosition: {x: 93, y: 313}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

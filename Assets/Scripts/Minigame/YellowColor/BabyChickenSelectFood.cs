@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using DG.Tweening;
 using Sound.Service;
 using UnityEngine;
@@ -35,17 +36,18 @@ namespace Minigame.YellowColor
             {
                 AudioUtility.PlaySFX(AudioClipName.Chicken_happy);
                 onHide?.Invoke();
-                var eatTrack = skeletonAnimation.AnimationState.SetAnimation(0, eatAnim, false);
-                var duration = skeletonAnimation.SkeletonData.FindAnimation(eatAnim).Duration;
+                var eatTrack = skeletonAnimation.AnimationState.SetAnimation(0, eatAnim, true);
+                var duration = skeletonAnimation.SkeletonData.FindAnimation(eatAnim).Duration * 4;
                 
-                foodItem.DoScaleMinimum(duration);
-                eatTrack.Complete += entry => JumpAndRun(onFinish);
-                
+                foodItem.DoScaleMinimum(duration / 2);
+
+                StartCoroutine(JumpAndRun(duration, onFinish));
             } );
         }
         
-        private void JumpAndRun(Action onFinish)
+        private IEnumerator JumpAndRun(float delay, Action onFinish)
         {
+            yield return new WaitForSeconds(delay);
             var jumpTrack = skeletonAnimation.AnimationState.SetAnimation(0, jumpAnim, false);
             jumpTrack.Complete += entry => {
                 PlayAnimRun(onFinish);

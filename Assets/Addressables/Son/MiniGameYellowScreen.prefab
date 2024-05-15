@@ -1412,6 +1412,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trung Vang
       objectReference: {fileID: 0}
+    - target: {fileID: 5630245126698030720, guid: 4da66bc4def71334e8cf9a20628fb0ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5700201382156794223, guid: 4da66bc4def71334e8cf9a20628fb0ab, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -1807,7 +1811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4525949785082177845, guid: 4da66bc4def71334e8cf9a20628fb0ab, type: 3}
       propertyPath: initialSkinName
-      value: Gacon3
+      value: ga con 3
       objectReference: {fileID: 0}
     - target: {fileID: 5700201382156794223, guid: 4da66bc4def71334e8cf9a20628fb0ab, type: 3}
       propertyPath: m_SortingLayer
@@ -2351,7 +2355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4525949785082177845, guid: 4da66bc4def71334e8cf9a20628fb0ab, type: 3}
       propertyPath: initialSkinName
-      value: Gacon4
+      value: ga con 4
       objectReference: {fileID: 0}
     - target: {fileID: 5700201382156794223, guid: 4da66bc4def71334e8cf9a20628fb0ab, type: 3}
       propertyPath: m_SortingLayer
@@ -2604,7 +2608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4525949785082177845, guid: 4da66bc4def71334e8cf9a20628fb0ab, type: 3}
       propertyPath: initialSkinName
-      value: Gacon2
+      value: ga con 2
       objectReference: {fileID: 0}
     - target: {fileID: 5630245126698030720, guid: 4da66bc4def71334e8cf9a20628fb0ab, type: 3}
       propertyPath: m_IsActive

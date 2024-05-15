@@ -808,7 +808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 620879019193619035, guid: 428d7190926f33249a42afcabddbb22f, type: 3}
       propertyPath: initialSkinName
-      value: Gacon3
+      value: ga con 3
       objectReference: {fileID: 0}
     - target: {fileID: 620879019193619035, guid: 428d7190926f33249a42afcabddbb22f, type: 3}
       propertyPath: startingAnimation
@@ -927,7 +927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 620879019193619035, guid: 428d7190926f33249a42afcabddbb22f, type: 3}
       propertyPath: initialSkinName
-      value: Gacon4
+      value: ga con 4
       objectReference: {fileID: 0}
     - target: {fileID: 620879019193619035, guid: 428d7190926f33249a42afcabddbb22f, type: 3}
       propertyPath: startingAnimation
@@ -1046,7 +1046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 620879019193619035, guid: 428d7190926f33249a42afcabddbb22f, type: 3}
       propertyPath: initialSkinName
-      value: Gacon2
+      value: ga con 2
       objectReference: {fileID: 0}
     - target: {fileID: 620879019193619035, guid: 428d7190926f33249a42afcabddbb22f, type: 3}
       propertyPath: startingAnimation

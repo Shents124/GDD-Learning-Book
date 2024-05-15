@@ -27,6 +27,7 @@ namespace SCN.Ads
         private Action onRewardClose;
 
         private Action onInterSuccess;
+        private Action<bool> onInterSuccess2;
 
         private bool isRequestingBanner;
 
@@ -467,13 +468,14 @@ namespace SCN.Ads
             {
                 AdTracker.LogAdInterStatus(AdStatus.impress);
                 onInterSuccess = callback2;
+                onInterSuccess2 = callback;
                 Log("Interstitial", "Show start..");
                 inter.Show();
             }
             else
             {
                 Log("Interstitial", "Show failed: ad not ready. Invoke callback.");
-                callback?.Invoke(true);
+                callback?.Invoke(false);
                 RequestInterstitial();
             }
         }
@@ -727,6 +729,8 @@ namespace SCN.Ads
             Time.timeScale = 1;
             Log("Interstitial", "OnAdClosed.");
             SafeCallback(onInterSuccess);
+            onInterSuccess2?.Invoke(true);
+            onInterSuccess2 = null;
             RequestInterstitial();
         }
         private void OnInterstitialAdLeftApplication(object sender, EventArgs args)
