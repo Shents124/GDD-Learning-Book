@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Reflection;
 using Coffee.UIExtensions;
 using DG.Tweening;
 using ScratchCardAsset;
@@ -89,8 +90,11 @@ public class Step8Activity : MonoBehaviour
         {
             AudioUtility.StopSFX();
             imageNotDones[(int)_typeObject].gameObject.SetActive(false);
-            this.gameObject.SetActive(false);
-            EventManager.SendSimpleEvent(Events.FillColorDone);
+            imageDone[(int)_typeObject].gameObject.SetActive(true);
+            content.DOScale(Vector3.one, 1f).OnComplete(() => {
+                this.gameObject.SetActive(false);
+                EventManager.SendSimpleEvent(Events.FillColorDone);
+            });
         }
         else if(progress > 0)
         {
@@ -125,19 +129,16 @@ public class Step8Activity : MonoBehaviour
             }
         }
 
-        if (!(progress >= percentToDone) || _isDone)
+        if (progress >= percentToDone && !_isDone)
         {
-            return;
+            ShowImage();
         }
-
-        StartCoroutine(ShowImage());
     }
 
-    private IEnumerator ShowImage()
+    private void ShowImage()
     {
         _isDone = true;
         AudioUtility.StopSFX();
-        yield return new WaitForSeconds(1f);
         var index = (int)_typeObject;
         imageNotDones[index].gameObject.SetActive(false);
         imageDone[index].gameObject.SetActive(true);

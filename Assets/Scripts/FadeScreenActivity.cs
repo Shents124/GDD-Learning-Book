@@ -10,6 +10,8 @@ namespace DefaultNamespace
     {
         [SerializeField] private float animDuration = 0.5f;
         [SerializeField] private CanvasGroup canvasGroup;
+        Action _callbackFadeIn;
+        Action _callbackFadeOut;
 
         public override UniTask Initialize(Memory<object> args)
         {
@@ -21,20 +23,24 @@ namespace DefaultNamespace
         public void FadeIn(Action callback, float timeDuration = 0.5f, float alphaDone = 0)
         {
             canvasGroup.alpha = 0;
+            _callbackFadeIn = callback;
             SetBlockRaycast(true);
             canvasGroup.DOFade(alphaDone, timeDuration).OnComplete(() => {
                 SetBlockRaycast(false);
-                callback?.Invoke();
+                _callbackFadeIn?.Invoke();
+                _callbackFadeIn = null;
             });
         }
 
         public void FadeOut(Action callback, float timeDuration = 0.5f)
         {
             canvasGroup.alpha = 1f;
+            _callbackFadeOut = callback;
             SetBlockRaycast(true);
             canvasGroup.DOFade(0, timeDuration).OnComplete(() => {
                 SetBlockRaycast(false);
-                callback?.Invoke();
+                _callbackFadeOut?.Invoke();
+                _callbackFadeOut = null;
             });
         }
         

@@ -34,7 +34,7 @@ namespace Minigame.BlueColor
 
         public GameObject screenShoot;
 
-        public GameObject DoneAll;
+        public GameObject DoneAll, BgReadyToScreenShot, BgDisableToScreenShot;
 
         private int _currentStep;
         
@@ -100,28 +100,29 @@ namespace Minigame.BlueColor
 
         private async void CheckNextStep()
         {
-            await AsyncService.Delay(1f, this);
-            screenAnim.gameObject.SetActive(true);
-            screenAnim.DOFade(1, 0.25f).OnComplete(Action);
-        }
-
-        private async void Action()
-        {
+            AudioUtility.StopSFX();
+            AudioUtility.PlaySFX(AudioClipName.Hooray_WF, true);
             ProductTracking.step = 6;
-            screenShoot.SetActive(true);
-            screenAnim.DOFade(0, 0.25f).OnComplete(() => { screenAnim.gameObject.SetActive(false); });
+            BgReadyToScreenShot.SetActive(true);
+            BgDisableToScreenShot.SetActive(false);
+            await AsyncService.Delay(3f, this);
+            screenAnim.gameObject.SetActive(true);
             AudioUtility.StopSFX();
             AudioUtility.PlaySFX(AudioClipName.Photo);
-            await AsyncService.Delay(2.5f, this);
-            AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
-            DoneAll.SetActive(true);
-            await AsyncService.Delay(2.5f, this);
-            SetDataTrackingAd();
-            
-            ProductTracking.LogLevelEnd(ResultType.win);
-            UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
+            screenAnim.DOFade(1, 0.25f).OnComplete(async () => {
+                screenShoot.SetActive(true);
+                screenAnim.DOFade(0, 0.25f).OnComplete(() => {
+                    screenAnim.gameObject.SetActive(false);
+                });
+                await AsyncService.Delay(2.5f, this);
+                AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
+                DoneAll.SetActive(true);
+                await AsyncService.Delay(2.5f, this);
+                SetDataTrackingAd();
+                ProductTracking.LogLevelEnd(ResultType.win);
+                UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
+            });
         }
-        
         protected override void SetDataTrackingAd()
         {
             trackingAdInter = new TrackingAdInter {

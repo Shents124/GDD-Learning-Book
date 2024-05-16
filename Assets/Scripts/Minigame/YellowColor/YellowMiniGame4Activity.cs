@@ -103,10 +103,12 @@ namespace Minigame.YellowColor
         
         private async void CheckNextStep()
         {
+            AudioUtility.StopSFX();
+            AudioUtility.PlaySFX(AudioClipName.Hooray_girl, true);
             ProductTracking.step = 6;
             BgReadyToScreenShot.SetActive(true);
             BgDisableToScreenShot.SetActive(false);
-            await AsyncService.Delay(200f, this);
+            await AsyncService.Delay(3f, this);
             screenAnim.gameObject.SetActive(true);
             AudioUtility.StopSFX();
             AudioUtility.PlaySFX(AudioClipName.Photo);

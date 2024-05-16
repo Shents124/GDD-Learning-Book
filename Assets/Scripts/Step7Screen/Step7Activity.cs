@@ -75,10 +75,12 @@ namespace Step7
         {
             if(currentStep >= stepToDone)
             {
+                AudioUtility.StopSFX();
+                AudioUtility.PlaySFX(AudioClipName.Hooray_WF, true);
                 ProductTracking.step = 6;
                 BgReadyToScreenShot.SetActive(true);
                 BgDisableToScreenShot.SetActive(false);
-                await AsyncService.Delay(200f, this);
+                await AsyncService.Delay(3f, this);
                 screenAnim.gameObject.SetActive(true);
                 AudioUtility.StopSFX();
                 AudioUtility.PlaySFX(AudioClipName.Photo);
@@ -91,9 +93,7 @@ namespace Step7
                     AudioUtility.PlaySFX(AudioClipName.Congratulation_end);
                     DoneAll.SetActive(true);
                     await AsyncService.Delay(2.5f, this);
-                    
                     SetDataTrackingAd();
-                    
                     ProductTracking.LogLevelEnd(ResultType.win);
                     if(levelName == LevelName.red)
                     {
