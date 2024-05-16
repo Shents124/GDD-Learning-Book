@@ -32,7 +32,7 @@ namespace Minigame.YellowColor
 
         public GameObject screenShoot;
 
-        public GameObject DoneAll;
+        public GameObject DoneAll, BgReadyToScreenShot, BgDisableToScreenShot;
 
         private int _currentStep;
         
@@ -104,7 +104,9 @@ namespace Minigame.YellowColor
         private async void CheckNextStep()
         {
             ProductTracking.step = 6;
-            await AsyncService.Delay(1f, this);
+            BgReadyToScreenShot.SetActive(true);
+            BgDisableToScreenShot.SetActive(false);
+            await AsyncService.Delay(200f, this);
             screenAnim.gameObject.SetActive(true);
             AudioUtility.StopSFX();
             AudioUtility.PlaySFX(AudioClipName.Photo);

@@ -37,7 +37,7 @@ namespace Step7
 
         public GameObject screenShoot;
 
-        public GameObject DoneAll;
+        public GameObject DoneAll, BgReadyToScreenShot, BgDisableToScreenShot;
 
         public override UniTask Initialize(Memory<object> args)
         {
@@ -76,7 +76,9 @@ namespace Step7
             if(currentStep >= stepToDone)
             {
                 ProductTracking.step = 6;
-                await AsyncService.Delay(1f, this);
+                BgReadyToScreenShot.SetActive(true);
+                BgDisableToScreenShot.SetActive(false);
+                await AsyncService.Delay(200f, this);
                 screenAnim.gameObject.SetActive(true);
                 AudioUtility.StopSFX();
                 AudioUtility.PlaySFX(AudioClipName.Photo);
