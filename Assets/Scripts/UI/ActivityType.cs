@@ -28,6 +28,8 @@
         MinigameGreen1Screen = 21,
         MinigameGreen2Screen = 22,
         Step7Green = 23,
+
+        IapActivity = 24,
         
         FadeScreen = 99,
     }

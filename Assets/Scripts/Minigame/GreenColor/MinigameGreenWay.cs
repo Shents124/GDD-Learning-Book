@@ -50,6 +50,8 @@ public class MinigameGreenWay : MonoBehaviour
     
     private void Start()
     {
+        ProductTracking.miniGameStep = 3;
+        ProductTracking.miniGameSession = 1;
         btnBack.onClick.AddListener(OnClickedBackBtn);
         btnNext.onClick.AddListener(OnClickedNextBtn);
         posPlayerStart = playerPos.position;
@@ -62,6 +64,8 @@ public class MinigameGreenWay : MonoBehaviour
     }
     private async void OnClickedBackBtn()
     {
+        ProductTracking.LogLevelEnd(ResultType.back);
+        ProductTracking.LogMiniGameEnd(ResultType.back);
         AudioUtility.StopSFX();
         await UIService.OpenActivityAsyncNoClose(ActivityType.MenuScreen);
         UIService.PlayFadeOut();
@@ -72,12 +76,13 @@ public class MinigameGreenWay : MonoBehaviour
     {
         if (_isMoveStep)
             return;
+
         AudioUtility.StopSFX();
         AdsManager.Instance.ShowInterstitial((result) => {
-            
             AdTracker.LogAdInter(GetTrackingAdInter(), result);
             _isMoveStep = true;
             UIService.PlayFadeIn(() => {
+                ProductTracking.LogMiniGameEnd(ResultType.win);
                 UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();
                 Destroy(this.gameObject);
                 UIService.PlayFadeOut();
@@ -111,6 +116,7 @@ public class MinigameGreenWay : MonoBehaviour
                 
                 AdsManager.Instance.ShowInterstitial((result) => {
                     AdTracker.LogAdInter(GetTrackingAdInter(), result);
+                    ProductTracking.LogMiniGameEnd(ResultType.win);
                     _isMoveStep = true;
                     UIService.PlayFadeIn(() => {
                         UIService.OpenActivityAsyncNoClose(ActivityType.Step7Green).Forget();

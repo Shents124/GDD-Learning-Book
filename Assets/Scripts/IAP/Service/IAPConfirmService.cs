@@ -2,6 +2,9 @@
 using UnityEngine.Purchasing.Extension;
 using UnityEngine.Purchasing;
 using Utility;
+using Tracking;
+using UI;
+using Cysharp.Threading.Tasks;
 
 namespace IAP
 {
@@ -16,10 +19,12 @@ namespace IAP
         {
             Debug.LogWarning(
                 $"UNITY_IAP: OnPurchaseFailed: FAIL. Product: '{product.definition.storeSpecificId}', PurchaseFailureReason: {reason}");
+            IapTracker.LogIapFailed(product, reason.ToString());
         }
 
         public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
         {
+            IapTracker.LogIapFailed(product, failureDescription.reason.ToString());
             Debug.LogWarning(
                 $"UNITY_IAP: OnPurchaseFailed: FAIL. Product: '{product.definition.storeSpecificId}', " +
                 $"PurchaseFailureReason: {failureDescription.reason}, Message : {failureDescription.message}");
@@ -39,12 +44,15 @@ namespace IAP
             {
                 Debug.LogError($"[IAP PROCESS] Not have data of GAME PRODUCT ID={gameProductId}");
             }
+
+            IapTracker.LogIapSuccess(product);
         }
 
         public void OnPurchaseSuccessAction(IAPProductCsv productData)
         {
             IAPCount++;
             AdsManager.Instance.SetRemovedAds();
+            UIService.OpenActivityAsync(ActivityType.HomeScreen).Forget();
         }
     }
 }

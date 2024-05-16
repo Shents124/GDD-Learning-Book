@@ -40,6 +40,8 @@ public class MinigameGreenEat : BaseActivity
     protected override void Start()
     {
         UIService.PlayFadeOut();
+        ProductTracking.miniGameStep = 2;
+        ProductTracking.miniGameSession = 1;
         isEating = false;
         ShowTalk();
         foreach (var anim in animalFlyRandoms)

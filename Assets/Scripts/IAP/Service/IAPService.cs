@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using Cysharp.Threading.Tasks;
+using Tracking;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
@@ -38,6 +40,26 @@ namespace IAP
         private static IAPConfirmService s_iapConfirmService;
 
         #region Initialize
+
+        public bool CheckBuyPack(string productId)
+        {
+            var iapProductData = LoadResourceService.LoadCsv<IAPProductsData>();
+            var productCsv = iapProductData.GetAllProducts().FirstOrDefault(x => x.gameProductId == productId);
+
+            var product = GetPack(productId);
+            if(product == null) 
+                return true;
+
+            switch (productCsv.productType)
+            {
+                case ProductType.NonConsumable:
+                    return CheckPurchaseBuyAllPack(product);
+                case ProductType.Subscription:
+                    return IsSubscribedTo(product);
+            }
+
+            return false;
+        }
 
         public async UniTask InitializeUnityGamingService()
         {
@@ -209,7 +231,7 @@ namespace IAP
                 try
                 {
                     var result = s_validator.Validate(product.receipt);
-
+                    IapTracker.LogIapConfirmSuccess(product);
                     foreach (IPurchaseReceipt receipt in result)
                     {
                         LogReceipt(receipt);
@@ -259,6 +281,10 @@ namespace IAP
         #endregion
 
         #region API
+        public static Product GetPack(string productId)
+        {
+            return s_storeController.products.WithID(productId);
+        }
 
         public void PurchasePack(string productId, int id)
         {

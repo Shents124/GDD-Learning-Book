@@ -93,7 +93,16 @@ namespace Step7
                     SetDataTrackingAd();
                     
                     ProductTracking.LogLevelEnd(ResultType.win);
-                    ProductTracking.LogLevelStart(ProductLocation.auto, LevelName.yellow);
+                    if(levelName == LevelName.red)
+                    {
+                        ProductTracking.LogLevelStart(ProductLocation.auto, LevelName.yellow);
+                    }
+
+                    if(levelName == LevelName.green)
+                    {
+                        ProductTracking.LogLevelStart(ProductLocation.auto, LevelName.blue);
+                    }
+
                     UIService.OpenActivityWithFadeIn(nextActivity, screenAnim, trackingAdInter: trackingAdInter);
                 });
             }
