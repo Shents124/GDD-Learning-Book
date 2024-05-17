@@ -21,7 +21,7 @@ namespace Minigame.RedColor
         [SpineAnimation(dataField: "skeletonAnimation")]
         public string fullToHalfName = "";
 
-        private Vector3 _originPosition;
+        [SerializeField] private Transform _originPosition;
         private Action _onCupToGlass;
         private Action _onFinish;
 
@@ -30,7 +30,6 @@ namespace Minigame.RedColor
         private void Start()
         {
             boxCollider2D.enabled = false;
-            _originPosition = transform.position;
         }
 
         protected override void OnMouseDown()
@@ -63,6 +62,7 @@ namespace Minigame.RedColor
         public void PlayAnimFull(Action onFinish)
         {
             var track = skeletonAnimation.AnimationState.SetAnimation(0, noneToFullName, false);
+            track.TimeScale = 0.75f;
             track.Complete += entry => {
                 OnFinish(onFinish).Forget();
             };
@@ -84,7 +84,7 @@ namespace Minigame.RedColor
             var track = skeletonAnimation.AnimationState.SetAnimation(0, fullToHalfName, false);
             
             track.Complete += entry => {
-                transform.DOMove(_originPosition, moveDuration).OnComplete(() => {
+                transform.DOMove(_originPosition.position, moveDuration).OnComplete(() => {
                     _onFinish?.Invoke();
                 });
             };

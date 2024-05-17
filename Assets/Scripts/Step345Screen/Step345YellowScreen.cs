@@ -144,7 +144,6 @@ namespace Step345Screen
         private void ShowBoard()
         {
             characterController.FlipX();
-            AudioUtility.PlaySFX(AudioClipName.Yellow_quiz);
             characterController.PlayAnim(0, characterController.idleTalkAnimation, false, () => {
                 characterController.PlayAnim(0, characterController.idleAnimation, true);
             });
@@ -152,6 +151,7 @@ namespace Step345Screen
             AudioUtility.PlaySFX(AudioClipName.Falldown);
             dialog.SetActive(true);
             board.DoMove(() => {
+                AudioUtility.PlaySFX(AudioClipName.Yellow_quiz);
                 board.Initialize(OnClickedCard);
             });
         }

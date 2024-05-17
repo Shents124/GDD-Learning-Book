@@ -13,6 +13,7 @@ public class AnimalFood : MonoBehaviour
     public Transform posFall;
     private int _idFoodMove;
     private bool isFall = false;
+    [SerializeField] private bool isFallDown;
 
     private void Start()
     {
@@ -53,8 +54,18 @@ public class AnimalFood : MonoBehaviour
         isFall = true;
         transform.DOKill();
         AudioUtility.PlaySFX(audioFall);
-        transform.DOMoveY(posFall.position.y, 1.5f).OnComplete(() => {
-            gameObject.SetActive(false);
-        });
+        if (isFallDown)
+        {
+            transform.DOMoveY(posFall.position.y, 1.5f).OnComplete(() => {
+                gameObject.SetActive(false);
+            });
+        }
+        else
+        {
+            transform.DOMoveX(posFall.position.x, 1.5f).OnComplete(() => {
+                gameObject.SetActive(false);
+            });
+        }
+
     }
 }

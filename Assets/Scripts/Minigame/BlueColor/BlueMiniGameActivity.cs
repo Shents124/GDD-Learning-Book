@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Coffee.UIExtensions;
 using DG.Tweening;
 using Minigame.YellowColor;
 using Sound.Service;
@@ -10,6 +11,7 @@ using UI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utility;
 
 namespace Minigame.BlueColor
 {
@@ -25,6 +27,10 @@ namespace Minigame.BlueColor
         [SerializeField] private List<Toy> blueToys;
         [SerializeField] private List<Toy> redToys;
 
+        [SerializeField] private ShowTalkStartGame showTalk;
+
+        [SerializeField] private UIParticle vfxDoneBlue, vfxDoneRed;
+
         public DropObject blueDropObject;
 
         private int _blueToyCount;
@@ -38,7 +44,9 @@ namespace Minigame.BlueColor
             ProductTracking.LogMiniGameStart();
             
             blueDropObject.Initialize(OnDrop);
-            blueToyContainer.DoShow(toyContainerShowDuration, InitializeToy);
+            showTalk.ShowTalk(() => {
+                blueToyContainer.DoShow(toyContainerShowDuration, InitializeToy);
+            });
             base.DidEnter(args);
         }
 
@@ -84,12 +92,14 @@ namespace Minigame.BlueColor
 
         private void OnMoveToyFinish()
         {
-            blueToyContainer.Shake(() => {
+            blueToyContainer.Shake(async () => {
                 
                 _blueToyCount--;
 
                 if (_blueToyCount <= 0)
                 {
+                    vfxDoneBlue.Play();
+                    await AsyncService.Delay(1f, this);
                     blueToyContainer.DoHide(toyContainerShowDuration, () => {
                         redToyContainer.DoShow(toyContainerShowDuration, () => {
                             StartCoroutine(MoveRedToys());

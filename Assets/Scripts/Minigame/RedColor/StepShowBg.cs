@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class StepShowBg : BaseStep
 {
-    [SpineAnimation]
-    public string animTalk;
-
     [SerializeField] private SkeletonGraphic animPlayer;
     [SerializeField] private RectTransform m_RectTransform;
+
+    [SpineAnimation(dataField: "animPlayer")]
+    public string animTalk;
 
     private Vector2 posStart;
 
@@ -36,7 +36,7 @@ public class StepShowBg : BaseStep
         base.InActive();
         SetUpPage();
         posStart = transform.position;
-        m_RectTransform.DOAnchorPosX(m_RectTransform.rect.width, 1.5f).OnComplete(() => {
+        m_RectTransform.DOAnchorPosX(m_RectTransform.rect.width, 2.5f).OnComplete(() => {
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, true);
             AudioUtility.PlaySFX(this, AudioClipName.Red_harvest, callback: () => {
                 UIService.PlayFadeIn(() =>

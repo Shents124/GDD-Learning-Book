@@ -10,9 +10,7 @@ namespace Step7Screen
     {
         public TypeObject objectSelect;
 
-        [SerializeField] private Sprite spriteDone;
-
-        [SerializeField] private Image imageIcon;
+        [SerializeField] private GameObject imageDone;
 
         [SerializeField] Step7Activity step7;
 
@@ -30,7 +28,8 @@ namespace Step7Screen
             step7.stepFillColor.gameObject.SetActive(true);
             btnSelect.onClick.RemoveAllListeners();
             await AsyncService.Delay(1f, this);
-            imageIcon.sprite = spriteDone;
+            imageDone.SetActive(true);
+            this.gameObject.SetActive(false);
             btnSelect.interactable = false;
         }
     }

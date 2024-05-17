@@ -9,6 +9,7 @@ using Tracking;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 public class Step8Activity : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class Step8Activity : MonoBehaviour
     private Action<TypeObject> _callBack;
     private bool _isDone;
 
-    public UIParticle vfxTo;
+    public UIParticle vfxTo, vfxDone;
     
     private void Start()
     {
@@ -35,6 +36,7 @@ public class Step8Activity : MonoBehaviour
 
     public void InitData(TypeObject type)
     {
+        _isDone = false;
         EraseProgress.OnProgress -= DoneFillColor;
         EraseProgress.OnProgress += DoneFillColor;
         colorPenController.StartInGame();
@@ -84,13 +86,16 @@ public class Step8Activity : MonoBehaviour
         CardManager.Card.InputEnabled = false;
     }
     
-    private void DoneFillColor(float progress)
+    private async void DoneFillColor(float progress)
     {
-        if(progress >= percentToDone)
+        if(progress >= percentToDone && !_isDone)
         {
+            _isDone = true;
             AudioUtility.StopSFX();
+            vfxDone.Play();
             imageNotDones[(int)_typeObject].gameObject.SetActive(false);
             imageDone[(int)_typeObject].gameObject.SetActive(true);
+            await AsyncService.Delay(1f, this);
             content.DOScale(Vector3.one, 1f).OnComplete(() => {
                 this.gameObject.SetActive(false);
                 EventManager.SendSimpleEvent(Events.FillColorDone);
@@ -135,14 +140,16 @@ public class Step8Activity : MonoBehaviour
         }
     }
 
-    private void ShowImage()
+    private async void ShowImage()
     {
         _isDone = true;
         AudioUtility.StopSFX();
+        AudioUtility.PlaySFX(AudioClipName.Clearstep);
+        vfxDone.Play();
         var index = (int)_typeObject;
         imageNotDones[index].gameObject.SetActive(false);
         imageDone[index].gameObject.SetActive(true);
-            
+        await AsyncService.Delay(1f, this);
         content.DOScale(Vector3.one, 1f).OnComplete(() => {
             _callBack?.Invoke(_typeObject);
             gameObject.SetActive(false);
