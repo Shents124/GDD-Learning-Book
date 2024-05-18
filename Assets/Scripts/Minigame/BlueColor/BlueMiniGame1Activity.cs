@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Coffee.UIExtensions;
 using DG.Tweening;
 using Sound.Service;
 using Tracking;
 using Tracking.Constant;
 using UI;
 using UnityEngine;
+using Utility;
 
 namespace Minigame.BlueColor
 {
@@ -18,6 +20,7 @@ namespace Minigame.BlueColor
         [SerializeField] private float moveRedClothsDuration = 0.2f;
         [SerializeField] private List<RedClothes> redClothes;
         [SerializeField] private SelectedClothes selectedClothes;
+        [SerializeField] private GameObject vfxsDone;
 
         protected override void InitializeData(Memory<object> args)
         {
@@ -33,8 +36,11 @@ namespace Minigame.BlueColor
             base.DidEnter(args);
         }
 
-        private void OnFinishSelectBlueClothes()
+        private async void OnFinishSelectBlueClothes()
         {
+            vfxsDone.SetActive(true);
+            await AsyncService.Delay(1f, this);
+            vfxsDone.SetActive(false);
             content.DOAnchorPos(newContentPosition.anchoredPosition, moveDuration).OnComplete(MoveRedClothes);
         }
 
@@ -50,6 +56,7 @@ namespace Minigame.BlueColor
             {
                 redClothe.Show(true);
             }
+            vfxsDone.SetActive(true);
             StartCoroutine(MoveToNextStep());
         }
 

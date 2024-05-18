@@ -666,10 +666,10 @@ namespace SCN.Ads
             Log("Banner", "OnAdLoaded.");
             retryBanner = 0;
             isRequestingBanner = false;
-            if (AdmobConfig.Instance.AutoShowBanner || waitToShowBanner)
-            {
-                ShowBanner();
-            }
+            //if (AdmobConfig.Instance.AutoShowBanner || waitToShowBanner)
+            //{
+            //    ShowBanner();
+            //}
         }
 
         private void OnBannerAdFailedToLoad(LoadAdError error)

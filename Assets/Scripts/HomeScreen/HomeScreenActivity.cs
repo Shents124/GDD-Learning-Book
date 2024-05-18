@@ -14,6 +14,7 @@ namespace HomeScreen
         [SerializeField] private BaseButtonUI button;
         public override UniTask Initialize(Memory<object> args)
         {
+            AdsManager.Instance.HideBanner();
             AudioUtility.PlayMusic(AudioClipName.HomeMenu);
             button.AddListener(OnClickedPlay);
             return base.Initialize(args);
@@ -23,6 +24,12 @@ namespace HomeScreen
         {
             AudioUtility.PlayUISfx(AudioClipName.Button);
             UIService.OpenActivityWithFadeIn(ActivityType.MenuScreen, args: true);
+        }
+
+        public override void DidExit(Memory<object> args)
+        {
+            AdsManager.Instance.ShowBanner();
+            base.DidExit(args);
         }
     }
 }

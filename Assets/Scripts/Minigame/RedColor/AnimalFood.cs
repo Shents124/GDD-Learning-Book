@@ -62,6 +62,15 @@ public class AnimalFood : MonoBehaviour
         }
         else
         {
+            if (posFall.position.x - transform.position.x > 0)
+            {
+                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            }
+            else
+            {
+                transform.localScale = new Vector2(Math.Abs(transform.localScale.x), transform.localScale.y);
+            }
+
             transform.DOMoveX(posFall.position.x, 1.5f).OnComplete(() => {
                 gameObject.SetActive(false);
             });

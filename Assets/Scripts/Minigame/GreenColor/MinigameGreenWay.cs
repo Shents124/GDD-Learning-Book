@@ -50,6 +50,7 @@ public class MinigameGreenWay : MonoBehaviour
     
     private void Start()
     {
+        AdsManager.Instance.HideBanner();
         ProductTracking.miniGameStep = 3;
         ProductTracking.miniGameSession = 1;
         btnBack.onClick.AddListener(OnClickedBackBtn);
@@ -62,6 +63,12 @@ public class MinigameGreenWay : MonoBehaviour
         EventManager.Connect(Events.CurrentWay, OnMoveDone);
         EventManager.Connect(Events.MoveWayDone, CompleteTurn);
     }
+
+    private void OnDisable()
+    {
+        AdsManager.Instance.ShowBanner();
+    }
+
     private async void OnClickedBackBtn()
     {
         ProductTracking.LogLevelEnd(ResultType.back);

@@ -70,8 +70,8 @@ public class MinigameRedStep1Activity : BaseActivity
                 animPlayer.transform.DOMove(posFallPlayer, 1f).OnComplete(() =>
                 {
                     UIService.PlayFadeIn(() => {
-                        var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
                         UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
+                        var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
                         UIService.PlayFadeOut();
                     });
 
@@ -84,12 +84,19 @@ public class MinigameRedStep1Activity : BaseActivity
     {
         AudioUtility.PlayUISfx(AudioClipName.Button);
         AdsManager.Instance.ShowInterstitial((result) => {
-            
             SetDataTrackingAd();
             AdTracker.LogAdInter(trackingAdInter, result);
-            
             UIService.PlayFadeIn(() => {
-                NextStep();
+                if (currentStep >= stepInMiniGame.Count - 1)
+                {
+                    UIService.CloseActivityAsync(ActivityType.MinigameRed, true).Forget();
+                    var step = LoadResourceService.LoadStep<StrawberryJuiceStepManager>(PathConstants.MINI_GAME_RED_STEP_2);
+                    UIService.PlayFadeOut();
+                }
+                else
+                {
+                    NextStep();
+                }
                 UIService.PlayFadeOut();
             });
         });

@@ -1076,12 +1076,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5789917301779835343}
-  m_RootOrder: 0
+  m_Father: {fileID: 4523076829623828737}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -61.00003, y: -1.9999865}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 752, y: 832}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9093099767709689863
@@ -2525,10 +2525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1777102b299f42bb9fde86c52bc0d9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MIN_SCALE: {x: 0.95, y: 0.95, z: 0.95}
-  MAX_SCALE: {x: 1.05, y: 1.05, z: 1.05}
+  MIN_SCALE: {x: 0.65, y: 0.65, z: 0.65}
+  MAX_SCALE: {x: 0.75, y: 0.75, z: 0.75}
   duration: 0.15
-  startScale: 1
+  startScale: 0.7
 --- !u!114 &4667195612562914585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2587,7 +2587,7 @@ MonoBehaviour:
   targetIsSelf: 1
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
-  delay: 2
+  delay: 3
   duration: 0.5
   easeType: 1
   easeCurve:
@@ -2624,13 +2624,13 @@ MonoBehaviour:
   isActive: 1
   isValid: 1
   target: {fileID: 4982293048960202660}
-  animationType: 12
-  targetType: 5
+  animationType: 5
+  targetType: 11
   forcedTargetType: 0
   autoPlay: 1
   useTargetAsV3: 0
-  endValueFloat: 0
-  endValueV3: {x: 2, y: 2, z: 2}
+  endValueFloat: 0.75
+  endValueV3: {x: 0, y: 0, z: 0}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -2641,7 +2641,7 @@ MonoBehaviour:
     width: 0
     height: 0
   endValueTransform: {fileID: 0}
-  optionalBool0: 0
+  optionalBool0: 1
   optionalFloat0: 90
   optionalInt0: 15
   optionalRotationMode: 0
@@ -2945,10 +2945,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 684468632072494953}
+  m_Children: []
   m_Father: {fileID: 4523076829623828737}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3111,7 +3110,7 @@ MonoBehaviour:
   targetIsSelf: 1
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
-  delay: 2
+  delay: 3
   duration: 0.5
   easeType: 1
   easeCurve:
@@ -3148,13 +3147,13 @@ MonoBehaviour:
   isActive: 1
   isValid: 1
   target: {fileID: 5789917301779835343}
-  animationType: 12
-  targetType: 5
+  animationType: 5
+  targetType: 11
   forcedTargetType: 0
   autoPlay: 1
   useTargetAsV3: 0
-  endValueFloat: 0
-  endValueV3: {x: 2, y: 2, z: 2}
+  endValueFloat: 1.05
+  endValueV3: {x: 0, y: 0, z: 0}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -3165,7 +3164,7 @@ MonoBehaviour:
     width: 0
     height: 0
   endValueTransform: {fileID: 0}
-  optionalBool0: 0
+  optionalBool0: 1
   optionalFloat0: 90
   optionalInt0: 15
   optionalRotationMode: 0
@@ -3830,17 +3829,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7545743739468750592}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.4289989, w: 0.90330505}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3471444316845227689}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -50.808}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 40}
   m_SizeDelta: {x: 300, y: 528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &891670577381082814
@@ -4359,8 +4358,6 @@ GameObject:
   - component: {fileID: 4344353274648857207}
   - component: {fileID: 2896313580598693188}
   - component: {fileID: 6695802942719393556}
-  - component: {fileID: 5257073003800987644}
-  - component: {fileID: 838340430521571601}
   m_Layer: 5
   m_Name: Done
   m_TagString: Untagged
@@ -4427,66 +4424,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5257073003800987644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8249770734666638549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 6695802942719393556}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &838340430521571601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8249770734666638549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1777102b299f42bb9fde86c52bc0d9a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MIN_SCALE: {x: 0.95, y: 0.95, z: 0.95}
-  MAX_SCALE: {x: 1.05, y: 1.05, z: 1.05}
-  duration: 0.15
-  startScale: 1
 --- !u!1 &8454328889503316486
 GameObject:
   m_ObjectHideFlags: 0
@@ -4872,6 +4809,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4567820076423510452}
+  - {fileID: 684468632072494953}
   - {fileID: 5789917301779835343}
   m_Father: {fileID: 3090255925789203235}
   m_RootOrder: 0

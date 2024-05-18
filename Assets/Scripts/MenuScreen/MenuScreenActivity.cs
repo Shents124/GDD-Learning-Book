@@ -24,12 +24,19 @@ namespace MenuScreen
             }
             
             UIService.PlayFadeOut();
+
+            AdsManager.Instance.HideBanner();
             
             foreach (var item in menuItems)
             {
                 item.Initialize(OnChoseColor);
             }
             return base.Initialize(args);
+        }
+        public override void DidExit(Memory<object> args)
+        {
+            AdsManager.Instance.ShowBanner();
+            base.DidExit(args);
         }
 
         private void OnChoseColor(ColorType colorType)

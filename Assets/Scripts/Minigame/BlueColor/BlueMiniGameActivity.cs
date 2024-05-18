@@ -98,7 +98,9 @@ namespace Minigame.BlueColor
 
                 if (_blueToyCount <= 0)
                 {
+                    vfxDoneBlue.gameObject.SetActive(true);
                     vfxDoneBlue.Play();
+                    AudioUtility.PlaySFX(AudioClipName.Clearstep);
                     await AsyncService.Delay(1f, this);
                     blueToyContainer.DoHide(toyContainerShowDuration, () => {
                         redToyContainer.DoShow(toyContainerShowDuration, () => {
@@ -119,8 +121,10 @@ namespace Minigame.BlueColor
                 redToy.GetComponent<Canvas>().overrideSorting = false;
                 redToy.DoMove(parent, new Vector3(toyScale, toyScale, toyScale), 1, null);
             }
-            AudioUtility.PlaySFX(AudioClipName.Correct);
             yield return new WaitForSeconds(1);
+            AudioUtility.PlaySFX(AudioClipName.Clearstep);
+            vfxDoneRed.gameObject.SetActive(true);
+            vfxDoneRed.Play();
             redToyContainer.Shake(() => {
                 
                 SetDataTrackingAd();

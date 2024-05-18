@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using DG.Tweening;
 using Sound.Service;
 using UnityEngine;
@@ -10,7 +11,10 @@ namespace Minigame.BlueColor
     public class SelectedClothes : MonoBehaviour
     {
         [SerializeField] private List<Clothes> blueClothes;
+        [SerializeField] private List<Clothes> yellowClothes;
         [SerializeField] private List<RectTransform> redClothes;
+        [SerializeField] private RectTransform[] selectPos;
+        [SerializeField] private GameObject yellowsObj;
 
         private int _blueClothesCount;
         private int _currentIndex;
@@ -34,10 +38,31 @@ namespace Minigame.BlueColor
             {
                 blueClothes[i].gameObject.SetActive(i == _currentIndex);
             }
+            SetUpClothes();
+        }
+
+        private void SetUpClothes()
+        {
+            List<int> ints = new(){0, 1, 2, 3};
+
+            foreach(var clothes in yellowClothes)
+            {
+                int index = UnityEngine.Random.Range(0, ints.Count);
+                clothes.ChangePos(selectPos[ints[index]].position);
+                ints.RemoveAt(index);
+            }
+
+            blueClothes[_currentIndex].ChangePos(selectPos[ints[0]].position);
+
         }
 
         public void MoveRedClothes(List<RedClothes> targets, float duration, Action onFinish)
         {
+            foreach (var clothes in yellowClothes)
+            {
+                clothes.gameObject.SetActive(false);
+            }
+            yellowsObj.SetActive(true);
             StartCoroutine(MoveRedClothesCoroutine(targets, duration, onFinish));
         }
 

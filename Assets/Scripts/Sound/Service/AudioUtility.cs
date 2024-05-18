@@ -19,6 +19,8 @@ namespace Sound.Service
             var audio = GetAudioClip(AudioClipName);
             EazySoundManager.Instance.PlaySound(audio, false);
             await AsyncService.Delay(audio.length + timeDelayNext, monoBehaviour);
+            if (monoBehaviour == null || !monoBehaviour.gameObject.activeSelf)
+                return;
             callback?.Invoke();
         }
 

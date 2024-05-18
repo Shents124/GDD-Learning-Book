@@ -1202,7 +1202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1673069459018333919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1210,17 +1210,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673069459018333918}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.4289989, w: 0.90330505}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1673069458983361054}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -50.808}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 40}
   m_SizeDelta: {x: 300, y: 528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1673069459018333905
@@ -1436,7 +1436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1673069460337221354
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1961,7 +1961,7 @@ MonoBehaviour:
   targetIsSelf: 1
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
-  delay: 5
+  delay: 3
   duration: 0.5
   easeType: 1
   easeCurve:
@@ -1998,13 +1998,13 @@ MonoBehaviour:
   isActive: 1
   isValid: 1
   target: {fileID: 4654751236451480971}
-  animationType: 12
-  targetType: 5
+  animationType: 5
+  targetType: 11
   forcedTargetType: 0
   autoPlay: 1
   useTargetAsV3: 0
-  endValueFloat: 0
-  endValueV3: {x: 2, y: 2, z: 1.5}
+  endValueFloat: 0.37
+  endValueV3: {x: 0, y: 0, z: 0}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -2015,7 +2015,7 @@ MonoBehaviour:
     width: 0
     height: 0
   endValueTransform: {fileID: 0}
-  optionalBool0: 0
+  optionalBool0: 1
   optionalFloat0: 90
   optionalInt0: 15
   optionalRotationMode: 0
@@ -5202,7 +5202,7 @@ MonoBehaviour:
   targetIsSelf: 1
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
-  delay: 5
+  delay: 3
   duration: 0.5
   easeType: 1
   easeCurve:
@@ -5239,13 +5239,13 @@ MonoBehaviour:
   isActive: 1
   isValid: 1
   target: {fileID: 354461083864690020}
-  animationType: 12
-  targetType: 5
+  animationType: 5
+  targetType: 11
   forcedTargetType: 0
   autoPlay: 1
   useTargetAsV3: 0
-  endValueFloat: 0
-  endValueV3: {x: 2, y: 2, z: 1.5}
+  endValueFloat: 0.3
+  endValueV3: {x: 0, y: 0, z: 0}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -5256,7 +5256,7 @@ MonoBehaviour:
     width: 0
     height: 0
   endValueTransform: {fileID: 0}
-  optionalBool0: 0
+  optionalBool0: 1
   optionalFloat0: 90
   optionalInt0: 15
   optionalRotationMode: 0
@@ -5511,6 +5511,18 @@ PrefabInstance:
       propertyPath: m_Scale3D.z
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 3130988403637772854, guid: aec8ff5b23768a74fbab22c270f47d73, type: 3}
+      propertyPath: m_Particles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130988403637772854, guid: aec8ff5b23768a74fbab22c270f47d73, type: 3}
+      propertyPath: m_Particles.Array.data[0]
+      value: 
+      objectReference: {fileID: 6689240502393464098}
+    - target: {fileID: 3130988403637772854, guid: aec8ff5b23768a74fbab22c270f47d73, type: 3}
+      propertyPath: m_Particles.Array.data[1]
+      value: 
+      objectReference: {fileID: 6689240502393464098}
     - target: {fileID: 4113065204975317032, guid: aec8ff5b23768a74fbab22c270f47d73, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -5669,6 +5681,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f0b0b6d0b7542bfbd20a3e05b04ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &6689240502393464098 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4357820173642961287, guid: aec8ff5b23768a74fbab22c270f47d73, type: 3}
+  m_PrefabInstance: {fileID: 6966754783022838949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7165115853858263239
 PrefabInstance:
   m_ObjectHideFlags: 0

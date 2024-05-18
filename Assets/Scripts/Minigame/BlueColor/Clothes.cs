@@ -1,14 +1,17 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Minigame.BlueColor
 {
+    [RequireComponent(typeof(CanvasGroup), typeof(CanvasGroup), typeof(GraphicRaycaster))]
     public class Clothes : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler,
         IInitializePotentialDragHandler
     {
         [SerializeField] private BlueClothesType blueClothesType;
         [SerializeField] private CanvasGroup canvasGroup;
+        public bool isCurrentClothes = true;
 
         public BlueClothesType BlueClothesType => blueClothesType;
         
@@ -30,6 +33,12 @@ namespace Minigame.BlueColor
             _callback = callback;
         }
         
+        public void ChangePos(Vector3 pos)
+        {
+            transform.position = pos;
+            _originPos = _rectTransform.anchoredPosition;
+        }
+
         public void SetCanDrag(bool value)
         {
             _canDrag = value;

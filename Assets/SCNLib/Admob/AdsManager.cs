@@ -125,7 +125,7 @@ public class AdsManager : MonoBehaviour
 
     public void ShowBanner()
     {
-        if (!IsRemovedAds && useAdmob)
+        if (useAdmob)
         {
             AdsAdmob.Instance.ShowBanner();
         }
@@ -133,7 +133,7 @@ public class AdsManager : MonoBehaviour
 
     public void HideBanner()
     {
-        if (!IsRemovedAds && useAdmob)
+        if (useAdmob)
         {
             AdsAdmob.Instance.HideBanner();
         }
