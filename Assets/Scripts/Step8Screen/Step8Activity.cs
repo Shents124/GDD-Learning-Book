@@ -92,13 +92,17 @@ public class Step8Activity : MonoBehaviour
         {
             _isDone = true;
             AudioUtility.StopSFX();
+            AudioUtility.PlaySFX(AudioClipName.Clearstep);
             vfxDone.Play();
             imageNotDones[(int)_typeObject].gameObject.SetActive(false);
             imageDone[(int)_typeObject].gameObject.SetActive(true);
+            vfxTo.gameObject.SetActive(false);
+            colorPenController.StartInGame();
             await AsyncService.Delay(1f, this);
-            content.DOScale(Vector3.one, 1f).OnComplete(() => {
-                this.gameObject.SetActive(false);
+            transform.DOScale(Vector3.one, 0.5f).OnComplete(() => {
+                transform.localScale = Vector3.one;
                 EventManager.SendSimpleEvent(Events.FillColorDone);
+                this.gameObject.SetActive(false);
             });
         }
         else if(progress > 0)
@@ -149,6 +153,8 @@ public class Step8Activity : MonoBehaviour
         var index = (int)_typeObject;
         imageNotDones[index].gameObject.SetActive(false);
         imageDone[index].gameObject.SetActive(true);
+        vfxTo.gameObject.SetActive(false);
+        colorPenController.StartInGame();
         await AsyncService.Delay(1f, this);
         content.DOScale(Vector3.one, 1f).OnComplete(() => {
             _callBack?.Invoke(_typeObject);

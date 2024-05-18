@@ -7,6 +7,7 @@ using Tracking;
 using Tracking.Constant;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
 using ZBase.UnityScreenNavigator.Core.Activities;
 
 namespace MenuScreen

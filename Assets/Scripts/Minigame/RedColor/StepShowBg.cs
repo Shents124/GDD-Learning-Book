@@ -15,6 +15,8 @@ public class StepShowBg : BaseStep
 
     private Vector2 posStart;
 
+    public float distanceIndex = 1f;
+
     [SerializeField] private RectTransform[] pageGbj;
 
     private void Awake()
@@ -27,7 +29,7 @@ public class StepShowBg : BaseStep
         foreach (var page in pageGbj)
         {
             page.anchoredPosition
-                += new Vector2(m_RectTransform.rect.width * (Array.IndexOf(pageGbj, page) - 1), 0);/*transform.position + new Vector3(Screen.width, 0, 0) * (Array.IndexOf(pageGbj, page) -1);*/
+                += new Vector2(m_RectTransform.rect.width * (Array.IndexOf(pageGbj, page) - 1) * distanceIndex, 0);/*transform.position + new Vector3(Screen.width, 0, 0) * (Array.IndexOf(pageGbj, page) -1);*/
         }
     }
 
@@ -36,7 +38,7 @@ public class StepShowBg : BaseStep
         base.InActive();
         SetUpPage();
         posStart = transform.position;
-        m_RectTransform.DOAnchorPosX(m_RectTransform.rect.width, 2.5f).OnComplete(() => {
+        m_RectTransform.DOAnchorPosX(m_RectTransform.rect.width * distanceIndex, 2.5f).OnComplete(() => {
             var track = animPlayer.AnimationState.SetAnimation(0, animTalk, true);
             AudioUtility.PlaySFX(this, AudioClipName.Red_harvest, callback: () => {
                 UIService.PlayFadeIn(() =>
