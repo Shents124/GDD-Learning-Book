@@ -50,6 +50,7 @@ public class MinigameGreenEat : BaseActivity
             {
                 if (isEating)
                     return;
+                isEating = true;
                 frog.Eat(anim, OnClickAnimal, StartEat);
             };
         }
@@ -92,7 +93,6 @@ public class MinigameGreenEat : BaseActivity
 
     public void OnClickAnimal(bool isCurrentAnimal)
     {
-        isEating = true;
         AudioUtility.PlaySFX(AudioClipName.Frog_eat);
         var track = frogAnim.AnimationState.SetAnimation(0, animEat, false);
         track.Complete += Entry => {

@@ -6666,7 +6666,7 @@ MonoBehaviour:
   posFoods:
   - {fileID: 4945327497121523493}
   - {fileID: 2395285876807943994}
-  posFall: {fileID: 9106616339576283159}
+  posFall: {fileID: 7759654171570988755}
   isFallDown: 0
 --- !u!1 &7475590374699663890
 GameObject:
@@ -8062,7 +8062,7 @@ MonoBehaviour:
   posFoods:
   - {fileID: 8540746859445939746}
   - {fileID: 596620708822692326}
-  posFall: {fileID: 7759654171570988755}
+  posFall: {fileID: 9106616339576283159}
   isFallDown: 0
 --- !u!1 &8623979734654580210
 GameObject:
@@ -8216,10 +8216,10 @@ RectTransform:
   m_Father: {fileID: 568591651508082120}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1473491209284843116
 CanvasRenderer:

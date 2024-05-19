@@ -35,7 +35,7 @@ public class AnimalFood : MonoBehaviour
 
         if(posFoods[_idFoodMove].position.x - transform.position.x > 0)
         {
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            transform.localScale = new Vector2(-Math.Abs(transform.localScale.x), transform.localScale.y);
         }
         else
         {
@@ -64,7 +64,7 @@ public class AnimalFood : MonoBehaviour
         {
             if (posFall.position.x - transform.position.x > 0)
             {
-                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                transform.localScale = new Vector2(-Math.Abs(transform.localScale.x), transform.localScale.y);
             }
             else
             {
