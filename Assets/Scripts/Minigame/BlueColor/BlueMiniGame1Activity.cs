@@ -39,6 +39,7 @@ namespace Minigame.BlueColor
         private async void OnFinishSelectBlueClothes()
         {
             vfxsDone.SetActive(true);
+            AudioUtility.PlaySFX(AudioClipName.Clearstep);
             await AsyncService.Delay(1f, this);
             vfxsDone.SetActive(false);
             content.DOAnchorPos(newContentPosition.anchoredPosition, moveDuration).OnComplete(MoveRedClothes);
@@ -57,6 +58,7 @@ namespace Minigame.BlueColor
                 redClothe.Show(true);
             }
             vfxsDone.SetActive(true);
+            AudioUtility.PlaySFX(AudioClipName.Clearstep);
             StartCoroutine(MoveToNextStep());
         }
 

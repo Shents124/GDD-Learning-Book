@@ -140,19 +140,19 @@ namespace Step345Screen
                 });
             });
         }
-        
+
         private void ShowBoard()
         {
-            characterController.FlipX();
-            characterController.PlayAnim(0, characterController.idleTalkAnimation, false, () => {
-                characterController.PlayAnim(0, characterController.idleAnimation, true);
-            });
-
             AudioUtility.PlaySFX(AudioClipName.Falldown);
+            characterController.FlipX();
+            characterController.PlayAnim(0, characterController.idleAnimation, true);
             dialog.SetActive(true);
             board.DoMove(() => {
-                AudioUtility.PlaySFX(AudioClipName.Yellow_quiz);
-                board.Initialize(OnClickedCard);
+                characterController.PlayAnim(0, characterController.idleTalkAnimation, true);
+                AudioUtility.PlaySFX(this, AudioClipName.Yellow_quiz, 0, () => {
+                    characterController.PlayAnim(0, characterController.idleAnimation, true);
+                    board.Initialize(OnClickedCard);
+                });
             });
         }
 

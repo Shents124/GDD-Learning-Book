@@ -53,6 +53,7 @@ namespace SCN.IAP
 
         private void Start()
         {
+            AdsManager.Instance.HideBanner();
             _idSubscriptionMonthly = IAPManager.Instance.IdSubscriptionMonthly;
             _idSubscriptionAnnual = IAPManager.Instance.IdSubscriptionAnnual;
             _idUnlockAll = IAPManager.Instance.IdUnlockAll;
@@ -105,6 +106,7 @@ namespace SCN.IAP
 
         private void OnClose()
         {
+            AdsManager.Instance.ShowBanner();
             gameObject.SetActive(false);
             IapTracker.LogIapUI(FirebaseEventName.IAP_POPUP_CLOSE);
         }

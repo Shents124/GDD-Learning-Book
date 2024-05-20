@@ -69,8 +69,11 @@ namespace Minigame.BlueColor
             {
                 var clothes = eventData.pointerDrag.GetComponent<Clothes>();
                 if (clothes == null || !clothes.isCurrentClothes)
+                {
+                    AudioUtility.PlaySFX(AudioClipName.Fail);
                     return;
-                
+                }
+
                 AudioUtility.PlaySFX(AudioClipName.Hanging_clothes);
                 clothes.SetCanDrag(false);
                 clothes.SetPosition(GetComponent<RectTransform>().anchoredPosition);
