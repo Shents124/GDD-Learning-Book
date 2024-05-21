@@ -15,7 +15,7 @@ MonoBehaviour:
   rulesEnabled: 1
   allowGroupCreation: 1
   rules:
-  - path: Assets/Addressables/Son/(?<asset>.*)\.prefab
+  - path: Assets/Addressables/Son/(?<asset>.*)\.*
     matchType: 1
     groupName: UI
     groupTemplate: {fileID: 11400000, guid: 0f71267639375e84897c5814b4c3a292, type: 2}
@@ -28,6 +28,26 @@ MonoBehaviour:
   - path: Assets/Addressables/Toan/(?<asset>.*)\.prefab
     matchType: 1
     groupName: UI-1
+    groupTemplate: {fileID: 11400000, guid: 0f71267639375e84897c5814b4c3a292, type: 2}
+    groupTemplateApplicationMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    LabelMode: 0
+    simplified: 1
+    addressReplacement: 
+  - path: Assets/Sound/(?<asset>.*)\.ogg
+    matchType: 1
+    groupName: Sound
+    groupTemplate: {fileID: 11400000, guid: 0f71267639375e84897c5814b4c3a292, type: 2}
+    groupTemplateApplicationMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    LabelMode: 0
+    simplified: 1
+    addressReplacement: 
+  - path: Assets/Sound/(?<asset>.*)\.wav
+    matchType: 1
+    groupName: Sound
     groupTemplate: {fileID: 11400000, guid: 0f71267639375e84897c5814b4c3a292, type: 2}
     groupTemplateApplicationMode: 1
     labelRefs: []

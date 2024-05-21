@@ -1,0 +1,104 @@
+
+con ong.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 1
+  rotate: false
+  xy: 259, 0
+  size: 21, 18
+  orig: 23, 20
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: true
+  xy: 259, 20
+  size: 22, 19
+  orig: 24, 21
+  offset: 1, 1
+  index: -1
+body ong
+  rotate: false
+  xy: 0, 8
+  size: 175, 119
+  orig: 175, 119
+  offset: 0, 0
+  index: -1
+canh duoi ong
+  rotate: false
+  xy: 177, 42
+  size: 45, 85
+  orig: 48, 90
+  offset: 2, 4
+  index: -1
+canh tren ong
+  rotate: false
+  xy: 292, 49
+  size: 59, 78
+  orig: 64, 84
+  offset: 4, 4
+  index: -1
+chan sau ong
+  rotate: true
+  xy: 280, 20
+  size: 22, 14
+  orig: 24, 16
+  offset: 1, 1
+  index: -1
+chan truoc ong
+  rotate: true
+  xy: 319, 25
+  size: 22, 13
+  orig: 24, 15
+  offset: 1, 1
+  index: -1
+duoi ong
+  rotate: true
+  xy: 214, 8
+  size: 32, 43
+  orig: 34, 45
+  offset: 1, 1
+  index: -1
+eye ong 3
+  rotate: true
+  xy: 224, 44
+  size: 83, 66
+  orig: 85, 68
+  offset: 1, 1
+  index: -1
+long may mat 3
+  rotate: true
+  xy: 296, 1
+  size: 46, 21
+  orig: 48, 23
+  offset: 1, 1
+  index: -1
+mieng 3
+  rotate: true
+  xy: 319, 9
+  size: 14, 8
+  orig: 16, 10
+  offset: 1, 1
+  index: -1
+rau
+  rotate: false
+  xy: 177, 2
+  size: 35, 38
+  orig: 37, 40
+  offset: 1, 1
+  index: -1
+trong mat ong p1
+  rotate: true
+  xy: 282, 9
+  size: 9, 11
+  orig: 11, 13
+  offset: 1, 1
+  index: -1
+trong mat ong t1
+  rotate: true
+  xy: 282, 9
+  size: 9, 11
+  orig: 11, 13
+  offset: 1, 1
+  index: -1

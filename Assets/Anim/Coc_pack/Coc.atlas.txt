@@ -1,0 +1,48 @@
+
+Coc.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 2
+  rotate: false
+  xy: 0, 0
+  size: 320, 464
+  orig: 320, 464
+  offset: 0, 0
+  index: -1
+Layer 3
+  rotate: true
+  xy: 886, 211
+  size: 253, 59
+  orig: 253, 112
+  offset: 0, 0
+  index: -1
+Layer 5
+  rotate: true
+  xy: 322, 77
+  size: 60, 464
+  orig: 60, 464
+  offset: 0, 0
+  index: -1
+bong bóng
+  rotate: true
+  xy: 788, 88
+  size: 66, 61
+  orig: 72, 64
+  offset: 2, 2
+  index: -1
+coc duoi
+  rotate: false
+  xy: 625, 156
+  size: 259, 308
+  orig: 328, 320
+  offset: 6, 9
+  index: -1
+coc tren
+  rotate: true
+  xy: 322, 139
+  size: 325, 301
+  orig: 328, 320
+  offset: 1, 4
+  index: -1

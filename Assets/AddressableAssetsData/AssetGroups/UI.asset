@@ -27,6 +27,106 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3128d71cd18e7d44c8a40b15e2be1c08
+    m_Address: Step345RedScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: deae569b49d5af945938bb4a8dc69f8b
+    m_Address: FadeScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef1d6485c48c27d46ad83a100e55185d
+    m_Address: Step345YellowScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d64e20f4fe9bec438174c715098c255
+    m_Address: MiniGameYellowScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9b92dc212e0e2b479c207c2f6ca453e
+    m_Address: MiniGameYellow2Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6acf94d4acb21a741984db351ecc1009
+    m_Address: yellow_food
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c42ad6bba63563b4a84ae30b7ec8b895
+    m_Address: MiniGameYellow3Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98dc5231fc3671848bf973e0ecfc9802
+    m_Address: MiniGameYellow4Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57a21c343880d674b97f2f29ee8c8e85
+    m_Address: Step345BlueScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b38ec65292063944b7949c86ffa76f2
+    m_Address: MiniGameBlueScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdeb6c42ad2e52b4ba8c75443120e47d
+    m_Address: Step345GreenScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea85d18655b0390449a2eac5ed7b2dd1
+    m_Address: MiniGameBlue1Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d93ff722a84f642419470767700c25b0
+    m_Address: blue_dotted_clothes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23ad2f312f91bd8429ba67710434ecf0
+    m_Address: blue_front_clothes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05382770c4b81d641828057103e3880c
+    m_Address: blue_behind_clothes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa75a0162fb9075489817b2a2d60c084
+    m_Address: MiniGameBlue2Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc525f427e932f840ad08bf91558b358
+    m_Address: MiniGameBlue3Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 509e69987a1313d42a4efdf57be518b8
+    m_Address: MinigameRedStep2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2bc9370f70d54e843bca1f02a1f374d2
+    m_Address: Star_Particle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44607cd59dfcaf64b98c9e212ef5459a
+    m_Address: Shine_ellow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2f8da982462e67842aabe7df00efca11, type: 2}
   m_SchemaSet:

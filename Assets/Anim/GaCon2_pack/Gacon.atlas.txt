@@ -1,0 +1,258 @@
+
+Gacon.png
+size: 1124,1704
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light
+  rotate: true
+  xy: 913, 756
+  size: 34, 40
+  orig: 34, 40
+  offset: 0, 0
+  index: -1
+bong
+  rotate: true
+  xy: 968, 870
+  size: 438, 68
+  orig: 438, 68
+  offset: 0, 0
+  index: -1
+den p
+  rotate: false
+  xy: 657, 632
+  size: 70, 68
+  orig: 70, 68
+  offset: 0, 0
+  index: -1
+ga con 1/body
+  rotate: false
+  xy: 2, 1141
+  size: 574, 561
+  orig: 574, 561
+  offset: 0, 0
+  index: -1
+ga con 1/canh p
+  rotate: false
+  xy: 863, 900
+  size: 103, 129
+  orig: 103, 129
+  offset: 0, 0
+  index: -1
+ga con 1/canh t
+  rotate: false
+  xy: 683, 702
+  size: 124, 105
+  orig: 124, 105
+  offset: 0, 0
+  index: -1
+ga con 1/chan p
+  rotate: true
+  xy: 809, 629
+  size: 79, 100
+  orig: 79, 100
+  offset: 0, 0
+  index: -1
+ga con 1/ma hong
+  rotate: false
+  xy: 578, 1414
+  size: 389, 142
+  orig: 389, 142
+  offset: 0, 0
+  index: -1
+ga con 1/mao
+  rotate: true
+  xy: 911, 588
+  size: 72, 103
+  orig: 72, 103
+  offset: 0, 0
+  index: -1
+ga con 1/mom 1
+  rotate: false
+  xy: 868, 1031
+  size: 78, 125
+  orig: 78, 125
+  offset: 0, 0
+  index: -1
+ga con 1/mom 2
+  rotate: false
+  xy: 958, 743
+  size: 78, 125
+  orig: 78, 125
+  offset: 0, 0
+  index: -1
+ga con 2/body
+  rotate: false
+  xy: 2, 578
+  size: 574, 561
+  orig: 574, 561
+  offset: 0, 0
+  index: -1
+ga con 2/canh p
+  rotate: true
+  xy: 578, 1012
+  size: 105, 130
+  orig: 105, 130
+  offset: 0, 0
+  index: -1
+ga con 2/canh t
+  rotate: false
+  xy: 578, 903
+  size: 125, 107
+  orig: 125, 107
+  offset: 0, 0
+  index: -1
+ga con 2/chan p
+  rotate: true
+  xy: 809, 710
+  size: 80, 102
+  orig: 80, 102
+  offset: 0, 0
+  index: -1
+ga con 2/ma hong
+  rotate: false
+  xy: 578, 1558
+  size: 394, 144
+  orig: 394, 144
+  offset: 0, 0
+  index: -1
+ga con 2/mao
+  rotate: false
+  xy: 732, 1023
+  size: 129, 122
+  orig: 129, 122
+  offset: 0, 0
+  index: -1
+ga con 2/mom 1
+  rotate: false
+  xy: 1038, 1181
+  size: 79, 127
+  orig: 79, 127
+  offset: 0, 0
+  index: -1
+ga con 2/mom 2
+  rotate: false
+  xy: 1038, 1052
+  size: 79, 127
+  orig: 79, 127
+  offset: 0, 0
+  index: -1
+ga con 3/body
+  rotate: true
+  xy: 2, 2
+  size: 574, 561
+  orig: 574, 561
+  offset: 0, 0
+  index: -1
+ga con 3/canh p
+  rotate: true
+  xy: 710, 917
+  size: 104, 129
+  orig: 104, 129
+  offset: 0, 0
+  index: -1
+ga con 3/canh t
+  rotate: false
+  xy: 705, 809
+  size: 125, 106
+  orig: 125, 106
+  offset: 0, 0
+  index: -1
+ga con 3/chan p
+  rotate: true
+  xy: 913, 662
+  size: 79, 101
+  orig: 79, 101
+  offset: 0, 0
+  index: -1
+ga con 3/ma hong
+  rotate: true
+  xy: 974, 1310
+  size: 392, 143
+  orig: 392, 143
+  offset: 0, 0
+  index: -1
+ga con 3/mao
+  rotate: true
+  xy: 732, 1147
+  size: 121, 134
+  orig: 121, 134
+  offset: 0, 0
+  index: -1
+ga con 3/mom 1
+  rotate: false
+  xy: 1038, 924
+  size: 79, 126
+  orig: 79, 126
+  offset: 0, 0
+  index: -1
+ga con 3/mom 2
+  rotate: false
+  xy: 1038, 796
+  size: 79, 126
+  orig: 79, 126
+  offset: 0, 0
+  index: -1
+ga con 4/body
+  rotate: true
+  xy: 565, 3
+  size: 573, 557
+  orig: 573, 557
+  offset: 0, 0
+  index: -1
+ga con 4/canh p
+  rotate: false
+  xy: 578, 773
+  size: 103, 128
+  orig: 103, 128
+  offset: 0, 0
+  index: -1
+ga con 4/canh t
+  rotate: false
+  xy: 832, 792
+  size: 124, 106
+  orig: 124, 106
+  offset: 0, 0
+  index: -1
+ga con 4/chan p
+  rotate: true
+  xy: 1016, 588
+  size: 79, 100
+  orig: 79, 100
+  offset: 0, 0
+  index: -1
+ga con 4/ma hong
+  rotate: false
+  xy: 578, 1270
+  size: 388, 142
+  orig: 388, 142
+  offset: 0, 0
+  index: -1
+ga con 4/mao
+  rotate: true
+  xy: 868, 1158
+  size: 110, 96
+  orig: 110, 96
+  offset: 0, 0
+  index: -1
+ga con 4/mom 1
+  rotate: false
+  xy: 578, 646
+  size: 77, 125
+  orig: 77, 125
+  offset: 0, 0
+  index: -1
+ga con 4/mom 2
+  rotate: false
+  xy: 1038, 669
+  size: 78, 125
+  orig: 78, 125
+  offset: 0, 0
+  index: -1
+trang p
+  rotate: true
+  xy: 578, 1119
+  size: 149, 152
+  orig: 149, 152
+  offset: 0, 0
+  index: -1

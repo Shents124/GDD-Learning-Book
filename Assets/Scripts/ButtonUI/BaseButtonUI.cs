@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Sound.Service;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,12 +13,16 @@ namespace ButtonUI
         [SerializeField] private Vector3 MIN_SCALE = new(0.95f, 0.95f, 0.95f);
         [SerializeField] private Vector3 MAX_SCALE = new(1.05f,1.05f,1.05f);
         [SerializeField] private float duration = 0.15f;
+
+        public float startScale = 1f;
             
         private Tween _tweenDown;
         private Tween _tweenUp;
 
         private Action _onClick;
         private Button _button;
+
+        protected Button Button => _button;
         
         private void Awake()
         {
@@ -42,6 +47,7 @@ namespace ButtonUI
             if (IsInteractable() == false)
                 return;
             
+            //AudioUtility.PlayUISfx(AudioClipName.Button);
             _onClick?.Invoke();
         }
 
@@ -61,7 +67,7 @@ namespace ButtonUI
             _tweenUp = transform.DOScale(MAX_SCALE, duration / 2).OnComplete(() => {
                 if (transform == null)
                     return;
-                transform.localScale = Vector3.one;
+                transform.localScale = Vector3.one * startScale;
             });
         }
         

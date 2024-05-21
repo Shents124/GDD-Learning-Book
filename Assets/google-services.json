@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "900119769651",
+    "project_id": "wolfoo-colors-learning-book",
+    "storage_bucket": "wolfoo-colors-learning-book.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900119769651:android:1460502770563861d46946",
+        "android_client_info": {
+          "package_name": "wolfoo.learning.book.coloring.kindergarten"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzLUOZvHl7H2RTiHuWLmN9g20v6Vw2FE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
