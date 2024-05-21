@@ -23,7 +23,7 @@ public class MinigameGreenWay : MinigameNotUI
     [SpineAnimation]
     public string animIdle, animJump, animWin;
 
-    public SkeletonAnimation animFrog;
+    [SerializeField] private SkeletonAnimation animFrog;
 
     public Transform playerPos;
 
@@ -70,6 +70,9 @@ public class MinigameGreenWay : MinigameNotUI
     private void OnDisable()
     {
         AdsManager.Instance.ShowBanner();
+        EventManager.Disconnect(Events.ErrorWay, OnErrorWay);
+        EventManager.Disconnect(Events.CurrentWay, OnMoveDone);
+        EventManager.Disconnect(Events.MoveWayDone, CompleteTurn);
     }
 
     private async void OnClickedBackBtn()
@@ -206,4 +209,6 @@ public class MinigameGreenWay : MinigameNotUI
             isWoaAd = false
         };
     }
+
+    
 }

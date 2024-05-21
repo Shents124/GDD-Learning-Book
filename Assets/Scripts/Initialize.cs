@@ -46,7 +46,7 @@ public class Initialize : MonoBehaviour
 
     private async UniTask CheckInternetConnection()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get("http://www.google.com"))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://www.google.com"))
         {
             await webRequest.SendWebRequest();
 
