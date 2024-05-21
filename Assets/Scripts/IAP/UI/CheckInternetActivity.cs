@@ -31,6 +31,6 @@ public class CheckInternetActivity : Activity
     private void NoInternet()
     {
         btnReconnect.interactable = true;
-        txtLoading.text = "No Internet\nConection";
+        txtLoading.text = "No Internet\nConnection";
     }
 }

@@ -14,12 +14,6 @@ public class Initialize : MonoBehaviour
 
     public float checkInterval = 5f; // Thời gian chờ giữa các lần kiểm tra (giây)
 
-    private void Start()
-    {
-        CheckInternetConnectionRoutine().Forget();
-        EventManager.Connect(Events.ReconectInternet, CheckReconnectInternet);
-    }
-
     private async void CheckReconnectInternet()
     {
         await AsyncService.Delay(checkInterval, this, false);
@@ -38,31 +32,28 @@ public class Initialize : MonoBehaviour
     {
         while (true)
         {
-            await CheckInternetConnection();
+            CheckInternetConnection();
 
             await AsyncService.Delay(checkInterval, this, false);
         }
     }
 
-    private async UniTask CheckInternetConnection()
+    private void CheckInternetConnection()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://www.google.com"))
+        bool isConnected = Application.internetReachability != NetworkReachability.NotReachable;
+        Debug.Log("isConnected " + isConnected);
+        if (!isConnected)
         {
-            await webRequest.SendWebRequest();
-
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            _hadInternet = false;
+            if (!_isShowedNoInternet)
             {
-                _hadInternet = false;
-                if (!_isShowedNoInternet)
-                {
-                    _isShowedNoInternet = true;
-                    UIService.OpenActivityAsyncNoClose(ActivityType.CheckInternetActivity).Forget();
-                }
+                _isShowedNoInternet = true;
+                UIService.OpenActivityAsyncNoClose(ActivityType.CheckInternetActivity).Forget();
             }
-            else
-            {
-                _hadInternet = true;
-            }
+        }
+        else
+        {
+            _hadInternet = true;
         }
     }
     private void Awake()
@@ -80,10 +71,12 @@ public class Initialize : MonoBehaviour
         uiController.onInitializeDone -= OnUiInitializeDone;
     }
 
-    private static void OnUiInitializeDone()
+    private async void OnUiInitializeDone()
     {
-        UIService.OpenActivityAsync(ActivityType.HomeScreen).Forget();
+        EventManager.Connect(Events.ReconectInternet, CheckReconnectInternet);
         UIService.InitializeFadeScreen().Forget();
+        await UIService.OpenActivityAsync(ActivityType.HomeScreen);
+        CheckInternetConnectionRoutine().Forget();
     }
 
     public void OnApplicationQuit()

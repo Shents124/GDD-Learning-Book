@@ -15,21 +15,21 @@ MonoBehaviour:
   EnableLog: 0
   UseTestID: 0
   RequestOnLoadFailed: 1
-  appID_android: ca-app-pub-3940256099942544~3347511713
+  appID_android: ca-app-pub-6069072313381173~8732423911
   appID_iOS: 
   useBannerAd: 1
-  bannerID_android: ca-app-pub-3940256099942544/6300978111
+  bannerID_android: ca-app-pub-6069072313381173/5751037354
   bannerID_iOS: 
   BannerSize: 1
   autoShowBanner: 1
   showBannerOnBottom: 0
   useInterstitialAd: 1
-  inter_ID_android: ca-app-pub-3940256099942544/1033173712
+  inter_ID_android: ca-app-pub-6069072313381173/8600060968
   inter_ID_iOS: 
   useRewardVideoAd: 1
-  reward_ID_android: 
+  reward_ID_android: ca-app-pub-6069072313381173/1212525539
   reward_ID_ios: 
-  useRewardInterAd: 0
+  useRewardInterAd: 1
   rewardInter_ID_android: 
   rewardInter_ID_ios: 
   isBlockRequest: 0
