@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utility;
 
-public class MinigameGreenWay : MonoBehaviour
+public class MinigameGreenWay : MinigameNotUI
 {
     public Button btnNext, btnBack;
 
@@ -48,8 +48,9 @@ public class MinigameGreenWay : MonoBehaviour
 
     private bool _isMoveStep;
     
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         AdsManager.Instance.HideBanner();
         ProductTracking.miniGameStep = 3;
         ProductTracking.miniGameSession = 1;
@@ -57,7 +58,9 @@ public class MinigameGreenWay : MonoBehaviour
         btnNext.onClick.AddListener(OnClickedNextBtn);
         posPlayerStart = playerPos.position;
         posAnimStart = animFrog.transform.localPosition;
-        showTalk.ShowTalk();
+        showTalk.ShowTalk(() => {
+            playerController.StartDraw();
+        });
         StartGame();
         EventManager.Connect(Events.ErrorWay, OnErrorWay);
         EventManager.Connect(Events.CurrentWay, OnMoveDone);
@@ -101,7 +104,6 @@ public class MinigameGreenWay : MonoBehaviour
     private void StartGame()
     {
         isDone = false;
-        playerController.StartDraw();
         animFrog.transform.localPosition = posAnimStart;
         playerPos.position = posPlayerStart;
         RandomPosLand();

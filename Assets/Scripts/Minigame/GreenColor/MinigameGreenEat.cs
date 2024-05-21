@@ -34,7 +34,7 @@ public class MinigameGreenEat : BaseActivity
     public string animPlayerTalk, animPlayerIdle;
     private bool isEating;
 
-    public Transform posFall;
+    public Transform posFall, posStart;
 
     public GameObject bgPlayer;
     protected override void Start()
@@ -55,16 +55,19 @@ public class MinigameGreenEat : BaseActivity
             };
         }
     }
-    private async void ShowTalk()
+    private void ShowTalk()
     {
-        await AsyncService.Delay(1, this);
-        var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, true);
-        AudioUtility.PlaySFX(this, AudioClipName.Green_frog_eat, 0,  () => {
-            animPlayer.AnimationState.SetAnimation(0, animPlayerIdle, true);
-            animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1f).OnComplete(() => {
-                bgPlayer.SetActive(false);
+        animPlayer.transform.DOLocalMoveY(posStart.localPosition.y, 1f).OnComplete(() => 
+        {
+            var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, true);
+            AudioUtility.PlaySFX(this, AudioClipName.Green_frog_eat, 0, () => {
+                animPlayer.AnimationState.SetAnimation(0, animPlayerIdle, true);
+                animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1f).OnComplete(() => {
+                    bgPlayer.SetActive(false);
+                });
             });
         });
+
     }
 
     protected override void OnClickedNextBtn()

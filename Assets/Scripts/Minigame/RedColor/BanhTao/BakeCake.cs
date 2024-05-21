@@ -50,14 +50,20 @@ public class BakeCake : BaseActivity
     public GameObject cakeDone;
 
     public SkeletonGraphic animCuaLo;
+
+    private bool isOpened, isClosed;
     
     protected override void Start()
     {
         btnAddCake.onClick.AddListener(AddCake);
+        isOpened = isClosed = false;
     }
 
     public async void AnimOpenMachine()
     {
+        if (isOpened)
+            return;
+        isOpened = true;
         animCuaLo.AnimationState.SetAnimation(0, animDong, false);
         await AsyncService.Delay(0.5f, this);
         ActiveMachine();
@@ -65,6 +71,9 @@ public class BakeCake : BaseActivity
 
     public async void AnimCloseMachine()
     {
+        if (isClosed)
+            return;
+        isClosed = true;
         animCuaLo.AnimationState.SetAnimation(0, animMo, false);
         await AsyncService.Delay(0.5f, this);
         OpenMachine();

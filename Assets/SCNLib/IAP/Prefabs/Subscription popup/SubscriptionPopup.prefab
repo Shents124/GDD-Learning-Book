@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 5132606344308041798}
   - component: {fileID: 7757703985815654356}
   - component: {fileID: 6482457126357234825}
-  - component: {fileID: 5825355775020118666}
   m_Layer: 0
   m_Name: BuyButtonIAP Year
   m_TagString: Untagged
@@ -204,21 +203,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5825355775020118666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656226669774600757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 5, y: 5}
-  m_UseGraphicAlpha: 1
 --- !u!1 &804949149483979545
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +215,6 @@ GameObject:
   - component: {fileID: 6431404847442249352}
   - component: {fileID: 220046392726958122}
   - component: {fileID: 2162745397920016693}
-  - component: {fileID: 175763743884186641}
   m_Layer: 0
   m_Name: BuyButtonIAP Life
   m_TagString: Untagged
@@ -343,21 +326,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &175763743884186641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804949149483979545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 5, y: 5}
-  m_UseGraphicAlpha: 1
 --- !u!1 &949327119295951306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,8 +1587,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 625, y: 0}
+  m_AnchoredPosition: {x: -329.5, y: 0.001442}
+  m_SizeDelta: {x: 954.5, y: 411.07}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6678751060426231951
 CanvasRenderer:
@@ -2377,7 +2345,6 @@ GameObject:
   - component: {fileID: 6267362758138636012}
   - component: {fileID: 6267362758138636013}
   - component: {fileID: 2937933195755278898}
-  - component: {fileID: 6649670226874188922}
   m_Layer: 0
   m_Name: BuyButtonIAP Month
   m_TagString: Untagged
@@ -2489,21 +2456,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6649670226874188922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6267362758138636009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 5, y: 5}
-  m_UseGraphicAlpha: 1
 --- !u!1 &6338026997849242466
 GameObject:
   m_ObjectHideFlags: 0

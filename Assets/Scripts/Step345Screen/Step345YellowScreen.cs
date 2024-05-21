@@ -42,14 +42,14 @@ namespace Step345Screen
         {
             var giftTransform = gift.GetComponent<RectTransform>();
             characterController.PlayAnim(0, characterController.runAnimation, true);
-            characterTransform.DOAnchorPos(characterEndPosition.anchoredPosition, characterMoveDuration).OnComplete(
+            characterTransform.DOMove(characterEndPosition.position, characterMoveDuration).OnComplete(
                 () => {
                     characterController.PlayAnim(0, characterController.idleTalkAnimation, true);
                     AudioUtility.PlaySFX(this, AudioClipName.Yellow_intro, 0, () => {
                         characterController.PlayAnim(0, characterController.idleAnimation, true);
 
                         AudioUtility.PlaySFX(AudioClipName.Gift_fall);
-                        giftTransform.DOAnchorPos(giftEndPosition.anchoredPosition, giftMoveDuration).SetEase(Ease.OutQuad)
+                        giftTransform.DOMove(giftEndPosition.position, giftMoveDuration).SetEase(Ease.OutQuad)
                             .OnComplete(() => {
                                 characterController.PlayAnim(0, characterController.exitingAnimation, false, () => {
                                     characterController.PlayAnim(0, characterController.idleAnimation, true);
@@ -135,7 +135,7 @@ namespace Step345Screen
                 AudioUtility.PlaySFX(AudioClipName.Hooray_girl);
                 characterController.PlayAnim(0, characterController.cheerAnimation, false, () => {
                     characterController.PlayAnim(0, characterController.runAnimation, true);
-                    characterTransform.DOAnchorPos(characterEnd2Position.anchoredPosition, characterMoveDuration * 2)
+                    characterTransform.DOMove(characterEnd2Position.position, characterMoveDuration * 2)
                         .OnComplete(ShowBoard);
                 });
             });

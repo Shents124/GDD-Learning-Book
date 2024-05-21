@@ -7,28 +7,33 @@ namespace Utility
 {
     public static class AsyncService
     {
-        public static async UniTask Delay(float delayTime, MonoBehaviour monoBehaviour)
+        public static async UniTask Delay(float delayTime, MonoBehaviour monoBehaviour, bool canCheckDisable = true)
         {
-            // Tạo CancellationTokenSource
-            var cts = new CancellationTokenSource();
-            var cancellationToken = cts.Token;
-
-            // Hủy CancellationToken khi đối tượng bị destroy hoặc disable
-            monoBehaviour.GetCancellationTokenOnDestroy().RegisterWithoutCaptureExecutionContext(() => cts.Cancel());
-
-            // Hủy CancellationToken khi đối tượng bị disable
-            monoBehaviour.gameObject.AddComponent<MonoBehaviourDisableHandler>().Initialize(cts);
-
-            try
+            if (canCheckDisable)
             {
-                // Đợi delayTime giây hoặc hủy nếu đối tượng bị hủy hoặc disable
-                await UniTask.Delay(TimeSpan.FromSeconds(delayTime), cancellationToken: cancellationToken);
+                // Tạo CancellationTokenSource
+                var cts = new CancellationTokenSource();
+                var cancellationToken = cts.Token;
+                // Hủy CancellationToken khi đối tượng bị destroy hoặc disable
+                monoBehaviour.GetCancellationTokenOnDestroy().RegisterWithoutCaptureExecutionContext(() => cts.Cancel());
+
+                // Hủy CancellationToken khi đối tượng bị disable
+                monoBehaviour.gameObject.AddComponent<MonoBehaviourDisableHandler>().Initialize(cts);
+
+                try
+                {
+                    // Đợi delayTime giây hoặc hủy nếu đối tượng bị hủy hoặc disable
+                    await UniTask.Delay(TimeSpan.FromSeconds(delayTime), cancellationToken: cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
+                }
             }
-            catch (OperationCanceledException)
+            else
             {
-                // Nhiệm vụ bị hủy
-                Debug.Log("Task was cancelled.");
+                await UniTask.Delay(TimeSpan.FromSeconds(delayTime), cancellationToken: monoBehaviour.GetCancellationTokenOnDestroy());
             }
+
         }
     }
 }

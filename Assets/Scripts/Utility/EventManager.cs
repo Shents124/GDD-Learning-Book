@@ -144,5 +144,8 @@ public enum Events
     OnEndGradClothes,
     ErrorWay,
     CurrentWay,
-    MoveWayDone
+    MoveWayDone,
+    ReconectInternet,
+    CheckHadInternet,
+    CheckNotInternet,
 }

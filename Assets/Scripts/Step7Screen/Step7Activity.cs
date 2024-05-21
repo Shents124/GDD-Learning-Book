@@ -21,7 +21,7 @@ namespace Step7
 
         public SkeletonGraphic animPlayer;
 
-        public Transform posFall;
+        public Transform posFall, posStart;
 
         public GameObject bgPlayer;
 
@@ -46,34 +46,35 @@ namespace Step7
             EventManager.Connect(Events.FillColorDone, CheckNextStep);
             return base.Initialize(args);
         }
-        private async void ShowTalk()
+        private void ShowTalk()
         {
-            await AsyncService.Delay(1f, this);
-            animPlayer.AnimationState.SetAnimation(0, animTalk, true);
-            AudioUtility.PlaySFX(this, AudioClipName.Voice_coloring, 0, () => {
-                animPlayer.AnimationState.SetAnimation(0, animRun, true);
-                if (posFall.localPosition.x - animPlayer.transform.localPosition.x > 0)
-                {
-                    animPlayer.transform.localScale = new Vector2(-Math.Abs(animPlayer.transform.localScale.x), animPlayer.transform.localScale.y);
-                }
-                else
-                {
-                    animPlayer.transform.localScale = new Vector2(Math.Abs(animPlayer.transform.localScale.x), animPlayer.transform.localScale.y);
-                }
-                
-                animPlayer.transform.DOLocalMove(posFall.localPosition, 1f).OnComplete(() => {
-                    if (ZoomIn)
+            animPlayer.transform.DOLocalMove(posStart.localPosition, 1f).OnComplete(() => {
+                animPlayer.AnimationState.SetAnimation(0, animTalk, true);
+                AudioUtility.PlaySFX(this, AudioClipName.Voice_coloring, 0, () => {
+                    animPlayer.AnimationState.SetAnimation(0, animRun, true);
+                    if (posFall.localPosition.x - animPlayer.transform.localPosition.x > 0)
                     {
-                        AudioUtility.PlaySFX(AudioClipName.Focus);
-                        ZoomIn.transform.DOScale(1.5f, 1f).OnComplete(() => {
-                            bgPlayer.SetActive(false);
-                            AudioUtility.StopSFX();
-                        });
+                        animPlayer.transform.localScale = new Vector2(-Math.Abs(animPlayer.transform.localScale.x), animPlayer.transform.localScale.y);
                     }
                     else
                     {
-                        bgPlayer.SetActive(false);
+                        animPlayer.transform.localScale = new Vector2(Math.Abs(animPlayer.transform.localScale.x), animPlayer.transform.localScale.y);
                     }
+
+                    animPlayer.transform.DOLocalMove(posFall.localPosition, 1f).OnComplete(() => {
+                        if (ZoomIn)
+                        {
+                            AudioUtility.PlaySFX(AudioClipName.Focus);
+                            ZoomIn.transform.DOScale(1.5f, 1f).OnComplete(() => {
+                                bgPlayer.SetActive(false);
+                                AudioUtility.StopSFX();
+                            });
+                        }
+                        else
+                        {
+                            bgPlayer.SetActive(false);
+                        }
+                    });
                 });
             });
         }

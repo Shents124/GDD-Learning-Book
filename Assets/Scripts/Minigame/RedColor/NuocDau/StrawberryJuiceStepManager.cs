@@ -10,7 +10,7 @@ using Utility;
 
 namespace Minigame.RedColor
 {
-    public class StrawberryJuiceStepManager : MonoBehaviour
+    public class StrawberryJuiceStepManager : MinigameNotUI
     {
         public Button btnNext, btnBack;
 
@@ -21,8 +21,9 @@ namespace Minigame.RedColor
 
         private bool _isChangeStep;
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             btnBack.onClick.AddListener(OnClickedBackBtn);
             btnNext.onClick.AddListener(OnClickedNextBtn);
             foreach (var step in steps)

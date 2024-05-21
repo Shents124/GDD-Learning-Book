@@ -79,10 +79,12 @@ public class BtnCollectFruit : MonoBehaviour
     {
         if (correctFruit)
         {
+            AudioUtility.PlaySFX(AudioClipName.Jump);
             CorrectFruit();
         }
         else
         {
+            AudioUtility.PlaySFX(AudioClipName.Falldown);
             animShake.DOPlay();
         }
     }

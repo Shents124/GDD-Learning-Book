@@ -8,6 +8,7 @@ using Utility;
 public class ShowTalkStartGame : MonoBehaviour
 {
     public Transform posFall;
+    public Transform posStart;
 
     public AudioClipName audioTalk;
 
@@ -16,15 +17,16 @@ public class ShowTalkStartGame : MonoBehaviour
     [SpineAnimation(dataField: "animPlayer")]
     public string animPlayerTalk, animPlayerIdle;
 
-    public async void ShowTalk(Action callback = null)
+    public void ShowTalk(Action callback = null)
     {
-        await AsyncService.Delay(1, this);
-        var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, true);
-        AudioUtility.PlaySFX(this, audioTalk, 0, () => {
-            animPlayer.AnimationState.SetAnimation(0, animPlayerIdle, true);
-            animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1).OnComplete(() => {
-                gameObject.SetActive(false);
-                callback?.Invoke();
+        animPlayer.transform.DOLocalMoveY(posStart.localPosition.y, 1).OnComplete(() => {
+            var track = animPlayer.AnimationState.SetAnimation(0, animPlayerTalk, true);
+            AudioUtility.PlaySFX(this, audioTalk, 0, () => {
+                animPlayer.AnimationState.SetAnimation(0, animPlayerIdle, true);
+                animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1).OnComplete(() => {
+                    gameObject.SetActive(false);
+                    callback?.Invoke();
+                });
             });
         });
     }

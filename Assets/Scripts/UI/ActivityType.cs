@@ -30,7 +30,8 @@
         Step7Green = 23,
 
         IapActivity = 24,
-        
+        CheckInternetActivity = 25,
+
         FadeScreen = 99,
     }
     

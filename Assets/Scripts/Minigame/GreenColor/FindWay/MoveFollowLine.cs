@@ -57,8 +57,8 @@ public class MoveFollowLine : MonoBehaviour
     public void StartMove()
     {
         positionMove = wayControl.getPoints().ToArray();
-        wayControl.StopDraw();
         wayControl.Init();
+        wayControl.StopDraw();
         startMovement = true;
         moveIndex = 0;
     }

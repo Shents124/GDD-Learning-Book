@@ -7,7 +7,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MakeCakeManager : MonoBehaviour
+public class MakeCakeManager : MinigameNotUI
 {
     public List<BaseStep> allSteps;
 
@@ -17,8 +17,9 @@ public class MakeCakeManager : MonoBehaviour
 
     private bool _isMoveStep;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         UIService.PlayFadeOut();
         btnBack.onClick.AddListener(OnClickedBackBtn);
         btnNext.onClick.AddListener(OnClickedNextBtn);

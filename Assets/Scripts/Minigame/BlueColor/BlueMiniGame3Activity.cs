@@ -20,7 +20,7 @@ namespace Minigame.BlueColor
 
         public SkeletonGraphic animPlayer;
 
-        public Transform posFall;
+        public Transform posFall, posStart;
 
         public GameObject bgPlayer;
 
@@ -46,14 +46,15 @@ namespace Minigame.BlueColor
             ShowTalk();
         }
 
-        private async void ShowTalk()
+        private void ShowTalk()
         {
-            await AsyncService.Delay(1, this);
-            animPlayer.AnimationState.SetAnimation(0, animTalk, true);
-            AudioUtility.PlaySFX(this, AudioClipName.Voice_coloring, 0, () => {
-                animPlayer.AnimationState.SetAnimation(0, animIdle, true);
-                animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1).OnComplete(() => {
-                    bgPlayer.SetActive(false);
+            animPlayer.transform.DOLocalMoveY(posStart.localPosition.y, 1).OnComplete(() => {
+                animPlayer.AnimationState.SetAnimation(0, animTalk, true);
+                AudioUtility.PlaySFX(this, AudioClipName.Voice_coloring, 0, () => {
+                    animPlayer.AnimationState.SetAnimation(0, animIdle, true);
+                    animPlayer.transform.DOLocalMoveY(posFall.localPosition.y, 1).OnComplete(() => {
+                        bgPlayer.SetActive(false);
+                    });
                 });
             });
         }
