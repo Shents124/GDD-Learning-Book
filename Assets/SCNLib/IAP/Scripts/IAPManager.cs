@@ -498,6 +498,7 @@ namespace SCN.IAP
             PlayerPrefs.SetInt(SubscriptionKey, 1);
             PlayerPrefs.Save();
             OnFinishCheckSubscriptionStatus?.Invoke(true);
+            AdsManager.Instance.SetRemovedAds();
             Debug.Log("Active subscription content");
         }
         void ActiveNonSubscriptionContent()
@@ -505,6 +506,7 @@ namespace SCN.IAP
             PlayerPrefs.SetInt(SubscriptionKey, 0);
             PlayerPrefs.Save();
             OnFinishCheckSubscriptionStatus?.Invoke(false);
+            AdsManager.Instance.SetUnRemovedAds();
             Debug.Log("Active non subscription content");
         }
 
